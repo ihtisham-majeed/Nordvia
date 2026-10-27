@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="p:domain_verify" content="d8676f1dd4f9a5c0a36612aab7973b9b" />
+        <meta name="p:domain_verify" content="858e1c338d44d5ee906557c2cf12ecf6" />
       </head>
       <body className="bg-black text-white antialiased flex flex-col min-h-screen">
         <SmoothScrolling>
