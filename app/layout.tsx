@@ -4,11 +4,17 @@ import Footer from "@/components/layout/Footer";
 import SmoothScrolling from "@/components/Common/SmoothScrolling";
 // import { ScrollProgress } from "@/components/ui/scroll-progress";
 import WhatsAppButton from "@/components/Common/WhatsAppButton";
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Nordvia | Winter Apparel Manufacturer",
   description:
     "Premium winter apparel manufacturer for global brands. Quality, consistency, reliability.",
+  verification: {
+    other: {
+      "p:domain_verify": "858e1c338d44d5ee906557c2cf12ecf6",
+    },
+  },
 };
 
 export default function RootLayout({
@@ -18,9 +24,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <meta name="p:domain_verify" content="858e1c338d44d5ee906557c2cf12ecf6" />
-      </head>
       <body className="bg-black text-white antialiased flex flex-col min-h-screen">
         <SmoothScrolling>
           <Navbar />
