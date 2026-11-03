@@ -8,6 +8,8 @@ import {
   FaShieldAlt,
 } from "react-icons/fa";
 
+import ManageCookieButton from "@/components/cookies/ManageCookieButton";
+
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://nordviaexports.store";
 
@@ -121,6 +123,27 @@ const sections = [
   },
 ];
 
+const consentCategories = [
+  {
+    title: "Essential",
+    status: "Always active",
+    description:
+      "Supports core website functionality and remembers your consent preferences.",
+  },
+  {
+    title: "Analytics",
+    status: "Your choice",
+    description:
+      "Google Analytics helps us understand general website activity and performance.",
+  },
+  {
+    title: "Marketing",
+    status: "Your choice",
+    description:
+      "Pinterest Tag helps measure advertising activity and campaign performance.",
+  },
+];
+
 export default function CookiePolicyPage() {
   return (
     <main className="min-h-screen bg-[#090909] text-white">
@@ -146,8 +169,8 @@ export default function CookiePolicyPage() {
           </div>
 
           <h1 className="max-w-5xl text-5xl font-medium leading-[1.05] tracking-[-0.055em] sm:text-7xl lg:text-8xl">
-            Cookie
-            <span className="block text-neutral-500">Policy.</span>
+            Cookie{" "}
+            <span className="text-neutral-500">Policy.</span>
           </h1>
 
           <div className="mt-10 flex flex-col gap-5 border-t border-white/10 pt-7 sm:flex-row sm:items-end sm:justify-between">
@@ -176,26 +199,7 @@ export default function CookiePolicyPage() {
           </div>
 
           <div className="grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-3">
-            {[
-              {
-                title: "Essential",
-                status: "Always active",
-                description:
-                  "Supports core website functionality and remembers your consent preferences.",
-              },
-              {
-                title: "Analytics",
-                status: "Your choice",
-                description:
-                  "Google Analytics helps us understand general website activity and performance.",
-              },
-              {
-                title: "Marketing",
-                status: "Your choice",
-                description:
-                  "Pinterest Tag helps measure advertising activity and campaign performance.",
-              },
-            ].map((item) => (
+            {consentCategories.map((item) => (
               <div
                 key={item.title}
                 className="bg-[#101010] p-7 sm:p-9"
@@ -215,24 +219,15 @@ export default function CookiePolicyPage() {
             ))}
           </div>
 
-          <button
-            type="button"
-            onClick={() =>
-              window.dispatchEvent(
-                new Event("nordvia:open-cookie-settings")
-              )
-            }
-            className="mt-7 inline-flex cursor-pointer items-center gap-3 border border-white/20 px-6 py-4 text-[10px] font-bold uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-black"
-          >
-            Manage cookie preferences
-            <FaArrowRight size={10} />
-          </button>
+          {/* Client-side cookie settings button */}
+          <ManageCookieButton />
         </div>
       </section>
 
       {/* Policy content */}
       <section className="border-t border-white/10 px-5 py-20 sm:px-8 sm:py-28">
         <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[260px_1fr] lg:gap-24">
+          {/* Table of contents */}
           <aside className="h-fit lg:sticky lg:top-32">
             <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-500">
               On this page
@@ -251,6 +246,7 @@ export default function CookiePolicyPage() {
             </nav>
           </aside>
 
+          {/* Policy sections */}
           <div>
             {sections.map((section) => (
               <article
@@ -316,6 +312,7 @@ export default function CookiePolicyPage() {
               </a>
             </div>
 
+            {/* Related links */}
             <div className="mt-12 flex flex-wrap gap-6 text-xs text-neutral-500">
               <Link
                 href="/privacy-policy"
