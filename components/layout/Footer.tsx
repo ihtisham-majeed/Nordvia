@@ -1,164 +1,285 @@
+
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
 import {
   FaInstagram,
   FaFacebookF,
   FaWhatsapp,
   FaLinkedin,
+  FaArrowRight,
+  FaArrowUp,
 } from "react-icons/fa";
-import Image from "next/image";
+
+const phoneNumber = "923248548680";
+const message = "Hi! I want to check your catalog.";
+
+const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+  message
+)}`;
+
+const navigation = [
+  { label: "Home", href: "/" },
+  { label: "About Nordvia", href: "/about" },
+  { label: "Our Products", href: "/products" },
+  { label: "Manufacturing", href: "/manufacturing" },
+  { label: "Contact Us", href: "/contact" },
+];
+
+const products = [
+  { label: "Winter Jackets", href: "/products/jackets" },
+  { label: "Hoodies & Sweatshirts", href: "/products/hoodies" },
+  { label: "Sportswear & Tracksuits", href: "/products/sportswear" },
+  { label: "Joggers & Sweatpants", href: "/products/joggers" },
+  { label: "Custom Apparel", href: "/products/custom-apparel" },
+];
+
+const socialLinks = [
+  {
+    label: "Instagram",
+    href: "https://instagram.com/nordvia.exports",
+    icon: FaInstagram,
+  },
+  {
+    label: "Facebook",
+    href: "https://facebook.com/nordviaexports",
+    icon: FaFacebookF,
+  },
+  {
+    label: "WhatsApp",
+    href: whatsappUrl,
+    icon: FaWhatsapp,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/nordviaexports",
+    icon: FaLinkedin,
+  },
+];
 
 export default function Footer() {
-  const phoneNumber = "+923248548680";
-  const message = "Hi! I want to Check your Catalog.";
-
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-    message,
-  )}`;
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-black border-t border-white/10 py-12 text-white">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-14 text-center md:text-left">
-        {/* Brand Info */}
-        <div className="flex flex-col items-center md:items-start">
-          <Image src="/logo_.png" alt="Nordvia Logo" width={180} height={40} />
+    <footer className="relative overflow-hidden border-t border-white/10 bg-[#080808] text-white">
 
-          <p className="mt-3 text-base opacity-70">
-            Premium winter apparel manufacturer from Sialkot, Pakistan. Trusted
-            by global brands across Europe, USA, UK, and Canada.
+      {/* Top CTA */}
+      <div className="mx-auto max-w-7xl px-5 pt-20 sm:px-8 lg:px-12 lg:pt-24">
+        <div className="flex flex-col justify-between gap-9 border-b border-white/10 pb-16 lg:flex-row lg:items-end">
+
+          <div>
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-500">
+              Let's build something
+            </p>
+
+            <h2 className="text-4xl font-semibold leading-[1.05] tracking-[-0.05em] sm:text-5xl lg:text-7xl">
+              Have a collection
+              <br />
+              <span className="text-neutral-500">
+                in mind?
+              </span>
+            </h2>
+          </div>
+
+          <Link
+            href="/request-a-quote"
+            className="group inline-flex items-center justify-between gap-10 bg-white px-6 py-5 text-xs font-bold uppercase tracking-[0.15em] text-black transition-colors hover:bg-neutral-200"
+          >
+            Start Your Project
+
+            <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
+
+        </div>
+      </div>
+
+      {/* Main footer */}
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 px-5 py-16 sm:grid-cols-2 sm:px-8 lg:grid-cols-[1.35fr_0.8fr_1fr_1.2fr] lg:gap-12 lg:px-12 lg:py-20">
+
+        {/* Brand */}
+        <div className="flex flex-col items-start">
+  <Link href="/" className="inline-block">
+              <span className="text-3xl font-bold tracking-[0.18em]">
+                NORDVIA
+              </span>
+              <span className="mt-1 block text-[9px] font-medium tracking-[0.55em] text-neutral-500">
+                EXPORTS
+              </span>
+            </Link>
+
+          <p className="mt-7 max-w-xs text-sm leading-7 text-neutral-400">
+            Apparel manufacturing and export solutions from Sialkot,
+            Pakistan. Connecting clothing ideas with manufacturing
+            possibilities for brands and businesses worldwide.
           </p>
 
-          {/* <ul className="mt-3 text-sm space-y-1 text-gray-400">
-            <li>✔ Custom branding and private labeling</li>
-            <li>✔ Export quality production</li>
-            <li>✔ Eco conscious materials</li>
-          </ul> */}
+          <div className="mt-8 flex flex-wrap gap-3">
+            {socialLinks.map((social) => {
+              const Icon = social.icon;
+
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="flex h-10 w-10 items-center justify-center border border-white/15 text-neutral-400 transition-all duration-300 hover:border-white hover:bg-white hover:text-black"
+                >
+                  <Icon size={16} />
+                </a>
+              );
+            })}
+          </div>
+
         </div>
 
-        {/* Winter Apparel Categories */}
-        <div className="flex flex-col items-center md:items-start">
-          <h3 className="text-lg font-semibold mb-4">Winter Apparel</h3>
+        {/* Navigation */}
+        <div>
+          <h3 className="mb-7 text-[10px] font-bold uppercase tracking-[0.22em] text-white">
+            Explore
+          </h3>
 
-          <ul className="space-y-1 text-sm opacity-80">
-            <li>
-              <a href="#catalog" className="hover:underline">
-                Winter Jackets
-              </a>
-            </li>
-            <li>
-              <a href="#catalog" className="hover:underline">
-                Hoodies
-              </a>
-            </li>
-            <li>
-              <a href="#catalog" className="hover:underline">
-                Sweatshirts
-              </a>
-            </li>
-            <li>
-              <a href="#catalog" className="hover:underline">
-                Winter Tracksuits
-              </a>
-            </li>
-            <li>
-              <a href="#catalog" className="hover:underline">
-                Winter Coats
-              </a>
-            </li>
-            <li>
-              <a href="#catalog" className="hover:underline">
-                Winter Gloves
-              </a>
-            </li>
+          <ul className="space-y-4">
+            {navigation.map((item) => (
+              <li key={item.label}>
+                <Link
+                  href={item.href}
+                  className="text-sm text-neutral-500 transition-colors hover:text-white"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
-        {/* Legal */}
-        <div className="flex flex-col items-center md:items-start">
-          <h3 className="text-lg font-semibold mb-4">Company</h3>
-          <ul className="space-y-1 text-base opacity-80">
-            <li>
-              <a href="#about" className="hover:underline">
-                About Nordvia
-              </a>
-            </li>
-            <li>
-              <a href="#products" className="hover:underline">
-                Manufacturing
-              </a>
-            </li>
-            <li>
-              <a href="#sampling" className="hover:underline">
-                Sampling
-              </a>
-            </li>
-            <li>
-              <a href="#export" className="hover:underline">
-                Export Process
-              </a>
-            </li>
-            <li>
-              <a href="#shipping" className="hover:underline">
-                Shipping Info
-              </a>
-            </li>
+        {/* Products */}
+        <div>
+          <h3 className="mb-7 text-[10px] font-bold uppercase tracking-[0.22em] text-white">
+            Our Products
+          </h3>
+
+          <ul className="space-y-4">
+            {products.map((item) => (
+              <li key={item.label}>
+                <Link
+                  href={item.href}
+                  className="text-sm text-neutral-500 transition-colors hover:text-white"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
         {/* Contact */}
-        <div className="flex flex-col items-center md:items-start">
-          <h3 className="font-semibold mb-4 text-lg">Contact Us</h3>
+        <div>
+          <h3 className="mb-7 text-[10px] font-bold uppercase tracking-[0.22em] text-white">
+            Get in Touch
+          </h3>
 
-          <div className="flex gap-4 mb-4">
-            <a
-              href="https://instagram.com/nordvia.exports"
-              target="_blank"
-              className="hover:opacity-80"
-            >
-              <FaInstagram size={22} />
-            </a>
-            <a
-              href="https://facebook.com/nordviaexports"
-              target="_blank"
-              className="hover:opacity-80"
-            >
-              <FaFacebookF size={22} />
-            </a>
-            <a href={whatsappUrl} target="_blank" className="hover:opacity-80">
-              <FaWhatsapp size={22} />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/nordviaexports"
-              target="_blank"
-              className="hover:opacity-80"
-            >
-              <FaLinkedin size={22} />
-            </a>
-          </div>
+          <p className="mb-6 max-w-xs text-sm leading-7 text-neutral-400">
+            Have a manufacturing inquiry or want to explore our apparel
+            catalog? Connect with our team.
+          </p>
 
-          <ul className="space-y-2 text-sm opacity-80">
-            <li>
-              Email:{" "}
+          <div className="space-y-5 text-sm">
+
+            <div>
+              <p className="mb-2 text-[10px] uppercase tracking-[0.17em] text-neutral-600">
+                Email
+              </p>
+
               <a
                 href="mailto:nordvia.exports@gmail.com"
-                className="hover:underline"
+                className="break-all text-neutral-300 transition-colors hover:text-white"
               >
                 nordvia.exports@gmail.com
               </a>
-            </li>
-            <li>
-              Phone:{" "}
-              <a href={whatsappUrl} className="hover:underline font-medium">
+            </div>
+
+            <div>
+              <p className="mb-2 text-[10px] uppercase tracking-[0.17em] text-neutral-600">
+                WhatsApp / Phone
+              </p>
+
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-300 transition-colors hover:text-white"
+              >
                 +92 324 8548680
               </a>
-            </li>
-            <li>Location: Sialkot, Pakistan</li>
-          </ul>
+            </div>
+
+            <div>
+              <p className="mb-2 text-[10px] uppercase tracking-[0.17em] text-neutral-600">
+                Location
+              </p>
+
+              <p className="text-neutral-300">
+                Sialkot, Pakistan
+              </p>
+            </div>
+
+          </div>
+
+          <Link
+            href="/contact"
+            className="group mt-8 inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.17em] text-neutral-400 transition-colors hover:text-white"
+          >
+            Contact Us
+            <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
+        </div>
+
+      </div>
+
+      {/* Bottom bar */}
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-7 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-12">
+
+          <p className="text-[10px] tracking-wide text-neutral-600">
+            © {currentYear} NORDVIA EXPORTS. All rights reserved.
+          </p>
+
+          <div className="flex flex-wrap items-center gap-6">
+            <Link
+              href="/privacy-policy"
+              className="text-[10px] text-neutral-600 transition-colors hover:text-white"
+            >
+              Privacy Policy
+            </Link>
+
+            <Link
+              href="/terms"
+              className="text-[10px] text-neutral-600 transition-colors hover:text-white"
+            >
+              Terms & Conditions
+            </Link>
+
+            <button
+              type="button"
+              aria-label="Back to top"
+              onClick={() =>
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                })
+              }
+              className="flex h-9 w-9 items-center justify-center border border-white/15 text-neutral-400 transition-all hover:border-white hover:bg-white hover:text-black"
+            >
+              <FaArrowUp size={13} />
+            </button>
+          </div>
+
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="mt-12 border-t border-white/10 pt-6 text-center text-sm opacity-50">
-        © {new Date().getFullYear()} Nordvia. All rights reserved.
-      </div>
     </footer>
   );
 }

@@ -68,19 +68,19 @@ const navigation: NavigationItem[] = [
       },
       {
         name: "Hoodies & Sweatshirts",
-        href: "/products/hoodies-sweatshirts/",
+        href: "/products/hoodies/",
       },
       {
-        name: "T-Shirts & Polos",
-        href: "/products/t-shirts-polos/",
+        name: "Tracksuits & Sportswear",
+        href: "/products/tracksuits/",
       },
       {
-        name: "Sportswear & Tracksuits",
-        href: "/products/sportswear-tracksuits/",
+        name: "Jackets & Outerwear",
+        href: "/products/jackets/",
       },
       {
-        name: "Joggers & Sweatpants",
-        href: "/products/joggers-sweatpants/",
+        name: "Coats & Overcoats",
+        href: "/products/coats/",
       },
       {
         name: "Custom Apparel",

@@ -1,8 +1,7 @@
 
 "use client";
 
-import { useEffect, useRef } from "react";
-import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -11,18 +10,84 @@ import {
   FaEnvelope,
   FaCheckCircle,
   FaFileAlt,
+  FaSpinner,
+  FaExclamationCircle,
 } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const inputClass =
-  "w-full border border-white/15 bg-white/[0.035] px-4 py-4 text-sm text-white outline-none transition-all placeholder:text-neutral-600 focus:border-white/60 focus:bg-white/[0.06]";
+  "w-full border border-white/15 bg-white/[0.035] px-4 py-4 text-sm text-white outline-none transition-all placeholder:text-neutral-600 focus:border-white/60 focus:bg-white/[0.06] disabled:cursor-not-allowed disabled:opacity-50";
+
+const selectClass =
+  `${inputClass} appearance-none bg-[#111111] [color-scheme:dark]`;
+
+const optionClass = "bg-[#111111] text-white cursor-pointer";
+
+const placeholderOptionClass = "bg-[#111111] text-neutral-500 cursor-pointer";
 
 const labelClass =
   "mb-3 block text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-400";
 
-export default function RequestQuote() {
+const products = [
+  { value: "hoodies", label: "Hoodies & Sweatshirts" },
+  { value: "t-shirts", label: "T-Shirts & Polos" },
+  { value: "tracksuits", label: "Sportswear & Tracksuits" },
+  { value: "joggers", label: "Joggers & Sweatpants" },
+  { value: "jackets", label: "Jackets" },
+  { value: "coats", label: "Coats & Outerwear" },
+  { value: "other", label: "Other" },
+];
+
+const initialFormData = {
+  fullName: "",
+  company: "",
+  email: "",
+  country: "",
+  product: "",
+  quantity: "",
+  customization: "",
+  timeline: "",
+  message: "",
+  website: "",
+};
+
+type FormData = typeof initialFormData;
+
+type RequestQuoteProps = {
+  initialProduct?: string;
+};
+
+function getValidProduct(product: string) {
+  return products.some((item) => item.value === product) ? product : "";
+}
+
+export default function RequestQuote({
+  initialProduct = "",
+}: RequestQuoteProps) {
   const sectionRef = useRef<HTMLElement>(null);
+
+  const [formData, setFormData] = useState<FormData>({
+    ...initialFormData,
+    product: getValidProduct(initialProduct),
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [status, setStatus] = useState<{
+    type: "success" | "error" | "";
+    message: string;
+  }>({
+    type: "",
+    message: "",
+  });
+
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      product: getValidProduct(initialProduct),
+    }));
+  }, [initialProduct]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -68,11 +133,80 @@ export default function RequestQuote() {
     return () => ctx.revert();
   }, []);
 
+  const handleChange = (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = event.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    if (status.message) {
+      setStatus({ type: "", message: "" });
+    }
+  };
+
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
+
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    setStatus({ type: "", message: "" });
+
+    try {
+      const response = await fetch("/api/quote", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        throw new Error(
+          result?.message ||
+            "We couldn't submit your inquiry. Please try again."
+        );
+      }
+
+      setStatus({
+        type: "success",
+        message:
+          result?.message ||
+          "Your inquiry has been submitted successfully. Thank you for contacting Nordvia Exports.",
+      });
+
+      setFormData({
+        ...initialFormData,
+        product: getValidProduct(initialProduct),
+      });
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Something went wrong. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section
       ref={sectionRef}
       id="request-a-quote"
-      className="relative overflow-hidden bg-[#0b0b0b] px-5 py-24 text-white sm:px-8 lg:px-12 lg:py-32"
+      className="relative overflow-hidden bg-[#0b0b0b] px-5 py-22 text-white sm:px-8 lg:px-12 lg:py-28"
     >
       {/* Background decoration */}
       <div
@@ -91,14 +225,16 @@ export default function RequestQuote() {
           </div>
 
           <h2 className="quote-intro text-4xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-5xl lg:text-7xl">
-            Let's create
+            Let&apos;s create
             <br />
-            <span className="text-neutral-500">something together.</span>
+            <span className="text-neutral-500">
+              something together.
+            </span>
           </h2>
 
           <p className="quote-intro mt-7 max-w-xl text-sm leading-7 text-neutral-400 sm:text-base">
-            Have an apparel collection in mind? Tell us about your project,
-            and let's explore the manufacturing possibilities.
+            Have an apparel collection in mind? Tell us about your
+            project, and let&apos;s explore the manufacturing possibilities.
           </p>
         </div>
 
@@ -118,9 +254,9 @@ export default function RequestQuote() {
               </h3>
 
               <p className="max-w-sm text-sm leading-7 text-neutral-400">
-                Whether you're developing a new clothing brand, expanding an
-                existing collection, or sourcing apparel for your business,
-                share your requirements with us.
+                Whether you&apos;re developing a new clothing brand,
+                expanding an existing collection, or sourcing apparel
+                for your business, share your requirements with us.
               </p>
 
               <div className="mt-12 space-y-7">
@@ -178,7 +314,7 @@ export default function RequestQuote() {
                 NORDVIA EXPORTS
               </p>
               <p className="mt-2 text-xs text-neutral-500">
-                Apparel Manufacturing & Export Inquiries
+                Apparel Manufacturing &amp; Export Inquiries
               </p>
             </div>
           </aside>
@@ -200,7 +336,24 @@ export default function RequestQuote() {
               </span>
             </div>
 
-            <form action="/api/quote" method="POST" className="space-y-7">
+            <form onSubmit={handleSubmit} className="space-y-7">
+              {/* Honeypot spam protection */}
+              <div
+                aria-hidden="true"
+                className="absolute -left-[9999px] h-px w-px overflow-hidden"
+              >
+                <label htmlFor="website">Leave this field empty</label>
+                <input
+                  id="website"
+                  name="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formData.website}
+                  onChange={handleChange}
+                />
+              </div>
+
               {/* Contact information */}
               <div>
                 <p className="mb-5 text-xs font-semibold uppercase tracking-[0.17em] text-neutral-300">
@@ -219,7 +372,11 @@ export default function RequestQuote() {
                       autoComplete="name"
                       placeholder="Your full name"
                       className={inputClass}
+                      value={formData.fullName}
+                      onChange={handleChange}
                       required
+                      maxLength={100}
+                      disabled={isSubmitting}
                     />
                   </div>
 
@@ -234,6 +391,10 @@ export default function RequestQuote() {
                       autoComplete="organization"
                       placeholder="Your company name"
                       className={inputClass}
+                      value={formData.company}
+                      onChange={handleChange}
+                      maxLength={150}
+                      disabled={isSubmitting}
                     />
                   </div>
 
@@ -248,7 +409,11 @@ export default function RequestQuote() {
                       autoComplete="email"
                       placeholder="you@company.com"
                       className={inputClass}
+                      value={formData.email}
+                      onChange={handleChange}
                       required
+                      maxLength={254}
+                      disabled={isSubmitting}
                     />
                   </div>
 
@@ -263,7 +428,11 @@ export default function RequestQuote() {
                       autoComplete="country-name"
                       placeholder="e.g. United Kingdom"
                       className={inputClass}
+                      value={formData.country}
+                      onChange={handleChange}
                       required
+                      maxLength={100}
+                      disabled={isSubmitting}
                     />
                   </div>
                 </div>
@@ -283,31 +452,25 @@ export default function RequestQuote() {
                     <select
                       id="product"
                       name="product"
-                      defaultValue=""
-                      className={`${inputClass} appearance-none`}
+                      value={formData.product}
+                      onChange={handleChange}
+                      className={selectClass}
                       required
+                      disabled={isSubmitting}
                     >
-                      <option value="" disabled className="bg-[#111111]">
+                      <option value="" disabled className={placeholderOptionClass}>
                         Select a product
                       </option>
-                      <option value="Hoodies & Sweatshirts" className="bg-[#111111]">
-                        Hoodies & Sweatshirts
-                      </option>
-                      <option value="T-Shirts & Polos" className="bg-[#111111]">
-                        T-Shirts & Polos
-                      </option>
-                      <option value="Sportswear & Tracksuits" className="bg-[#111111]">
-                        Sportswear & Tracksuits
-                      </option>
-                      <option value="Joggers & Sweatpants" className="bg-[#111111]">
-                        Joggers & Sweatpants
-                      </option>
-                      <option value="Jackets & Outerwear" className="bg-[#111111]">
-                        Jackets & Outerwear
-                      </option>
-                      <option value="Other" className="bg-[#111111]">
-                        Other
-                      </option>
+
+                      {products.map((product) => (
+                        <option
+                          key={product.value}
+                          value={product.value}
+                          className={optionClass}
+                        >
+                          {product.label}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
@@ -318,34 +481,22 @@ export default function RequestQuote() {
                     <select
                       id="quantity"
                       name="quantity"
-                      defaultValue=""
-                      className={`${inputClass} appearance-none`}
+                      value={formData.quantity}
+                      onChange={handleChange}
+                      className={selectClass}
                       required
+                      disabled={isSubmitting}
                     >
-                      <option value="" disabled className="bg-[#111111]">
+                      <option value="" disabled className={placeholderOptionClass}>
                         Select quantity
                       </option>
-                      <option value="Below 100" className="bg-[#111111]">
-                        Below 100 pieces
-                      </option>
-                      <option value="100–300" className="bg-[#111111]">
-                        100–300 pieces
-                      </option>
-                      <option value="300–500" className="bg-[#111111]">
-                        300–500 pieces
-                      </option>
-                      <option value="500–1000" className="bg-[#111111]">
-                        500–1,000 pieces
-                      </option>
-                      <option value="1000–3000" className="bg-[#111111]">
-                        1,000–3,000 pieces
-                      </option>
-                      <option value="3000+" className="bg-[#111111]">
-                        3,000+ pieces
-                      </option>
-                      <option value="Not sure yet" className="bg-[#111111]">
-                        Not sure yet
-                      </option>
+                      <option value="Below 100" className={optionClass}>Below 100 pieces</option>
+                      <option value="100–300" className={optionClass}>100–300 pieces</option>
+                      <option value="300–500" className={optionClass}>300–500 pieces</option>
+                      <option value="500–1000" className={optionClass}>500–1,000 pieces</option>
+                      <option value="1000–3000" className={optionClass}>1,000–3,000 pieces</option>
+                      <option value="3000+" className={optionClass}>3,000+ pieces</option>
+                      <option value="Not sure yet" className={optionClass}>Not sure yet</option>
                     </select>
                   </div>
 
@@ -356,30 +507,20 @@ export default function RequestQuote() {
                     <select
                       id="customization"
                       name="customization"
-                      defaultValue=""
-                      className={`${inputClass} appearance-none`}
+                      value={formData.customization}
+                      onChange={handleChange}
+                      className={selectClass}
+                      disabled={isSubmitting}
                     >
-                      <option value="" disabled className="bg-[#111111]">
+                      <option value="" disabled className={placeholderOptionClass}>
                         Select an option
                       </option>
-                      <option value="Custom design" className="bg-[#111111]">
-                        Custom design
-                      </option>
-                      <option value="Embroidery" className="bg-[#111111]">
-                        Embroidery
-                      </option>
-                      <option value="Printing" className="bg-[#111111]">
-                        Printing
-                      </option>
-                      <option value="Private label" className="bg-[#111111]">
-                        Private label
-                      </option>
-                      <option value="Multiple options" className="bg-[#111111]">
-                        Multiple options
-                      </option>
-                      <option value="Not decided" className="bg-[#111111]">
-                        Not decided
-                      </option>
+                      <option value="Custom design" className={optionClass}>Custom design</option>
+                      <option value="Embroidery" className={optionClass}>Embroidery</option>
+                      <option value="Printing" className={optionClass}>Printing</option>
+                      <option value="Private label" className={optionClass}>Private label</option>
+                      <option value="Multiple options" className={optionClass}>Multiple options</option>
+                      <option value="Not decided" className={optionClass}>Not decided</option>
                     </select>
                   </div>
 
@@ -390,25 +531,28 @@ export default function RequestQuote() {
                     <select
                       id="timeline"
                       name="timeline"
-                      defaultValue=""
-                      className={`${inputClass} appearance-none`}
+                      value={formData.timeline}
+                      onChange={handleChange}
+                      className={selectClass}
+                      disabled={isSubmitting}
+                      
                     >
-                      <option value="" disabled className="bg-[#111111]">
+                      <option value="" disabled className={placeholderOptionClass}>
                         Select timeline
                       </option>
-                      <option value="As soon as possible" className="bg-[#111111]">
+                      <option value="As soon as possible" className={optionClass}>
                         As soon as possible
                       </option>
-                      <option value="Within 1 month" className="bg-[#111111]">
+                      <option value="Within 1 month" className={optionClass}>
                         Within 1 month
                       </option>
-                      <option value="1–3 months" className="bg-[#111111]">
+                      <option value="1–3 months" className={optionClass}>
                         1–3 months
                       </option>
-                      <option value="3+ months" className="bg-[#111111]">
+                      <option value="3+ months" className={optionClass}>
                         3+ months
                       </option>
-                      <option value="Planning stage" className="bg-[#111111]">
+                      <option value="Planning stage" className={optionClass}>
                         Planning stage
                       </option>
                     </select>
@@ -432,25 +576,57 @@ export default function RequestQuote() {
                     rows={5}
                     placeholder="Describe your product, fabric preferences, design references, colors, and any other requirements..."
                     className={`${inputClass} resize-y`}
+                    value={formData.message}
+                    onChange={handleChange}
                     required
+                    maxLength={5000}
+                    disabled={isSubmitting}
                   />
                 </div>
               </div>
+
+              {/* Status feedback */}
+              {status.message && (
+                <div
+                  role="status"
+                  aria-live="polite"
+                  className={`flex items-start gap-3 border p-4 text-sm leading-6 ${
+                    status.type === "success"
+                      ? "border-green-500/25 bg-green-500/[0.07] text-green-300"
+                      : "border-red-500/25 bg-red-500/[0.07] text-red-300"
+                  }`}
+                >
+                  {status.type === "success" ? (
+                    <FaCheckCircle className="mt-1 shrink-0" />
+                  ) : (
+                    <FaExclamationCircle className="mt-1 shrink-0" />
+                  )}
+                  <p>{status.message}</p>
+                </div>
+              )}
 
               {/* Submit */}
               <div className="border-t border-white/10 pt-7">
                 <button
                   type="submit"
-                  className="group flex w-full items-center justify-between bg-white px-6 py-5 text-xs font-bold uppercase tracking-[0.17em] text-black transition-colors duration-300 hover:bg-neutral-200"
+                  disabled={isSubmitting}
+                  className="group flex w-full items-center justify-between bg-white px-6 py-5 text-xs font-bold uppercase tracking-[0.17em] text-black transition-colors duration-300 hover:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer"
                 >
-                  Submit Your Inquiry
-                  <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+                  <span>
+                    {isSubmitting ? "Submitting Inquiry..." : "Submit Your Inquiry"}
+                  </span>
+
+                  {isSubmitting ? (
+                    <FaSpinner className="animate-spin" />
+                  ) : (
+                    <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+                  )}
                 </button>
 
                 <p className="mt-5 flex items-start gap-2 text-[11px] leading-6 text-neutral-500">
                   <FaCheckCircle className="mt-1 shrink-0 text-neutral-400" />
-                  Your project details will be used to review and respond to
-                  your inquiry.
+                  Your project details will be used to review and respond
+                  to your inquiry.
                 </p>
 
                 <p className="mt-3 text-[10px] leading-5 text-neutral-600">

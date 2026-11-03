@@ -18,7 +18,7 @@ export default function WhatsAppButton() {
       className="fixed bottom-2 sm:bottom-6 right-4 sm:right-6 z-50 flex items-center gap-3 rounded-full bg-[#25D366] px-3 py-3 text-white shadow-lg transition hover:bg-[#10a848] hover:shadow-xl"
     >
       <FaWhatsapp className="text-2xl" />
-      <span className="hidden sm:inline font-semibold">
+      <span className="hidden font-semibold">
         Let&apos;s Talk Now
       </span>
     </a>
