@@ -1,13 +1,16 @@
 import About from "@/components/sections/About";
 import Categories from "@/components/sections/Categories";
-import CTA from "@/components/sections/CTA";
-import Export from "@/components/sections/Export";
+import RequestQuote from "@/components/sections/RequestQuote";
 import Hero from "@/components/sections/Hero";
+import IndustriesWeServe from "@/components/sections/IndustriesWeServe";
+import ManufacturingCapabilities from "@/components/sections/ManufacturingCapabilities";
 import Products from "@/components/sections/Products";
-import Sampling from "@/components/sections/Sampling";
+import HowItWorks from "@/components/sections/HowItWorks";
 import ShippingPartners from "@/components/sections/ShippingPartners";
 import WhyUs from "@/components/sections/WhyUs";
 import { Analytics } from "@vercel/analytics/next";
+import QualityStandards from "@/components/sections/QualityStandards";
+import FAQ from "@/components/sections/FAQ";
 
 export default function Home() {
   return (
@@ -17,11 +20,14 @@ export default function Home() {
       <Products />
       <About />
       <WhyUs />
+      <ManufacturingCapabilities />
+      <IndustriesWeServe />
       <Categories />
       <ShippingPartners />
-      <Sampling />
-      <Export />
-      <CTA />
+      <HowItWorks />
+      <QualityStandards />
+      <FAQ />
+      <RequestQuote />
     </>
   );
 }

@@ -1,257 +1,566 @@
+
 "use client";
 
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
+import type { RefObject } from "react";
 import {
   FaInstagram,
   FaFacebookF,
   FaBars,
   FaTimes,
   FaLinkedin,
+  FaChevronDown,
+  FaArrowRight,
 } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa6";
 import gsap from "gsap";
 
-const products = [
-  { name: "Winter Jackets", href: "#catalog" },
-  { name: "Hoodies", href: "#catalog" },
-  { name: "Sweatshirts", href: "#catalog" },
-  { name: "Winter Tracksuits", href: "#catalog" },
-  { name: "Winter Coats", href: "#catalog" },
-  { name: "Winter Gloves", href: "#catalog" },
+// =====================================
+// TYPES
+// =====================================
+
+type NavigationLink = {
+  name: string;
+  href: string;
+  description?: string;
+};
+
+type NavigationDropdown = {
+  name: string;
+  type: "dropdown";
+  items: NavigationLink[];
+};
+
+type NavigationSingleLink = {
+  name: string;
+  href: string;
+  type: "link";
+};
+
+type NavigationItem =
+  | NavigationDropdown
+  | NavigationSingleLink;
+
+// =====================================
+// NAVIGATION DATA
+// =====================================
+
+const navigation: NavigationItem[] = [
+  {
+    name: "Home",
+    href: "/",
+    type: "link",
+  },
+  {
+    name: "About Us",
+    href: "/about/",
+    type: "link",
+  },
+  {
+    name: "Products",
+    type: "dropdown",
+    items: [
+      {
+        name: "All Products",
+        href: "/products/",
+        description: "Explore our apparel range",
+      },
+      {
+        name: "Hoodies & Sweatshirts",
+        href: "/products/hoodies-sweatshirts/",
+      },
+      {
+        name: "T-Shirts & Polos",
+        href: "/products/t-shirts-polos/",
+      },
+      {
+        name: "Sportswear & Tracksuits",
+        href: "/products/sportswear-tracksuits/",
+      },
+      {
+        name: "Joggers & Sweatpants",
+        href: "/products/joggers-sweatpants/",
+      },
+      {
+        name: "Custom Apparel",
+        href: "/products/custom-apparel/",
+      },
+    ],
+  },
+  {
+    name: "Manufacturing",
+    type: "dropdown",
+    items: [
+      {
+        name: "Manufacturing Overview",
+        href: "/manufacturing/",
+      },
+      {
+        name: "Custom Clothing Manufacturing",
+        href: "/services/custom-clothing-manufacturing/",
+      },
+      {
+        name: "Private Label",
+        href: "/services/private-label/",
+      },
+      {
+        name: "OEM / ODM",
+        href: "/services/oem-odm/",
+      },
+      {
+        name: "Sampling & Development",
+        href: "/services/product-development-sampling/",
+      },
+      {
+        name: "Printing & Embroidery",
+        href: "/services/printing-embroidery/",
+      },
+      {
+        name: "Fabric Options",
+        href: "/services/fabric-sourcing/",
+      },
+    ],
+  },
+  {
+    name: "Industries",
+    type: "dropdown",
+    items: [
+      {
+        name: "Fashion Brands",
+        href: "/industries/fashion-brands/",
+      },
+      {
+        name: "Streetwear Brands",
+        href: "/industries/streetwear-brands/",
+      },
+      {
+        name: "Sportswear Brands",
+        href: "/industries/sportswear-brands/",
+      },
+      {
+        name: "Wholesalers & Distributors",
+        href: "/industries/wholesalers-distributors/",
+      },
+    ],
+  },
+  {
+    name: "Resources",
+    type: "dropdown",
+    items: [
+      {
+        name: "Frequently Asked Questions",
+        href: "/resources/faq/",
+      },
+      {
+        name: "Blog & Insights",
+        href: "/resources/blog/",
+      },
+      {
+        name: "Manufacturing Process",
+        href: "/resources/manufacturing-process/",
+      },
+      {
+        name: "Fabric Guide",
+        href: "/resources/fabric-guide/",
+      },
+    ],
+  },
+  {
+    name: "Contact",
+    href: "/contact/",
+    type: "link",
+  },
 ];
 
+// =====================================
+// DESKTOP DROPDOWN
+// =====================================
+
+type DesktopDropdownProps = {
+  item: NavigationDropdown;
+};
+
+function DesktopDropdown({ item }: DesktopDropdownProps) {
+  return (
+    <div className="relative group">
+      <button
+        type="button"
+        aria-haspopup="true"
+        className="flex items-center gap-2 py-3 text-[13px] font-medium text-white/75 transition-colors duration-300 hover:text-white"
+      >
+        {item.name}
+
+        <FaChevronDown
+          size={10}
+          className="transition-transform duration-300 group-hover:rotate-180 group-focus-within:rotate-180"
+        />
+      </button>
+
+      <div
+        className="
+          invisible absolute left-0 top-full z-50 mt-2
+          w-72 translate-y-3 overflow-hidden
+          rounded-xl border border-white/10
+          bg-[#111111] p-2 opacity-0 shadow-2xl
+          transition-all duration-300
+          group-hover:visible group-hover:translate-y-0
+          group-hover:opacity-100
+          group-focus-within:visible
+          group-focus-within:translate-y-0
+          group-focus-within:opacity-100
+        "
+      >
+        {item.items.map((subItem) => (
+          <Link
+            key={subItem.href}
+            href={subItem.href}
+            className="group/item flex items-center justify-between rounded-lg px-4 py-3 text-[13px] text-white/70 transition-all duration-200 hover:bg-white/10 hover:text-white"
+          >
+            <span>
+              <span className="block font-medium">
+                {subItem.name}
+              </span>
+
+              {subItem.description && (
+                <span className="mt-1 block text-[11px] text-white/40">
+                  {subItem.description}
+                </span>
+              )}
+            </span>
+
+            <FaArrowRight
+              size={11}
+              className="opacity-0 transition-all duration-200 group-hover/item:translate-x-1 group-hover/item:opacity-100"
+            />
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// =====================================
+// MAIN NAVBAR
+// =====================================
+
 export default function Navbar() {
-  const phoneNumber = "+923248548680";
-  const message = "Hi! I want to Check your Catalog.";
+  const phoneNumber = "923248548680";
+
+  const message =
+    "Hello NORDVIA EXPORTS! I would like to discuss an apparel manufacturing enquiry.";
 
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-    message,
+    message
   )}`;
 
-  const [open, setOpen] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
-  const mobileMenuRef = useRef(null);
+  const [open, setOpen] = useState<boolean>(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
-  const handleDropdownClick = () => {
-    setDropdown(false);
-    setOpen(false);
-  };
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+  // =====================================
+  // GSAP MOBILE MENU ANIMATION
+  // =====================================
 
   useEffect(() => {
-    if (!mobileMenuRef.current) return;
+    const menu = mobileMenuRef.current;
 
-    gsap.killTweensOf(mobileMenuRef.current);
+    if (!menu) return;
+
+    gsap.killTweensOf(menu);
 
     if (open) {
-      gsap.to(mobileMenuRef.current, {
+      gsap.to(menu, {
         height: "auto",
         opacity: 1,
         y: 0,
-        duration: 0.45,
+        duration: 0.4,
         ease: "power3.out",
-        pointerEvents: "auto",
+        onComplete: () => {
+          gsap.set(menu, { height: "auto" });
+        },
       });
     } else {
-      gsap.to(mobileMenuRef.current, {
+      gsap.to(menu, {
         height: 0,
         opacity: 0,
         y: -10,
         duration: 0.3,
         ease: "power3.in",
-        pointerEvents: "none",
       });
     }
   }, [open]);
 
+  // =====================================
+  // MOBILE MENU FUNCTIONS
+  // =====================================
+
+  const closeMobileMenu = () => {
+    setOpen(false);
+    setActiveDropdown(null);
+  };
+
+  const toggleDropdown = (name: string) => {
+    setActiveDropdown((previous) =>
+      previous === name ? null : name
+    );
+  };
+
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/80 backdrop-blur">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link href="/" className="text-xl font-semibold tracking-wide">
-          Nordvia
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-black/90 text-white backdrop-blur-xl">
+
+      {/* DESKTOP / TABLET HEADER */}
+
+      <nav
+        className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-2 sm:py-3 lg:px-8"
+        aria-label="Main navigation"
+      >
+        {/* LOGO */}
+
+        <Link
+          href="/"
+          onClick={closeMobileMenu}
+          className="flex shrink-0 items-center gap-2"
+          aria-label="NORDVIA EXPORTS Home"
+        >
+          <span className="text-2xl font-bold tracking-[0.15em] sm:text-3xl">
+            NORDVIA
+          </span>
+
+          <span className="hidden border-l border-white/30 pl-2 text-[9px] tracking-[0.35em] text-white/60 sm:block">
+            EXPORTS
+          </span>
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
-          <Link
-            href="#home"
-            className="relative text-base opacity-80 hover:opacity-100 group"
-          >
-            Home
-            <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-current transition-all duration-300 group-hover:w-full" />
-          </Link>
+        {/* DESKTOP MENU */}
 
-          <div className="relative group">
-            <button className=" text-base opacity-80 hover:opacity-100 flex items-center gap-1">
-              Products
-              <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-current transition-all duration-300 group-hover:w-full" />
-            </button>
-            <div className="absolute left-0 mt-3 w-48 rounded-xl border border-white/10 bg-black shadow-xl opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-300">
-              {products.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="block px-4 py-3 text-base opacity-80 hover:bg-white/5 hover:opacity-100"
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <Link
-            href="#products"
-            className="relative text-base opacity-80 hover:opacity-100 group"
-          >
-            Manufactured
-            <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-current transition-all duration-300 group-hover:w-full" />
-          </Link>
-          <Link
-            href="#about"
-            className="relative text-base opacity-80 hover:opacity-100 group"
-          >
-            About Us
-            <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-current transition-all duration-300 group-hover:w-full" />
-          </Link>
-
-          <Link
-            href={whatsappUrl}
-            target="_blank"
-            className="rounded-full border border-white/20 px-5 py-2 text-base hover:bg-white hover:text-black transition"
-          >
-            WhatsApp Inquiry
-          </Link>
-
-          <div className="flex gap-4">
-            <a
-              href="https://www.instagram.com/nordvia.exports/"
-              target="_blank"
-              className="hover:opacity-80"
-            >
-              <FaInstagram size={22} />
-            </a>
-            <a
-              href="https://facebook.com/nordviaexports"
-              target="_blank"
-              className="hover:opacity-80"
-            >
-              <FaFacebookF size={22} />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/nordviaexports"
-              target="_blank"
-              className="hover:opacity-80"
-            >
-              <FaLinkedin size={22} />
-            </a>
-            <a
-              href="mailto:nordvia.exports@gmail.com"
-              className="cursor-pointer hover:opacity-80"
-              target="_blank"
-            >
-              <FaEnvelope size={22} />
-            </a>
-          </div>
-        </div>
-
-        {/* Mobile Toggle */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden text-white text-xl"
-        >
-          {open ? <FaTimes /> : <FaBars />}
-        </button>
-      </nav>
-
-      {/* Mobile Menu */}
-      <div
-        ref={mobileMenuRef}
-        className="md:hidden overflow-hidden border-t border-white/10 bg-black"
-        style={{ height: 0, opacity: 0, pointerEvents: "none" }}
-      >
-        <div className="flex flex-col px-6 py-6 space-y-4">
-          <Link
-            href="/"
-            onClick={() => setOpen(false)}
-            className="text-sm opacity-80"
-          >
-            Home
-          </Link>
-
-          <button
-            onClick={() => setDropdown(!dropdown)}
-            className="text-left text-sm opacity-80 flex justify-between items-center w-full z-10"
-          >
-            Products
-            <span>{dropdown ? "▲" : "▼"}</span>
-          </button>
-
-          {dropdown &&
-            products.map((item) => (
+        <div className="hidden items-center gap-5 xl:flex">
+          {navigation.map((item) =>
+            item.type === "dropdown" ? (
+              <DesktopDropdown
+                key={item.name}
+                item={item}
+              />
+            ) : (
               <Link
                 key={item.name}
                 href={item.href}
-                className="pl-4 text-sm opacity-70"
-                onClick={handleDropdownClick}
+                className="group relative py-3 text-[13px] font-medium text-white/75 transition-colors duration-300 hover:text-white"
               >
                 {item.name}
+
+                <span className="absolute bottom-1 left-0 h-[1px] w-0 bg-white transition-all duration-300 group-hover:w-full" />
               </Link>
+            )
+          )}
+        </div>
+
+        {/* DESKTOP CTA */}
+
+        <div className="hidden items-center gap-4 xl:flex">
+          <Link
+            href="/request-a-quote/"
+            className="group flex items-center gap-2 rounded-full bg-white px-5 py-3 text-[12px] font-semibold text-black transition-all duration-300 hover:bg-white/80"
+          >
+            Request a Quote
+
+            <FaArrowRight
+              size={11}
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            />
+          </Link>
+        </div>
+
+        {/* TABLET / MOBILE ACTIONS */}
+
+        <div className="flex items-center gap-4 xl:hidden">
+          <Link
+            href="/request-a-quote/"
+            className="hidden rounded-full bg-white px-4 py-2.5 text-xs font-semibold text-black transition hover:bg-white/80 sm:block"
+          >
+            Get a Quote
+          </Link>
+
+          <button
+            type="button"
+            onClick={() => setOpen((previous) => !previous)}
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-xl transition hover:bg-white hover:text-black"
+          >
+            {open ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+      </nav>
+
+      {/* MOBILE NAVIGATION */}
+
+      <div
+        id="mobile-navigation"
+        ref={mobileMenuRef}
+        aria-hidden={!open}
+        inert={!open}
+        className="xl:hidden overflow-hidden border-t border-white/10 bg-[#090909]"
+        style={{
+          height: 0,
+          opacity: 0,
+        }}
+      >
+        <div className="max-h-[calc(100dvh-75px)] overflow-y-auto px-4 py-4">
+
+          {/* MOBILE LINKS */}
+
+          <div className="flex flex-col">
+            {navigation.map((item) => (
+              <div
+                key={item.name}
+                className="border-b border-white/10"
+              >
+                {item.type === "link" ? (
+                  <Link
+                    href={item.href}
+                    onClick={closeMobileMenu}
+                    className="flex items-center justify-between py-4 text-sm font-medium text-white/80 transition hover:text-white"
+                  >
+                    {item.name}
+
+                    <FaArrowRight
+                      size={11}
+                      className="text-white/40"
+                    />
+                  </Link>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => toggleDropdown(item.name)}
+                      aria-expanded={activeDropdown === item.name}
+                      className="flex w-full items-center justify-between py-4 text-left text-sm font-medium text-white/80 transition hover:text-white"
+                    >
+                      {item.name}
+
+                      <FaChevronDown
+                        size={12}
+                        className={`transition-transform duration-300 ${
+                          activeDropdown === item.name
+                            ? "rotate-180"
+                            : ""
+                        }`}
+                      />
+                    </button>
+
+                    {/* MOBILE SUBMENU */}
+
+                    <div
+                      className={`grid transition-all duration-300 ${
+                        activeDropdown === item.name
+                          ? "grid-rows-[1fr] pb-4 opacity-100"
+                          : "grid-rows-[0fr] opacity-0"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        {item.items.map((subItem) => (
+                          <Link
+                            key={subItem.href}
+                            href={subItem.href}
+                            onClick={closeMobileMenu}
+                            tabIndex={
+                              activeDropdown === item.name ? 0 : -1
+                            }
+                            className="flex items-center justify-between py-3 pl-4 text-[13px] text-white/55 transition hover:text-white"
+                          >
+                            {subItem.name}
+
+                            <FaArrowRight
+                              size={10}
+                              className="text-white/30"
+                            />
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
             ))}
-
-          <Link
-            href="#products"
-            onClick={() => setOpen(false)}
-            className="text-sm opacity-80"
-          >
-            Manufactured
-          </Link>
-          <Link
-            href="#about"
-            onClick={() => setOpen(false)}
-            className="text-sm opacity-80"
-          >
-            About Us
-          </Link>
-
-          <div className="flex items-center gap-4 mt-4">
-            <a
-              href="https://www.instagram.com/nordvia.exports/"
-              target="_blank"
-              className="hover:opacity-80"
-            >
-              <FaInstagram size={18} />
-            </a>
-            <a
-              href="https://facebook.com/nordviaexports"
-              target="_blank"
-              className="hover:opacity-80"
-            >
-              <FaFacebookF size={18} />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/nordviaexports"
-              className="cursor-pointer hover:opacity-80"
-              target="_blank"
-            >
-              <FaLinkedin size={18} />
-            </a>
-            <a
-              href="mailto:nordvia.exports@gmail.com"
-              className="cursor-pointer hover:opacity-80"
-              target="_blank"
-            >
-              <FaEnvelope size={18} />
-            </a>
           </div>
 
-          <Link
-            href={whatsappUrl}
-            target="_blank"
-            onClick={() => setOpen(false)}
-            className="mt-4 rounded-full border border-white/20 px-5 py-3 text-center bg-white text-black font-semibold text-sm"
-          >
-            WhatsApp Inquiry
-          </Link>
+          {/* MOBILE CTA */}
+
+          <div className="mt-6 flex flex-col gap-3">
+            <Link
+              href="/request-a-quote/"
+              onClick={closeMobileMenu}
+              className="flex items-center justify-center gap-2 rounded-full bg-white px-5 py-4 text-sm font-semibold text-black transition hover:bg-white/80"
+            >
+              Request a Quote
+              <FaArrowRight size={12} />
+            </Link>
+
+            <Link
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMobileMenu}
+              className="flex items-center justify-center rounded-full border border-white/20 px-5 py-4 text-sm font-medium text-white transition hover:bg-white hover:text-black"
+            >
+              WhatsApp Inquiry
+            </Link>
+          </div>
+
+          {/* SOCIAL LINKS */}
+
+          <div className="mt-8 border-t border-white/10 pt-6">
+            <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
+              Connect With Us
+            </p>
+
+            <div className="flex items-center gap-6">
+              <a
+                href="https://www.instagram.com/nordvia.exports/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="text-white/60 transition hover:text-white"
+              >
+                <FaInstagram size={19} />
+              </a>
+
+              <a
+                href="https://facebook.com/nordviaexports"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="text-white/60 transition hover:text-white"
+              >
+                <FaFacebookF size={19} />
+              </a>
+
+              <a
+                href="https://www.linkedin.com/company/nordviaexports"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="text-white/60 transition hover:text-white"
+              >
+                <FaLinkedin size={19} />
+              </a>
+
+              <a
+                href="mailto:nordvia.exports@gmail.com"
+                aria-label="Email"
+                className="text-white/60 transition hover:text-white"
+              >
+                <FaEnvelope size={19} />
+              </a>
+            </div>
+
+            <p className="mt-6 text-[10px] text-white/30">
+              © {new Date().getFullYear()} NORDVIA EXPORTS. All rights reserved.
+            </p>
+          </div>
         </div>
       </div>
     </header>
