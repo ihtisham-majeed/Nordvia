@@ -1,7 +1,12 @@
 
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type FormEvent,
+} from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -16,6 +21,8 @@ import {
   FaCheckCircle,
   FaExclamationCircle,
   FaSpinner,
+  FaCheck,
+  FaChevronDown,
 } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -62,6 +69,29 @@ const socialLinks = [
   },
 ];
 
+const subjectOptions = [
+  {
+    label: "Manufacturing inquiry",
+    value: "Manufacturing inquiry",
+  },
+  {
+    label: "Private label",
+    value: "Private label",
+  },
+  {
+    label: "Product development",
+    value: "Product development",
+  },
+  {
+    label: "Business partnership",
+    value: "Partnership",
+  },
+  {
+    label: "General inquiry",
+    value: "General inquiry",
+  },
+];
+
 const inputClass =
   "w-full border border-white/15 bg-white/[0.035] px-4 py-4 text-sm text-white outline-none transition-colors placeholder:text-neutral-600 focus:border-white/60";
 
@@ -72,6 +102,10 @@ export default function ContactPage() {
   const sectionRef = useRef<HTMLElement>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [subject, setSubject] = useState("");
+  const [subjectOpen, setSubjectOpen] = useState(false);
+
   const [status, setStatus] = useState<{
     type: "success" | "error";
     message: string;
@@ -84,7 +118,10 @@ export default function ContactPage() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".contact-reveal",
-        { y: 35, autoAlpha: 0 },
+        {
+          y: 35,
+          autoAlpha: 0,
+        },
         {
           y: 0,
           autoAlpha: 1,
@@ -110,6 +147,14 @@ export default function ContactPage() {
 
     if (isSubmitting) return;
 
+    if (!subject) {
+      setStatus({
+        type: "error",
+        message: "Please select an inquiry type.",
+      });
+      return;
+    }
+
     const form = event.currentTarget;
     const formData = new FormData(form);
 
@@ -126,7 +171,8 @@ export default function ContactPage() {
 
       if (!response.ok || !result.success) {
         throw new Error(
-          result.message || "Unable to send your message. Please try again."
+          result.message ||
+            "Unable to send your message. Please try again."
         );
       }
 
@@ -138,6 +184,8 @@ export default function ContactPage() {
       });
 
       form.reset();
+      setSubject("");
+      setSubjectOpen(false);
     } catch (error) {
       setStatus({
         type: "error",
@@ -167,6 +215,7 @@ export default function ContactPage() {
         <div className="mx-auto max-w-7xl">
           <div className="contact-reveal mb-7 flex items-center gap-3">
             <span className="h-px w-9 bg-neutral-500" />
+
             <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
               Get in touch
             </span>
@@ -176,13 +225,15 @@ export default function ContactPage() {
             <h1 className="contact-reveal max-w-5xl text-5xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-7xl lg:text-[100px]">
               Let's start a
               <br />
-              <span className="text-neutral-500">conversation.</span>
+              <span className="text-neutral-500">
+                conversation.
+              </span>
             </h1>
 
             <p className="contact-reveal max-w-md text-sm leading-7 text-neutral-400 sm:text-base lg:pb-3">
-              Looking for an apparel manufacturing partner? Have a collection
-              to develop or a sourcing inquiry? We'd be glad to hear about
-              your project.
+              Looking for an apparel manufacturing partner? Have
+              a collection to develop or a sourcing inquiry? We'd
+              be glad to hear about your project.
             </p>
           </div>
         </div>
@@ -205,8 +256,9 @@ export default function ContactPage() {
             </h2>
 
             <p className="mb-12 max-w-sm text-sm leading-7 text-neutral-400">
-              Tell us about your business, product requirements, and sourcing
-              goals. Start a conversation with NORDVIA EXPORTS.
+              Tell us about your business, product requirements,
+              and sourcing goals. Start a conversation with
+              NORDVIA EXPORTS.
             </p>
 
             <div className="space-y-8">
@@ -294,6 +346,7 @@ export default function ContactPage() {
                 <label htmlFor="contact-website">
                   Website
                 </label>
+
                 <input
                   id="contact-website"
                   name="website"
@@ -308,6 +361,7 @@ export default function ContactPage() {
                   <label htmlFor="contact-name" className={labelClass}>
                     Full name *
                   </label>
+
                   <input
                     id="contact-name"
                     name="name"
@@ -324,6 +378,7 @@ export default function ContactPage() {
                   <label htmlFor="contact-company" className={labelClass}>
                     Company / Brand
                   </label>
+
                   <input
                     id="contact-company"
                     name="company"
@@ -341,6 +396,7 @@ export default function ContactPage() {
                   <label htmlFor="contact-email" className={labelClass}>
                     Email address *
                   </label>
+
                   <input
                     id="contact-email"
                     name="email"
@@ -353,54 +409,103 @@ export default function ContactPage() {
                   />
                 </div>
 
+                {/* Custom dark inquiry dropdown */}
                 <div>
-                  <label htmlFor="contact-subject" className={labelClass}>
+                  <label
+                    htmlFor="contact-subject"
+                    className={labelClass}
+                  >
                     Inquiry type *
                   </label>
 
-                  <select
-                    id="contact-subject"
-                    name="subject"
-                    defaultValue=""
-                    required
-                    className={`${inputClass} appearance-none bg-[#111111] text-white [color-scheme:dark]`}
-                  >
-                    <option
-                      value=""
-                      disabled
-                      className="bg-[#111111] text-neutral-500"
+                  <div className="relative">
+                    <input
+                      type="hidden"
+                      name="subject"
+                      value={subject}
+                    />
+
+                    <button
+                      id="contact-subject"
+                      type="button"
+                      aria-haspopup="listbox"
+                      aria-expanded={subjectOpen}
+                      onClick={() =>
+                        setSubjectOpen((previous) => !previous)
+                      }
+                      onKeyDown={(event) => {
+                        if (event.key === "Escape") {
+                          setSubjectOpen(false);
+                        }
+                      }}
+                      className={`${inputClass} flex cursor-pointer items-center justify-between text-left ${
+                        subject
+                          ? "text-white"
+                          : "text-neutral-500"
+                      }`}
                     >
-                      Select inquiry type
-                    </option>
+                      <span>
+                        {subjectOptions.find(
+                          (option) => option.value === subject
+                        )?.label || "Select inquiry type"}
+                      </span>
 
-                    <option value="Manufacturing inquiry">
-                      Manufacturing inquiry
-                    </option>
+                      <FaChevronDown
+                        size={11}
+                        className={`shrink-0 text-neutral-400 transition-transform duration-300 ${
+                          subjectOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
 
-                    <option value="Private label">
-                      Private label
-                    </option>
+                    {subjectOpen && (
+                      <div
+                        role="listbox"
+                        aria-labelledby="contact-subject"
+                        className="absolute left-0 top-full z-50 mt-1 max-h-64 w-full overflow-y-auto border border-white/15 bg-[#111111] py-2 shadow-2xl shadow-black/50"
+                      >
+                        {subjectOptions.map((option) => {
+                          const isSelected =
+                            subject === option.value;
 
-                    <option value="Product development">
-                      Product development
-                    </option>
+                          return (
+                            <button
+                              key={option.value}
+                              type="button"
+                              role="option"
+                              aria-selected={isSelected}
+                              onClick={() => {
+                                setSubject(option.value);
+                                setSubjectOpen(false);
+                                setStatus(null);
+                              }}
+                              className="flex w-full cursor-pointer items-center justify-between px-4 py-3 text-left text-sm text-neutral-300 transition-colors hover:bg-white/10 hover:text-white"
+                            >
+                              {option.label}
 
-                    <option value="Partnership">
-                      Business partnership
-                    </option>
-
-                    <option value="General inquiry">
-                      General inquiry
-                    </option>
-                  </select>
-
+                              {isSelected && (
+                                <FaCheck
+                                  size={11}
+                                  className="text-white"
+                                />
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
 
               <div>
-                <label htmlFor="contact-message" className={labelClass}>
+                <label
+                  htmlFor="contact-message"
+                  className={labelClass}
+                >
                   Your message *
                 </label>
+
                 <textarea
                   id="contact-message"
                   name="message"
@@ -417,10 +522,11 @@ export default function ContactPage() {
                 <div
                   role="status"
                   aria-live="polite"
-                  className={`flex items-start gap-3 border p-4 text-sm leading-6 ${status.type === "success"
+                  className={`flex items-start gap-3 border p-4 text-sm leading-6 ${
+                    status.type === "success"
                       ? "border-emerald-500/30 bg-emerald-500/[0.07] text-emerald-300"
                       : "border-red-500/30 bg-red-500/[0.07] text-red-300"
-                    }`}
+                  }`}
                 >
                   {status.type === "success" ? (
                     <FaCheckCircle className="mt-1 shrink-0" />
@@ -432,13 +538,16 @@ export default function ContactPage() {
                 </div>
               )}
 
+              {/* Submit button */}
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="group flex w-full items-center justify-between bg-white px-6 py-5 text-xs font-bold uppercase tracking-[0.16em] text-black transition-colors hover:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-60"
+                className="group flex w-full cursor-pointer items-center justify-between bg-white px-6 py-5 text-xs font-bold uppercase tracking-[0.16em] text-black transition-colors hover:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <span>
-                  {isSubmitting ? "Sending Message..." : "Send Your Message"}
+                  {isSubmitting
+                    ? "Sending Message..."
+                    : "Send Your Message"}
                 </span>
 
                 {isSubmitting ? (
@@ -449,8 +558,8 @@ export default function ContactPage() {
               </button>
 
               <p className="text-[11px] leading-6 text-neutral-600">
-                By submitting this form, you agree that we may use your
-                information to respond to your inquiry.
+                By submitting this form, you agree that we may
+                use your information to respond to your inquiry.
               </p>
             </form>
           </div>
@@ -467,7 +576,9 @@ export default function ContactPage() {
           <h2 className="mb-7 text-3xl font-medium leading-tight tracking-tight sm:text-5xl">
             Have a specific product
             <br />
-            <span className="text-neutral-500">in mind?</span>
+            <span className="text-neutral-500">
+              in mind?
+            </span>
           </h2>
 
           <Link
@@ -475,6 +586,7 @@ export default function ContactPage() {
             className="group inline-flex items-center gap-5 bg-white px-7 py-5 text-xs font-bold uppercase tracking-[0.16em] text-black transition-colors hover:bg-neutral-200"
           >
             Request a Quote
+
             <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
