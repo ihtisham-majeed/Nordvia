@@ -2,7 +2,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import {
   FaInstagram,
   FaFacebookF,
@@ -10,6 +9,8 @@ import {
   FaLinkedin,
   FaArrowRight,
   FaArrowUp,
+  FaSlidersH,
+  FaCookieBite,
 } from "react-icons/fa";
 
 const phoneNumber = "923248548680";
@@ -24,15 +25,17 @@ const navigation = [
   { label: "About Nordvia", href: "/about" },
   { label: "Our Products", href: "/products" },
   { label: "Manufacturing", href: "/manufacturing" },
+  { label: "Industries", href: "/industries" },
+  { label: "Resources", href: "/resources" },
   { label: "Contact Us", href: "/contact" },
 ];
 
 const products = [
   { label: "Winter Jackets", href: "/products/jackets" },
   { label: "Hoodies & Sweatshirts", href: "/products/hoodies" },
-  { label: "Sportswear & Tracksuits", href: "/products/sportswear" },
+  { label: "Sportswear & Tracksuits", href: "/products/tracksuits" },
   { label: "Joggers & Sweatpants", href: "/products/joggers" },
-  { label: "Custom Apparel", href: "/products/custom-apparel" },
+  { label: "Custom Apparel", href: "/products/#custom-apparel" },
 ];
 
 const socialLinks = [
@@ -61,6 +64,19 @@ const socialLinks = [
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  function openCookieSettings() {
+    window.dispatchEvent(
+      new Event("nordvia:open-cookie-settings")
+    );
+  }
+
+  function backToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-[#080808] text-white">
 
@@ -84,7 +100,7 @@ export default function Footer() {
 
           <Link
             href="/request-a-quote"
-            className="group inline-flex items-center justify-between gap-10 bg-white px-6 py-5 text-xs font-bold uppercase tracking-[0.15em] text-black transition-colors hover:bg-neutral-200"
+            className="group inline-flex cursor-pointer items-center justify-between gap-10 bg-white px-6 py-5 text-xs font-bold uppercase tracking-[0.15em] text-black transition-colors hover:bg-neutral-200"
           >
             Start Your Project
 
@@ -99,14 +115,16 @@ export default function Footer() {
 
         {/* Brand */}
         <div className="flex flex-col items-start">
-  <Link href="/" className="inline-block">
-              <span className="text-3xl font-bold tracking-[0.18em]">
-                NORDVIA
-              </span>
-              <span className="mt-1 block text-[9px] font-medium tracking-[0.55em] text-neutral-500">
-                EXPORTS
-              </span>
-            </Link>
+
+          <Link href="/" className="inline-block cursor-pointer">
+            <span className="text-3xl font-bold tracking-[0.18em]">
+              NORDVIA
+            </span>
+
+            <span className="mt-1 block text-[9px] font-medium tracking-[0.55em] text-neutral-500">
+              EXPORTS
+            </span>
+          </Link>
 
           <p className="mt-7 max-w-xs text-sm leading-7 text-neutral-400">
             Apparel manufacturing and export solutions from Sialkot,
@@ -114,6 +132,7 @@ export default function Footer() {
             possibilities for brands and businesses worldwide.
           </p>
 
+          {/* Social links */}
           <div className="mt-8 flex flex-wrap gap-3">
             {socialLinks.map((social) => {
               const Icon = social.icon;
@@ -125,7 +144,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="flex h-10 w-10 items-center justify-center border border-white/15 text-neutral-400 transition-all duration-300 hover:border-white hover:bg-white hover:text-black"
+                  className="flex h-10 w-10 cursor-pointer items-center justify-center border border-white/15 text-neutral-400 transition-all duration-300 hover:border-white hover:bg-white hover:text-black"
                 >
                   <Icon size={16} />
                 </a>
@@ -146,7 +165,7 @@ export default function Footer() {
               <li key={item.label}>
                 <Link
                   href={item.href}
-                  className="text-sm text-neutral-500 transition-colors hover:text-white"
+                  className="cursor-pointer text-sm text-neutral-500 transition-colors hover:text-white"
                 >
                   {item.label}
                 </Link>
@@ -166,7 +185,7 @@ export default function Footer() {
               <li key={item.label}>
                 <Link
                   href={item.href}
-                  className="text-sm text-neutral-500 transition-colors hover:text-white"
+                  className="cursor-pointer text-sm text-neutral-500 transition-colors hover:text-white"
                 >
                   {item.label}
                 </Link>
@@ -210,7 +229,7 @@ export default function Footer() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-neutral-300 transition-colors hover:text-white"
+                className="cursor-pointer text-neutral-300 transition-colors hover:text-white"
               >
                 +92 324 8548680
               </a>
@@ -230,9 +249,10 @@ export default function Footer() {
 
           <Link
             href="/contact"
-            className="group mt-8 inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.17em] text-neutral-400 transition-colors hover:text-white"
+            className="group mt-8 inline-flex cursor-pointer items-center gap-3 text-[10px] font-bold uppercase tracking-[0.17em] text-neutral-400 transition-colors hover:text-white"
           >
             Contact Us
+
             <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
@@ -241,40 +261,48 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-7 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-12">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-7 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-12">
 
           <p className="text-[10px] tracking-wide text-neutral-600">
             © {currentYear} NORDVIA EXPORTS. All rights reserved.
           </p>
 
-          <div className="flex flex-wrap items-center gap-6">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
+
             <Link
               href="/privacy-policy"
-              className="text-[10px] text-neutral-600 transition-colors hover:text-white"
+              className="cursor-pointer text-[10px] text-neutral-600 transition-colors hover:text-white"
             >
               Privacy Policy
             </Link>
 
             <Link
-              href="/terms"
-              className="text-[10px] text-neutral-600 transition-colors hover:text-white"
+              href="/cookie-policy"
+              className="cursor-pointer text-[10px] text-neutral-600 transition-colors hover:text-white"
             >
-              Terms & Conditions
+              Cookie Policy
             </Link>
 
+            {/* Cookie Settings */}
+            <button
+              type="button"
+              onClick={openCookieSettings}
+              className="inline-flex cursor-pointer items-center gap-2 text-[10px] text-neutral-600 transition-colors hover:text-white"
+            >
+              <FaSlidersH size={11} />
+              Cookie Settings
+            </button>
+
+            {/* Back to top */}
             <button
               type="button"
               aria-label="Back to top"
-              onClick={() =>
-                window.scrollTo({
-                  top: 0,
-                  behavior: "smooth",
-                })
-              }
-              className="flex h-9 w-9 items-center justify-center border border-white/15 text-neutral-400 transition-all hover:border-white hover:bg-white hover:text-black"
+              onClick={backToTop}
+              className="flex h-9 w-9 cursor-pointer items-center justify-center border border-white/15 text-neutral-400 transition-all hover:border-white hover:bg-white hover:text-black"
             >
               <FaArrowUp size={13} />
             </button>
+
           </div>
 
         </div>
