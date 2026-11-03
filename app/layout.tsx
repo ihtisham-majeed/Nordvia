@@ -3,16 +3,17 @@ import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import Script from "next/script";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SmoothScrolling from "@/components/Common/SmoothScrolling";
 import WhatsAppButton from "@/components/Common/WhatsAppButton";
 import AnnouncementBar from "@/components/layout/AnnouncementBar";
+import CookieConsent from "@/components/cookies/CookieConsent";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://nordviaexports.store";
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  "https://nordviaexports.store";
 
 const homeOgImage = "/images/og/home-og.jpg";
 
@@ -20,7 +21,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: "NORDVIA EXPORTS | Custom Apparel Manufacturer in Pakistan",
+    default:
+      "NORDVIA EXPORTS | Custom Apparel Manufacturer in Pakistan",
     template: "%s | NORDVIA EXPORTS",
   },
 
@@ -100,7 +102,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Pinterest Domain Verification */}
+        {/* Pinterest domain verification */}
         <meta
           name="p:domain_verify"
           content="858e1c338d44d5ee906557c2cf12ecf6"
@@ -108,43 +110,6 @@ export default function RootLayout({
       </head>
 
       <body className="flex min-h-screen flex-col bg-black text-white antialiased">
-
-        {/* Pinterest Tag */}
-        <Script id="pinterest-tag" strategy="afterInteractive">
-          {`
-            !function(e){
-              if(!window.pintrk){
-                window.pintrk = function () {
-                  window.pintrk.queue.push(
-                    Array.prototype.slice.call(arguments)
-                  );
-                };
-                var n = window.pintrk;
-                n.queue = [];
-                n.version = "3.0";
-                var t = document.createElement("script");
-                t.async = !0;
-                t.src = "https://s.pinimg.com/ct/core.js";
-                var r = document.getElementsByTagName("script")[0];
-                r.parentNode.insertBefore(t, r);
-              }
-            }();
-            pintrk('load', '2612924698071');
-            pintrk('page');
-          `}
-        </Script>
-
-        {/* Pinterest NoScript */}
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            alt=""
-            src="https://ct.pinterest.com/v3/?event=init&tid=2612924698071&noscript=1"
-          />
-        </noscript>
-
         <SmoothScrolling>
           <AnnouncementBar />
 
@@ -159,6 +124,8 @@ export default function RootLayout({
           <Footer />
         </SmoothScrolling>
 
+        {/* Privacy and tracking consent */}
+        <CookieConsent />
       </body>
     </html>
   );
