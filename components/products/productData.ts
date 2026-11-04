@@ -59,7 +59,7 @@ export const products: ProductInfo[] = [
     tagline: "Designed for your activewear direction.",
     description:
       "Explore custom tracksuits and sportswear concepts for sportswear labels, training collections, and private-label brands.",
-    image: "/products/Performance_Wear.png",
+    image: "/products/Performance_Wear.webp",
     imageAlt: "Tracksuit product design concept",
     overview:
       "Sportswear collections require thoughtful choices in fabric, fit, comfort, and construction. We discuss tracksuit and sportswear requirements with manufacturing partners to explore options that suit your intended use, design direction, and target market.",
@@ -127,7 +127,7 @@ export const products: ProductInfo[] = [
     tagline: "A considered approach to winter layers.",
     description:
       "Explore winter coat and outerwear development for brands planning seasonal collections and cold-weather apparel.",
-    image: "/products/Winter_Protection.png",
+    image: "/products/Winter_Protection.webp",
     imageAlt: "Winter coat product design concept",
     overview:
       "Winter outerwear involves careful consideration of materials, insulation, lining, construction, and intended climate. We can discuss your design brief and explore manufacturing possibilities with our partners based on the specifications required.",
@@ -161,7 +161,7 @@ export const products: ProductInfo[] = [
     tagline: "Essential pieces with room for individuality.",
     description:
       "Explore custom jogger and sweatpant concepts for coordinated sets, streetwear collections, and everyday apparel brands.",
-    image: "/products/Jogger_Sweatpants.png",
+    image: "/products/Jogger_Sweatpants.webp",
     imageAlt: "Joggers product design concept",
     overview:
       "Joggers and sweatpants are versatile pieces for casualwear, streetwear, and coordinated apparel collections. Fabric, fit, waistband construction, cuffs, and pocket details all contribute to the final product direction.",
