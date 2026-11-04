@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import ContactPage from "@/components/contact/ContactPage";
 
-const contactImage = "/images/og/contact-og.jpg";
+const contactImage = "/og/contact-og.webp";
 
 export const metadata: Metadata = {
   title: "Contact | Custom Apparel Manufacturing & Sourcing",

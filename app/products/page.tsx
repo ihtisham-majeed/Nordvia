@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import ProductsPage from "@/components/products/ProductsPage";
 
-const productsImage = "/images/og/products-og.jpg";
+const productsImage = "/og/products-og.webp";
 
 export const metadata: Metadata = {
   title: "Custom Apparel Products | Hoodies, Sportswear & Jackets",

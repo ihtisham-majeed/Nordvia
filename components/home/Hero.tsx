@@ -34,7 +34,7 @@ const products: ProductSlide[] = [
     secondLine: "Made for Everyday.",
     description:
       "Premium heavyweight hoodies and sweatshirts, developed around your brand identity.",
-    image: "/image/hoodie_1.png",
+    image: "/image/hoodie_1.webp",
     imageAlt: "Black heavyweight hoodie design concept",
   },
   {
@@ -44,7 +44,7 @@ const products: ProductSlide[] = [
     secondLine: "Made to Perform.",
     description:
       "Custom sportswear and tracksuits developed for active lifestyles and ambitious brands.",
-    image: "/image/Tracksuit.png",
+    image: "/image/Tracksuit.webp",
     imageAlt: "Custom tracksuit design concept",
   },
   {
@@ -54,7 +54,7 @@ const products: ProductSlide[] = [
     secondLine: "A Distinct Identity.",
     description:
       "Explore custom leather jacket concepts with distinctive silhouettes and detailing.",
-    image: "/image/Black_Leather_Jacket.png",
+    image: "/image/Black_Leather_Jacket.webp",
     imageAlt: "Black leather jacket design concept",
   },
   {
@@ -64,7 +64,7 @@ const products: ProductSlide[] = [
     secondLine: "Define Your Style.",
     description:
       "Develop distinctive leather outerwear in custom colors, finishes and brand details.",
-    image: "/image/Brown_Leather_Jacket.png",
+    image: "/image/Brown_Leather_Jacket.webp",
     imageAlt: "Brown leather jacket design concept",
   },
 ];

@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "NORDVIA EXPORTS",
     images: [
       {
-        url: "/images/og/quote-og.jpg",
+        url: "/og/quote-og.webp",
         width: 1200,
         height: 630,
         alt: "Request a custom apparel manufacturing quote from NORDVIA EXPORTS",

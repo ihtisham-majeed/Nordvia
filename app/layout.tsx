@@ -15,7 +15,7 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
   "https://nordviaexports.store";
 
-const homeOgImage = "/images/og/home-og.jpg";
+const homeOgImage = "/og/home-og.webp";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -52,6 +52,7 @@ export const metadata: Metadata = {
     title: "NORDVIA EXPORTS | Custom Apparel Manufacturing",
     description:
       "Explore custom apparel development, private-label clothing and manufacturing solutions for international fashion brands and buyers.",
+    url: siteUrl,
     siteName: "NORDVIA EXPORTS",
     locale: "en_US",
     type: "website",

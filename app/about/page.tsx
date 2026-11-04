@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import AboutPage from "@/components/about/AboutPage";
 
-const aboutImage = "/images/og/about-og.jpg";
+const aboutImage = "/og/about-og.webp";
 
 export const metadata: Metadata = {
   title: "About | Apparel Manufacturing & Sourcing",
