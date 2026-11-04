@@ -258,19 +258,20 @@ export default function ProductsPage() {
         </div>
       </section>
 
+    
       {/* PRODUCT CATEGORIES — BLACK */}
       <section
         id="product-categories"
-        className="scroll-mt-20 bg-[#090909] px-5 py-20 text-white sm:px-8 sm:py-28 lg:px-16"
+        className="scroll-mt-20 bg-[#090909] px-5 py-20 text-white sm:px-8 sm:py-24 lg:px-16"
       >
         <div className="mx-auto max-w-[1440px]">
-          <div className="products-reveal mb-12 flex flex-col justify-between gap-5 sm:mb-16 sm:flex-row sm:items-end">
+          <div className="products-reveal mb-10 flex flex-col justify-between gap-5 sm:mb-12 sm:flex-row sm:items-end">
             <div>
               <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
                 02 / Product Range
               </p>
 
-              <h2 className="text-[clamp(2.5rem,5vw,4.5rem)] font-semibold uppercase leading-[1] tracking-[-0.055em]">
+              <h2 className="text-[clamp(2.4rem,4.5vw,4rem)] font-semibold uppercase leading-[1] tracking-[-0.055em]">
                 Explore the
                 <br />
                 <span className="text-white/35">categories.</span>
@@ -278,91 +279,94 @@ export default function ProductsPage() {
             </div>
 
             <p className="max-w-md text-[13px] leading-7 text-white/50 sm:text-[14px]">
-              Explore different apparel categories and discover styles
-              that could form part of your next collection.
+              Explore apparel categories and discover styles that could
+              become part of your next collection.
             </p>
           </div>
 
-          <div className="products-grid grid gap-5 sm:grid-cols-2">
+          <div className="products-grid grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((product) => (
               <article
                 id={product.slug}
                 key={product.slug}
-                className="product-card group min-w-0 scroll-mt-28 border border-white/10 bg-[#111111]"
+                className="product-card group min-w-0 scroll-mt-28 overflow-hidden border border-white/10 bg-[#111111] transition-colors duration-500 hover:border-white/30"
               >
-                <div className="relative aspect-[1.2/1] overflow-hidden bg-[#171717] sm:aspect-[1.25/1]">
+                {/* PRODUCT IMAGE */}
+                <Link
+                  href={`/products/${product.slug}`}
+                  className="relative block aspect-[1.15/1] overflow-hidden bg-[#171717] sm:aspect-[1.12/1]"
+                >
                   <Image
                     src={product.image}
                     alt={product.imageAlt}
                     fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 620px"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.045]"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/10" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/10" />
 
-                  <span className="absolute left-5 top-5 border border-white/30 bg-black/20 px-3 py-2 text-[9px] font-semibold tracking-[0.2em] backdrop-blur-sm">
-                    CATEGORY {product.number}
+                  <span className="absolute left-4 top-4 border border-white/30 bg-black/30 px-2.5 py-1.5 text-[9px] font-semibold tracking-[0.18em] text-white backdrop-blur-sm">
+                    {product.number} / CATEGORY
                   </span>
 
-                  <span className="absolute bottom-5 right-5 text-[9px] font-medium uppercase tracking-[0.15em] text-white/70">
-                    Illustrative product concept
+                  <span className="absolute bottom-4 right-4 text-[8px] font-medium uppercase tracking-[0.14em] text-white/75">
+                    Design Concept
                   </span>
-                </div>
 
-                <div className="p-6 sm:p-8">
-                  <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white/40">
+                  <span className="absolute bottom-4 left-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/50 bg-black/20 text-white transition-all duration-300 group-hover:bg-white group-hover:text-black">
+                    <FaArrowRight className="-rotate-45 text-xs transition-transform duration-300 group-hover:rotate-0" />
+                  </span>
+                </Link>
+
+                {/* PRODUCT INFORMATION */}
+                <div className="p-5 sm:p-5 lg:p-6">
+                  <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/40">
                     {product.eyebrow}
                   </p>
 
-                  <h3 className="mt-3 text-[clamp(1.45rem,2.5vw,2rem)] font-semibold uppercase leading-tight tracking-[-0.04em]">
+                  <h3 className="mt-2 text-[clamp(1.15rem,1.6vw,1.4rem)] font-semibold uppercase leading-tight tracking-[-0.04em]">
                     {product.name}
                   </h3>
 
-                  <p className="mt-3 text-[13px] font-medium text-white/65 sm:text-[14px]">
-                    {product.tagline}
-                  </p>
-
-                  <p className="mt-4 max-w-xl text-[13px] leading-7 text-white/50 sm:text-[14px]">
+                  <p className="mt-2 text-[12px] leading-6 text-white/50 sm:text-[13px]">
                     {product.description}
                   </p>
 
-                  <div className="mt-7 border-t border-white/10 pt-6">
-                    <p className="mb-4 text-[9px] font-semibold uppercase tracking-[0.2em] text-white/35">
-                      Styles To Explore
-                    </p>
-
-                    <div className="flex flex-wrap gap-2">
-                      {product.features.slice(0, 4).map((feature) => (
-                        <span
-                          key={feature}
-                          className="border border-white/10 px-3 py-2 text-[10px] leading-4 text-white/65 sm:text-[11px]"
-                        >
-                          {feature}
-                        </span>
-                      ))}
-                    </div>
+                  {/* STYLE TAGS */}
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {product.features.slice(0, 3).map((feature) => (
+                      <span
+                        key={feature}
+                        className="border border-white/10 px-2.5 py-1.5 text-[9px] leading-4 text-white/60"
+                      >
+                        {feature}
+                      </span>
+                    ))}
                   </div>
 
-                  <Link
-                    href={`/products/${product.slug}`}
-                    className="group/link mt-8 inline-flex items-center gap-4 border-b border-white/25 pb-3 text-[10px] font-bold uppercase tracking-[0.18em] transition hover:border-white"
-                  >
-                    Explore This Product
-                    <FaArrowRight className="transition-transform duration-300 group-hover/link:translate-x-1" />
-                  </Link>
+                  <div className="mt-5 border-t border-white/10 pt-4">
+                    <Link
+                      href={`/products/${product.slug}`}
+                      className="group/link inline-flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.16em] text-white/75 transition hover:text-white"
+                    >
+                      Explore Category
+                      <FaArrowRight className="transition-transform duration-300 group-hover/link:translate-x-1" />
+                    </Link>
+                  </div>
                 </div>
               </article>
             ))}
           </div>
 
-          <p className="mt-8 text-[10px] leading-6 text-white/35">
+          <p className="mt-7 text-[14px] leading-6 text-white/35">
             Product imagery is illustrative and represents design concepts.
             Final products, materials, and specifications are subject to
             development and manufacturing confirmation.
           </p>
         </div>
       </section>
+
 
       {/* CUSTOMIZATION — WHITE */}
       <section

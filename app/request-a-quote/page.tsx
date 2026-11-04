@@ -1,13 +1,14 @@
-
 import type { Metadata } from "next";
-import RequestQuote from "@/components/home/RequestQuote";
+import RequestQuote from "@/components/contact/RequestQuote";
 
 const validProducts = [
   "hoodies",
+  "t-shirts",
   "tracksuits",
+  "joggers",
   "jackets",
   "coats",
-  "joggers",
+  "other",
 ];
 
 type PageProps = {
@@ -20,7 +21,6 @@ export const metadata: Metadata = {
   title: "Request an Apparel Manufacturing Quote",
   description:
     "Request a custom apparel manufacturing and private-label quote from NORDVIA EXPORTS in Sialkot, Pakistan. Tell us about your products, quantity, customization, and requirements.",
-
   keywords: [
     "apparel manufacturing quote",
     "clothing manufacturing inquiry",
@@ -29,11 +29,9 @@ export const metadata: Metadata = {
     "wholesale clothing manufacturer Pakistan",
     "NORDVIA EXPORTS",
   ],
-
   alternates: {
     canonical: "/request-a-quote",
   },
-
   openGraph: {
     title: "Request an Apparel Manufacturing Quote | NORDVIA EXPORTS",
     description:
@@ -49,7 +47,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-
   twitter: {
     card: "summary_large_image",
     title: "Request an Apparel Manufacturing Quote",
@@ -57,7 +54,6 @@ export const metadata: Metadata = {
       "Discuss your custom apparel and private-label manufacturing requirements with NORDVIA EXPORTS.",
     images: ["/images/og/quote-og.jpg"],
   },
-
   robots: {
     index: true,
     follow: true,

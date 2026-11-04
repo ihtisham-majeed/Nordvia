@@ -1,7 +1,14 @@
-
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type DragEvent,
+  type FormEvent,
+} from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -23,18 +30,24 @@ import {
   FaFilePdf,
   FaImage,
 } from "react-icons/fa";
-import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const inputClass =
-  "w-full min-w-0 border-b border-white/20 bg-transparent px-1 py-3 text-sm text-white outline-none transition-colors placeholder:text-neutral-600 focus:border-white disabled:opacity-50";
+/* -------------------------------------------------------------------------- */
+/* STYLES                                                                     */
+/* -------------------------------------------------------------------------- */
 
-const selectClass =
-  `${inputClass} cursor-pointer [color-scheme:dark]`;
+const inputClass =
+  "w-full min-w-0 border-b border-white/20 bg-transparent px-1 py-3 text-sm text-white outline-none transition-colors placeholder:text-neutral-600 focus:border-white disabled:cursor-not-allowed disabled:opacity-50";
+
+const selectClass = `${inputClass} cursor-pointer [color-scheme:dark]`;
 
 const labelClass =
   "mb-1.5 block text-[9px] font-semibold uppercase tracking-[0.17em] text-neutral-400";
+
+/* -------------------------------------------------------------------------- */
+/* PRODUCT CATEGORIES                                                         */
+/* -------------------------------------------------------------------------- */
 
 const products = [
   { value: "hoodies", label: "Hoodies & Sweatshirts" },
@@ -46,36 +59,67 @@ const products = [
   { value: "other", label: "Other Apparel" },
 ];
 
-const productGuidance: Record<string, { title: string; text: string }> = {
+const productGuidance: Record<
+  string,
+  {
+    title: string;
+    text: string;
+    placeholder: string;
+  }
+> = {
   hoodies: {
     title: "Hoodie development",
     text: "Share your preferred fabric weight (GSM), fleece or terry preference, fit, colors, artwork and branding placement.",
+    placeholder:
+      "Tell us about your hoodie style, fabric weight, fit, colors, artwork, labels and finishing requirements...",
   },
+
   "t-shirts": {
     title: "T-shirt & polo development",
     text: "Tell us about fabric composition, GSM, fit, collar style, sizing, printing and embroidery requirements.",
+    placeholder:
+      "Describe your T-shirt or polo requirements, including fabric, GSM, fit, collar, colors and branding...",
   },
+
   tracksuits: {
     title: "Sportswear & tracksuits",
     text: "Include fabric performance, stretch, jacket and trouser details, size breakdown, colors and logo placement.",
+    placeholder:
+      "Describe your tracksuit requirements, including fabric, fit, jacket and trouser details, colors and branding...",
   },
+
   joggers: {
     title: "Jogger development",
     text: "Specify fabric, fit, waistband, cuffs, pockets, measurements and any embroidery or printing details.",
+    placeholder:
+      "Tell us about your jogger or sweatpants design, fabric, fit, waistband, cuffs, pockets and branding...",
   },
+
   jackets: {
     title: "Jacket development",
     text: "Share the intended construction, outer fabric, lining, closures, pockets, insulation and finishing preferences.",
+    placeholder:
+      "Describe your jacket style, outer fabric, lining, closures, pockets, construction and branding requirements...",
   },
+
   coats: {
     title: "Coats & outerwear",
     text: "Include the intended season, shell material, lining, insulation, measurements, closures and finishing requirements.",
+    placeholder:
+      "Tell us about your outerwear design, intended season, shell material, lining, insulation and construction...",
   },
+
   other: {
     title: "Custom apparel project",
     text: "Describe the garment category, intended use, materials, design direction, dimensions and customization requirements.",
+    placeholder:
+      "Describe the garment you want to develop, including its intended use, materials, design and customization...",
   },
 };
+
+/* -------------------------------------------------------------------------- */
+/* FORM DATA                                                                  */
+/* -------------------------------------------------------------------------- */
 
 const initialFormData = {
   fullName: "",
@@ -99,10 +143,33 @@ type RequestQuoteProps = {
 
 type UploadPhase = "idle" | "uploading" | "processing";
 
+type Status = {
+  type: "success" | "error" | "";
+  message: string;
+};
+
+/* -------------------------------------------------------------------------- */
+/* CONSTANTS                                                                  */
+/* -------------------------------------------------------------------------- */
+
 const MAX_FILES = 5;
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
 const allowedExtensions = [".ai", ".pdf", ".png", ".jpg", ".jpeg"];
+
+const quantityOptions = [
+  { value: "Below 100", label: "Below 100 pieces" },
+  { value: "100–300", label: "100–300 pieces" },
+  { value: "300–500", label: "300–500 pieces" },
+  { value: "500–1000", label: "500–1,000 pieces" },
+  { value: "1000–3000", label: "1,000–3,000 pieces" },
+  { value: "3000+", label: "3,000+ pieces" },
+  { value: "Not sure yet", label: "Not sure yet" },
+];
+
+/* -------------------------------------------------------------------------- */
+/* HELPERS                                                                    */
+/* -------------------------------------------------------------------------- */
 
 function getValidProduct(product: string) {
   return products.some((item) => item.value === product) ? product : "";
@@ -122,10 +189,34 @@ function getFileIcon(file: File) {
   const extension = getExtension(file.name);
 
   if (extension === ".pdf") return FaFilePdf;
-  if ([".jpg", ".jpeg", ".png"].includes(extension)) return FaImage;
+
+  if ([".jpg", ".jpeg", ".png"].includes(extension)) {
+    return FaImage;
+  }
 
   return FaFileAlt;
 }
+
+function getProductLabel(value: string) {
+  return products.find((item) => item.value === value)?.label ?? value;
+}
+
+function getResponseMessage(xhr: XMLHttpRequest) {
+  try {
+    const result =
+      xhr.response && typeof xhr.response === "object"
+        ? xhr.response
+        : JSON.parse(xhr.responseText || "{}");
+
+    return typeof result?.message === "string" ? result.message : "";
+  } catch {
+    return "";
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* COMPONENT                                                                  */
+/* -------------------------------------------------------------------------- */
 
 export default function RequestQuote({
   initialProduct = "",
@@ -133,6 +224,7 @@ export default function RequestQuote({
   const sectionRef = useRef<HTMLElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const xhrRef = useRef<XMLHttpRequest | null>(null);
+  const mountedRef = useRef(true);
 
   const [formData, setFormData] = useState<FormData>({
     ...initialFormData,
@@ -140,63 +232,48 @@ export default function RequestQuote({
   });
 
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [quoteItems, setQuoteItems] = useState<QuoteItem[]>([]);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploadPhase, setUploadPhase] = useState<UploadPhase>("idle");
 
-  const [quoteItems, setQuoteItems] = useState<QuoteItem[]>([]);
-
-  useEffect(() => {
-  const loadQuoteItems = () => {
-    setQuoteItems(getQuoteItems());
-  };
-
-  loadQuoteItems();
-
-  window.addEventListener(QUOTE_UPDATED_EVENT, loadQuoteItems);
-  window.addEventListener("storage", loadQuoteItems);
-
-  return () => {
-    window.removeEventListener(QUOTE_UPDATED_EVENT, loadQuoteItems);
-    window.removeEventListener("storage", loadQuoteItems);
-  };
-}, []);
-
-const updateQuoteQuantity = (id: string, quantity: number) => {
-  const safeQuantity = Math.max(1, Math.min(999999, quantity || 1));
-
-  const updatedItems = quoteItems.map((item) =>
-    item.id === id
-      ? { ...item, quantity: safeQuantity }
-      : item
-  );
-
-  setQuoteItems(updatedItems);
-  saveQuoteItems(updatedItems);
-};
-
-const removeQuoteItem = (id: string) => {
-  const updatedItems = quoteItems.filter((item) => item.id !== id);
-
-  setQuoteItems(updatedItems);
-  saveQuoteItems(updatedItems);
-};
-
-const totalQuotePieces = quoteItems.reduce(
-  (total, item) => total + item.quantity,
-  0
-);
-
-  const [status, setStatus] = useState<{
-    type: "success" | "error" | "";
-    message: string;
-  }>({
+  const [status, setStatus] = useState<Status>({
     type: "",
     message: "",
   });
 
   const guidance = productGuidance[formData.product];
+
+  /* ------------------------------------------------------------------------ */
+  /* QUOTE LIST                                                               */
+  /* ------------------------------------------------------------------------ */
+
+  useEffect(() => {
+    mountedRef.current = true;
+
+    const loadQuoteItems = () => {
+      setQuoteItems(getQuoteItems());
+    };
+
+    loadQuoteItems();
+
+    window.addEventListener(QUOTE_UPDATED_EVENT, loadQuoteItems);
+    window.addEventListener("storage", loadQuoteItems);
+
+    return () => {
+      mountedRef.current = false;
+
+      window.removeEventListener(QUOTE_UPDATED_EVENT, loadQuoteItems);
+      window.removeEventListener("storage", loadQuoteItems);
+
+      const currentXhr = xhrRef.current;
+      xhrRef.current = null;
+      currentXhr?.abort();
+    };
+  }, []);
 
   useEffect(() => {
     setFormData((previous) => ({
@@ -205,14 +282,54 @@ const totalQuotePieces = quoteItems.reduce(
     }));
   }, [initialProduct]);
 
+  const updateQuoteQuantity = (id: string, quantity: number) => {
+    if (isSubmitting) return;
+
+    const safeQuantity = Math.max(
+      1,
+      Math.min(999999, Math.floor(quantity || 1))
+    );
+
+    const updatedItems = quoteItems.map((item) =>
+      item.id === id
+        ? { ...item, quantity: safeQuantity }
+        : item
+    );
+
+    setQuoteItems(updatedItems);
+    saveQuoteItems(updatedItems);
+  };
+
+  const removeQuoteItem = (id: string) => {
+    if (isSubmitting) return;
+
+    const updatedItems = quoteItems.filter((item) => item.id !== id);
+
+    setQuoteItems(updatedItems);
+    saveQuoteItems(updatedItems);
+  };
+
+  const totalQuotePieces = quoteItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
+  /* ------------------------------------------------------------------------ */
+  /* ANIMATIONS                                                               */
+  /* ------------------------------------------------------------------------ */
+
   useEffect(() => {
     const section = sectionRef.current;
+
     if (!section) return;
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".quote-intro",
-        { y: 20, autoAlpha: 0 },
+        {
+          y: 20,
+          autoAlpha: 0,
+        },
         {
           y: 0,
           autoAlpha: 1,
@@ -229,7 +346,10 @@ const totalQuotePieces = quoteItems.reduce(
 
       gsap.fromTo(
         ".quote-form",
-        { y: 25, autoAlpha: 0 },
+        {
+          y: 25,
+          autoAlpha: 0,
+        },
         {
           y: 0,
           autoAlpha: 1,
@@ -249,8 +369,12 @@ const totalQuotePieces = quoteItems.reduce(
     return () => ctx.revert();
   }, []);
 
+  /* ------------------------------------------------------------------------ */
+  /* FORM INPUTS                                                              */
+  /* ------------------------------------------------------------------------ */
+
   const handleChange = (
-    event: React.ChangeEvent<
+    event: ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
@@ -262,15 +386,29 @@ const totalQuotePieces = quoteItems.reduce(
     }));
 
     if (status.message) {
-      setStatus({ type: "", message: "" });
+      setStatus({
+        type: "",
+        message: "",
+      });
     }
   };
+
+  const handleFollowUpChange = (checked: boolean) => {
+    setFormData((previous) => ({
+      ...previous,
+      followUpOptIn: checked,
+    }));
+  };
+
+  /* ------------------------------------------------------------------------ */
+  /* FILE UPLOAD                                                              */
+  /* ------------------------------------------------------------------------ */
 
   const addFiles = (incomingFiles: File[]) => {
     if (!incomingFiles.length || isSubmitting) return;
 
-    const validFiles: File[] = [];
     const errors: string[] = [];
+    const validFiles: File[] = [];
 
     incomingFiles.forEach((file) => {
       const extension = getExtension(file.name);
@@ -293,82 +431,107 @@ const totalQuotePieces = quoteItems.reduce(
       validFiles.push(file);
     });
 
-    setSelectedFiles((previous) => {
-      const combined = [...previous, ...validFiles];
+    const combined = [...selectedFiles, ...validFiles];
 
-      const unique = combined.filter(
-        (file, index, self) =>
-          index ===
-          self.findIndex(
-            (item) =>
-              item.name === file.name &&
-              item.size === file.size &&
-              item.lastModified === file.lastModified
-          )
-      );
+    const uniqueFiles = combined.filter(
+      (file, index, self) =>
+        index ===
+        self.findIndex(
+          (item) =>
+            item.name === file.name &&
+            item.size === file.size &&
+            item.lastModified === file.lastModified
+        )
+    );
 
-      if (unique.length > MAX_FILES) {
-        errors.push(`A maximum of ${MAX_FILES} files can be uploaded.`);
-      }
+    if (uniqueFiles.length > MAX_FILES) {
+      errors.push(`A maximum of ${MAX_FILES} files can be uploaded.`);
+    }
 
-      return unique.slice(0, MAX_FILES);
-    });
+    setSelectedFiles(uniqueFiles.slice(0, MAX_FILES));
 
     setStatus(
       errors.length
-        ? { type: "error", message: errors.join(" ") }
-        : { type: "", message: "" }
+        ? {
+            type: "error",
+            message: errors.join(" "),
+          }
+        : {
+            type: "",
+            message: "",
+          }
     );
   };
 
-  const handleFileChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     addFiles(Array.from(event.target.files || []));
+
+    // Allows selecting the same file again after removing it.
     event.target.value = "";
   };
 
-  const handleDrop = (event: React.DragEvent<HTMLLabelElement>) => {
+  const handleDrop = (event: DragEvent<HTMLLabelElement>) => {
     event.preventDefault();
+
     setIsDragging(false);
+
+    if (isSubmitting) return;
 
     addFiles(Array.from(event.dataTransfer.files || []));
   };
 
   const removeFile = (index: number) => {
+    if (isSubmitting) return;
+
     setSelectedFiles((previous) =>
       previous.filter((_, fileIndex) => fileIndex !== index)
     );
 
-    setStatus({ type: "", message: "" });
+    setStatus({
+      type: "",
+      message: "",
+    });
   };
 
-  const handleSubmit = async (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {
+  const totalFileSize = selectedFiles.reduce(
+    (total, file) => total + file.size,
+    0
+  );
+
+  /* ------------------------------------------------------------------------ */
+  /* FORM SUBMISSION                                                          */
+  /* ------------------------------------------------------------------------ */
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (isSubmitting) return;
 
     setIsSubmitting(true);
-    setStatus({ type: "", message: "" });
+
+    setStatus({
+      type: "",
+      message: "",
+    });
+
     setUploadProgress(0);
     setUploadPhase("uploading");
 
     const uploadData = new FormData();
 
     Object.entries(formData).forEach(([key, value]) => {
-  uploadData.append(key, String(value));
-});
+      uploadData.append(key, String(value));
+    });
 
-// Include selected quote-list products and quantities.
-uploadData.append("products", JSON.stringify(quoteItems));
+    // Include all selected products and their quantities.
+    uploadData.append("products", JSON.stringify(quoteItems));
 
-selectedFiles.forEach((file) => {
-  uploadData.append("files", file);
-});
+    selectedFiles.forEach((file) => {
+      uploadData.append("files", file);
+    });
 
     const xhr = new XMLHttpRequest();
+
     xhrRef.current = xhr;
 
     xhr.open("POST", "/api/quote");
@@ -376,41 +539,44 @@ selectedFiles.forEach((file) => {
     xhr.timeout = 120000;
 
     xhr.upload.onprogress = (event) => {
-      if (event.lengthComputable) {
-        const progress = Math.round(
-          (event.loaded / event.total) * 100
-        );
+      if (!event.lengthComputable || !mountedRef.current) return;
 
-        setUploadProgress(progress);
+      const progress = Math.round(
+        (event.loaded / event.total) * 100
+      );
 
-        if (progress >= 100) {
-          setUploadPhase("processing");
-        }
+      setUploadProgress(progress);
+
+      if (progress >= 100) {
+        setUploadPhase("processing");
       }
     };
 
     xhr.onload = () => {
-      const result = xhr.response;
+      if (!mountedRef.current) return;
+
+      const responseMessage = getResponseMessage(xhr);
 
       if (xhr.status < 200 || xhr.status >= 300) {
         setStatus({
           type: "error",
           message:
-            result?.message ||
+            responseMessage ||
             "We couldn't submit your inquiry. Please try again.",
         });
 
         setIsSubmitting(false);
         setUploadPhase("idle");
         xhrRef.current = null;
+
         return;
       }
 
       setStatus({
         type: "success",
         message:
-          result?.message ||
-          "Your inquiry has been submitted successfully. Thank you for contacting Nordvia Exports.",
+          responseMessage ||
+          "Your inquiry has been submitted successfully. Thank you for contacting NORDVIA EXPORTS.",
       });
 
       setFormData({
@@ -420,7 +586,7 @@ selectedFiles.forEach((file) => {
 
       setSelectedFiles([]);
       setQuoteItems([]);
-saveQuoteItems([]);
+      saveQuoteItems([]);
 
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
@@ -433,9 +599,12 @@ saveQuoteItems([]);
     };
 
     xhr.onerror = () => {
+      if (!mountedRef.current) return;
+
       setStatus({
         type: "error",
-        message: "Network error. Please check your connection and try again.",
+        message:
+          "Network error. Please check your connection and try again.",
       });
 
       setIsSubmitting(false);
@@ -444,6 +613,8 @@ saveQuoteItems([]);
     };
 
     xhr.ontimeout = () => {
+      if (!mountedRef.current) return;
+
       setStatus({
         type: "error",
         message: "The request timed out. Please try again.",
@@ -455,6 +626,8 @@ saveQuoteItems([]);
     };
 
     xhr.onabort = () => {
+      if (!mountedRef.current) return;
+
       setStatus({
         type: "error",
         message: "The submission was cancelled.",
@@ -468,16 +641,9 @@ saveQuoteItems([]);
     xhr.send(uploadData);
   };
 
-  useEffect(() => {
-    return () => {
-      xhrRef.current?.abort();
-    };
-  }, []);
-
-  const totalFileSize = selectedFiles.reduce(
-    (total, file) => total + file.size,
-    0
-  );
+  /* ------------------------------------------------------------------------ */
+  /* RENDER                                                                   */
+  /* ------------------------------------------------------------------------ */
 
   return (
     <section
@@ -485,13 +651,17 @@ saveQuoteItems([]);
       id="request-a-quote"
       className="relative overflow-hidden bg-[#0b0b0b] px-5 py-16 text-white sm:px-8 lg:px-12 lg:py-20"
     >
+      {/* Background decoration */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -left-48 top-20 h-[400px] w-[400px] rounded-full bg-white/[0.025] blur-[130px]"
       />
 
       <div className="relative mx-auto max-w-7xl">
-        {/* Compact heading */}
+        {/* ---------------------------------------------------------------- */}
+        {/* INTRODUCTION                                                     */}
+        {/* ---------------------------------------------------------------- */}
+
         <div className="quote-intro mb-10 flex flex-col justify-between gap-5 border-b border-white/10 pb-8 md:flex-row md:items-end">
           <div>
             <div className="mb-4 flex items-center gap-3">
@@ -504,7 +674,10 @@ saveQuoteItems([]);
 
             <h2 className="text-3xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-4xl lg:text-5xl">
               Let&apos;s create
-              <span className="text-neutral-500"> something together.</span>
+              <span className="text-neutral-500">
+                {" "}
+                something together.
+              </span>
             </h2>
           </div>
 
@@ -515,7 +688,10 @@ saveQuoteItems([]);
         </div>
 
         <div className="grid items-start gap-9 lg:grid-cols-[0.68fr_1.32fr] lg:gap-14">
-          {/* Left information */}
+          {/* ---------------------------------------------------------------- */}
+          {/* LEFT INFORMATION                                                */}
+          {/* ---------------------------------------------------------------- */}
+
           <aside className="quote-intro">
             <p className="mb-5 text-[9px] font-semibold uppercase tracking-[0.2em] text-neutral-500">
               NORDVIA EXPORTS / SIALKOT, PAKISTAN
@@ -545,6 +721,7 @@ saveQuoteItems([]);
                   <p className="text-[10px] font-semibold uppercase tracking-widest text-neutral-300">
                     Worldwide inquiries
                   </p>
+
                   <p className="mt-1 text-xs leading-5 text-neutral-500">
                     For apparel brands and buyers internationally.
                   </p>
@@ -560,6 +737,7 @@ saveQuoteItems([]);
                   <p className="text-[10px] font-semibold uppercase tracking-widest text-neutral-300">
                     Design references
                   </p>
+
                   <p className="mt-1 text-xs leading-5 text-neutral-500">
                     Upload sketches, artwork or technical drawings.
                   </p>
@@ -575,6 +753,7 @@ saveQuoteItems([]);
                   <p className="text-[10px] font-semibold uppercase tracking-widest text-neutral-300">
                     Project communication
                   </p>
+
                   <p className="mt-1 text-xs leading-5 text-neutral-500">
                     We&apos;ll review your inquiry and discuss next steps.
                   </p>
@@ -589,8 +768,12 @@ saveQuoteItems([]);
             </div>
           </aside>
 
-          {/* Quote form */}
+          {/* ---------------------------------------------------------------- */}
+          {/* QUOTE FORM                                                      */}
+          {/* ---------------------------------------------------------------- */}
+
           <div className="quote-form border border-white/10 bg-[#111111] p-5 sm:p-7 lg:p-8">
+            {/* Form heading */}
             <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-5">
               <div>
                 <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-neutral-500">
@@ -612,12 +795,16 @@ saveQuoteItems([]);
               className="space-y-6"
               encType="multipart/form-data"
             >
-              {/* Honeypot */}
+              {/* ---------------------------------------------------------- */}
+              {/* HONEYPOT                                                   */}
+              {/* ---------------------------------------------------------- */}
+
               <div
                 aria-hidden="true"
                 className="absolute -left-[9999px] h-px w-px overflow-hidden"
               >
                 <label htmlFor="website">Leave empty</label>
+
                 <input
                   id="website"
                   name="website"
@@ -629,7 +816,10 @@ saveQuoteItems([]);
                 />
               </div>
 
-              {/* Contact information */}
+              {/* ---------------------------------------------------------- */}
+              {/* CONTACT INFORMATION                                        */}
+              {/* ---------------------------------------------------------- */}
+
               <div>
                 <p className="mb-4 text-[9px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
                   01 / Contact information
@@ -640,6 +830,7 @@ saveQuoteItems([]);
                     <label htmlFor="fullName" className={labelClass}>
                       Full name *
                     </label>
+
                     <input
                       id="fullName"
                       name="fullName"
@@ -659,6 +850,7 @@ saveQuoteItems([]);
                     <label htmlFor="company" className={labelClass}>
                       Company / Brand
                     </label>
+
                     <input
                       id="company"
                       name="company"
@@ -677,6 +869,7 @@ saveQuoteItems([]);
                     <label htmlFor="email" className={labelClass}>
                       Business email *
                     </label>
+
                     <input
                       id="email"
                       name="email"
@@ -696,6 +889,7 @@ saveQuoteItems([]);
                     <label htmlFor="country" className={labelClass}>
                       Destination country *
                     </label>
+
                     <input
                       id="country"
                       name="country"
@@ -713,7 +907,10 @@ saveQuoteItems([]);
                 </div>
               </div>
 
-              {/* Product requirements */}
+              {/* ---------------------------------------------------------- */}
+              {/* PRODUCT REQUIREMENTS                                       */}
+              {/* ---------------------------------------------------------- */}
+
               <div className="border-t border-white/10 pt-5">
                 <p className="mb-4 text-[9px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
                   02 / Product requirements
@@ -724,6 +921,7 @@ saveQuoteItems([]);
                     <label htmlFor="product" className={labelClass}>
                       Product category *
                     </label>
+
                     <select
                       id="product"
                       name="product"
@@ -749,6 +947,7 @@ saveQuoteItems([]);
                     <label htmlFor="quantity" className={labelClass}>
                       Estimated quantity *
                     </label>
+
                     <select
                       id="quantity"
                       name="quantity"
@@ -761,13 +960,12 @@ saveQuoteItems([]);
                       <option value="" disabled>
                         Select quantity
                       </option>
-                      <option value="Below 100">Below 100 pieces</option>
-                      <option value="100–300">100–300 pieces</option>
-                      <option value="300–500">300–500 pieces</option>
-                      <option value="500–1000">500–1,000 pieces</option>
-                      <option value="1000–3000">1,000–3,000 pieces</option>
-                      <option value="3000+">3,000+ pieces</option>
-                      <option value="Not sure yet">Not sure yet</option>
+
+                      {quantityOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
@@ -775,6 +973,7 @@ saveQuoteItems([]);
                     <label htmlFor="customization" className={labelClass}>
                       Customization
                     </label>
+
                     <select
                       id="customization"
                       name="customization"
@@ -797,6 +996,7 @@ saveQuoteItems([]);
                     <label htmlFor="timeline" className={labelClass}>
                       Expected timeline
                     </label>
+
                     <select
                       id="timeline"
                       name="timeline"
@@ -806,7 +1006,9 @@ saveQuoteItems([]);
                       disabled={isSubmitting}
                     >
                       <option value="">Select timeline</option>
-                      <option value="As soon as possible">As soon as possible</option>
+                      <option value="As soon as possible">
+                        As soon as possible
+                      </option>
                       <option value="Within 1 month">Within 1 month</option>
                       <option value="1–3 months">1–3 months</option>
                       <option value="3+ months">3+ months</option>
@@ -815,11 +1017,13 @@ saveQuoteItems([]);
                   </div>
                 </div>
 
+                {/* Dynamic product guidance */}
                 {guidance && (
                   <div className="mt-4 border-l-2 border-white/40 bg-white/[0.035] px-4 py-3">
                     <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-neutral-300">
                       {guidance.title}
                     </p>
+
                     <p className="mt-1.5 text-[11px] leading-5 text-neutral-400">
                       {guidance.text}
                     </p>
@@ -827,106 +1031,132 @@ saveQuoteItems([]);
                 )}
               </div>
 
-              {/* Selected quote-list products */}
-<div className="border-t border-white/10 pt-5">
-  <div className="mb-4 flex items-center justify-between gap-3">
-    <div>
-      <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
-        03 / Selected products
-      </p>
+              {/* ---------------------------------------------------------- */}
+              {/* SELECTED PRODUCTS                                         */}
+              {/* ---------------------------------------------------------- */}
 
-      <p className="mt-1 text-[10px] text-neutral-500">
-        Products added from the product pages or quote list.
-      </p>
-    </div>
+              <div className="border-t border-white/10 pt-5">
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
+                      03 / Selected products
+                    </p>
 
-    <span className="border border-white/15 px-3 py-1.5 text-[9px] uppercase tracking-wider text-neutral-300">
-      {quoteItems.length} {quoteItems.length === 1 ? "Item" : "Items"}
-    </span>
-  </div>
+                    <p className="mt-1 text-[10px] text-neutral-500">
+                      Products added from the product pages or quote list.
+                    </p>
+                  </div>
 
-  {quoteItems.length > 0 ? (
-    <div className="space-y-2">
-      {quoteItems.map((item) => (
-        <div
-          key={item.id}
-          className="flex flex-wrap items-center gap-3 border border-white/10 bg-white/[0.025] p-3 sm:flex-nowrap"
-        >
-          <div className="min-w-0 flex-1">
-            <p className="truncate text-xs font-semibold text-white">
-              {item.name}
-            </p>
+                  <span className="shrink-0 border border-white/15 px-3 py-1.5 text-[9px] uppercase tracking-wider text-neutral-300">
+                    {quoteItems.length}{" "}
+                    {quoteItems.length === 1 ? "Item" : "Items"}
+                  </span>
+                </div>
 
-            <p className="mt-1 text-[9px] uppercase tracking-wider text-neutral-500">
-              {item.category} · {item.code}
-            </p>
-          </div>
+                {quoteItems.length > 0 ? (
+                  <div className="space-y-2">
+                    {quoteItems.map((item) => (
+                      <div
+                        key={item.id}
+                        className="flex flex-wrap items-center gap-3 border border-white/10 bg-white/[0.025] p-3 sm:flex-nowrap"
+                      >
+                        {/* Product image */}
+                        {item.image ? (
+                          <div className="relative h-14 w-14 shrink-0 overflow-hidden border border-white/10 bg-white">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="h-full w-full object-contain p-1"
+                            />
+                          </div>
+                        ) : (
+                          <div className="flex h-14 w-14 shrink-0 items-center justify-center border border-white/10 bg-white/[0.04] text-[8px] uppercase tracking-wider text-neutral-500">
+                            Product
+                          </div>
+                        )}
 
-          <div className="flex items-center gap-2">
-            <label
-              htmlFor={`quote-quantity-${item.id}`}
-              className="text-[9px] uppercase tracking-wider text-neutral-500"
-            >
-              Qty
-            </label>
+                        {/* Product information */}
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-xs font-semibold text-white">
+                            {item.name}
+                          </p>
 
-            <input
-              id={`quote-quantity-${item.id}`}
-              type="number"
-              min={1}
-              max={999999}
-              value={item.quantity}
-              onChange={(event) =>
-                updateQuoteQuantity(
-                  item.id,
-                  Number(event.target.value)
-                )
-              }
-              disabled={isSubmitting}
-              className="w-[76px] border border-white/15 bg-transparent px-2 py-2 text-center text-xs text-white outline-none focus:border-white/60 disabled:opacity-50"
-            />
+                          <p className="mt-1 text-[9px] uppercase tracking-wider text-neutral-500">
+                            {item.category} · {item.code}
+                          </p>
+                        </div>
 
-            <button
-              type="button"
-              onClick={() => removeQuoteItem(item.id)}
-              disabled={isSubmitting}
-              aria-label={`Remove ${item.name}`}
-              className="flex h-8 w-8 cursor-pointer items-center justify-center text-neutral-500 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed"
-            >
-              <FaTimes size={12} />
-            </button>
-          </div>
-        </div>
-      ))}
+                        {/* Quantity and remove */}
+                        <div className="flex items-center gap-2">
+                          <label
+                            htmlFor={`quote-quantity-${item.id}`}
+                            className="text-[9px] uppercase tracking-wider text-neutral-500"
+                          >
+                            Qty
+                          </label>
 
-      <div className="flex items-center justify-between border-t border-white/10 pt-3">
-        <span className="text-[9px] font-semibold uppercase tracking-wider text-neutral-500">
-          Total requested pieces
-        </span>
+                          <input
+                            id={`quote-quantity-${item.id}`}
+                            type="number"
+                            min={1}
+                            max={999999}
+                            step={1}
+                            value={item.quantity}
+                            onChange={(event) =>
+                              updateQuoteQuantity(
+                                item.id,
+                                Number(event.target.value)
+                              )
+                            }
+                            disabled={isSubmitting}
+                            className="w-[76px] border border-white/15 bg-transparent px-2 py-2 text-center text-xs text-white outline-none focus:border-white/60 disabled:opacity-50"
+                          />
 
-        <span className="text-sm font-semibold tabular-nums text-white">
-          {totalQuotePieces.toLocaleString()}
-        </span>
-      </div>
-    </div>
-  ) : (
-    <div className="border border-dashed border-white/15 bg-white/[0.02] px-4 py-5">
-      <p className="text-xs text-neutral-400">
-        No products added yet.
-      </p>
+                          <button
+                            type="button"
+                            onClick={() => removeQuoteItem(item.id)}
+                            disabled={isSubmitting}
+                            aria-label={`Remove ${item.name}`}
+                            className="flex h-8 w-8 cursor-pointer items-center justify-center text-neutral-500 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed"
+                          >
+                            <FaTimes size={12} />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
 
-      <Link
-        href="/products"
-        className="mt-2 inline-flex items-center gap-2 text-[9px] font-semibold uppercase tracking-wider text-white transition hover:text-neutral-400"
-      >
-        Explore products
-        <FaArrowRight size={10} />
-      </Link>
-    </div>
-  )}
-</div>
+                    <div className="flex items-center justify-between border-t border-white/10 pt-3">
+                      <span className="text-[9px] font-semibold uppercase tracking-wider text-neutral-500">
+                        Total requested pieces
+                      </span>
 
-              {/* Project details */}
+                      <span className="text-sm font-semibold tabular-nums text-white">
+                        {totalQuotePieces.toLocaleString()}
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="border border-dashed border-white/15 bg-white/[0.02] px-4 py-5">
+                    <p className="text-xs text-neutral-400">
+                      No products added yet.
+                    </p>
+
+                    <Link
+                      href="/products"
+                      className="mt-2 inline-flex items-center gap-2 text-[9px] font-semibold uppercase tracking-wider text-white transition hover:text-neutral-400"
+                    >
+                      Explore products
+                      <FaArrowRight size={10} />
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* ---------------------------------------------------------- */}
+              {/* PROJECT DETAILS                                            */}
+              {/* ---------------------------------------------------------- */}
+
               <div className="border-t border-white/10 pt-5">
                 <label htmlFor="message" className={labelClass}>
                   Project details *
@@ -938,7 +1168,7 @@ saveQuoteItems([]);
                   rows={3}
                   placeholder={
                     guidance
-                      ? `Tell us more about your ${products.find((item) => item.value === formData.product)?.label.toLowerCase()} requirements...`
+                      ? guidance.placeholder
                       : "Describe your product, materials, colors, design and requirements..."
                   }
                   className={`${inputClass} resize-y`}
@@ -948,14 +1178,22 @@ saveQuoteItems([]);
                   maxLength={5000}
                   disabled={isSubmitting}
                 />
+
+                <p className="mt-1 text-right text-[9px] text-neutral-600">
+                  {formData.message.length}/5000 characters
+                </p>
               </div>
 
-              {/* Design attachments */}
+              {/* ---------------------------------------------------------- */}
+              {/* DESIGN ATTACHMENTS                                         */}
+              {/* ---------------------------------------------------------- */}
+
               <div className="border-t border-white/10 pt-5">
                 <div className="mb-3 flex items-center justify-between gap-3">
                   <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
-                    03 / Design attachments
+                    04 / Design attachments
                   </p>
+
                   <span className="text-[9px] text-neutral-600">
                     Optional
                   </span>
@@ -976,7 +1214,10 @@ saveQuoteItems([]);
                   htmlFor="designFiles"
                   onDragOver={(event) => {
                     event.preventDefault();
-                    if (!isSubmitting) setIsDragging(true);
+
+                    if (!isSubmitting) {
+                      setIsDragging(true);
+                    }
                   }}
                   onDragLeave={(event) => {
                     event.preventDefault();
@@ -1003,8 +1244,10 @@ saveQuoteItems([]);
                         ? "Drop your files here"
                         : "Drag & drop your designs"}
                     </span>
+
                     <span className="mt-1 block text-[9px] leading-4 text-neutral-500">
-                      Or browse files · AI, PDF, PNG, JPG · Max 5 files, 10 MB each
+                      Or browse files · AI, PDF, PNG, JPG · Max 5 files,
+                      10 MB each
                     </span>
                   </span>
 
@@ -1013,6 +1256,7 @@ saveQuoteItems([]);
                   </span>
                 </label>
 
+                {/* Selected file list */}
                 {selectedFiles.length > 0 && (
                   <div className="mt-3 space-y-2">
                     {selectedFiles.map((file, index) => {
@@ -1029,6 +1273,7 @@ saveQuoteItems([]);
                             <p className="truncate text-[11px] text-white">
                               {file.name}
                             </p>
+
                             <p className="mt-0.5 text-[9px] text-neutral-500">
                               {formatFileSize(file.size)}
                             </p>
@@ -1048,13 +1293,17 @@ saveQuoteItems([]);
                     })}
 
                     <p className="text-right text-[9px] text-neutral-600">
-                      {selectedFiles.length} file(s) · {formatFileSize(totalFileSize)}
+                      {selectedFiles.length} file(s) ·{" "}
+                      {formatFileSize(totalFileSize)}
                     </p>
                   </div>
                 )}
               </div>
 
-              {/* Optional email follow-up consent */}
+              {/* ---------------------------------------------------------- */}
+              {/* FOLLOW-UP CONSENT                                         */}
+              {/* ---------------------------------------------------------- */}
+
               <div className="space-y-3 border-t border-white/10 pt-5">
                 <label className="flex cursor-pointer items-start gap-3">
                   <input
@@ -1062,10 +1311,7 @@ saveQuoteItems([]);
                     name="followUpOptIn"
                     checked={formData.followUpOptIn}
                     onChange={(event) =>
-                      setFormData((previous) => ({
-                        ...previous,
-                        followUpOptIn: event.target.checked,
-                      }))
+                      handleFollowUpChange(event.target.checked)
                     }
                     disabled={isSubmitting}
                     className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-white"
@@ -1074,7 +1320,8 @@ saveQuoteItems([]);
                   <span className="text-[11px] leading-5 text-neutral-300">
                     Email me a follow-up with next steps and new designs.
                     <span className="text-neutral-500">
-                      {" "}Unsubscribe any time.
+                      {" "}
+                      Unsubscribe any time.
                     </span>
                   </span>
                 </label>
@@ -1092,7 +1339,10 @@ saveQuoteItems([]);
                 </p>
               </div>
 
-              {/* Upload progress */}
+              {/* ---------------------------------------------------------- */}
+              {/* UPLOAD PROGRESS                                            */}
+              {/* ---------------------------------------------------------- */}
+
               {isSubmitting && (
                 <div
                   className="border border-white/10 bg-white/[0.035] p-4"
@@ -1102,6 +1352,7 @@ saveQuoteItems([]);
                   <div className="mb-3 flex items-center justify-between gap-3">
                     <div className="flex items-center gap-2">
                       <FaSpinner className="animate-spin text-neutral-300" />
+
                       <span className="text-[10px] font-semibold uppercase tracking-wider text-white">
                         {uploadPhase === "processing"
                           ? "Processing your inquiry"
@@ -1123,7 +1374,9 @@ saveQuoteItems([]);
                   >
                     <div
                       className="h-full bg-white transition-all duration-200"
-                      style={{ width: `${uploadProgress}%` }}
+                      style={{
+                        width: `${uploadProgress}%`,
+                      }}
                     />
                   </div>
 
@@ -1135,7 +1388,10 @@ saveQuoteItems([]);
                 </div>
               )}
 
-              {/* Status feedback */}
+              {/* ---------------------------------------------------------- */}
+              {/* STATUS FEEDBACK                                            */}
+              {/* ---------------------------------------------------------- */}
+
               {status.message && (
                 <div
                   role="status"
@@ -1151,11 +1407,15 @@ saveQuoteItems([]);
                   ) : (
                     <FaExclamationCircle className="mt-0.5 shrink-0" />
                   )}
+
                   <p>{status.message}</p>
                 </div>
               )}
 
-              {/* Submit */}
+              {/* ---------------------------------------------------------- */}
+              {/* SUBMIT BUTTON                                              */}
+              {/* ---------------------------------------------------------- */}
+
               <div className="border-t border-white/10 pt-5">
                 <button
                   type="submit"

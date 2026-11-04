@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 // import About from "@/components/home/About";
 // import Categories from "@/components/home/Categories";
-import RequestQuote from "@/components/home/RequestQuote";
+import RequestQuote from "@/components/contact/RequestQuote";
 import Hero from "@/components/home/Hero";
 import IndustriesWeServe from "@/components/home/IndustriesWeServe";
 import ManufacturingCapabilities from "@/components/home/ManufacturingCapabilities";

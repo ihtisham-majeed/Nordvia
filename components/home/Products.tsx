@@ -7,47 +7,49 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaArrowRight } from "react-icons/fa";
+import { products } from "@/components/products/productData";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const products = [
+const categoryDetails: Record<
+  string,
   {
-    number: "01",
-    title: "Premium Fleece",
+    tag: string;
+    subtitle: string;
+    details: string;
+  }
+> = {
+  hoodies: {
+    tag: "STREETWEAR",
     subtitle: "Hoodies & Sweatshirts",
-    image: "/products/classic_hoodie.png",
     details:
       "Heavyweight fleece, custom silhouettes, refined finishes and private-label branding.",
-    tag: "STREETWEAR",
   },
-  {
-    number: "02",
-    title: "Performance Wear",
+  tracksuits: {
+    tag: "ACTIVEWEAR",
     subtitle: "Tracksuits & Sportswear",
-    image: "/products/tracksuits.webp",
     details:
       "Custom sportswear, coordinated sets and performance-inspired apparel for your brand.",
-    tag: "ACTIVEWEAR",
   },
-  {
-    number: "03",
-    title: "Everyday Layers",
+  jackets: {
+    tag: "OUTERWEAR",
     subtitle: "Bomber & Casual Jackets",
-    image: "/products/jackets.webp",
     details:
       "Versatile outerwear with custom materials, functional details and distinctive styling.",
-    tag: "OUTERWEAR",
   },
-  {
-    number: "04",
-    title: "Winter Protection",
+  coats: {
+    tag: "WINTERWEAR",
     subtitle: "Cold Weather Outerwear",
-    image: "/products/coats.webp",
     details:
       "Cold-weather styles developed with considered construction, materials and branding.",
-    tag: "WINTERWEAR",
   },
-];
+  joggers: {
+    tag: "BOTTOMS",
+    subtitle: "Joggers & Sweatpants",
+    details:
+      "Comfortable and stylish joggers and sweatpants for casualwear and active collections.",
+  },
+};
 
 export default function Products() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -92,14 +94,12 @@ export default function Products() {
       ref={sectionRef}
       className="relative overflow-hidden bg-[#F4F3EF] py-20 text-[#171717] sm:py-28 lg:py-32"
     >
-      {/* SUBTLE BACKGROUND DETAIL */}
+      {/* BACKGROUND DETAIL */}
       <div className="pointer-events-none absolute -right-40 top-20 h-[420px] w-[420px] rounded-full bg-black/[0.035] blur-[120px]" />
 
       <div className="relative mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
-
         {/* SECTION HEADER */}
         <div className="products-heading mb-10 flex flex-col justify-between gap-7 md:mb-14 md:flex-row md:items-end">
-
           <div className="max-w-2xl">
             <div className="mb-5 flex items-center gap-3">
               <span className="h-px w-9 bg-[#171717]/70" />
@@ -118,14 +118,14 @@ export default function Products() {
 
           <div className="max-w-md md:pb-1">
             <p className="text-sm leading-7 text-[#171717]/60 sm:text-base sm:leading-8">
-              Apparel solutions developed around your brand.
-              Explore our product categories and create collections
-              with custom styles, materials, colors and private labeling.
+              Apparel solutions developed around your brand. Explore our
+              product categories and create collections with custom styles,
+              materials, colors and private labeling.
             </p>
 
             <Link
               href="/request-a-quote"
-              className="group mt-5 inline-flex cursor-pointer items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#171717] transition-colors hover:text-[#171717]/50"
+              className="group mt-5 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#171717] transition-colors hover:text-[#171717]/50"
             >
               Discuss Your Requirements
               <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -133,123 +133,116 @@ export default function Products() {
           </div>
         </div>
 
-        {/* PRODUCT GRID */}
+        {/* CATEGORY GRID */}
         <div className="products-grid grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+          {products.map((product, index) => {
+            const details = categoryDetails[product.slug];
 
-          {products.map((product) => (
-            <article
-              key={product.number}
-              className="
-                product-card group relative isolate
-                h-[390px] overflow-hidden
-                border border-black/[0.08]
-                bg-[#deddd8] sm:h-[430px]
-                lg:h-[480px]
-              "
-            >
-              {/* PRODUCT IMAGE */}
-              <Image
-                src={product.image}
-                alt={product.subtitle}
-                fill
-                sizes="
-                  (max-width: 639px) 100vw,
-                  (max-width: 1023px) 50vw,
-                  25vw
-                "
+            if (!details) return null;
+
+            return (
+              <article
+                key={product.slug}
                 className="
-                  object-cover object-center
-                  transition-transform duration-700
-                  ease-[cubic-bezier(0.22,1,0.36,1)]
-                  group-hover:scale-105
-                "
-              />
-
-              {/* IMAGE OVERLAY */}
-              <div
-                className="
-                  absolute inset-0
-                  bg-gradient-to-t
-                  from-black via-black/35
-                  to-black/5
-                  opacity-90 transition-opacity
-                  duration-500 group-hover:opacity-100
-                "
-              />
-
-              {/* TOP DETAILS */}
-              <div className="absolute left-5 right-5 top-5 flex items-center justify-between">
-                <span className="text-[10px] font-medium tracking-[0.2em] text-white/75">
-                  {product.tag}
-                </span>
-
-                <span className="text-xs tabular-nums text-white/65">
-                  {product.number}
-                </span>
-              </div>
-
-              {/* BOTTOM CONTENT */}
-              <div
-                className="
-                  absolute inset-x-0 bottom-0
-                  flex flex-col p-5 sm:p-6
+                  product-card group relative isolate
+                  h-[390px] overflow-hidden
+                  border border-black/[0.08]
+                  bg-[#deddd8] sm:h-[430px]
+                  lg:h-[480px]
                 "
               >
-                <div className="mb-3 h-px w-8 bg-white/70 transition-all duration-500 group-hover:w-14" />
+                {/* CATEGORY IMAGE */}
+                <Image
+                  src={product.image}
+                  alt={`${product.name} category`}
+                  fill
+                  sizes="
+                    (max-width: 639px) 100vw,
+                    (max-width: 1023px) 50vw,
+                    25vw
+                  "
+                  className="
+                    object-cover object-center
+                    transition-transform duration-700
+                    ease-[cubic-bezier(0.22,1,0.36,1)]
+                    group-hover:scale-105
+                  "
+                />
 
-                <h3 className="text-2xl font-semibold leading-tight tracking-[-0.035em] text-white sm:text-[26px]">
-                  {product.title}
-                </h3>
-
-                <p className="mt-1 text-sm text-white/70">
-                  {product.subtitle}
-                </p>
-
-                {/* DESCRIPTION */}
+                {/* IMAGE OVERLAY */}
                 <div
                   className="
-                    grid grid-rows-[0fr]
-                    transition-all duration-500
-                    ease-in-out
-                    group-hover:grid-rows-[1fr]
+                    absolute inset-0
+                    bg-gradient-to-t
+                    from-black via-black/35
+                    to-black/5
+                    opacity-90 transition-opacity
+                    duration-500 group-hover:opacity-100
                   "
-                >
-                  <div className="overflow-hidden">
-                    <p className="pt-3 text-xs leading-6 text-white/70 sm:text-sm">
-                      {product.details}
-                    </p>
-                  </div>
+                />
+
+                {/* TOP DETAILS */}
+                <div className="absolute left-5 right-5 top-5 flex items-center justify-between">
+                  <span className="text-[10px] font-medium tracking-[0.2em] text-white/75">
+                    {details.tag}
+                  </span>
+
+                  <span className="text-xs tabular-nums text-white/65">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                 </div>
 
-                {/* CATEGORY LINK */}
-                <Link
-                  href={`/request-a-quote?product=${product.number === "01" ? "hoodies" : product.number === "02" ? "tracksuits" : product.number === "03" ? "jackets" : "coats"}`}
-                  aria-label={`Request a quote for ${product.subtitle}`}
-                  className="
-                    mt-5 flex cursor-pointer items-center justify-between
-                    border-t border-white/25 pt-4
-                    text-[10px] font-semibold uppercase
-                    tracking-[0.18em] text-white/90
-                    transition-colors hover:text-white
-                  "
-                >
-                  <span>Develop Your Collection</span>
+                {/* BOTTOM CONTENT */}
+                <div className="absolute inset-x-0 bottom-0 flex flex-col p-5 sm:p-6">
+                  <div className="mb-3 h-px w-8 bg-white/70 transition-all duration-500 group-hover:w-14" />
 
-                  <span
+                  <h3 className="text-2xl font-semibold leading-tight tracking-[-0.035em] text-white sm:text-[26px]">
+                    {product.name}
+                  </h3>
+
+                  <p className="mt-1 text-sm text-white/70">
+                    {details.subtitle}
+                  </p>
+
+                  {/* DESCRIPTION */}
+                  <div className="grid grid-rows-[0fr] transition-all duration-500 ease-in-out group-hover:grid-rows-[1fr]">
+                    <div className="overflow-hidden">
+                      <p className="pt-3 text-xs leading-6 text-white/70 sm:text-sm">
+                        {details.details}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* CATEGORY PAGE LINK */}
+                  <Link
+                    href={`/products/${product.slug}`}
+                    aria-label={`Explore ${product.name}`}
                     className="
-                      flex h-8 w-8 items-center justify-center
-                      rounded-full border border-white/40
-                      transition-all duration-300
-                      group-hover:border-white
-                      group-hover:bg-white group-hover:text-black
+                      mt-5 flex items-center justify-between
+                      border-t border-white/25 pt-4
+                      text-[10px] font-semibold uppercase
+                      tracking-[0.18em] text-white/90
+                      transition-colors hover:text-white
                     "
                   >
-                    <FaArrowRight className="text-[10px]" />
-                  </span>
-                </Link>
-              </div>
-            </article>
-          ))}
+                    <span>Explore Collection</span>
+
+                    <span
+                      className="
+                        flex h-8 w-8 items-center justify-center
+                        rounded-full border border-white/40
+                        transition-all duration-300
+                        group-hover:border-white
+                        group-hover:bg-white group-hover:text-black
+                      "
+                    >
+                      <FaArrowRight className="text-[10px]" />
+                    </span>
+                  </Link>
+                </div>
+              </article>
+            );
+          })}
         </div>
 
         {/* BOTTOM NOTE */}
@@ -268,7 +261,7 @@ export default function Products() {
           <Link
             href="/products"
             className="
-              group inline-flex cursor-pointer items-center gap-3
+              group inline-flex items-center gap-3
               text-xs font-semibold uppercase
               tracking-[0.16em] text-[#171717]/75
               transition-colors hover:text-black
