@@ -49,6 +49,12 @@ const categoryDetails: Record<
     details:
       "Comfortable and stylish joggers and sweatpants for casualwear and active collections.",
   },
+  "leather-jackets": {
+    tag: "OUTERWEAR",
+    subtitle: "Leather Jackets",
+    details:
+      "Premium leather jackets with custom designs, materials, and finishes.",
+  },
 };
 
 export default function Products() {
