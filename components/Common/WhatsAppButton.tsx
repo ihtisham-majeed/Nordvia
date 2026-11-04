@@ -1,11 +1,12 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   FaWhatsapp,
   FaTimes,
   FaArrowRight,
+  FaCheck,
 } from "react-icons/fa";
 
 const PHONE_NUMBER = "923248548680";
@@ -41,141 +42,174 @@ export default function WhatsAppButton() {
   const [selectedMessage, setSelectedMessage] =
     useState(DEFAULT_MESSAGE);
 
-  useEffect(() => {
-    const timer = window.setTimeout(() => {
-      setIsOpen(true);
-    }, 1200);
-
-    return () => window.clearTimeout(timer);
-  }, []);
-
   const startChat = () => {
     const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(
       selectedMessage
     )}`;
 
-    window.open(
-      whatsappUrl,
-      "_blank",
-      "noopener,noreferrer"
-    );
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
     <>
+      {/* BACKDROP - MOBILE */}
+      <div
+        onClick={() => setIsOpen(false)}
+        className={`fixed inset-0 z-[89] bg-black/30 backdrop-blur-[2px] transition-opacity duration-300 sm:hidden ${
+          isOpen
+            ? "visible opacity-100"
+            : "pointer-events-none invisible opacity-0"
+        }`}
+        aria-hidden="true"
+      />
+
       {/* WHATSAPP POPUP */}
       <div
-        className={`fixed bottom-[82px] right-4 z-[90] w-[calc(100%-32px)] max-w-[360px] origin-bottom-right transition-all duration-300 sm:right-6 ${
-          isOpen
-            ? "visible translate-y-0 scale-100 opacity-100"
-            : "pointer-events-none invisible translate-y-4 scale-95 opacity-0"
-        }`}
+        className={`
+          fixed z-[90]
+          bottom-[calc(88px+env(safe-area-inset-bottom))]
+          left-3 right-3
+          mx-auto w-auto max-w-[390px]
+          origin-bottom-right
+          transition-all duration-300
+          sm:bottom-24 sm:left-auto sm:right-6
+          sm:mx-0 sm:w-[360px]
+          ${
+            isOpen
+              ? "visible translate-y-0 scale-100 opacity-100"
+              : "pointer-events-none invisible translate-y-5 scale-[0.97] opacity-0"
+          }
+        `}
         aria-hidden={!isOpen}
       >
-        <div className="overflow-hidden border border-neutral-200 bg-white shadow-[0_12px_45px_rgba(0,0,0,0.20)]">
+        <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-[0_20px_70px_rgba(0,0,0,0.22)]">
 
           {/* HEADER */}
-          <div className="flex items-center justify-between border-b border-neutral-200 px-4 py-4">
+          <div className="flex items-center justify-between border-b border-neutral-100 bg-white px-4 py-3.5 sm:px-5">
 
             <div className="flex min-w-0 items-center gap-3">
-
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#111] text-white">
-                <span className="text-sm font-bold tracking-tight">
-                  N
-                </span>
+                <span className="text-base font-bold">N</span>
               </div>
 
               <div className="min-w-0">
-                <h3 className="text-[14px] font-bold text-neutral-900">
+                <h3 className="text-[13px] font-bold tracking-[0.04em] text-neutral-950">
                   NORDVIA EXPORTS
                 </h3>
 
-                <p className="mt-1 text-[11px] text-neutral-500">
-                  Custom apparel · Private label
-                </p>
+                <div className="mt-1 flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
+                  <p className="text-[10px] text-neutral-500">
+                    Apparel enquiries
+                  </p>
+                </div>
               </div>
-
             </div>
 
             <button
               type="button"
               onClick={() => setIsOpen(false)}
               aria-label="Close WhatsApp popup"
-              className="ml-2 flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center text-neutral-500 transition hover:text-black"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-neutral-500 transition hover:bg-neutral-100 hover:text-black"
             >
-              <FaTimes size={16} />
+              <FaTimes size={14} />
             </button>
-
           </div>
 
           {/* BODY */}
-          <div className="px-4 py-4">
+          <div className="bg-[#f8f8f7] p-4 sm:p-5">
 
-            {/* WELCOME MESSAGE */}
-            <div className="rounded-[17px] rounded-tl-sm bg-[#ededed] px-4 py-3">
+            {/* INTRODUCTION */}
+            <div className="rounded-xl rounded-tl-sm border border-neutral-200 bg-white px-4 py-3.5 shadow-sm">
+              <p className="text-[13px] leading-[1.7] text-neutral-700">
+                Hello! How can we help with your apparel project?
+                Select a topic below to start a conversation.
+              </p>
+            </div>
 
-              <p className="text-[14px] leading-[1.6] text-neutral-800">
-                Hi! Need a quote, custom design or help with your
-                apparel project? Message us on WhatsApp — pick
-                a topic to start.
+            {/* TOPIC SELECTION */}
+            <div className="mt-4">
+              <p className="mb-2.5 text-[9px] font-bold uppercase tracking-[0.2em] text-neutral-400">
+                Choose an enquiry
               </p>
 
+              <div className="grid grid-cols-2 gap-2">
+                {topics.map((topic) => {
+                  const isSelected =
+                    selectedMessage === topic.message;
+
+                  return (
+                    <button
+                      key={topic.label}
+                      type="button"
+                      onClick={() =>
+                        setSelectedMessage(topic.message)
+                      }
+                      aria-pressed={isSelected}
+                      className={`
+                        flex min-h-[43px] items-center justify-between
+                        gap-2 rounded-lg border px-3 py-2.5
+                        text-left text-[11px] font-semibold
+                        transition-all duration-200
+                        ${
+                          isSelected
+                            ? "border-black bg-black text-white"
+                            : "border-neutral-200 bg-white text-neutral-700 hover:border-neutral-400"
+                        }
+                      `}
+                    >
+                      <span>{topic.label}</span>
+
+                      {isSelected && (
+                        <FaCheck className="shrink-0 text-[10px]" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* TOPICS */}
-            <div className="mt-3 grid grid-cols-2 gap-2">
-
-              {topics.map((topic) => {
-                const isSelected =
-                  selectedMessage === topic.message;
-
-                return (
-                  <button
-                    key={topic.label}
-                    type="button"
-                    onClick={() =>
-                      setSelectedMessage(topic.message)
-                    }
-                    aria-pressed={isSelected}
-                    className={`flex min-h-[42px] cursor-pointer items-center justify-center border px-2 py-2 text-center text-[12px] font-semibold transition sm:text-[13px] ${
-                      isSelected
-                        ? "border-black bg-black text-white"
-                        : "border-neutral-300 bg-white text-neutral-900 hover:border-black hover:bg-neutral-100"
-                    }`}
-                  >
-                    {topic.label}
-                  </button>
-                );
-              })}
-
-            </div>
-
-            {/* START CHAT */}
+            {/* CHAT BUTTON */}
             <button
               type="button"
               onClick={startChat}
-              className="mt-4 flex min-h-[49px] w-full cursor-pointer items-center justify-center gap-3 bg-[#111] px-4 text-[11px] font-bold uppercase tracking-[0.18em] text-white transition hover:bg-neutral-800"
+              className="
+                mt-4 flex min-h-[48px] w-full
+                items-center justify-center gap-3
+                rounded-lg bg-[#111] px-4
+                text-[10px] font-bold uppercase
+                tracking-[0.17em] text-white
+                transition duration-300
+                hover:bg-neutral-800
+                active:scale-[0.98]
+              "
             >
-              <FaWhatsapp size={18} />
-              Start Chat
+              <FaWhatsapp size={17} />
+              Continue to WhatsApp
               <FaArrowRight size={11} />
             </button>
 
-            {/* PHONE NUMBER */}
+            {/* CONTACT */}
             <a
               href={`https://wa.me/${PHONE_NUMBER}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 block text-center text-[12px] text-neutral-500 transition hover:text-black"
+              className="mt-3 block text-center text-[11px] text-neutral-500 transition hover:text-black"
             >
-              WhatsApp +92 324 8548680
+              +92 324 8548680
             </a>
+          </div>
 
+          {/* FOOTER */}
+          <div className="border-t border-neutral-100 bg-white px-4 py-2.5 text-center">
+            <p className="text-[9px] tracking-wide text-neutral-400">
+              NORDVIA EXPORTS · CUSTOM APPAREL
+            </p>
           </div>
         </div>
       </div>
 
-      {/* FLOATING BUTTON */}
+      {/* FLOATING WHATSAPP BUTTON */}
       <button
         type="button"
         onClick={() => setIsOpen((previous) => !previous)}
@@ -183,23 +217,41 @@ export default function WhatsAppButton() {
           isOpen ? "Close WhatsApp popup" : "Open WhatsApp popup"
         }
         aria-expanded={isOpen}
-        className={`fixed bottom-5 right-5 z-[95] flex h-[50px] cursor-pointer items-center justify-center gap-2.5 px-4 text-white shadow-xl transition-all duration-300 sm:bottom-6 sm:right-6 ${
-          isOpen
-            ? "border border-white/30 bg-[#111] hover:bg-neutral-800"
-            : "bg-[#111] hover:bg-neutral-800"
-        }`}
+        aria-controls="whatsapp-contact-popup"
+        className={`
+          fixed z-[95]
+          bottom-[calc(18px+env(safe-area-inset-bottom))]
+          right-4
+          flex h-[52px] w-[52px]
+          items-center justify-center
+          rounded-full
+          border border-white/15
+          bg-[#111] text-white
+          shadow-[0_5px_25px_rgba(0,0,0,0.25)]
+          transition-all duration-300
+          hover:bg-neutral-800
+          active:scale-95
+          sm:bottom-6 sm:right-6
+          sm:h-[54px] sm:w-auto
+          sm:rounded-none sm:px-5
+          ${
+            isOpen
+              ? "rotate-0"
+              : ""
+          }
+        `}
       >
         {isOpen ? (
           <>
-            <FaTimes size={15} />
-            <span className="text-[10px] font-bold uppercase tracking-[0.17em]">
+            <FaTimes size={17} />
+            <span className="ml-2 hidden text-[10px] font-bold uppercase tracking-[0.15em] sm:inline">
               Close
             </span>
           </>
         ) : (
           <>
-            <FaWhatsapp size={20} />
-            <span className="text-[10px] font-bold uppercase tracking-[0.14em]">
+            <FaWhatsapp size={23} />
+            <span className="ml-2 hidden text-[10px] font-bold uppercase tracking-[0.15em] sm:inline">
               WhatsApp
             </span>
           </>
