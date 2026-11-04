@@ -115,10 +115,10 @@ export default function IndustriesWeServe() {
     <section
       ref={sectionRef}
       id="industries"
-      className="relative overflow-hidden bg-[#080808] py-20 text-white sm:py-28 lg:py-32"
+      className="relative overflow-hidden bg-[#F4F3EF] py-20 text-[#171717] sm:py-28 lg:py-32"
     >
-      {/* Background lighting */}
-      <div className="pointer-events-none absolute -left-40 top-20 h-[400px] w-[400px] rounded-full bg-white/[0.025] blur-[130px]" />
+      {/* Subtle background lighting */}
+      <div className="pointer-events-none absolute -left-40 top-20 h-[400px] w-[400px] rounded-full bg-black/[0.035] blur-[130px]" />
 
       <div className="relative mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
 
@@ -127,15 +127,16 @@ export default function IndustriesWeServe() {
 
           <div className="industry-intro">
             <div className="mb-5 flex items-center gap-3">
-              <span className="h-px w-9 bg-white/70" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.27em] text-white/50 sm:text-xs">
+              <span className="h-px w-9 bg-[#171717]/70" />
+
+              <span className="text-[10px] font-semibold uppercase tracking-[0.27em] text-[#171717]/50 sm:text-xs">
                 Industries We Serve
               </span>
             </div>
 
-            <h2 className="max-w-3xl text-[clamp(2.8rem,6vw,5.8rem)] font-semibold leading-[0.95] tracking-[-0.06em]">
+            <h2 className="max-w-3xl text-[clamp(2.8rem,6vw,5.8rem)] font-semibold leading-[0.95] tracking-[-0.06em] text-[#171717]">
               Made for
-              <span className="block text-white/40">
+              <span className="block text-[#171717]/40">
                 Different Visions.
               </span>
               Built for Brands.
@@ -143,7 +144,7 @@ export default function IndustriesWeServe() {
           </div>
 
           <div className="industry-intro max-w-xl md:justify-self-end md:pb-2">
-            <p className="text-sm leading-7 text-white/60 sm:text-base sm:leading-8">
+            <p className="text-sm leading-7 text-[#171717]/60 sm:text-base sm:leading-8">
               Every brand has its own identity and direction.
               We support different apparel businesses with
               custom product development, manufacturing
@@ -152,9 +153,10 @@ export default function IndustriesWeServe() {
 
             <Link
               href="/request-a-quote"
-              className="group mt-6 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:text-white/60"
+              className="group mt-6 inline-flex cursor-pointer items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#171717] transition-colors hover:text-[#171717]/50"
             >
               Work With NORDVIA
+
               <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
@@ -169,8 +171,8 @@ export default function IndustriesWeServe() {
               className="
                 industry-card group relative isolate
                 flex min-h-[390px] flex-col
-                overflow-hidden border border-white/10
-                bg-[#141414] sm:min-h-[430px]
+                overflow-hidden border border-black/[0.08]
+                bg-[#deddd8] sm:min-h-[430px]
                 lg:min-h-[490px]
               "
             >
@@ -195,17 +197,19 @@ export default function IndustriesWeServe() {
               </div>
 
               {/* OVERLAY */}
-              <div className="
-                absolute inset-0 -z-10
-                bg-gradient-to-t
-                from-black via-black/35 to-black/5
-                opacity-95 transition-opacity
-                duration-500 group-hover:opacity-100
-              " />
+              <div
+                className="
+                  absolute inset-0 -z-10
+                  bg-gradient-to-t
+                  from-black via-black/35 to-black/5
+                  opacity-95 transition-opacity
+                  duration-500 group-hover:opacity-100
+                "
+              />
 
               {/* TOP DETAILS */}
               <div className="flex items-center justify-between p-5 sm:p-7">
-                <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white/75 sm:text-[10px]">
+                <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white/80 sm:text-[10px]">
                   {item.category}
                 </span>
 
@@ -217,39 +221,47 @@ export default function IndustriesWeServe() {
               {/* BOTTOM CONTENT */}
               <div className="mt-auto p-5 sm:p-7">
 
-                <span className="
-                  mb-4 block h-px w-9 bg-white/70
-                  transition-all duration-500
-                  group-hover:w-16
-                " />
+                <span
+                  className="
+                    mb-4 block h-px w-9 bg-white/80
+                    transition-all duration-500
+                    group-hover:w-16
+                  "
+                />
 
-                <h3 className="
-                  text-[clamp(1.7rem,3vw,2.5rem)]
-                  font-semibold leading-tight
-                  tracking-[-0.045em]
-                ">
+                <h3
+                  className="
+                    text-[clamp(1.7rem,3vw,2.5rem)]
+                    font-semibold leading-tight
+                    tracking-[-0.045em] text-white
+                  "
+                >
                   {item.title}
                 </h3>
 
-                <p className="mt-3 max-w-lg text-sm leading-6 text-white/65 sm:text-base sm:leading-7">
+                <p className="mt-3 max-w-lg text-sm leading-6 text-white/70 sm:text-base sm:leading-7">
                   {item.description}
                 </p>
 
-                <div className="
-                  mt-6 flex items-center justify-between
-                  border-t border-white/20 pt-4
-                ">
-                  <span className="text-[9px] font-semibold uppercase tracking-[0.18em] text-white/75 sm:text-[10px]">
+                <div
+                  className="
+                    mt-6 flex items-center justify-between
+                    border-t border-white/25 pt-4
+                  "
+                >
+                  <span className="text-[9px] font-semibold uppercase tracking-[0.18em] text-white/80 sm:text-[10px]">
                     Apparel Manufacturing
                   </span>
 
-                  <span className="
-                    flex h-9 w-9 items-center justify-center
-                    rounded-full border border-white/40
-                    transition-all duration-300
-                    group-hover:border-white
-                    group-hover:bg-white group-hover:text-black
-                  ">
+                  <span
+                    className="
+                      flex h-9 w-9 items-center justify-center
+                      rounded-full border border-white/40
+                      transition-all duration-300
+                      group-hover:border-white
+                      group-hover:bg-white group-hover:text-black
+                    "
+                  >
                     <FaArrowRight className="text-xs" />
                   </span>
                 </div>
@@ -259,17 +271,19 @@ export default function IndustriesWeServe() {
         </div>
 
         {/* FOOTER CTA */}
-        <div className="
-          industry-footer mt-10 flex flex-col gap-5
-          border-t border-white/10 pt-7
-          sm:flex-row sm:items-center sm:justify-between
-        ">
+        <div
+          className="
+            industry-footer mt-10 flex flex-col gap-5
+            border-t border-black/10 pt-7
+            sm:flex-row sm:items-center sm:justify-between
+          "
+        >
           <div>
-            <p className="text-sm font-medium text-white/85">
+            <p className="text-sm font-medium text-[#171717]/85">
               Have a different apparel business?
             </p>
 
-            <p className="mt-1 text-xs leading-6 text-white/45 sm:text-sm">
+            <p className="mt-1 text-xs leading-6 text-[#171717]/50 sm:text-sm">
               Let's discuss your product ideas and manufacturing requirements.
             </p>
           </div>
@@ -278,13 +292,14 @@ export default function IndustriesWeServe() {
             href="/request-a-quote"
             className="
               group inline-flex min-h-[48px]
-              items-center justify-center gap-3
-              rounded-full bg-white px-6
-              text-xs font-semibold text-black
-              transition-colors hover:bg-white/80 sm:text-sm
+              cursor-pointer items-center justify-center gap-3
+              rounded-full bg-[#171717] px-6
+              text-xs font-semibold text-white
+              transition-colors hover:bg-[#393939] sm:text-sm
             "
           >
             Discuss Your Project
+
             <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>

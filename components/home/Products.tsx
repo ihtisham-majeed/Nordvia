@@ -90,10 +90,10 @@ export default function Products() {
     <section
       id="products"
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#080808] py-20 text-white sm:py-28 lg:py-32"
+      className="relative overflow-hidden bg-[#F4F3EF] py-20 text-[#171717] sm:py-28 lg:py-32"
     >
-      {/* BACKGROUND DETAIL */}
-      <div className="pointer-events-none absolute -right-40 top-20 h-[420px] w-[420px] rounded-full bg-white/[0.025] blur-[120px]" />
+      {/* SUBTLE BACKGROUND DETAIL */}
+      <div className="pointer-events-none absolute -right-40 top-20 h-[420px] w-[420px] rounded-full bg-black/[0.035] blur-[120px]" />
 
       <div className="relative mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
 
@@ -102,22 +102,22 @@ export default function Products() {
 
           <div className="max-w-2xl">
             <div className="mb-5 flex items-center gap-3">
-              <span className="h-px w-9 bg-white/70" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/55 sm:text-xs">
+              <span className="h-px w-9 bg-[#171717]/70" />
+              <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#171717]/55 sm:text-xs">
                 Our Product Range
               </span>
             </div>
 
-            <h2 className="text-[clamp(2.4rem,5vw,4.7rem)] font-semibold leading-[0.98] tracking-[-0.055em]">
+            <h2 className="text-[clamp(2.4rem,5vw,4.7rem)] font-semibold leading-[0.98] tracking-[-0.055em] text-[#171717]">
               What We
-              <span className="block text-white/45">
+              <span className="block text-[#171717]/40">
                 Manufacture.
               </span>
             </h2>
           </div>
 
           <div className="max-w-md md:pb-1">
-            <p className="text-sm leading-7 text-white/55 sm:text-base sm:leading-8">
+            <p className="text-sm leading-7 text-[#171717]/60 sm:text-base sm:leading-8">
               Apparel solutions developed around your brand.
               Explore our product categories and create collections
               with custom styles, materials, colors and private labeling.
@@ -125,7 +125,7 @@ export default function Products() {
 
             <Link
               href="/request-a-quote"
-              className="group mt-5 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:text-white/60"
+              className="group mt-5 inline-flex cursor-pointer items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#171717] transition-colors hover:text-[#171717]/50"
             >
               Discuss Your Requirements
               <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -142,8 +142,8 @@ export default function Products() {
               className="
                 product-card group relative isolate
                 h-[390px] overflow-hidden
-                border border-white/[0.10]
-                bg-[#111] sm:h-[430px]
+                border border-black/[0.08]
+                bg-[#deddd8] sm:h-[430px]
                 lg:h-[480px]
               "
             >
@@ -166,50 +166,56 @@ export default function Products() {
               />
 
               {/* IMAGE OVERLAY */}
-              <div className="
-                absolute inset-0
-                bg-gradient-to-t
-                from-black via-black/35
-                to-black/5
-                opacity-90 transition-opacity
-                duration-500 group-hover:opacity-100
-              " />
+              <div
+                className="
+                  absolute inset-0
+                  bg-gradient-to-t
+                  from-black via-black/35
+                  to-black/5
+                  opacity-90 transition-opacity
+                  duration-500 group-hover:opacity-100
+                "
+              />
 
               {/* TOP DETAILS */}
               <div className="absolute left-5 right-5 top-5 flex items-center justify-between">
-                <span className="text-[10px] font-medium tracking-[0.2em] text-white/65">
+                <span className="text-[10px] font-medium tracking-[0.2em] text-white/75">
                   {product.tag}
                 </span>
 
-                <span className="text-xs tabular-nums text-white/55">
+                <span className="text-xs tabular-nums text-white/65">
                   {product.number}
                 </span>
               </div>
 
               {/* BOTTOM CONTENT */}
-              <div className="
-                absolute inset-x-0 bottom-0
-                flex flex-col p-5 sm:p-6
-              ">
-                <div className="mb-3 h-px w-8 bg-white/60 transition-all duration-500 group-hover:w-14" />
+              <div
+                className="
+                  absolute inset-x-0 bottom-0
+                  flex flex-col p-5 sm:p-6
+                "
+              >
+                <div className="mb-3 h-px w-8 bg-white/70 transition-all duration-500 group-hover:w-14" />
 
                 <h3 className="text-2xl font-semibold leading-tight tracking-[-0.035em] text-white sm:text-[26px]">
                   {product.title}
                 </h3>
 
-                <p className="mt-1 text-sm text-white/65">
+                <p className="mt-1 text-sm text-white/70">
                   {product.subtitle}
                 </p>
 
                 {/* DESCRIPTION */}
-                <div className="
-                  grid grid-rows-[0fr]
-                  transition-all duration-500
-                  ease-in-out
-                  group-hover:grid-rows-[1fr]
-                ">
+                <div
+                  className="
+                    grid grid-rows-[0fr]
+                    transition-all duration-500
+                    ease-in-out
+                    group-hover:grid-rows-[1fr]
+                  "
+                >
                   <div className="overflow-hidden">
-                    <p className="pt-3 text-xs leading-6 text-white/65 sm:text-sm">
+                    <p className="pt-3 text-xs leading-6 text-white/70 sm:text-sm">
                       {product.details}
                     </p>
                   </div>
@@ -217,24 +223,27 @@ export default function Products() {
 
                 {/* CATEGORY LINK */}
                 <Link
-                  href="/request-a-quote"
+                  href={`/request-a-quote?product=${product.number === "01" ? "hoodies" : product.number === "02" ? "tracksuits" : product.number === "03" ? "jackets" : "coats"}`}
                   aria-label={`Request a quote for ${product.subtitle}`}
                   className="
-                    mt-5 flex items-center justify-between
-                    border-t border-white/20 pt-4
+                    mt-5 flex cursor-pointer items-center justify-between
+                    border-t border-white/25 pt-4
                     text-[10px] font-semibold uppercase
-                    tracking-[0.18em] text-white/85
+                    tracking-[0.18em] text-white/90
                     transition-colors hover:text-white
                   "
                 >
                   <span>Develop Your Collection</span>
-                  <span className="
-                    flex h-8 w-8 items-center justify-center
-                    rounded-full border border-white/35
-                    transition-all duration-300
-                    group-hover:border-white
-                    group-hover:bg-white group-hover:text-black
-                  ">
+
+                  <span
+                    className="
+                      flex h-8 w-8 items-center justify-center
+                      rounded-full border border-white/40
+                      transition-all duration-300
+                      group-hover:border-white
+                      group-hover:bg-white group-hover:text-black
+                    "
+                  >
                     <FaArrowRight className="text-[10px]" />
                   </span>
                 </Link>
@@ -244,23 +253,25 @@ export default function Products() {
         </div>
 
         {/* BOTTOM NOTE */}
-        <div className="
-          mt-9 flex flex-col gap-3
-          border-t border-white/10 pt-6
-          sm:flex-row sm:items-center
-          sm:justify-between
-        ">
-          <p className="text-xs leading-6 text-white/40">
+        <div
+          className="
+            mt-9 flex flex-col gap-3
+            border-t border-black/10 pt-6
+            sm:flex-row sm:items-center
+            sm:justify-between
+          "
+        >
+          <p className="text-xs leading-6 text-[#171717]/45">
             Custom styles. Flexible materials. Your brand identity.
           </p>
 
           <Link
             href="/products"
             className="
-              group inline-flex items-center gap-3
+              group inline-flex cursor-pointer items-center gap-3
               text-xs font-semibold uppercase
-              tracking-[0.16em] text-white/70
-              transition-colors hover:text-white
+              tracking-[0.16em] text-[#171717]/75
+              transition-colors hover:text-black
             "
           >
             Explore All Products

@@ -5,6 +5,12 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
+  getQuoteItems,
+  saveQuoteItems,
+  QUOTE_UPDATED_EVENT,
+  type QuoteItem,
+} from "@/lib/quote";
+import {
   FaArrowRight,
   FaGlobe,
   FaEnvelope,
@@ -12,22 +18,23 @@ import {
   FaFileAlt,
   FaSpinner,
   FaExclamationCircle,
+  FaTimes,
+  FaCloudUploadAlt,
+  FaFilePdf,
+  FaImage,
 } from "react-icons/fa";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const inputClass =
-  "w-full border border-white/15 bg-white/[0.035] px-4 py-4 text-sm text-white outline-none transition-all placeholder:text-neutral-600 focus:border-white/60 focus:bg-white/[0.06] disabled:cursor-not-allowed disabled:opacity-50";
+  "w-full min-w-0 border-b border-white/20 bg-transparent px-1 py-3 text-sm text-white outline-none transition-colors placeholder:text-neutral-600 focus:border-white disabled:opacity-50";
 
 const selectClass =
-  `${inputClass} appearance-none bg-[#111111] [color-scheme:dark]`;
-
-const optionClass = "bg-[#111111] text-white cursor-pointer";
-
-const placeholderOptionClass = "bg-[#111111] text-neutral-500 cursor-pointer";
+  `${inputClass} cursor-pointer [color-scheme:dark]`;
 
 const labelClass =
-  "mb-3 block text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-400";
+  "mb-1.5 block text-[9px] font-semibold uppercase tracking-[0.17em] text-neutral-400";
 
 const products = [
   { value: "hoodies", label: "Hoodies & Sweatshirts" },
@@ -36,8 +43,39 @@ const products = [
   { value: "joggers", label: "Joggers & Sweatpants" },
   { value: "jackets", label: "Jackets" },
   { value: "coats", label: "Coats & Outerwear" },
-  { value: "other", label: "Other" },
+  { value: "other", label: "Other Apparel" },
 ];
+
+const productGuidance: Record<string, { title: string; text: string }> = {
+  hoodies: {
+    title: "Hoodie development",
+    text: "Share your preferred fabric weight (GSM), fleece or terry preference, fit, colors, artwork and branding placement.",
+  },
+  "t-shirts": {
+    title: "T-shirt & polo development",
+    text: "Tell us about fabric composition, GSM, fit, collar style, sizing, printing and embroidery requirements.",
+  },
+  tracksuits: {
+    title: "Sportswear & tracksuits",
+    text: "Include fabric performance, stretch, jacket and trouser details, size breakdown, colors and logo placement.",
+  },
+  joggers: {
+    title: "Jogger development",
+    text: "Specify fabric, fit, waistband, cuffs, pockets, measurements and any embroidery or printing details.",
+  },
+  jackets: {
+    title: "Jacket development",
+    text: "Share the intended construction, outer fabric, lining, closures, pockets, insulation and finishing preferences.",
+  },
+  coats: {
+    title: "Coats & outerwear",
+    text: "Include the intended season, shell material, lining, insulation, measurements, closures and finishing requirements.",
+  },
+  other: {
+    title: "Custom apparel project",
+    text: "Describe the garment category, intended use, materials, design direction, dimensions and customization requirements.",
+  },
+};
 
 const initialFormData = {
   fullName: "",
@@ -50,6 +88,7 @@ const initialFormData = {
   timeline: "",
   message: "",
   website: "",
+  followUpOptIn: false,
 };
 
 type FormData = typeof initialFormData;
@@ -58,21 +97,96 @@ type RequestQuoteProps = {
   initialProduct?: string;
 };
 
+type UploadPhase = "idle" | "uploading" | "processing";
+
+const MAX_FILES = 5;
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
+
+const allowedExtensions = [".ai", ".pdf", ".png", ".jpg", ".jpeg"];
+
 function getValidProduct(product: string) {
   return products.some((item) => item.value === product) ? product : "";
+}
+
+function getExtension(filename: string) {
+  return filename.substring(filename.lastIndexOf(".")).toLowerCase();
+}
+
+function formatFileSize(size: number) {
+  return size < 1024 * 1024
+    ? `${(size / 1024).toFixed(0)} KB`
+    : `${(size / (1024 * 1024)).toFixed(2)} MB`;
+}
+
+function getFileIcon(file: File) {
+  const extension = getExtension(file.name);
+
+  if (extension === ".pdf") return FaFilePdf;
+  if ([".jpg", ".jpeg", ".png"].includes(extension)) return FaImage;
+
+  return FaFileAlt;
 }
 
 export default function RequestQuote({
   initialProduct = "",
 }: RequestQuoteProps) {
   const sectionRef = useRef<HTMLElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const xhrRef = useRef<XMLHttpRequest | null>(null);
 
   const [formData, setFormData] = useState<FormData>({
     ...initialFormData,
     product: getValidProduct(initialProduct),
   });
 
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [uploadPhase, setUploadPhase] = useState<UploadPhase>("idle");
+
+  const [quoteItems, setQuoteItems] = useState<QuoteItem[]>([]);
+
+  useEffect(() => {
+  const loadQuoteItems = () => {
+    setQuoteItems(getQuoteItems());
+  };
+
+  loadQuoteItems();
+
+  window.addEventListener(QUOTE_UPDATED_EVENT, loadQuoteItems);
+  window.addEventListener("storage", loadQuoteItems);
+
+  return () => {
+    window.removeEventListener(QUOTE_UPDATED_EVENT, loadQuoteItems);
+    window.removeEventListener("storage", loadQuoteItems);
+  };
+}, []);
+
+const updateQuoteQuantity = (id: string, quantity: number) => {
+  const safeQuantity = Math.max(1, Math.min(999999, quantity || 1));
+
+  const updatedItems = quoteItems.map((item) =>
+    item.id === id
+      ? { ...item, quantity: safeQuantity }
+      : item
+  );
+
+  setQuoteItems(updatedItems);
+  saveQuoteItems(updatedItems);
+};
+
+const removeQuoteItem = (id: string) => {
+  const updatedItems = quoteItems.filter((item) => item.id !== id);
+
+  setQuoteItems(updatedItems);
+  saveQuoteItems(updatedItems);
+};
+
+const totalQuotePieces = quoteItems.reduce(
+  (total, item) => total + item.quantity,
+  0
+);
 
   const [status, setStatus] = useState<{
     type: "success" | "error" | "";
@@ -82,9 +196,11 @@ export default function RequestQuote({
     message: "",
   });
 
+  const guidance = productGuidance[formData.product];
+
   useEffect(() => {
-    setFormData((prev) => ({
-      ...prev,
+    setFormData((previous) => ({
+      ...previous,
       product: getValidProduct(initialProduct),
     }));
   }, [initialProduct]);
@@ -96,16 +212,16 @@ export default function RequestQuote({
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".quote-intro",
-        { y: 30, autoAlpha: 0 },
+        { y: 20, autoAlpha: 0 },
         {
           y: 0,
           autoAlpha: 1,
-          duration: 0.9,
-          stagger: 0.15,
+          duration: 0.8,
+          stagger: 0.12,
           ease: "power3.out",
           scrollTrigger: {
             trigger: section,
-            start: "top 82%",
+            start: "top 85%",
             once: true,
           },
         }
@@ -113,15 +229,15 @@ export default function RequestQuote({
 
       gsap.fromTo(
         ".quote-form",
-        { y: 35, autoAlpha: 0 },
+        { y: 25, autoAlpha: 0 },
         {
           y: 0,
           autoAlpha: 1,
-          duration: 1,
+          duration: 0.9,
           ease: "power3.out",
           scrollTrigger: {
             trigger: ".quote-form",
-            start: "top 88%",
+            start: "top 90%",
             once: true,
           },
         }
@@ -140,14 +256,91 @@ export default function RequestQuote({
   ) => {
     const { name, value } = event.target;
 
-    setFormData((prev) => ({
-      ...prev,
+    setFormData((previous) => ({
+      ...previous,
       [name]: value,
     }));
 
     if (status.message) {
       setStatus({ type: "", message: "" });
     }
+  };
+
+  const addFiles = (incomingFiles: File[]) => {
+    if (!incomingFiles.length || isSubmitting) return;
+
+    const validFiles: File[] = [];
+    const errors: string[] = [];
+
+    incomingFiles.forEach((file) => {
+      const extension = getExtension(file.name);
+
+      if (!allowedExtensions.includes(extension)) {
+        errors.push(`${file.name}: Unsupported file format.`);
+        return;
+      }
+
+      if (file.size === 0) {
+        errors.push(`${file.name}: Empty files are not allowed.`);
+        return;
+      }
+
+      if (file.size > MAX_FILE_SIZE) {
+        errors.push(`${file.name}: Maximum file size is 10 MB.`);
+        return;
+      }
+
+      validFiles.push(file);
+    });
+
+    setSelectedFiles((previous) => {
+      const combined = [...previous, ...validFiles];
+
+      const unique = combined.filter(
+        (file, index, self) =>
+          index ===
+          self.findIndex(
+            (item) =>
+              item.name === file.name &&
+              item.size === file.size &&
+              item.lastModified === file.lastModified
+          )
+      );
+
+      if (unique.length > MAX_FILES) {
+        errors.push(`A maximum of ${MAX_FILES} files can be uploaded.`);
+      }
+
+      return unique.slice(0, MAX_FILES);
+    });
+
+    setStatus(
+      errors.length
+        ? { type: "error", message: errors.join(" ") }
+        : { type: "", message: "" }
+    );
+  };
+
+  const handleFileChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    addFiles(Array.from(event.target.files || []));
+    event.target.value = "";
+  };
+
+  const handleDrop = (event: React.DragEvent<HTMLLabelElement>) => {
+    event.preventDefault();
+    setIsDragging(false);
+
+    addFiles(Array.from(event.dataTransfer.files || []));
+  };
+
+  const removeFile = (index: number) => {
+    setSelectedFiles((previous) =>
+      previous.filter((_, fileIndex) => fileIndex !== index)
+    );
+
+    setStatus({ type: "", message: "" });
   };
 
   const handleSubmit = async (
@@ -159,23 +352,58 @@ export default function RequestQuote({
 
     setIsSubmitting(true);
     setStatus({ type: "", message: "" });
+    setUploadProgress(0);
+    setUploadPhase("uploading");
 
-    try {
-      const response = await fetch("/api/quote", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+    const uploadData = new FormData();
 
-      const result = await response.json().catch(() => null);
+    Object.entries(formData).forEach(([key, value]) => {
+  uploadData.append(key, String(value));
+});
 
-      if (!response.ok) {
-        throw new Error(
-          result?.message ||
-            "We couldn't submit your inquiry. Please try again."
+// Include selected quote-list products and quantities.
+uploadData.append("products", JSON.stringify(quoteItems));
+
+selectedFiles.forEach((file) => {
+  uploadData.append("files", file);
+});
+
+    const xhr = new XMLHttpRequest();
+    xhrRef.current = xhr;
+
+    xhr.open("POST", "/api/quote");
+    xhr.responseType = "json";
+    xhr.timeout = 120000;
+
+    xhr.upload.onprogress = (event) => {
+      if (event.lengthComputable) {
+        const progress = Math.round(
+          (event.loaded / event.total) * 100
         );
+
+        setUploadProgress(progress);
+
+        if (progress >= 100) {
+          setUploadPhase("processing");
+        }
+      }
+    };
+
+    xhr.onload = () => {
+      const result = xhr.response;
+
+      if (xhr.status < 200 || xhr.status >= 300) {
+        setStatus({
+          type: "error",
+          message:
+            result?.message ||
+            "We couldn't submit your inquiry. Please try again.",
+        });
+
+        setIsSubmitting(false);
+        setUploadPhase("idle");
+        xhrRef.current = null;
+        return;
       }
 
       setStatus({
@@ -189,160 +417,207 @@ export default function RequestQuote({
         ...initialFormData,
         product: getValidProduct(initialProduct),
       });
-    } catch (error) {
+
+      setSelectedFiles([]);
+      setQuoteItems([]);
+saveQuoteItems([]);
+
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+
+      setUploadProgress(100);
+      setUploadPhase("idle");
+      setIsSubmitting(false);
+      xhrRef.current = null;
+    };
+
+    xhr.onerror = () => {
       setStatus({
         type: "error",
-        message:
-          error instanceof Error
-            ? error.message
-            : "Something went wrong. Please try again.",
+        message: "Network error. Please check your connection and try again.",
       });
-    } finally {
+
       setIsSubmitting(false);
-    }
+      setUploadPhase("idle");
+      xhrRef.current = null;
+    };
+
+    xhr.ontimeout = () => {
+      setStatus({
+        type: "error",
+        message: "The request timed out. Please try again.",
+      });
+
+      setIsSubmitting(false);
+      setUploadPhase("idle");
+      xhrRef.current = null;
+    };
+
+    xhr.onabort = () => {
+      setStatus({
+        type: "error",
+        message: "The submission was cancelled.",
+      });
+
+      setIsSubmitting(false);
+      setUploadPhase("idle");
+      xhrRef.current = null;
+    };
+
+    xhr.send(uploadData);
   };
+
+  useEffect(() => {
+    return () => {
+      xhrRef.current?.abort();
+    };
+  }, []);
+
+  const totalFileSize = selectedFiles.reduce(
+    (total, file) => total + file.size,
+    0
+  );
 
   return (
     <section
       ref={sectionRef}
       id="request-a-quote"
-      className="relative overflow-hidden bg-[#0b0b0b] px-5 py-22 text-white sm:px-8 lg:px-12 lg:py-28"
+      className="relative overflow-hidden bg-[#0b0b0b] px-5 py-16 text-white sm:px-8 lg:px-12 lg:py-20"
     >
-      {/* Background decoration */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-48 top-20 h-[450px] w-[450px] rounded-full bg-white/[0.025] blur-[140px]"
+        className="pointer-events-none absolute -left-48 top-20 h-[400px] w-[400px] rounded-full bg-white/[0.025] blur-[130px]"
       />
 
       <div className="relative mx-auto max-w-7xl">
-        {/* Heading */}
-        <div className="mb-14 max-w-3xl lg:mb-20">
-          <div className="quote-intro mb-6 flex items-center gap-3">
-            <span className="h-px w-9 bg-neutral-500" />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
-              Start Your Project
-            </span>
+        {/* Compact heading */}
+        <div className="quote-intro mb-10 flex flex-col justify-between gap-5 border-b border-white/10 pb-8 md:flex-row md:items-end">
+          <div>
+            <div className="mb-4 flex items-center gap-3">
+              <span className="h-px w-8 bg-neutral-500" />
+
+              <span className="text-[9px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
+                Start Your Project
+              </span>
+            </div>
+
+            <h2 className="text-3xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-4xl lg:text-5xl">
+              Let&apos;s create
+              <span className="text-neutral-500"> something together.</span>
+            </h2>
           </div>
 
-          <h2 className="quote-intro text-4xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-5xl lg:text-7xl">
-            Let&apos;s create
-            <br />
-            <span className="text-neutral-500">
-              something together.
-            </span>
-          </h2>
-
-          <p className="quote-intro mt-7 max-w-xl text-sm leading-7 text-neutral-400 sm:text-base">
-            Have an apparel collection in mind? Tell us about your
-            project, and let&apos;s explore the manufacturing possibilities.
+          <p className="max-w-sm text-xs leading-6 text-neutral-400 sm:text-sm">
+            Tell us what you&apos;re looking to develop. Share your
+            requirements and design references to start your inquiry.
           </p>
         </div>
 
-        {/* Main layout */}
-        <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <div className="grid items-start gap-9 lg:grid-cols-[0.68fr_1.32fr] lg:gap-14">
           {/* Left information */}
-          <aside className="quote-intro flex flex-col justify-between">
-            <div>
-              <p className="mb-8 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
-                Your manufacturing partner
-              </p>
+          <aside className="quote-intro">
+            <p className="mb-5 text-[9px] font-semibold uppercase tracking-[0.2em] text-neutral-500">
+              NORDVIA EXPORTS / SIALKOT, PAKISTAN
+            </p>
 
-              <h3 className="mb-5 max-w-sm text-3xl font-medium leading-tight tracking-tight sm:text-4xl">
-                Your idea.
-                <br />
-                Our next project.
-              </h3>
+            <h3 className="max-w-sm text-2xl font-medium leading-tight tracking-tight sm:text-3xl">
+              Your idea.
+              <br />
+              Your collection.
+              <br />
+              Your brand.
+            </h3>
 
-              <p className="max-w-sm text-sm leading-7 text-neutral-400">
-                Whether you&apos;re developing a new clothing brand,
-                expanding an existing collection, or sourcing apparel
-                for your business, share your requirements with us.
-              </p>
+            <p className="mt-5 max-w-sm text-xs leading-6 text-neutral-400 sm:text-sm">
+              Whether you&apos;re starting a clothing brand or expanding
+              an existing collection, share your product requirements
+              with our team.
+            </p>
 
-              <div className="mt-12 space-y-7">
-                <div className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-white/15 text-neutral-300">
-                    <FaGlobe size={16} />
-                  </div>
-
-                  <div>
-                    <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-neutral-300">
-                      International inquiries
-                    </p>
-                    <p className="text-sm leading-6 text-neutral-500">
-                      We welcome project inquiries from brands and buyers
-                      worldwide.
-                    </p>
-                  </div>
+            <div className="mt-8 space-y-5">
+              <div className="flex items-start gap-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-white/15 text-neutral-300">
+                  <FaGlobe size={14} />
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-white/15 text-neutral-300">
-                    <FaFileAlt size={16} />
-                  </div>
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-widest text-neutral-300">
+                    Worldwide inquiries
+                  </p>
+                  <p className="mt-1 text-xs leading-5 text-neutral-500">
+                    For apparel brands and buyers internationally.
+                  </p>
+                </div>
+              </div>
 
-                  <div>
-                    <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-neutral-300">
-                      Share your requirements
-                    </p>
-                    <p className="text-sm leading-6 text-neutral-500">
-                      Include product details, quantities, designs, and
-                      customization preferences.
-                    </p>
-                  </div>
+              <div className="flex items-start gap-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-white/15 text-neutral-300">
+                  <FaFileAlt size={14} />
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-white/15 text-neutral-300">
-                    <FaEnvelope size={16} />
-                  </div>
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-widest text-neutral-300">
+                    Design references
+                  </p>
+                  <p className="mt-1 text-xs leading-5 text-neutral-500">
+                    Upload sketches, artwork or technical drawings.
+                  </p>
+                </div>
+              </div>
 
-                  <div>
-                    <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-neutral-300">
-                      Clear communication
-                    </p>
-                    <p className="text-sm leading-6 text-neutral-500">
-                      We can review your inquiry and discuss the next steps.
-                    </p>
-                  </div>
+              <div className="flex items-start gap-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-white/15 text-neutral-300">
+                  <FaEnvelope size={14} />
+                </div>
+
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-widest text-neutral-300">
+                    Project communication
+                  </p>
+                  <p className="mt-1 text-xs leading-5 text-neutral-500">
+                    We&apos;ll review your inquiry and discuss next steps.
+                  </p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-14 border-t border-white/10 pt-7">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-600">
-                NORDVIA EXPORTS
-              </p>
-              <p className="mt-2 text-xs text-neutral-500">
+            <div className="mt-9 border-t border-white/10 pt-5">
+              <p className="text-[9px] uppercase tracking-[0.2em] text-neutral-600">
                 Apparel Manufacturing &amp; Export Inquiries
               </p>
             </div>
           </aside>
 
           {/* Quote form */}
-          <div className="quote-form border border-white/10 bg-[#111111] p-6 sm:p-9 lg:p-11">
-            <div className="mb-9 flex items-center justify-between gap-4 border-b border-white/10 pb-7">
+          <div className="quote-form border border-white/10 bg-[#111111] p-5 sm:p-7 lg:p-8">
+            <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-5">
               <div>
-                <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500">
-                  Project inquiry
+                <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-neutral-500">
+                  Project inquiry / 01
                 </p>
-                <h3 className="text-2xl font-medium tracking-tight sm:text-3xl">
+
+                <h3 className="text-xl font-medium tracking-tight sm:text-2xl">
                   Request a Quote
                 </h3>
               </div>
 
-              <span className="hidden h-12 w-12 items-center justify-center border border-white/15 text-neutral-400 sm:flex">
-                <FaArrowRight size={17} />
+              <span className="flex h-10 w-10 items-center justify-center border border-white/15 text-neutral-400">
+                <FaArrowRight size={14} />
               </span>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-7">
-              {/* Honeypot spam protection */}
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-6"
+              encType="multipart/form-data"
+            >
+              {/* Honeypot */}
               <div
                 aria-hidden="true"
                 className="absolute -left-[9999px] h-px w-px overflow-hidden"
               >
-                <label htmlFor="website">Leave this field empty</label>
+                <label htmlFor="website">Leave empty</label>
                 <input
                   id="website"
                   name="website"
@@ -356,11 +631,11 @@ export default function RequestQuote({
 
               {/* Contact information */}
               <div>
-                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.17em] text-neutral-300">
-                  01 / Your information
+                <p className="mb-4 text-[9px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
+                  01 / Contact information
                 </p>
 
-                <div className="grid gap-5 sm:grid-cols-2">
+                <div className="grid gap-x-6 gap-y-4 sm:grid-cols-2">
                   <div>
                     <label htmlFor="fullName" className={labelClass}>
                       Full name *
@@ -389,7 +664,7 @@ export default function RequestQuote({
                       name="company"
                       type="text"
                       autoComplete="organization"
-                      placeholder="Your company name"
+                      placeholder="Your company"
                       className={inputClass}
                       value={formData.company}
                       onChange={handleChange}
@@ -439,12 +714,12 @@ export default function RequestQuote({
               </div>
 
               {/* Product requirements */}
-              <div className="border-t border-white/10 pt-7">
-                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.17em] text-neutral-300">
+              <div className="border-t border-white/10 pt-5">
+                <p className="mb-4 text-[9px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
                   02 / Product requirements
                 </p>
 
-                <div className="grid gap-5 sm:grid-cols-2">
+                <div className="grid gap-x-6 gap-y-4 sm:grid-cols-2">
                   <div>
                     <label htmlFor="product" className={labelClass}>
                       Product category *
@@ -458,16 +733,12 @@ export default function RequestQuote({
                       required
                       disabled={isSubmitting}
                     >
-                      <option value="" disabled className={placeholderOptionClass}>
-                        Select a product
+                      <option value="" disabled>
+                        Select product
                       </option>
 
                       {products.map((product) => (
-                        <option
-                          key={product.value}
-                          value={product.value}
-                          className={optionClass}
-                        >
+                        <option key={product.value} value={product.value}>
                           {product.label}
                         </option>
                       ))}
@@ -487,22 +758,22 @@ export default function RequestQuote({
                       required
                       disabled={isSubmitting}
                     >
-                      <option value="" disabled className={placeholderOptionClass}>
+                      <option value="" disabled>
                         Select quantity
                       </option>
-                      <option value="Below 100" className={optionClass}>Below 100 pieces</option>
-                      <option value="100–300" className={optionClass}>100–300 pieces</option>
-                      <option value="300–500" className={optionClass}>300–500 pieces</option>
-                      <option value="500–1000" className={optionClass}>500–1,000 pieces</option>
-                      <option value="1000–3000" className={optionClass}>1,000–3,000 pieces</option>
-                      <option value="3000+" className={optionClass}>3,000+ pieces</option>
-                      <option value="Not sure yet" className={optionClass}>Not sure yet</option>
+                      <option value="Below 100">Below 100 pieces</option>
+                      <option value="100–300">100–300 pieces</option>
+                      <option value="300–500">300–500 pieces</option>
+                      <option value="500–1000">500–1,000 pieces</option>
+                      <option value="1000–3000">1,000–3,000 pieces</option>
+                      <option value="3000+">3,000+ pieces</option>
+                      <option value="Not sure yet">Not sure yet</option>
                     </select>
                   </div>
 
                   <div>
                     <label htmlFor="customization" className={labelClass}>
-                      Customization required
+                      Customization
                     </label>
                     <select
                       id="customization"
@@ -512,15 +783,13 @@ export default function RequestQuote({
                       className={selectClass}
                       disabled={isSubmitting}
                     >
-                      <option value="" disabled className={placeholderOptionClass}>
-                        Select an option
-                      </option>
-                      <option value="Custom design" className={optionClass}>Custom design</option>
-                      <option value="Embroidery" className={optionClass}>Embroidery</option>
-                      <option value="Printing" className={optionClass}>Printing</option>
-                      <option value="Private label" className={optionClass}>Private label</option>
-                      <option value="Multiple options" className={optionClass}>Multiple options</option>
-                      <option value="Not decided" className={optionClass}>Not decided</option>
+                      <option value="">Select option</option>
+                      <option value="Custom design">Custom design</option>
+                      <option value="Embroidery">Embroidery</option>
+                      <option value="Printing">Printing</option>
+                      <option value="Private label">Private label</option>
+                      <option value="Multiple options">Multiple options</option>
+                      <option value="Not decided">Not decided</option>
                     </select>
                   </div>
 
@@ -535,85 +804,370 @@ export default function RequestQuote({
                       onChange={handleChange}
                       className={selectClass}
                       disabled={isSubmitting}
-                      
                     >
-                      <option value="" disabled className={placeholderOptionClass}>
-                        Select timeline
-                      </option>
-                      <option value="As soon as possible" className={optionClass}>
-                        As soon as possible
-                      </option>
-                      <option value="Within 1 month" className={optionClass}>
-                        Within 1 month
-                      </option>
-                      <option value="1–3 months" className={optionClass}>
-                        1–3 months
-                      </option>
-                      <option value="3+ months" className={optionClass}>
-                        3+ months
-                      </option>
-                      <option value="Planning stage" className={optionClass}>
-                        Planning stage
-                      </option>
+                      <option value="">Select timeline</option>
+                      <option value="As soon as possible">As soon as possible</option>
+                      <option value="Within 1 month">Within 1 month</option>
+                      <option value="1–3 months">1–3 months</option>
+                      <option value="3+ months">3+ months</option>
+                      <option value="Planning stage">Planning stage</option>
                     </select>
                   </div>
                 </div>
+
+                {guidance && (
+                  <div className="mt-4 border-l-2 border-white/40 bg-white/[0.035] px-4 py-3">
+                    <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-neutral-300">
+                      {guidance.title}
+                    </p>
+                    <p className="mt-1.5 text-[11px] leading-5 text-neutral-400">
+                      {guidance.text}
+                    </p>
+                  </div>
+                )}
               </div>
+
+              {/* Selected quote-list products */}
+<div className="border-t border-white/10 pt-5">
+  <div className="mb-4 flex items-center justify-between gap-3">
+    <div>
+      <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
+        03 / Selected products
+      </p>
+
+      <p className="mt-1 text-[10px] text-neutral-500">
+        Products added from the product pages or quote list.
+      </p>
+    </div>
+
+    <span className="border border-white/15 px-3 py-1.5 text-[9px] uppercase tracking-wider text-neutral-300">
+      {quoteItems.length} {quoteItems.length === 1 ? "Item" : "Items"}
+    </span>
+  </div>
+
+  {quoteItems.length > 0 ? (
+    <div className="space-y-2">
+      {quoteItems.map((item) => (
+        <div
+          key={item.id}
+          className="flex flex-wrap items-center gap-3 border border-white/10 bg-white/[0.025] p-3 sm:flex-nowrap"
+        >
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-xs font-semibold text-white">
+              {item.name}
+            </p>
+
+            <p className="mt-1 text-[9px] uppercase tracking-wider text-neutral-500">
+              {item.category} · {item.code}
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <label
+              htmlFor={`quote-quantity-${item.id}`}
+              className="text-[9px] uppercase tracking-wider text-neutral-500"
+            >
+              Qty
+            </label>
+
+            <input
+              id={`quote-quantity-${item.id}`}
+              type="number"
+              min={1}
+              max={999999}
+              value={item.quantity}
+              onChange={(event) =>
+                updateQuoteQuantity(
+                  item.id,
+                  Number(event.target.value)
+                )
+              }
+              disabled={isSubmitting}
+              className="w-[76px] border border-white/15 bg-transparent px-2 py-2 text-center text-xs text-white outline-none focus:border-white/60 disabled:opacity-50"
+            />
+
+            <button
+              type="button"
+              onClick={() => removeQuoteItem(item.id)}
+              disabled={isSubmitting}
+              aria-label={`Remove ${item.name}`}
+              className="flex h-8 w-8 cursor-pointer items-center justify-center text-neutral-500 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed"
+            >
+              <FaTimes size={12} />
+            </button>
+          </div>
+        </div>
+      ))}
+
+      <div className="flex items-center justify-between border-t border-white/10 pt-3">
+        <span className="text-[9px] font-semibold uppercase tracking-wider text-neutral-500">
+          Total requested pieces
+        </span>
+
+        <span className="text-sm font-semibold tabular-nums text-white">
+          {totalQuotePieces.toLocaleString()}
+        </span>
+      </div>
+    </div>
+  ) : (
+    <div className="border border-dashed border-white/15 bg-white/[0.02] px-4 py-5">
+      <p className="text-xs text-neutral-400">
+        No products added yet.
+      </p>
+
+      <Link
+        href="/products"
+        className="mt-2 inline-flex items-center gap-2 text-[9px] font-semibold uppercase tracking-wider text-white transition hover:text-neutral-400"
+      >
+        Explore products
+        <FaArrowRight size={10} />
+      </Link>
+    </div>
+  )}
+</div>
 
               {/* Project details */}
-              <div className="border-t border-white/10 pt-7">
-                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.17em] text-neutral-300">
-                  03 / Tell us about your project
-                </p>
+              <div className="border-t border-white/10 pt-5">
+                <label htmlFor="message" className={labelClass}>
+                  Project details *
+                </label>
 
-                <div>
-                  <label htmlFor="message" className={labelClass}>
-                    Project details *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={5}
-                    placeholder="Describe your product, fabric preferences, design references, colors, and any other requirements..."
-                    className={`${inputClass} resize-y`}
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    maxLength={5000}
-                    disabled={isSubmitting}
-                  />
-                </div>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={3}
+                  placeholder={
+                    guidance
+                      ? `Tell us more about your ${products.find((item) => item.value === formData.product)?.label.toLowerCase()} requirements...`
+                      : "Describe your product, materials, colors, design and requirements..."
+                  }
+                  className={`${inputClass} resize-y`}
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  maxLength={5000}
+                  disabled={isSubmitting}
+                />
               </div>
+
+              {/* Design attachments */}
+              <div className="border-t border-white/10 pt-5">
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
+                    03 / Design attachments
+                  </p>
+                  <span className="text-[9px] text-neutral-600">
+                    Optional
+                  </span>
+                </div>
+
+                <input
+                  ref={fileInputRef}
+                  id="designFiles"
+                  type="file"
+                  multiple
+                  accept=".ai,.pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg"
+                  onChange={handleFileChange}
+                  disabled={isSubmitting || selectedFiles.length >= MAX_FILES}
+                  className="hidden"
+                />
+
+                <label
+                  htmlFor="designFiles"
+                  onDragOver={(event) => {
+                    event.preventDefault();
+                    if (!isSubmitting) setIsDragging(true);
+                  }}
+                  onDragLeave={(event) => {
+                    event.preventDefault();
+                    setIsDragging(false);
+                  }}
+                  onDrop={handleDrop}
+                  className={`flex cursor-pointer items-center gap-4 border border-dashed px-4 py-5 transition-all duration-200 ${
+                    isDragging
+                      ? "border-white bg-white/[0.12]"
+                      : "border-white/25 bg-white/[0.025] hover:border-white/60 hover:bg-white/[0.05]"
+                  } ${
+                    isSubmitting || selectedFiles.length >= MAX_FILES
+                      ? "pointer-events-none opacity-50"
+                      : ""
+                  }`}
+                >
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-white text-black">
+                    <FaCloudUploadAlt size={20} />
+                  </span>
+
+                  <span className="min-w-0">
+                    <span className="block text-xs font-semibold text-white">
+                      {isDragging
+                        ? "Drop your files here"
+                        : "Drag & drop your designs"}
+                    </span>
+                    <span className="mt-1 block text-[9px] leading-4 text-neutral-500">
+                      Or browse files · AI, PDF, PNG, JPG · Max 5 files, 10 MB each
+                    </span>
+                  </span>
+
+                  <span className="ml-auto shrink-0 text-[9px] font-bold uppercase tracking-wider text-neutral-300">
+                    Browse
+                  </span>
+                </label>
+
+                {selectedFiles.length > 0 && (
+                  <div className="mt-3 space-y-2">
+                    {selectedFiles.map((file, index) => {
+                      const FileIcon = getFileIcon(file);
+
+                      return (
+                        <div
+                          key={`${file.name}-${file.lastModified}-${index}`}
+                          className="flex items-center gap-3 border border-white/10 bg-white/[0.025] px-3 py-2.5"
+                        >
+                          <FileIcon className="shrink-0 text-neutral-400" />
+
+                          <div className="min-w-0 flex-1">
+                            <p className="truncate text-[11px] text-white">
+                              {file.name}
+                            </p>
+                            <p className="mt-0.5 text-[9px] text-neutral-500">
+                              {formatFileSize(file.size)}
+                            </p>
+                          </div>
+
+                          <button
+                            type="button"
+                            onClick={() => removeFile(index)}
+                            disabled={isSubmitting}
+                            aria-label={`Remove ${file.name}`}
+                            className="flex h-7 w-7 shrink-0 cursor-pointer items-center justify-center text-neutral-500 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed"
+                          >
+                            <FaTimes size={11} />
+                          </button>
+                        </div>
+                      );
+                    })}
+
+                    <p className="text-right text-[9px] text-neutral-600">
+                      {selectedFiles.length} file(s) · {formatFileSize(totalFileSize)}
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Optional email follow-up consent */}
+              <div className="space-y-3 border-t border-white/10 pt-5">
+                <label className="flex cursor-pointer items-start gap-3">
+                  <input
+                    type="checkbox"
+                    name="followUpOptIn"
+                    checked={formData.followUpOptIn}
+                    onChange={(event) =>
+                      setFormData((previous) => ({
+                        ...previous,
+                        followUpOptIn: event.target.checked,
+                      }))
+                    }
+                    disabled={isSubmitting}
+                    className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-white"
+                  />
+
+                  <span className="text-[11px] leading-5 text-neutral-300">
+                    Email me a follow-up with next steps and new designs.
+                    <span className="text-neutral-500">
+                      {" "}Unsubscribe any time.
+                    </span>
+                  </span>
+                </label>
+
+                <p className="text-[10px] leading-5 text-neutral-500">
+                  We use your details only to reply to this request.{" "}
+                  <a
+                    href="/privacy-policy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cursor-pointer text-neutral-300 underline underline-offset-4 transition hover:text-white"
+                  >
+                    Privacy policy
+                  </a>
+                </p>
+              </div>
+
+              {/* Upload progress */}
+              {isSubmitting && (
+                <div
+                  className="border border-white/10 bg-white/[0.035] p-4"
+                  role="status"
+                  aria-live="polite"
+                >
+                  <div className="mb-3 flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-2">
+                      <FaSpinner className="animate-spin text-neutral-300" />
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-white">
+                        {uploadPhase === "processing"
+                          ? "Processing your inquiry"
+                          : "Uploading your files"}
+                      </span>
+                    </div>
+
+                    <span className="text-xs tabular-nums text-neutral-400">
+                      {uploadProgress}%
+                    </span>
+                  </div>
+
+                  <div
+                    className="h-1 w-full overflow-hidden bg-white/10"
+                    role="progressbar"
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={uploadProgress}
+                  >
+                    <div
+                      className="h-full bg-white transition-all duration-200"
+                      style={{ width: `${uploadProgress}%` }}
+                    />
+                  </div>
+
+                  <p className="mt-2 text-[9px] text-neutral-500">
+                    {uploadPhase === "processing"
+                      ? "Your files have been sent. Waiting for confirmation..."
+                      : "Please keep this page open while your inquiry is being uploaded."}
+                  </p>
+                </div>
+              )}
 
               {/* Status feedback */}
               {status.message && (
                 <div
                   role="status"
                   aria-live="polite"
-                  className={`flex items-start gap-3 border p-4 text-sm leading-6 ${
+                  className={`flex items-start gap-3 border p-3 text-xs leading-5 ${
                     status.type === "success"
                       ? "border-green-500/25 bg-green-500/[0.07] text-green-300"
                       : "border-red-500/25 bg-red-500/[0.07] text-red-300"
                   }`}
                 >
                   {status.type === "success" ? (
-                    <FaCheckCircle className="mt-1 shrink-0" />
+                    <FaCheckCircle className="mt-0.5 shrink-0" />
                   ) : (
-                    <FaExclamationCircle className="mt-1 shrink-0" />
+                    <FaExclamationCircle className="mt-0.5 shrink-0" />
                   )}
                   <p>{status.message}</p>
                 </div>
               )}
 
               {/* Submit */}
-              <div className="border-t border-white/10 pt-7">
+              <div className="border-t border-white/10 pt-5">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="group flex w-full items-center justify-between bg-white px-6 py-5 text-xs font-bold uppercase tracking-[0.17em] text-black transition-colors duration-300 hover:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer"
+                  className="group flex w-full cursor-pointer items-center justify-between bg-white px-5 py-4 text-[10px] font-bold uppercase tracking-[0.17em] text-black transition-colors duration-300 hover:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   <span>
-                    {isSubmitting ? "Submitting Inquiry..." : "Submit Your Inquiry"}
+                    {isSubmitting
+                      ? uploadPhase === "processing"
+                        ? "Processing Inquiry..."
+                        : "Uploading..."
+                      : "Submit Your Inquiry"}
                   </span>
 
                   {isSubmitting ? (
@@ -623,14 +1177,9 @@ export default function RequestQuote({
                   )}
                 </button>
 
-                <p className="mt-5 flex items-start gap-2 text-[11px] leading-6 text-neutral-500">
-                  <FaCheckCircle className="mt-1 shrink-0 text-neutral-400" />
-                  Your project details will be used to review and respond
-                  to your inquiry.
-                </p>
-
-                <p className="mt-3 text-[10px] leading-5 text-neutral-600">
-                  Fields marked with * are required.
+                <p className="mt-3 text-[9px] leading-5 text-neutral-600">
+                  Fields marked with * are required. Your information
+                  will be used to respond to your inquiry.
                 </p>
               </div>
             </form>

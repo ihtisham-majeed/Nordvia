@@ -139,11 +139,11 @@ export default function ManufacturingCapabilities() {
     <section
       ref={sectionRef}
       id="capabilities"
-      className="relative overflow-hidden bg-[#080808] py-20 text-white sm:py-28 lg:py-32"
+      className="relative overflow-hidden bg-[#F4F3EF] py-20 text-[#171717] sm:py-28 lg:py-32"
     >
-      {/* Background lighting */}
-      <div className="pointer-events-none absolute -right-40 top-20 h-[400px] w-[400px] rounded-full bg-white/[0.025] blur-[130px]" />
-      <div className="pointer-events-none absolute -left-40 bottom-0 h-[350px] w-[350px] rounded-full bg-white/[0.02] blur-[120px]" />
+      {/* Subtle background lighting */}
+      <div className="pointer-events-none absolute -right-40 top-20 h-[400px] w-[400px] rounded-full bg-black/[0.035] blur-[130px]" />
+      <div className="pointer-events-none absolute -left-40 bottom-0 h-[350px] w-[350px] rounded-full bg-black/[0.025] blur-[120px]" />
 
       <div className="relative mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
 
@@ -152,22 +152,23 @@ export default function ManufacturingCapabilities() {
 
           <div className="capability-intro">
             <div className="mb-5 flex items-center gap-3">
-              <span className="h-px w-9 bg-white/70" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.26em] text-white/50 sm:text-xs">
+              <span className="h-px w-9 bg-[#171717]/70" />
+
+              <span className="text-[10px] font-semibold uppercase tracking-[0.26em] text-[#171717]/50 sm:text-xs">
                 Made Around Your Brand
               </span>
             </div>
 
-            <h2 className="max-w-3xl text-[clamp(2.8rem,6vw,5.8rem)] font-semibold leading-[0.95] tracking-[-0.06em]">
+            <h2 className="max-w-3xl text-[clamp(2.8rem,6vw,5.8rem)] font-semibold leading-[0.95] tracking-[-0.06em] text-[#171717]">
               Manufacturing
-              <span className="block text-white/40">
+              <span className="block text-[#171717]/40">
                 Without Limits.
               </span>
             </h2>
           </div>
 
           <div className="capability-intro max-w-xl md:justify-self-end md:pb-2">
-            <p className="text-sm leading-7 text-white/60 sm:text-base sm:leading-8">
+            <p className="text-sm leading-7 text-[#171717]/60 sm:text-base sm:leading-8">
               Apparel solutions developed around your brand. Explore our
               customization options and create collections with considered
               materials, colors, construction and private-label details.
@@ -175,9 +176,10 @@ export default function ManufacturingCapabilities() {
 
             <Link
               href="/request-a-quote"
-              className="group mt-6 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:text-white/60"
+              className="group mt-6 inline-flex cursor-pointer items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#171717] transition-colors hover:text-[#171717]/50"
             >
               Discuss Your Requirements
+
               <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
@@ -188,9 +190,15 @@ export default function ManufacturingCapabilities() {
           {capabilities.map((item) => (
             <article
               key={item.number}
-              className="capability-card group relative isolate flex min-h-[390px] flex-col overflow-hidden border border-white/10 bg-[#111] sm:min-h-[420px] lg:min-h-[440px]"
+              className="
+                capability-card group relative isolate flex
+                min-h-[390px] flex-col overflow-hidden
+                border border-black/[0.08]
+                bg-[#deddd8] sm:min-h-[420px]
+                lg:min-h-[440px]
+              "
             >
-              {/* PRODUCT / DETAIL IMAGE */}
+              {/* IMAGE */}
               <div className="absolute inset-0 -z-20">
                 <Image
                   src={item.image}
@@ -201,11 +209,12 @@ export default function ManufacturingCapabilities() {
                 />
               </div>
 
-              {/* Dark overlays */}
+              {/* IMAGE OVERLAYS */}
               <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/35 via-black/10 to-black/95" />
+
               <div className="absolute inset-0 -z-10 bg-black/10 transition-colors duration-500 group-hover:bg-black/25" />
 
-              {/* Top details */}
+              {/* TOP DETAILS */}
               <div className="flex items-center justify-between p-5 sm:p-6">
                 <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white/80 sm:text-[10px]">
                   {item.category}
@@ -216,20 +225,20 @@ export default function ManufacturingCapabilities() {
                 </span>
               </div>
 
-              {/* Bottom content */}
+              {/* BOTTOM CONTENT */}
               <div className="mt-auto p-5 sm:p-6">
                 <span className="mb-4 block h-px w-9 bg-white/80 transition-all duration-500 group-hover:w-16" />
 
-                <h3 className="text-2xl font-semibold tracking-[-0.04em] sm:text-[28px]">
+                <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white sm:text-[28px]">
                   {item.title}
                 </h3>
 
-                <p className="mt-3 max-w-[380px] text-sm leading-6 text-white/65">
+                <p className="mt-3 max-w-[380px] text-sm leading-6 text-white/70">
                   {item.description}
                 </p>
 
-                <div className="mt-6 flex items-center justify-between border-t border-white/20 pt-4">
-                  <span className="text-[9px] font-semibold uppercase tracking-[0.17em] text-white/75 sm:text-[10px]">
+                <div className="mt-6 flex items-center justify-between border-t border-white/25 pt-4">
+                  <span className="text-[9px] font-semibold uppercase tracking-[0.17em] text-white/80 sm:text-[10px]">
                     Explore Possibilities
                   </span>
 
@@ -243,21 +252,23 @@ export default function ManufacturingCapabilities() {
         </div>
 
         {/* BOTTOM CTA */}
-        <div className="capability-footer mt-10 flex flex-col gap-5 border-t border-white/10 pt-7 sm:flex-row sm:items-center sm:justify-between">
+        <div className="capability-footer mt-10 flex flex-col gap-5 border-t border-black/10 pt-7 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm font-medium text-white/80">
+            <p className="text-sm font-medium text-[#171717]/85">
               Have a specific product in mind?
             </p>
-            <p className="mt-1 text-xs leading-6 text-white/45 sm:text-sm">
+
+            <p className="mt-1 text-xs leading-6 text-[#171717]/50 sm:text-sm">
               Tell us your requirements and let's explore the possibilities.
             </p>
           </div>
 
           <Link
             href="/request-a-quote"
-            className="group inline-flex min-h-[48px] items-center justify-center gap-3 rounded-full bg-white px-6 text-xs font-semibold text-black transition-colors hover:bg-white/80 sm:text-sm"
+            className="group inline-flex min-h-[48px] cursor-pointer items-center justify-center gap-3 rounded-full bg-[#171717] px-6 text-xs font-semibold text-white transition-colors hover:bg-[#393939] sm:text-sm"
           >
             Start Your Project
+
             <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>

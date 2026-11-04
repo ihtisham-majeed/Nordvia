@@ -81,7 +81,7 @@ export default function Footer() {
     <footer className="relative overflow-hidden border-t border-white/10 bg-[#080808] text-white">
 
       {/* Top CTA */}
-      <div className="mx-auto max-w-7xl px-5 pt-20 sm:px-8 lg:px-12 lg:pt-24">
+      {/* <div className="mx-auto max-w-7xl px-5 pt-20 sm:px-8 lg:px-12 lg:pt-24">
         <div className="flex flex-col justify-between gap-9 border-b border-white/10 pb-16 lg:flex-row lg:items-end">
 
           <div>
@@ -108,7 +108,7 @@ export default function Footer() {
           </Link>
 
         </div>
-      </div>
+      </div> */}
 
       {/* Main footer */}
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 px-5 py-16 sm:grid-cols-2 sm:px-8 lg:grid-cols-[1.35fr_0.8fr_1fr_1.2fr] lg:gap-12 lg:px-12 lg:py-20">

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -6,14 +5,15 @@ import { usePathname } from "next/navigation";
 import {
   FaCheck,
   FaChevronRight,
-  FaCookieBite,
-  FaSlidersH,
   FaTimes,
+  FaSlidersH,
 } from "react-icons/fa";
 
 const GA_ID = "G-YZ8QKKHJX1";
 const PINTEREST_ID = "2612924698071";
+
 const STORAGE_KEY = "nordvia-cookie-consent";
+const HIDE_SETTINGS_KEY = "nordvia-hide-privacy-settings";
 
 type Consent = {
   essential: true;
@@ -59,13 +59,20 @@ export default function CookieConsent() {
   const [analyticsEnabled, setAnalyticsEnabled] = useState(false);
   const [marketingEnabled, setMarketingEnabled] = useState(false);
 
+  // The floating settings control can be dismissed independently.
+  const [showPrivacyButton, setShowPrivacyButton] = useState(false);
+
   const lastGaPath = useRef("");
   const lastPinterestPath = useRef("");
 
-  // Restore previously saved preferences.
+  // Restore saved consent and floating-button visibility.
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
+      const buttonHidden =
+        localStorage.getItem(HIDE_SETTINGS_KEY) === "true";
+
+      setShowPrivacyButton(!buttonHidden);
 
       if (!saved) {
         setShowBanner(true);
@@ -92,10 +99,11 @@ export default function CookieConsent() {
       setMarketingEnabled(restored.marketing);
     } catch {
       setShowBanner(true);
+      setShowPrivacyButton(true);
     }
   }, []);
 
-  // Allow the footer to open cookie settings.
+  // Allow the footer and policy page to reopen preferences.
   useEffect(() => {
     function openSettings() {
       setAnalyticsEnabled(consent?.analytics ?? false);
@@ -113,7 +121,7 @@ export default function CookieConsent() {
     };
   }, [consent]);
 
-  // Close the preferences dialog with Escape.
+  // Close preferences with Escape.
   useEffect(() => {
     if (!showSettings) return;
 
@@ -149,6 +157,28 @@ export default function CookieConsent() {
     setMarketingEnabled(nextConsent.marketing);
     setShowBanner(false);
     setShowSettings(false);
+
+    try {
+      const buttonHidden =
+        localStorage.getItem(HIDE_SETTINGS_KEY) === "true";
+
+      setShowPrivacyButton(!buttonHidden);
+    } catch {
+      setShowPrivacyButton(true);
+    }
+  }
+
+  // The main banner button enables analytics only.
+  function allowAnalytics() {
+    saveConsent({
+      essential: true,
+      analytics: true,
+      marketing: false,
+    });
+  }
+
+  function rejectOptional() {
+    saveConsent(defaultConsent);
   }
 
   function acceptAll() {
@@ -159,10 +189,6 @@ export default function CookieConsent() {
     });
   }
 
-  function rejectOptional() {
-    saveConsent(defaultConsent);
-  }
-
   function savePreferences() {
     saveConsent({
       essential: true,
@@ -171,8 +197,23 @@ export default function CookieConsent() {
     });
   }
 
+  function hidePrivacyButton() {
+    try {
+      localStorage.setItem(HIDE_SETTINGS_KEY, "true");
+    } catch {
+      // Hide for the current session if storage is unavailable.
+    }
+
+    setShowPrivacyButton(false);
+  }
+
+  function openPreferences() {
+    setAnalyticsEnabled(consent?.analytics ?? false);
+    setMarketingEnabled(consent?.marketing ?? false);
+    setShowSettings(true);
+  }
+
   // Google Analytics: load only after analytics consent.
-  // Update consent immediately if the visitor changes their choice.
   useEffect(() => {
     if (!consent) return;
 
@@ -192,10 +233,8 @@ export default function CookieConsent() {
         window.dataLayer?.push(args);
       };
 
-      // Set denied defaults before loading the Google tag.
       window.gtag("consent", "default", deniedGoogleConsent);
 
-      // Grant analytics only. Advertising consent remains denied.
       window.gtag("consent", "update", {
         analytics_storage: "granted",
       });
@@ -215,13 +254,11 @@ export default function CookieConsent() {
 
       window.__nordviaGaInitialized = true;
     } else {
-      // Re-grant analytics if the visitor enables it again.
       window.gtag?.("consent", "update", {
         analytics_storage: "granted",
       });
     }
 
-    // Send one page view per route after consent.
     if (lastGaPath.current !== pathname) {
       window.gtag?.("event", "page_view", {
         page_path: pathname,
@@ -234,7 +271,6 @@ export default function CookieConsent() {
   }, [consent, pathname]);
 
   // Pinterest: load only after marketing consent.
-  // Revoke consent immediately when marketing is disabled.
   useEffect(() => {
     if (!consent) return;
 
@@ -273,11 +309,9 @@ export default function CookieConsent() {
 
       window.__nordviaPinterestInitialized = true;
     } else {
-      // Re-enable Pinterest consent if the visitor opts in again.
       window.pintrk?.("setconsent", true);
     }
 
-    // Send a page event after marketing consent.
     if (lastPinterestPath.current !== pathname) {
       window.pintrk?.("page");
       lastPinterestPath.current = pathname;
@@ -286,109 +320,88 @@ export default function CookieConsent() {
 
   const switchClass = (enabled: boolean) =>
     `relative h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors ${
-      enabled ? "bg-white" : "bg-neutral-700"
+      enabled ? "bg-black" : "bg-neutral-300"
     }`;
 
   const switchKnobClass = (enabled: boolean) =>
     `absolute top-1 h-4 w-4 rounded-full transition-all ${
-      enabled ? "left-6 bg-black" : "left-1 bg-white"
+      enabled ? "left-6 bg-white" : "left-1 bg-white"
     }`;
 
   return (
     <>
-      {/* First-visit cookie banner */}
+      {/* Compact first-visit cookie notice */}
       {showBanner && (
-        <div className="fixed inset-x-0 bottom-0 z-[9998] border-t border-white/15 bg-[#101010] px-5 py-7 text-white shadow-[0_-15px_60px_rgba(0,0,0,0.45)] sm:px-8">
-          <div className="mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div className="max-w-2xl">
-              <div className="mb-3 flex items-center gap-3">
-                <FaCookieBite className="text-neutral-300" />
+        <div className="fixed bottom-5 left-5 z-[9998] w-[calc(100%-40px)] max-w-[525px] border border-neutral-200 bg-[#f8f8f8] p-5 text-[#333] shadow-[0_10px_45px_rgba(0,0,0,0.3)] sm:p-6">
+          <p className="mb-5 text-sm leading-7 sm:text-base">
+            Can we measure how the site is used? Google Analytics and
+            Pinterest only load if you say yes.{" "}
+            <a
+              href="/privacy-policy"
+              className="cursor-pointer underline underline-offset-2 transition-colors hover:text-black"
+            >
+              Privacy policy
+            </a>
+          </p>
 
-                <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-400">
-                  NORDVIA EXPORTS / Privacy
-                </p>
-              </div>
+          <div className="grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              onClick={allowAnalytics}
+              className="flex min-h-[54px] cursor-pointer items-center justify-center gap-2 bg-[#111] px-4 py-3 text-[10px] font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-neutral-700 sm:text-xs"
+            >
+              <FaCheck size={10} />
+              Allow analytics
+            </button>
 
-              <h2 className="mb-2 text-xl font-medium tracking-tight sm:text-2xl">
-                Your privacy matters.
-              </h2>
-
-              <p className="text-xs leading-6 text-neutral-400 sm:text-sm">
-                We use essential storage to operate this website.
-                With your permission, we also use analytics and
-                marketing technologies to understand website
-                activity and improve our services. You can accept,
-                reject or customize optional tracking.
-              </p>
-
-              <div className="mt-3 flex flex-wrap gap-4 text-[11px] text-neutral-500">
-                <a
-                  href="/privacy-policy"
-                  className="transition-colors hover:text-white"
-                >
-                  Privacy Policy
-                </a>
-
-                <a
-                  href="/cookie-policy"
-                  className="transition-colors hover:text-white"
-                >
-                  Cookie Policy
-                </a>
-              </div>
-            </div>
-
-            <div className="flex w-full flex-col gap-3 sm:flex-row lg:w-auto lg:min-w-[390px]">
-              <button
-                type="button"
-                onClick={acceptAll}
-                className="flex cursor-pointer items-center justify-center gap-2 bg-white px-5 py-4 text-[10px] font-bold uppercase tracking-[0.15em] text-black transition-colors hover:bg-neutral-200"
-              >
-                <FaCheck size={10} />
-                Accept all
-              </button>
-
-              <button
-                type="button"
-                onClick={rejectOptional}
-                className="cursor-pointer border border-white/20 px-5 py-4 text-[10px] font-bold uppercase tracking-[0.15em] text-white transition-colors hover:bg-white/10"
-              >
-                Reject optional
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setShowSettings(true)}
-                className="cursor-pointer border border-white/20 px-5 py-4 text-[10px] font-bold uppercase tracking-[0.15em] text-neutral-300 transition-colors hover:border-white hover:text-white"
-              >
-                Customize
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={rejectOptional}
+              className="min-h-[54px] cursor-pointer border border-[#111] bg-transparent px-4 py-3 text-[10px] font-bold uppercase tracking-[0.16em] text-[#111] transition-colors hover:bg-[#111] hover:text-white sm:text-xs"
+            >
+              No thanks
+            </button>
           </div>
+
+          <button
+            type="button"
+            onClick={() => setShowSettings(true)}
+            className="mt-4 cursor-pointer text-[11px] text-neutral-600 underline underline-offset-4 transition-colors hover:text-black"
+          >
+            Customize preferences
+          </button>
         </div>
       )}
 
-      {/* Persistent privacy settings button */}
-      {!showBanner && consent && (
-        <button
-          type="button"
-          onClick={() => {
-            setAnalyticsEnabled(consent.analytics);
-            setMarketingEnabled(consent.marketing);
-            setShowSettings(true);
-          }}
-          className="fixed bottom-4 left-4 z-[9997] flex cursor-pointer items-center gap-2 border border-white/15 bg-[#111111] px-3 py-3 text-[10px] font-semibold uppercase tracking-wider text-neutral-300 shadow-xl transition-colors hover:border-white hover:text-white"
-          aria-label="Open cookie preferences"
-        >
-          <FaSlidersH size={12} />
-          Privacy settings
-        </button>
+      {/* Dismissible floating privacy settings control */}
+      {!showBanner && consent && showPrivacyButton && (
+        <div className="fixed bottom-4 left-4 z-[9997] flex items-center border border-neutral-300 bg-[#f8f8f8] text-[#222] shadow-lg">
+          <button
+            type="button"
+            onClick={openPreferences}
+            className="flex cursor-pointer items-center gap-2 px-3 py-3 text-[10px] font-semibold uppercase tracking-wider transition-colors hover:bg-neutral-200"
+            aria-label="Open cookie preferences"
+          >
+            <FaSlidersH size={12} />
+            Privacy settings
+          </button>
+
+          <button
+            type="button"
+            onClick={hidePrivacyButton}
+            className="flex h-full min-h-[42px] cursor-pointer items-center justify-center border-l border-neutral-300 px-3 text-neutral-500 transition-colors hover:bg-neutral-200 hover:text-black"
+            aria-label="Hide privacy settings button"
+            title="Hide privacy settings button"
+          >
+            <FaTimes size={11} />
+          </button>
+        </div>
       )}
 
-      {/* Cookie preferences modal */}
+      {/* Cookie preferences dialog */}
       {showSettings && (
         <div
-          className="fixed inset-0 z-[10000] flex items-center justify-center overflow-y-auto bg-black/80 px-4 py-8 backdrop-blur-sm"
+          className="fixed inset-0 z-[10000] flex items-center justify-center overflow-y-auto bg-black/65 px-4 py-8"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) {
               setShowSettings(false);
@@ -399,73 +412,66 @@ export default function CookieConsent() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="cookie-settings-title"
-            className="relative my-auto w-full max-w-xl border border-white/15 bg-[#111111] p-6 text-white shadow-2xl sm:p-9"
+            className="relative my-auto w-full max-w-xl bg-[#f8f8f8] p-6 text-[#222] shadow-2xl sm:p-9"
           >
             <button
               type="button"
               onClick={() => setShowSettings(false)}
               aria-label="Close cookie settings"
-              className="absolute right-5 top-5 cursor-pointer text-neutral-500 transition-colors hover:text-white"
+              className="absolute right-5 top-5 cursor-pointer text-neutral-500 transition-colors hover:text-black"
             >
               <FaTimes size={16} />
             </button>
 
-            <div className="mb-7 flex items-center gap-3">
-              <FaCookieBite className="text-neutral-300" />
-
-              <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-400">
-                Privacy preferences
-              </span>
-            </div>
+            <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-500">
+              NORDVIA EXPORTS / Privacy
+            </p>
 
             <h2
               id="cookie-settings-title"
-              className="mb-3 text-3xl font-medium tracking-tight"
+              className="mb-3 text-2xl font-semibold tracking-tight sm:text-3xl"
             >
-              Manage your choices.
+              Manage your preferences.
             </h2>
 
-            <p className="mb-8 text-sm leading-7 text-neutral-400">
-              Choose which optional technologies NORDVIA EXPORTS
-              may use. You can change these choices at any time.
+            <p className="mb-7 text-sm leading-7 text-neutral-600">
+              Choose which optional technologies we may use.
+              You can change your choices at any time.
             </p>
 
-            {/* Essential storage */}
-            <div className="flex items-center justify-between border-b border-white/10 py-5">
+            {/* Essential */}
+            <div className="flex items-center justify-between border-t border-neutral-200 py-5">
               <div className="pr-5">
                 <h3 className="mb-1 text-sm font-semibold">
                   Essential storage
                 </h3>
-
                 <p className="text-xs leading-5 text-neutral-500">
                   Required for basic website functionality and
-                  remembering your privacy preferences.
+                  remembering your privacy choices.
                 </p>
               </div>
 
-              <span className="shrink-0 text-[10px] font-bold uppercase tracking-wider text-neutral-400">
+              <span className="shrink-0 text-[10px] font-bold uppercase tracking-wider text-neutral-500">
                 Always on
               </span>
             </div>
 
             {/* Analytics */}
-            <div className="flex items-center justify-between border-b border-white/10 py-5">
+            <div className="flex items-center justify-between border-t border-neutral-200 py-5">
               <div className="pr-5">
                 <h3 className="mb-1 text-sm font-semibold">
                   Analytics
                 </h3>
-
                 <p className="text-xs leading-5 text-neutral-500">
-                  Helps us understand visits, popular pages,
-                  traffic sources and website performance through
-                  Google Analytics.
+                  Google Analytics helps us understand visits,
+                  popular pages and website performance.
                 </p>
               </div>
 
               <button
                 type="button"
                 role="switch"
-                aria-label="Enable analytics cookies"
+                aria-label="Enable analytics"
                 aria-checked={analyticsEnabled}
                 onClick={() =>
                   setAnalyticsEnabled((previous) => !previous)
@@ -477,23 +483,21 @@ export default function CookieConsent() {
             </div>
 
             {/* Marketing */}
-            <div className="flex items-center justify-between border-b border-white/10 py-5">
+            <div className="flex items-center justify-between border-t border-neutral-200 py-5">
               <div className="pr-5">
                 <h3 className="mb-1 text-sm font-semibold">
                   Marketing
                 </h3>
-
                 <p className="text-xs leading-5 text-neutral-500">
-                  Allows Pinterest marketing measurement and
-                  advertising-related tracking. Pinterest tracking
-                  is enabled only when you give permission.
+                  Pinterest tracking helps measure advertising
+                  activity and campaign performance.
                 </p>
               </div>
 
               <button
                 type="button"
                 role="switch"
-                aria-label="Enable marketing cookies"
+                aria-label="Enable marketing"
                 aria-checked={marketingEnabled}
                 onClick={() =>
                   setMarketingEnabled((previous) => !previous)
@@ -504,11 +508,11 @@ export default function CookieConsent() {
               </button>
             </div>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
               <button
                 type="button"
                 onClick={rejectOptional}
-                className="cursor-pointer border border-white/20 px-5 py-4 text-[10px] font-bold uppercase tracking-[0.15em] text-white transition-colors hover:bg-white/10"
+                className="min-h-[50px] cursor-pointer border border-neutral-300 px-4 py-3 text-[10px] font-bold uppercase tracking-[0.14em] transition-colors hover:bg-neutral-200"
               >
                 Reject optional
               </button>
@@ -516,25 +520,33 @@ export default function CookieConsent() {
               <button
                 type="button"
                 onClick={savePreferences}
-                className="flex cursor-pointer items-center justify-center gap-2 bg-white px-5 py-4 text-[10px] font-bold uppercase tracking-[0.15em] text-black transition-colors hover:bg-neutral-200"
+                className="flex min-h-[50px] cursor-pointer items-center justify-center gap-2 bg-[#111] px-4 py-3 text-[10px] font-bold uppercase tracking-[0.14em] text-white transition-colors hover:bg-neutral-700"
               >
                 Save preferences
                 <FaChevronRight size={9} />
               </button>
             </div>
 
-            <p className="mt-5 text-[10px] leading-5 text-neutral-600">
-              For more information, read our{" "}
+            <button
+              type="button"
+              onClick={acceptAll}
+              className="mt-3 w-full cursor-pointer py-2 text-[11px] font-semibold text-neutral-600 underline underline-offset-4 transition-colors hover:text-black"
+            >
+              Accept all cookies
+            </button>
+
+            <p className="mt-5 text-[10px] leading-5 text-neutral-500">
+              Read our{" "}
               <a
                 href="/privacy-policy"
-                className="text-neutral-300 underline underline-offset-4 hover:text-white"
+                className="cursor-pointer underline underline-offset-2 hover:text-black"
               >
                 Privacy Policy
               </a>{" "}
               and{" "}
               <a
                 href="/cookie-policy"
-                className="text-neutral-300 underline underline-offset-4 hover:text-white"
+                className="cursor-pointer underline underline-offset-2 hover:text-black"
               >
                 Cookie Policy
               </a>
