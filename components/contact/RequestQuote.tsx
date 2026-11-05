@@ -319,55 +319,60 @@ export default function RequestQuote({
   /* ------------------------------------------------------------------------ */
 
   useEffect(() => {
-    const section = sectionRef.current;
+  const section = sectionRef.current;
 
-    if (!section) return;
+  if (!section) return;
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".quote-intro",
-        {
-          y: 20,
-          autoAlpha: 0,
+  const ctx = gsap.context(() => {
+    gsap.fromTo(
+      ".quote-intro",
+      {
+        y: 20,
+        autoAlpha: 0,
+      },
+      {
+        y: 0,
+        autoAlpha: 1,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
         },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.8,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 85%",
-            once: true,
-          },
-        }
-      );
+      }
+    );
 
-      gsap.fromTo(
-        ".quote-form",
-        {
-          y: 25,
-          autoAlpha: 0,
+    gsap.fromTo(
+      ".quote-form",
+      {
+        y: 25,
+        autoAlpha: 0,
+      },
+      {
+        y: 0,
+        autoAlpha: 1,
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".quote-form",
+          start: "top 90%",
+          once: true,
         },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".quote-form",
-            start: "top 90%",
-            once: true,
-          },
-        }
-      );
-    }, section);
+      }
+    );
+  }, section);
 
+  const refreshFrame = requestAnimationFrame(() => {
     ScrollTrigger.refresh();
+  });
 
-    return () => ctx.revert();
-  }, []);
+  return () => {
+    cancelAnimationFrame(refreshFrame);
+    ctx.revert();
+  };
+}, []);
 
   /* ------------------------------------------------------------------------ */
   /* FORM INPUTS                                                              */

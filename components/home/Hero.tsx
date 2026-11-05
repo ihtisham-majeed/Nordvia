@@ -256,7 +256,7 @@ export default function Hero() {
                     src={product.image}
                     alt={product.imageAlt}
                     fill
-                    quality={90}
+                    quality={80}
                     priority={index === 0}
                     sizes="
                       (max-width: 767px) 100vw,
