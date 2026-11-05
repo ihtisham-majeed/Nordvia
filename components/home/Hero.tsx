@@ -77,8 +77,13 @@ const trustPoints = [
 
 const LAST = products.length - 1;
 
-const getNavHeight = () =>
-  window.innerWidth < 768 ? 58 : 76;
+const getNavHeight = () => {
+  // Mobile: main navigation
+  if (window.innerWidth < 768) return 58;
+
+  // Desktop: main navbar + secondary white navigation
+  return 171;
+};
 
 const clamp = (value: number, min = 0, max = 1) =>
   Math.min(max, Math.max(min, value));
@@ -110,7 +115,13 @@ export default function Hero() {
         const stage = stageRefs.current[i];
 
         if (stage) {
-          stage.style.transform = `scale(${1 + distance * 0.045})`;
+          // Product smoothly moves upward as the user scrolls.
+          const upwardMovement = clamp(p - i, 0, 1) * 65;
+
+          stage.style.transform = `
+            translate3d(0, ${-upwardMovement}px, 0)
+            scale(${1 + distance * 0.035})
+          `;
         }
 
         const content = contentRefs.current[i];
@@ -201,13 +212,13 @@ export default function Hero() {
         md:h-[calc(100svh-76px)] md:min-h-[650px]
       "
     >
-      {/* SUBTLE BACKGROUND LIGHT */}
+      {/* BACKGROUND LIGHT */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute right-[10%] top-[10%] h-[450px] w-[450px] rounded-full bg-white/[0.035] blur-[130px]" />
         <div className="absolute bottom-0 left-0 h-[300px] w-[500px] rounded-full bg-white/[0.025] blur-[120px]" />
       </div>
 
-      {/* SLIDES */}
+      {/* PRODUCT SLIDES */}
       <div className="relative z-10 min-h-0 flex-1">
         {products.map((product, index) => {
           const isActive = activeIndex === index;
@@ -224,14 +235,12 @@ export default function Hero() {
                 isActive ? "" : "pointer-events-none"
               }`}
             >
-              {/* PRODUCT IMAGE AREA */}
+              {/* FULL MOBILE IMAGE / LARGE DESKTOP IMAGE */}
               <div
                 className="
-                  absolute inset-x-0 top-0 z-0
-                  h-[58%]
-                  sm:h-[62%]
+                  absolute inset-0 z-0
                   lg:inset-y-0 lg:left-[38%]
-                  lg:right-[2%] lg:h-auto
+                  lg:right-[2%]
                 "
               >
                 <div
@@ -257,36 +266,36 @@ export default function Hero() {
                     className="
                       object-contain
                       object-center
-                      p-2
-                      sm:p-4
+                      p-0
+                      sm:p-2
                       lg:p-0
                     "
                   />
                 </div>
 
-                {/* MOBILE IMAGE BLENDING */}
+                {/* MOBILE TEXT READABILITY GRADIENT */}
                 <div
                   className="
-                    absolute inset-x-0 bottom-0 h-[35%]
+                    absolute inset-0
                     bg-gradient-to-t
-                    from-[#070707] via-[#070707]/45
-                    to-transparent
+                    from-[#070707] via-[#070707]/35
+                    to-[#070707]/10
                     lg:hidden
                   "
                 />
 
-                {/* DESKTOP LEFT BLENDING */}
+                {/* DESKTOP LEFT GRADIENT */}
                 <div
                   className="
-                    absolute inset-y-0 left-0 hidden w-[30%]
+                    absolute inset-y-0 left-0 hidden w-[40%]
                     bg-gradient-to-r
-                    from-[#070707] via-[#070707]/70
+                    from-[#070707] via-[#070707]/75
                     to-transparent
                     lg:block
                   "
                 />
 
-                {/* DESKTOP BOTTOM BLENDING */}
+                {/* DESKTOP BOTTOM GRADIENT */}
                 <div
                   className="
                     absolute inset-x-0 bottom-0 hidden h-[18%]
@@ -375,7 +384,7 @@ export default function Hero() {
                     className="
                       mt-3 max-w-[440px]
                       text-[12px] leading-[1.7]
-                      text-white/65
+                      text-white/75
                       sm:mt-5 sm:text-base sm:leading-8
                     "
                   >
@@ -396,12 +405,12 @@ export default function Hero() {
                       className="
                         group inline-flex min-h-[46px]
                         items-center justify-center gap-2
-                        rounded-full bg-white px-5
+                         bg-white px-3
                         text-[11px] font-semibold text-black
                         transition-colors hover:bg-white/85
                         min-[400px]:flex-1
                         sm:min-h-[52px] sm:flex-none
-                        sm:gap-3 sm:px-7 sm:text-sm
+                        sm:gap-3 sm:px-4 sm:text-sm
                       "
                     >
                       Discuss Your Collection
@@ -419,14 +428,14 @@ export default function Hero() {
                       className="
                         inline-flex min-h-[46px]
                         items-center justify-center gap-2
-                        rounded-full border border-white/35
-                        bg-white/[0.04] px-5
+                        border border-white/35
+                        bg-white/[0.08] px-3
                         text-[11px] font-semibold text-white
                         backdrop-blur-sm transition-colors
                         hover:bg-white hover:text-black
                         min-[400px]:flex-1
                         sm:min-h-[52px] sm:flex-none
-                        sm:gap-3 sm:px-7 sm:text-sm
+                        sm:gap-3 sm:px-4 sm:text-sm
                       "
                     >
                       Explore Products
@@ -466,7 +475,7 @@ export default function Hero() {
         "
       >
         {/* THUMBNAILS */}
-        <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
+        <div className="flex min-w-0 items-center gap-1.5 sm:gap-2 sm:-mt-50">
           {products.map((product, index) => (
             <button
               key={product.number}
