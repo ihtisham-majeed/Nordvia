@@ -1,20 +1,32 @@
 
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 
 // import About from "@/components/home/About";
 // import Categories from "@/components/home/Categories";
-import RequestQuote from "@/components/contact/RequestQuote";
 import Hero from "@/components/home/Hero";
-import IndustriesWeServe from "@/components/home/IndustriesWeServe";
-import ManufacturingCapabilities from "@/components/home/ManufacturingCapabilities";
-import Products from "@/components/home/Products";
-import HowItWorks from "@/components/home/HowItWorks";
-import ShippingPartners from "@/components/home/ShippingPartners";
-import WhyUs from "@/components/home/WhyUs";
 import { Analytics } from "@vercel/analytics/next";
-import QualityStandards from "@/components/home/QualityStandards";
-import FAQ from "@/components/home/FAQ";
 import { buildMetadata } from "@/lib/seo";
+
+const Products = dynamic(() => import("@/components/home/Products"));
+const WhyUs = dynamic(() => import("@/components/home/WhyUs"));
+const ManufacturingCapabilities = dynamic(
+  () => import("@/components/home/ManufacturingCapabilities")
+);
+const IndustriesWeServe = dynamic(
+  () => import("@/components/home/IndustriesWeServe")
+);
+const HowItWorks = dynamic(() => import("@/components/home/HowItWorks"));
+const QualityStandards = dynamic(
+  () => import("@/components/home/QualityStandards")
+);
+const ShippingPartners = dynamic(
+  () => import("@/components/home/ShippingPartners")
+);
+const FAQ = dynamic(() => import("@/components/home/FAQ"));
+const RequestQuote = dynamic(
+  () => import("@/components/contact/RequestQuote")
+);
 
 const homeOgImage = "/og/home-og.webp";
 

@@ -139,7 +139,7 @@ export default function IndustriesWeServe() {
 
             <h2 className="max-w-3xl text-[clamp(2.8rem,6vw,5.8rem)] font-semibold leading-[0.95] tracking-[-0.06em] text-[#171717]">
               Made for
-              <span className="block text-[#171717]/40">
+              <span className="block text-[#171717]/60">
                 Different Visions.
               </span>
               Built for Brands.
@@ -294,7 +294,7 @@ export default function IndustriesWeServe() {
               Have a different apparel business?
             </p>
 
-            <p className="mt-1 text-xs leading-6 text-[#171717]/50 sm:text-sm">
+            <p className="mt-1 text-xs leading-6 text-[#171717]/60 sm:text-sm">
               Let's discuss your product ideas and manufacturing requirements.
             </p>
           </div>

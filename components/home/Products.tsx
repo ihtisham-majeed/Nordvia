@@ -119,7 +119,7 @@ export default function Products() {
 
             <h2 className="text-[clamp(2.4rem,5vw,4.7rem)] font-semibold leading-[0.98] tracking-[-0.055em] text-[#171717]">
               What We
-              <span className="block text-[#171717]/40">
+              <span className="block text-[#171717]/60">
                 Manufacture.
               </span>
             </h2>
@@ -271,7 +271,7 @@ export default function Products() {
             sm:justify-between
           "
         >
-          <p className="text-xs leading-6 text-[#171717]/45">
+          <p className="text-xs leading-6 text-[#171717]/60">
             Custom styles. Flexible materials. Your brand identity.
           </p>
 

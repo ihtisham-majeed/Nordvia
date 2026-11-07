@@ -821,6 +821,7 @@ export default function RequestQuote({
 
               <div
                 aria-hidden="true"
+                inert
                 className="absolute -left-[9999px] h-px w-px overflow-hidden"
               >
                 <label htmlFor="website">Leave empty</label>

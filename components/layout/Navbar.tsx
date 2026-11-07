@@ -242,7 +242,7 @@ function MegaMenuLink({
 
         <FaArrowRight
           size={11}
-          className="-translate-x-2 shrink-0 opacity-0 transition-all duration-200 group-hover/item:translate-x-0 group-hover/item:opacity-100"
+          className="-translate-x-2 shrink-0 opacity-0 transition-[transform,opacity] duration-200 group-hover/item:translate-x-0 group-hover/item:opacity-100"
         />
       </span>
 
@@ -1032,7 +1032,7 @@ export default function Navbar() {
 
       <div
         ref={mobileMenuRef}
-        aria-hidden={!mobileOpen}
+        inert={!mobileOpen}
         className="overflow-hidden border-t border-white/10 bg-[#101010] text-white xl:hidden"
         style={{ height: 0, opacity: 0 }}
       >
@@ -1265,7 +1265,7 @@ export default function Navbar() {
             ? "visible"
             : "invisible pointer-events-none"
           }`}
-        aria-hidden={!quoteOpen}
+        inert={!quoteOpen}
       >
 
         {/* BACKDROP */}

@@ -140,7 +140,7 @@ useGSAP(() => {
 
             <h2 className="max-w-3xl text-[clamp(2.7rem,6vw,5.6rem)] font-semibold leading-[0.96] tracking-[-0.06em]">
               More Than
-              <span className="block text-white/45">
+              <span className="block text-white/50">
                 Manufacturing.
               </span>
               <span className="block">A Partner in Growth.</span>
@@ -183,7 +183,7 @@ useGSAP(() => {
               >
                 {/* Number and icon */}
                 <div className="flex items-start justify-between">
-                  <span className="text-xs tabular-nums tracking-[0.15em] text-white/35">
+                  <span className="text-xs tabular-nums tracking-[0.15em] text-white/50">
                     / {item.number}
                   </span>
 
@@ -200,7 +200,7 @@ useGSAP(() => {
 
                 {/* Content */}
                 <div className="mt-auto pt-12">
-                  <p className="mb-3 text-[9px] font-semibold uppercase tracking-[0.22em] text-white/40">
+                  <p className="mb-3 text-[9px] font-semibold uppercase tracking-[0.22em] text-white/50">
                     {item.subtitle}
                   </p>
 
@@ -208,7 +208,7 @@ useGSAP(() => {
                     {item.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-6 text-white/50">
+                  <p className="mt-3 text-sm leading-6 text-white/60">
                     {item.desc}
                   </p>
                 </div>
@@ -230,7 +230,7 @@ useGSAP(() => {
           border-t border-white/10 pt-6
           sm:flex-row sm:items-center sm:justify-between
         ">
-          <p className="text-xs leading-6 text-white/40">
+          <p className="text-xs leading-6 text-white/50">
             Custom apparel. Thoughtful development. Long-term partnerships.
           </p>
 

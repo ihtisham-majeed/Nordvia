@@ -65,13 +65,14 @@ export default function WhatsAppButton() {
 
       {/* WHATSAPP POPUP */}
       <div
+        id="whatsapp-contact-popup"
         className={`
           fixed z-[90]
           bottom-[calc(88px+env(safe-area-inset-bottom))]
           left-3 right-3
           mx-auto w-auto max-w-[390px]
           origin-bottom-right
-          transition-all duration-300
+          transition-[opacity,transform] duration-300
           sm:bottom-24 sm:left-auto sm:right-6
           sm:mx-0 sm:w-[360px]
           ${
@@ -80,7 +81,7 @@ export default function WhatsAppButton() {
               : "pointer-events-none invisible translate-y-5 scale-[0.97] opacity-0"
           }
         `}
-        aria-hidden={!isOpen}
+        inert={!isOpen}
       >
         <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-[0_20px_70px_rgba(0,0,0,0.22)]">
 
@@ -150,7 +151,7 @@ export default function WhatsAppButton() {
                         flex min-h-[43px] items-center justify-between
                         gap-2 rounded-lg border px-3 py-2.5
                         text-left text-[11px] font-semibold
-                        transition-all duration-200
+                        transition-[background-color,border-color,color] duration-200
                         ${
                           isSelected
                             ? "border-black bg-black text-white"
@@ -228,7 +229,7 @@ export default function WhatsAppButton() {
           border border-white/15
           bg-[#111] text-white
           shadow-[0_5px_25px_rgba(0,0,0,0.25)]
-          transition-all duration-300
+          transition-[background-color,transform] duration-300
           hover:bg-neutral-800
           active:scale-95
           sm:bottom-6 sm:right-6

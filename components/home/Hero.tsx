@@ -234,7 +234,7 @@ export default function Hero() {
               ref={(el) => {
                 slideRefs.current[index] = el;
               }}
-              aria-hidden={!isActive}
+              inert={!isActive}
               style={{ opacity: index === 0 ? 1 : 0 }}
               className={`absolute inset-0 ${
                 isActive ? "" : "pointer-events-none"

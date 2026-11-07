@@ -164,7 +164,7 @@ export default function ManufacturingCapabilities() {
 
             <h2 className="max-w-3xl text-[clamp(2.8rem,6vw,5.8rem)] font-semibold leading-[0.95] tracking-[-0.06em] text-[#171717]">
               Manufacturing
-              <span className="block text-[#171717]/40">
+              <span className="block text-[#171717]/60">
                 Without Limits.
               </span>
             </h2>
@@ -261,7 +261,7 @@ export default function ManufacturingCapabilities() {
               Have a specific product in mind?
             </p>
 
-            <p className="mt-1 text-xs leading-6 text-[#171717]/50 sm:text-sm">
+            <p className="mt-1 text-xs leading-6 text-[#171717]/60 sm:text-sm">
               Tell us your requirements and let's explore the possibilities.
             </p>
           </div>
