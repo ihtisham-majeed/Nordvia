@@ -3,9 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import ConsentScripts, {
-  type ConsentScriptPreferences,
-} from "@/components/consent/ConsentScripts";
+import ConsentScripts from "@/components/consent/ConsentScripts";
 import {
   FaCheck,
   FaChevronRight,
@@ -202,7 +200,7 @@ export default function CookieConsent() {
   return (
     <>
       <ConsentScripts
-        consent={consent as ConsentScriptPreferences | null}
+        consent={consent}
         pathname={pathname}
       />
 

@@ -41,7 +41,7 @@ if (typeof window !== "undefined") {
 /* -------------------------------------------------------------------------- */
 
 const inputClass =
-  "w-full min-w-0 border-b border-white/20 bg-transparent px-1 py-3 text-sm text-white outline-none transition-colors placeholder:text-neutral-600 focus:border-white disabled:cursor-not-allowed disabled:opacity-50";
+  "w-full min-w-0 border-b border-white/20 bg-transparent px-1 py-3 text-sm text-white outline-none transition-colors placeholder:text-neutral-400 focus:border-white disabled:cursor-not-allowed disabled:opacity-50";
 
 const selectClass = `${inputClass} cursor-pointer [color-scheme:dark]`;
 
@@ -675,9 +675,9 @@ export default function RequestQuote({
         <div className="quote-intro mb-10 flex flex-col justify-between gap-5 border-b border-white/10 pb-8 md:flex-row md:items-end">
           <div>
             <div className="mb-4 flex items-center gap-3">
-              <span className="h-px w-8 bg-neutral-500" />
+              <span className="h-px w-8 bg-neutral-400" />
 
-              <span className="text-[9px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
+              <span className="text-[9px] font-semibold uppercase tracking-[0.28em] text-neutral-400">
                 Start Your Project
               </span>
             </div>
@@ -685,7 +685,7 @@ export default function RequestQuote({
             {headingLevel === "h1" ? (
               <h1 className="text-3xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-4xl lg:text-5xl">
                 Let&apos;s create
-                <span className="text-neutral-500">
+                <span className="text-neutral-400">
                   {" "}
                   something together.
                 </span>
@@ -693,7 +693,7 @@ export default function RequestQuote({
             ) : (
               <h2 className="text-3xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-4xl lg:text-5xl">
                 Let&apos;s create
-                <span className="text-neutral-500">
+                <span className="text-neutral-400">
                   {" "}
                   something together.
                 </span>
@@ -713,7 +713,7 @@ export default function RequestQuote({
           {/* ---------------------------------------------------------------- */}
 
           <aside className="quote-intro">
-            <p className="mb-5 text-[9px] font-semibold uppercase tracking-[0.2em] text-neutral-500">
+            <p className="mb-5 text-[9px] font-semibold uppercase tracking-[0.2em] text-neutral-400">
               NORDVIA EXPORTS / SIALKOT, PAKISTAN
             </p>
 
@@ -742,7 +742,7 @@ export default function RequestQuote({
                     Worldwide inquiries
                   </p>
 
-                  <p className="mt-1 text-xs leading-5 text-neutral-500">
+                  <p className="mt-1 text-xs leading-5 text-neutral-400">
                     For apparel brands and buyers internationally.
                   </p>
                 </div>
@@ -758,7 +758,7 @@ export default function RequestQuote({
                     Design references
                   </p>
 
-                  <p className="mt-1 text-xs leading-5 text-neutral-500">
+                  <p className="mt-1 text-xs leading-5 text-neutral-400">
                     Upload sketches, artwork or technical drawings.
                   </p>
                 </div>
@@ -774,7 +774,7 @@ export default function RequestQuote({
                     Project communication
                   </p>
 
-                  <p className="mt-1 text-xs leading-5 text-neutral-500">
+                  <p className="mt-1 text-xs leading-5 text-neutral-400">
                     We&apos;ll review your inquiry and discuss next steps.
                   </p>
                 </div>
@@ -782,7 +782,7 @@ export default function RequestQuote({
             </div>
 
             <div className="mt-9 border-t border-white/10 pt-5">
-              <p className="text-[9px] uppercase tracking-[0.2em] text-neutral-600">
+              <p className="text-[9px] uppercase tracking-[0.2em] text-neutral-400">
                 Apparel Manufacturing &amp; Export Inquiries
               </p>
             </div>
@@ -796,7 +796,7 @@ export default function RequestQuote({
             {/* Form heading */}
             <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-5">
               <div>
-                <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-neutral-500">
+                <p className="mb-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-neutral-400">
                   Project inquiry / 01
                 </p>
 
@@ -1063,7 +1063,7 @@ export default function RequestQuote({
                       03 / Selected products
                     </p>
 
-                    <p className="mt-1 text-[10px] text-neutral-500">
+                    <p className="mt-1 text-[10px] text-neutral-400">
                       Products added from the product pages or quote list.
                     </p>
                   </div>
@@ -1092,7 +1092,7 @@ export default function RequestQuote({
                             />
                           </div>
                         ) : (
-                          <div className="flex h-14 w-14 shrink-0 items-center justify-center border border-white/10 bg-white/[0.04] text-[8px] uppercase tracking-wider text-neutral-500">
+                          <div className="flex h-14 w-14 shrink-0 items-center justify-center border border-white/10 bg-white/[0.04] text-[8px] uppercase tracking-wider text-neutral-400">
                             Product
                           </div>
                         )}
@@ -1103,7 +1103,7 @@ export default function RequestQuote({
                             {item.name}
                           </p>
 
-                          <p className="mt-1 text-[9px] uppercase tracking-wider text-neutral-500">
+                          <p className="mt-1 text-[9px] uppercase tracking-wider text-neutral-400">
                             {item.category} · {item.code}
                           </p>
                         </div>
@@ -1112,7 +1112,7 @@ export default function RequestQuote({
                         <div className="flex items-center gap-2">
                           <label
                             htmlFor={`quote-quantity-${item.id}`}
-                            className="text-[9px] uppercase tracking-wider text-neutral-500"
+                            className="text-[9px] uppercase tracking-wider text-neutral-400"
                           >
                             Qty
                           </label>
@@ -1139,7 +1139,7 @@ export default function RequestQuote({
                             onClick={() => removeQuoteItem(item.id)}
                             disabled={isSubmitting}
                             aria-label={`Remove ${item.name}`}
-                            className="flex h-8 w-8 cursor-pointer items-center justify-center text-neutral-500 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed"
+                            className="flex h-8 w-8 cursor-pointer items-center justify-center text-neutral-400 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed"
                           >
                             <FaTimes size={12} />
                           </button>
@@ -1148,7 +1148,7 @@ export default function RequestQuote({
                     ))}
 
                     <div className="flex items-center justify-between border-t border-white/10 pt-3">
-                      <span className="text-[9px] font-semibold uppercase tracking-wider text-neutral-500">
+                      <span className="text-[9px] font-semibold uppercase tracking-wider text-neutral-400">
                         Total requested pieces
                       </span>
 
@@ -1200,7 +1200,7 @@ export default function RequestQuote({
                   disabled={isSubmitting}
                 />
 
-                <p className="mt-1 text-right text-[9px] text-neutral-600">
+                <p className="mt-1 text-right text-[9px] text-neutral-400">
                   {formData.message.length}/5000 characters
                 </p>
               </div>
@@ -1215,7 +1215,7 @@ export default function RequestQuote({
                     04 / Design attachments
                   </p>
 
-                  <span className="text-[9px] text-neutral-600">
+                  <span className="text-[9px] text-neutral-400">
                     Optional
                   </span>
                 </div>
@@ -1266,7 +1266,7 @@ export default function RequestQuote({
                         : "Drag & drop your designs"}
                     </span>
 
-                    <span className="mt-1 block text-[9px] leading-4 text-neutral-500">
+                    <span className="mt-1 block text-[9px] leading-4 text-neutral-400">
                       Or browse files · AI, PDF, PNG, JPG · Max 5 files,
                       10 MB each
                     </span>
@@ -1295,7 +1295,7 @@ export default function RequestQuote({
                               {file.name}
                             </p>
 
-                            <p className="mt-0.5 text-[9px] text-neutral-500">
+                            <p className="mt-0.5 text-[9px] text-neutral-400">
                               {formatFileSize(file.size)}
                             </p>
                           </div>
@@ -1305,7 +1305,7 @@ export default function RequestQuote({
                             onClick={() => removeFile(index)}
                             disabled={isSubmitting}
                             aria-label={`Remove ${file.name}`}
-                            className="flex h-7 w-7 shrink-0 cursor-pointer items-center justify-center text-neutral-500 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed"
+                            className="flex h-7 w-7 shrink-0 cursor-pointer items-center justify-center text-neutral-400 transition hover:bg-white/10 hover:text-white disabled:cursor-not-allowed"
                           >
                             <FaTimes size={11} />
                           </button>
@@ -1313,7 +1313,7 @@ export default function RequestQuote({
                       );
                     })}
 
-                    <p className="text-right text-[9px] text-neutral-600">
+                    <p className="text-right text-[9px] text-neutral-400">
                       {selectedFiles.length} file(s) ·{" "}
                       {formatFileSize(totalFileSize)}
                     </p>
@@ -1340,14 +1340,14 @@ export default function RequestQuote({
 
                   <span className="text-[11px] leading-5 text-neutral-300">
                     Email me a follow-up with next steps and new designs.
-                    <span className="text-neutral-500">
+                    <span className="text-neutral-400">
                       {" "}
                       Unsubscribe any time.
                     </span>
                   </span>
                 </label>
 
-                <p className="text-[10px] leading-5 text-neutral-500">
+                <p className="text-[10px] leading-5 text-neutral-400">
                   We use your details only to reply to this request.{" "}
                   <Link
                     href="/privacy-policy"
@@ -1401,7 +1401,7 @@ export default function RequestQuote({
                     />
                   </div>
 
-                  <p className="mt-2 text-[9px] text-neutral-500">
+                  <p className="mt-2 text-[9px] text-neutral-400">
                     {uploadPhase === "processing"
                       ? "Your files have been sent. Waiting for confirmation..."
                       : "Please keep this page open while your inquiry is being uploaded."}
@@ -1458,7 +1458,7 @@ export default function RequestQuote({
                   )}
                 </button>
 
-                <p className="mt-3 text-[9px] leading-5 text-neutral-600">
+                <p className="mt-3 text-[9px] leading-5 text-neutral-400">
                   Fields marked with * are required. Your information
                   will be used to respond to your inquiry.
                 </p>

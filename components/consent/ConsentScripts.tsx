@@ -127,13 +127,13 @@ export default function ConsentScripts({
       {consent?.analytics && (
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-          strategy="lazyOnload"
+          strategy="afterInteractive"
         />
       )}
       {consent?.marketing && (
         <Script
           src="https://s.pinimg.com/ct/core.js"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
         />
       )}
     </>

@@ -262,7 +262,9 @@ export default function Hero() {
                     alt={product.imageAlt}
                     fill
                     quality={75}
-                    priority={index === 0}
+                    preload={index === 0}
+                    fetchPriority={index === 0 ? "high" : "auto"}
+                    loading={index === 0 ? "eager" : "lazy"}
                     sizes="
                       (max-width: 767px) 100vw,
                       (max-width: 1023px) 75vw,

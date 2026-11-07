@@ -106,6 +106,7 @@ export default function RootLayout({
     <html lang="en" translate="no">
       <head>
         <meta name="google" content="notranslate" />
+        <link rel="ard" href="/.well-known/ard.json" />
         {/* Pinterest domain verification */}
         <meta
           name="p:domain_verify"

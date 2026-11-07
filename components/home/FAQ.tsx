@@ -128,15 +128,15 @@ export default function FAQ() {
         {/* Section heading */}
         <div className="mb-16 grid gap-10 lg:mb-20 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
           <div className="faq-intro">
-            <span className="mb-5 inline-flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
-              <span className="h-px w-8 bg-neutral-500" />
+            <span className="mb-5 inline-flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-400">
+              <span className="h-px w-8 bg-neutral-400" />
               Frequently Asked Questions
             </span>
 
             <h2 className="max-w-xl text-4xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-5xl lg:text-6xl">
               Questions?
               <br />
-              <span className="text-neutral-500">We've got answers.</span>
+              <span className="text-neutral-400">We've got answers.</span>
             </h2>
           </div>
 
@@ -165,7 +165,7 @@ export default function FAQ() {
                 <FaComments size={19} />
               </div>
 
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
                 Let's talk business
               </p>
 
@@ -187,7 +187,7 @@ export default function FAQ() {
               </Link>
             </div>
 
-            <p className="mt-7 text-[10px] uppercase tracking-[0.2em] text-neutral-600">
+            <p className="mt-7 text-[10px] uppercase tracking-[0.2em] text-neutral-400">
               NORDVIA EXPORTS · Apparel Manufacturing
             </p>
           </div>
@@ -209,7 +209,7 @@ export default function FAQ() {
                     aria-controls={`faq-answer-${index}`}
                     className="group flex w-full items-start gap-5 py-6 text-left sm:items-center sm:py-7 cursor-pointer"
                   >
-                    <span className="pt-1 text-[11px] tabular-nums text-neutral-600 sm:pt-0">
+                    <span className="pt-1 text-[11px] tabular-nums text-neutral-400 sm:pt-0">
                       {String(index + 1).padStart(2, "0")}
                     </span>
 

@@ -95,7 +95,7 @@ const subjectOptions = [
 ];
 
 const inputClass =
-  "w-full border border-white/15 bg-white/[0.035] px-4 py-4 text-sm text-white outline-none transition-colors placeholder:text-neutral-600 focus:border-white/60";
+  "w-full border border-white/15 bg-white/[0.035] px-4 py-4 text-sm text-white outline-none transition-colors placeholder:text-neutral-400 focus:border-white/60";
 
 const labelClass =
   "mb-3 block text-[10px] font-semibold uppercase tracking-[0.17em] text-neutral-400";
@@ -218,7 +218,7 @@ export default function ContactPage() {
           <div className="contact-reveal mb-7 flex items-center gap-3">
             <span className="h-px w-9 bg-neutral-500" />
 
-            <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-400">
               Get in touch
             </span>
           </div>
@@ -227,7 +227,7 @@ export default function ContactPage() {
             <h1 className="contact-reveal max-w-5xl text-5xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-7xl lg:text-[100px]">
               Let's start a
               <br />
-              <span className="text-neutral-500">
+              <span className="text-neutral-400">
                 conversation.
               </span>
             </h1>
@@ -247,7 +247,7 @@ export default function ContactPage() {
 
           {/* Contact information */}
           <div className="contact-reveal">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-500">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-400">
               Contact information
             </p>
 
@@ -277,7 +277,7 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.17em] text-neutral-500">
+                      <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.17em] text-neutral-400">
                         {item.label}
                       </p>
 
@@ -301,7 +301,7 @@ export default function ContactPage() {
 
             {/* Social links */}
             <div className="mt-12">
-              <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500">
+              <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-400">
                 Follow NORDVIA
               </p>
 
@@ -329,7 +329,7 @@ export default function ContactPage() {
           {/* Contact form */}
           <div className="contact-reveal border border-white/10 bg-[#111111] p-4 sm:p-10 lg:p-12">
             <div className="mb-9 border-b border-white/10 pb-7">
-              <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500">
+              <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-400">
                 Send us a message
               </p>
 
@@ -443,7 +443,7 @@ export default function ContactPage() {
                       className={`${inputClass} flex cursor-pointer items-center justify-between text-left ${
                         subject
                           ? "text-white"
-                          : "text-neutral-500"
+                          : "text-neutral-400"
                       }`}
                     >
                       <span>
@@ -559,7 +559,7 @@ export default function ContactPage() {
                 )}
               </button>
 
-              <p className="text-[11px] leading-6 text-neutral-600">
+              <p className="text-[11px] leading-6 text-neutral-400">
                 By submitting this form, you agree that we may
                 use your information to respond to your inquiry.
               </p>
@@ -571,14 +571,14 @@ export default function ContactPage() {
       {/* Bottom CTA */}
       <section className="border-t border-white/10 px-5 py-20 text-center sm:px-8 lg:px-12 lg:py-28">
         <div className="contact-reveal mx-auto max-w-3xl">
-          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-500">
+          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-400">
             Ready to get started?
           </p>
 
           <h2 className="mb-7 text-3xl font-medium leading-tight tracking-tight sm:text-5xl">
             Have a specific product
             <br />
-            <span className="text-neutral-500">
+            <span className="text-neutral-400">
               in mind?
             </span>
           </h2>

@@ -501,7 +501,6 @@ export default function Navbar() {
           <Link
             href="/"
             onClick={closeMobileMenu}
-            aria-label="NORDVIA EXPORTS"
             className="group flex shrink-0 flex-col leading-none"
           >
             <span className="text-[25px] font-bold tracking-[0.12em] sm:text-[29px]">
@@ -1282,9 +1281,11 @@ export default function Navbar() {
         {/* DRAWER */}
 
         <aside
-          role="dialog"
-          aria-modal="true"
+          {...(quoteOpen
+            ? { role: "dialog" as const, "aria-modal": true }
+            : {})}
           aria-label="Your quote list"
+          inert={!quoteOpen}
           className={`absolute right-0 top-0 flex h-full w-full max-w-[550px] flex-col bg-[#f5f5f5] text-[#111] shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${quoteOpen ? "translate-x-0" : "translate-x-full"
             }`}
         >

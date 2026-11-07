@@ -123,7 +123,7 @@ export default function Footer() {
               NORDVIA
             </span>
 
-            <span className="mt-1 block text-[9px] font-medium tracking-[0.55em] text-neutral-500">
+            <span className="mt-1 block text-[9px] font-medium tracking-[0.55em] text-neutral-400">
               EXPORTS
             </span>
           </Link>
@@ -167,7 +167,7 @@ export default function Footer() {
               <li key={item.label}>
                 <Link
                   href={item.href}
-                  className="cursor-pointer text-sm text-neutral-500 transition-colors hover:text-white"
+                  className="cursor-pointer text-sm text-neutral-400 transition-colors hover:text-white"
                 >
                   {item.label}
                 </Link>
@@ -187,7 +187,7 @@ export default function Footer() {
               <li key={item.label}>
                 <Link
                   href={item.href}
-                  className="cursor-pointer text-sm text-neutral-500 transition-colors hover:text-white"
+                  className="cursor-pointer text-sm text-neutral-400 transition-colors hover:text-white"
                 >
                   {item.label}
                 </Link>
@@ -210,7 +210,7 @@ export default function Footer() {
           <div className="space-y-5 text-sm">
 
             <div>
-              <p className="mb-2 text-[10px] uppercase tracking-[0.17em] text-neutral-600">
+              <p className="mb-2 text-[10px] uppercase tracking-[0.17em] text-neutral-400">
                 Email
               </p>
 
@@ -223,7 +223,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <p className="mb-2 text-[10px] uppercase tracking-[0.17em] text-neutral-600">
+              <p className="mb-2 text-[10px] uppercase tracking-[0.17em] text-neutral-400">
                 WhatsApp / Phone
               </p>
 
@@ -238,7 +238,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <p className="mb-2 text-[10px] uppercase tracking-[0.17em] text-neutral-600">
+              <p className="mb-2 text-[10px] uppercase tracking-[0.17em] text-neutral-400">
                 Location
               </p>
 
@@ -265,7 +265,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-7 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-12">
 
-          <p className="text-[10px] tracking-wide text-neutral-600">
+          <p className="text-[10px] tracking-wide text-neutral-400">
             © {currentYear} NORDVIA EXPORTS. All rights reserved.
           </p>
 
@@ -273,14 +273,14 @@ export default function Footer() {
 
             <Link
               href="/privacy-policy"
-              className="cursor-pointer text-[10px] text-neutral-600 transition-colors hover:text-white"
+              className="cursor-pointer text-[10px] text-neutral-400 transition-colors hover:text-white"
             >
               Privacy Policy
             </Link>
 
             <Link
               href="/cookie-policy"
-              className="cursor-pointer text-[10px] text-neutral-600 transition-colors hover:text-white"
+              className="cursor-pointer text-[10px] text-neutral-400 transition-colors hover:text-white"
             >
               Cookie Policy
             </Link>
@@ -289,7 +289,7 @@ export default function Footer() {
             <button
               type="button"
               onClick={openCookieSettings}
-              className="inline-flex cursor-pointer items-center gap-2 text-[10px] text-neutral-600 transition-colors hover:text-white"
+              className="inline-flex cursor-pointer items-center gap-2 text-[10px] text-neutral-400 transition-colors hover:text-white"
             >
               <FaSlidersH size={11} />
               Cookie Settings

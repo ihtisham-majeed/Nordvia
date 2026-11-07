@@ -1,0 +1,22 @@
+{
+  "entries": [
+    {
+      "identifier": "urn:air:nordviaexports.store:website:llms",
+      "displayName": "NORDVIA EXPORTS website information",
+      "type": "text/markdown",
+      "url": "https://www.nordviaexports.store/llms.txt",
+      "description": "Public Markdown summary of NORDVIA EXPORTS apparel categories, manufacturing services, website sections, and contact details.",
+      "tags": [
+        "apparel manufacturing",
+        "apparel export",
+        "private label",
+        "Sialkot Pakistan"
+      ],
+      "representativeQueries": [
+        "What apparel categories does NORDVIA EXPORTS manufacture?",
+        "What private-label and apparel development services does NORDVIA EXPORTS offer?",
+        "How can I contact NORDVIA EXPORTS about an apparel project?"
+      ]
+    }
+  ]
+}

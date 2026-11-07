@@ -207,11 +207,11 @@ export default function HowItWorks() {
                 <div className="mt-9 overflow-hidden">
                   <span className="
                     block text-[64px] font-semibold leading-none
-                    tracking-[-0.08em] text-white/[0.075]
+                    tracking-[-0.08em] text-white/40
                     transition-colors duration-500
-                    group-hover:text-white/[0.16]
+                    group-hover:text-white/50
                     sm:text-[76px] lg:text-[68px] xl:text-[78px]
-                  ">
+                  " aria-hidden="true">
                     {step.number}
                   </span>
                 </div>

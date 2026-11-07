@@ -145,7 +145,7 @@ export default function CookiePolicyPage() {
         <div className="relative mx-auto max-w-7xl">
           <Link
             href="/"
-            className="mb-12 inline-flex cursor-pointer items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500 transition-colors hover:text-white"
+            className="mb-12 inline-flex cursor-pointer items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-400 transition-colors hover:text-white"
           >
             <FaArrowLeft size={10} />
             Back to homepage
@@ -154,14 +154,14 @@ export default function CookiePolicyPage() {
           <div className="mb-8 flex items-center gap-3">
             <FaCookieBite className="text-neutral-400" />
 
-            <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-neutral-500">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-neutral-400">
               NORDVIA EXPORTS / Legal
             </span>
           </div>
 
           <h1 className="max-w-5xl text-5xl font-medium leading-[1.05] tracking-[-0.055em] sm:text-7xl lg:text-8xl">
             Cookie{" "}
-            <span className="text-neutral-500">Policy.</span>
+            <span className="text-neutral-400">Policy.</span>
           </h1>
 
           <div className="mt-10 flex flex-col gap-5 border-t border-white/10 pt-7 sm:flex-row sm:items-end sm:justify-between">
@@ -171,7 +171,7 @@ export default function CookiePolicyPage() {
               and how you remain in control of your preferences.
             </p>
 
-            <span className="text-[10px] uppercase tracking-[0.2em] text-neutral-600">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-neutral-400">
               Last updated: November 2026
             </span>
           </div>
@@ -184,7 +184,7 @@ export default function CookiePolicyPage() {
           <div className="mb-10 flex items-center gap-3">
             <FaShieldAlt className="text-neutral-400" />
 
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-500">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-400">
               Your privacy choices
             </p>
           </div>
@@ -195,7 +195,7 @@ export default function CookiePolicyPage() {
                 key={item.title}
                 className="bg-[#101010] p-7 sm:p-9"
               >
-                <p className="mb-8 text-[10px] uppercase tracking-[0.2em] text-neutral-500">
+                <p className="mb-8 text-[10px] uppercase tracking-[0.2em] text-neutral-400">
                   {item.status}
                 </p>
 
@@ -203,7 +203,7 @@ export default function CookiePolicyPage() {
                   {item.title}
                 </h2>
 
-                <p className="text-sm leading-7 text-neutral-500">
+                <p className="text-sm leading-7 text-neutral-400">
                   {item.description}
                 </p>
               </div>
@@ -220,7 +220,7 @@ export default function CookiePolicyPage() {
         <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[260px_1fr] lg:gap-24">
           {/* Table of contents */}
           <aside className="h-fit lg:sticky lg:top-32">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-500">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-400">
               On this page
             </p>
 
@@ -229,7 +229,7 @@ export default function CookiePolicyPage() {
                 <a
                   key={section.number}
                   href={`#section-${section.number}`}
-                  className="cursor-pointer text-xs text-neutral-500 transition-colors hover:text-white"
+                  className="cursor-pointer text-xs text-neutral-400 transition-colors hover:text-white"
                 >
                   {section.number} / {section.title}
                 </a>
@@ -245,7 +245,7 @@ export default function CookiePolicyPage() {
                 id={`section-${section.number}`}
                 className="scroll-mt-32 border-b border-white/10 py-10 first:pt-0 sm:py-12"
               >
-                <p className="mb-5 text-[10px] font-semibold tracking-[0.2em] text-neutral-600">
+                <p className="mb-5 text-[10px] font-semibold tracking-[0.2em] text-neutral-400">
                   SECTION {section.number}
                 </p>
 
@@ -281,7 +281,7 @@ export default function CookiePolicyPage() {
 
             {/* Contact */}
             <div className="mt-14 border border-white/10 bg-white/[0.025] p-7 sm:p-10">
-              <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-500">
+              <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-400">
                 Questions about privacy?
               </p>
 
@@ -289,7 +289,7 @@ export default function CookiePolicyPage() {
                 Contact NORDVIA EXPORTS.
               </h2>
 
-              <p className="mb-7 max-w-xl text-sm leading-7 text-neutral-500">
+              <p className="mb-7 max-w-xl text-sm leading-7 text-neutral-400">
                 If you have questions about this policy or your
                 privacy preferences, contact our team.
               </p>
@@ -304,7 +304,7 @@ export default function CookiePolicyPage() {
             </div>
 
             {/* Related links */}
-            <div className="mt-12 flex flex-wrap gap-6 text-xs text-neutral-500">
+            <div className="mt-12 flex flex-wrap gap-6 text-xs text-neutral-400">
               <Link
                 href="/privacy-policy"
                 className="cursor-pointer transition-colors hover:text-white"

@@ -188,7 +188,7 @@ export default function PrivacyPolicyPage() {
         <div className="relative mx-auto max-w-7xl">
           <Link
             href="/"
-            className="mb-12 inline-flex cursor-pointer items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500 transition-colors hover:text-white"
+            className="mb-12 inline-flex cursor-pointer items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-400 transition-colors hover:text-white"
           >
             <FaArrowLeft size={10} />
             Back to homepage
@@ -197,13 +197,13 @@ export default function PrivacyPolicyPage() {
           <div className="mb-8 flex items-center gap-3">
             <FaShieldAlt className="text-neutral-400" />
 
-            <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-neutral-500">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-neutral-400">
               NORDVIA EXPORTS / Legal
             </span>
           </div>
 
          <h1 className="max-w-5xl text-5xl font-medium leading-[1.05] tracking-[-0.055em] sm:text-7xl lg:text-8xl">
-  Privacy <span className="text-neutral-500">Policy.</span>
+  Privacy <span className="text-neutral-400">Policy.</span>
 </h1>
 
           <div className="mt-10 flex flex-col gap-5 border-t border-white/10 pt-7 sm:flex-row sm:items-end sm:justify-between">
@@ -213,7 +213,7 @@ export default function PrivacyPolicyPage() {
               information when you interact with NORDVIA EXPORTS.
             </p>
 
-            <span className="text-[10px] uppercase tracking-[0.2em] text-neutral-600">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-neutral-400">
               Last updated: November 2026
             </span>
           </div>
@@ -224,7 +224,7 @@ export default function PrivacyPolicyPage() {
       <section className="border-b border-white/10 px-5 py-16 sm:px-8 sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-2 md:items-center">
           <div>
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-500">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-400">
               Our commitment
             </p>
 
@@ -246,7 +246,7 @@ export default function PrivacyPolicyPage() {
       <section className="px-5 py-20 sm:px-8 sm:py-28">
         <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[260px_1fr] lg:gap-24">
           <aside className="h-fit lg:sticky lg:top-32">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-500">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-400">
               On this page
             </p>
 
@@ -255,7 +255,7 @@ export default function PrivacyPolicyPage() {
                 <a
                   key={section.number}
                   href={`#section-${section.number}`}
-                  className="cursor-pointer text-xs text-neutral-500 transition-colors hover:text-white"
+                  className="cursor-pointer text-xs text-neutral-400 transition-colors hover:text-white"
                 >
                   {section.number} / {section.title}
                 </a>
@@ -270,7 +270,7 @@ export default function PrivacyPolicyPage() {
                 id={`section-${section.number}`}
                 className="scroll-mt-32 border-b border-white/10 py-10 first:pt-0 sm:py-12"
               >
-                <p className="mb-5 text-[10px] font-semibold tracking-[0.2em] text-neutral-600">
+                <p className="mb-5 text-[10px] font-semibold tracking-[0.2em] text-neutral-400">
                   SECTION {section.number}
                 </p>
 
@@ -293,7 +293,7 @@ export default function PrivacyPolicyPage() {
                       {section.bullets.map((item) => (
                         <li
                           key={item}
-                          className="list-disc text-sm leading-7 text-neutral-400 marker:text-neutral-600"
+                          className="list-disc text-sm leading-7 text-neutral-400 marker:text-neutral-400"
                         >
                           {item}
                         </li>
@@ -315,7 +315,7 @@ export default function PrivacyPolicyPage() {
               <div className="mb-5 flex items-center gap-3">
                 <FaEnvelope className="text-neutral-400" />
 
-                <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-500">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-400">
                   Privacy contact
                 </p>
               </div>
@@ -324,7 +324,7 @@ export default function PrivacyPolicyPage() {
                 Need to contact us?
               </h2>
 
-              <p className="mb-7 max-w-xl text-sm leading-7 text-neutral-500">
+              <p className="mb-7 max-w-xl text-sm leading-7 text-neutral-400">
                 For questions, access requests, correction requests
                 or other privacy-related matters, contact NORDVIA
                 EXPORTS.
@@ -338,7 +338,7 @@ export default function PrivacyPolicyPage() {
                 <FaArrowRight size={11} />
               </a>
 
-              <p className="mt-5 text-xs leading-6 text-neutral-600">
+              <p className="mt-5 text-xs leading-6 text-neutral-400">
                 NORDVIA EXPORTS
                 <br />
                 Sialkot, Pakistan
@@ -346,7 +346,7 @@ export default function PrivacyPolicyPage() {
             </div>
 
             {/* Related links */}
-            <div className="mt-12 flex flex-wrap gap-6 text-xs text-neutral-500">
+            <div className="mt-12 flex flex-wrap gap-6 text-xs text-neutral-400">
               <Link
                 href="/cookie-policy"
                 className="cursor-pointer transition-colors hover:text-white"
