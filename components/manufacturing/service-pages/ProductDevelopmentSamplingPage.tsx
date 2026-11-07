@@ -97,7 +97,7 @@ export default function ProductDevelopmentSamplingPage() {
 
         <div className="relative mx-auto grid min-h-[620px] max-w-[1600px] items-end gap-16 px-6 pb-20 pt-36 md:px-12 md:pb-24 lg:grid-cols-[1.2fr_0.8fr] lg:px-20">
           <div className="max-w-3xl">
-            <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/50">
+            <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/60">
               Manufacturing / Product Development & Sampling
             </p>
 
@@ -105,7 +105,7 @@ export default function ProductDevelopmentSamplingPage() {
               From product idea
               <br />
               to a defined
-              <span className="text-white/40"> garment.</span>
+              <span className="text-white/60"> garment.</span>
             </h1>
 
             <p className="mt-8 max-w-xl text-sm leading-7 text-white/60 md:text-base md:leading-8">
@@ -132,7 +132,7 @@ export default function ProductDevelopmentSamplingPage() {
           </div>
 
           <div className="border border-white/15 bg-white/[0.04] p-7 md:p-9">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60">
               Development focus
             </p>
 
@@ -147,7 +147,7 @@ export default function ProductDevelopmentSamplingPage() {
                   key={number}
                   className="flex items-center gap-5 border-b border-white/10 pb-5 last:border-0 last:pb-0"
                 >
-                  <span className="text-xs text-white/35">{number}</span>
+                  <span className="text-xs text-white/60">{number}</span>
                   <span className="text-sm font-medium tracking-wide text-white/85">
                     {label}
                   </span>
@@ -156,7 +156,7 @@ export default function ProductDevelopmentSamplingPage() {
             </div>
 
             <div className="mt-8 border-t border-white/10 pt-5">
-              <span className="text-[9px] uppercase tracking-[0.2em] text-white/35">
+              <span className="text-[9px] uppercase tracking-[0.2em] text-white/60">
                 Project development
               </span>
               <p className="mt-2 text-sm text-white/70">
@@ -170,7 +170,7 @@ export default function ProductDevelopmentSamplingPage() {
       {/* INTRODUCTION — WHITE */}
       <section className="mx-auto grid max-w-[1600px] gap-12 px-6 py-20 md:px-12 lg:grid-cols-2 lg:gap-24 lg:px-20 lg:py-28">
         <div>
-          <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.25em] text-black/45">
+          <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.25em] text-black/70">
             Development approach
           </p>
 
@@ -199,7 +199,7 @@ export default function ProductDevelopmentSamplingPage() {
       <section className="bg-[#101010] px-6 py-20 text-white md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto max-w-[1400px]">
           <div className="max-w-2xl">
-            <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.25em] text-white/40">
+            <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.25em] text-white/60">
               What we help define
             </p>
 
@@ -219,7 +219,7 @@ export default function ProductDevelopmentSamplingPage() {
                 >
                   <div className="flex items-center justify-between">
                     <Icon className="text-xl text-white/55" />
-                    <span className="text-xs text-white/35">
+                    <span className="text-xs text-white/60">
                       0{index + 1}
                     </span>
                   </div>
@@ -244,7 +244,7 @@ export default function ProductDevelopmentSamplingPage() {
         className="mx-auto max-w-[1400px] px-6 py-20 md:px-12 lg:px-20 lg:py-28"
       >
         <div className="max-w-2xl">
-          <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.25em] text-black/45">
+          <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.25em] text-black/70">
             Our workflow
           </p>
 
@@ -252,7 +252,7 @@ export default function ProductDevelopmentSamplingPage() {
             A considered development process.
           </h2>
 
-          <p className="mt-6 text-sm leading-7 text-black/55 md:text-base">
+          <p className="mt-6 text-sm leading-7 text-black/70 md:text-base">
             The exact sequence and available development options depend on
             your product requirements and project scope.
           </p>
@@ -264,7 +264,7 @@ export default function ProductDevelopmentSamplingPage() {
               key={stage.number}
               className="border-t border-black/15 pt-6"
             >
-              <span className="text-xs font-semibold tracking-[0.15em] text-black/35">
+              <span className="text-xs font-semibold tracking-[0.15em] text-black/70">
                 {stage.number}
               </span>
 
@@ -272,7 +272,7 @@ export default function ProductDevelopmentSamplingPage() {
                 {stage.title}
               </h3>
 
-              <p className="mt-4 text-sm leading-7 text-black/55">
+              <p className="mt-4 text-sm leading-7 text-black/70">
                 {stage.description}
               </p>
             </article>
@@ -284,7 +284,7 @@ export default function ProductDevelopmentSamplingPage() {
       <section className="bg-[#090909] px-6 py-20 text-white md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto grid max-w-[1400px] gap-14 lg:grid-cols-2 lg:gap-20">
           <div>
-            <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.25em] text-white/40">
+            <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.25em] text-white/60">
               Prepare your brief
             </p>
 
@@ -305,9 +305,9 @@ export default function ProductDevelopmentSamplingPage() {
                 key={item}
                 className="flex gap-3 border-b border-white/15 pb-4"
               >
-                <FaCheckCircle className="mt-1 shrink-0 text-white/40" />
+                <FaCheckCircle className="mt-1 shrink-0 text-white/60" />
                 <div>
-                  <span className="mb-2 block text-[9px] uppercase tracking-[0.16em] text-white/35">
+                  <span className="mb-2 block text-[9px] uppercase tracking-[0.16em] text-white/60">
                     0{index + 1}
                   </span>
                   <span className="text-sm leading-6 text-white/75">
@@ -322,9 +322,9 @@ export default function ProductDevelopmentSamplingPage() {
 
       {/* CTA — WHITE */}
       <section className="bg-[#f3f3f1] px-6 py-20 text-center text-black md:py-28">
-        <FaRegFileAlt className="mx-auto text-2xl text-black/35" />
+        <FaRegFileAlt className="mx-auto text-2xl text-black/70" />
 
-        <p className="mt-6 text-[10px] font-bold uppercase tracking-[0.25em] text-black/40">
+        <p className="mt-6 text-[10px] font-bold uppercase tracking-[0.25em] text-black/70">
           Start a development enquiry
         </p>
 
@@ -332,7 +332,7 @@ export default function ProductDevelopmentSamplingPage() {
           Let&apos;s define your next apparel project.
         </h2>
 
-        <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-black/55 md:text-base">
+        <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-black/70 md:text-base">
           Tell us about your product, specifications and development goals.
         </p>
 

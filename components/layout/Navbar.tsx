@@ -501,7 +501,7 @@ export default function Navbar() {
           <Link
             href="/"
             onClick={closeMobileMenu}
-            aria-label="NORDVIA EXPORTS homepage"
+            aria-label="NORDVIA EXPORTS"
             className="group flex shrink-0 flex-col leading-none"
           >
             <span className="text-[25px] font-bold tracking-[0.12em] sm:text-[29px]">
@@ -1055,7 +1055,7 @@ export default function Navbar() {
 
                 <FaArrowRight
                   size={11}
-                  className="text-white/40"
+                  className="text-white/60"
                 />
               </Link>
             ))}
@@ -1066,7 +1066,7 @@ export default function Navbar() {
 
           <div className="border-b border-white/10 py-5">
 
-            <p className="mb-4 text-[9px] font-bold uppercase tracking-[0.22em] text-white/40">
+            <p className="mb-4 text-[9px] font-bold uppercase tracking-[0.22em] text-white/60">
               Product Categories
             </p>
 
@@ -1092,7 +1092,7 @@ export default function Navbar() {
 
           <div className="border-b border-white/10 py-5">
 
-            <p className="mb-4 text-[9px] font-bold uppercase tracking-[0.22em] text-white/40">
+            <p className="mb-4 text-[9px] font-bold uppercase tracking-[0.22em] text-white/60">
               Manufacturing Services
             </p>
 
@@ -1120,7 +1120,7 @@ export default function Navbar() {
 
           <div className="border-b border-white/10 py-5">
 
-            <p className="mb-4 text-[9px] font-bold uppercase tracking-[0.22em] text-white/40">
+            <p className="mb-4 text-[9px] font-bold uppercase tracking-[0.22em] text-white/60">
               Industries
             </p>
 
@@ -1148,7 +1148,7 @@ export default function Navbar() {
 
           <div className="border-b border-white/10 py-5">
 
-            <p className="mb-4 text-[9px] font-bold uppercase tracking-[0.22em] text-white/40">
+            <p className="mb-4 text-[9px] font-bold uppercase tracking-[0.22em] text-white/60">
               Explore
             </p>
 
@@ -1200,7 +1200,7 @@ export default function Navbar() {
 
           <div className="mt-8 border-t border-white/10 pt-6">
 
-            <p className="mb-4 text-[9px] font-bold uppercase tracking-[0.22em] text-white/40">
+            <p className="mb-4 text-[9px] font-bold uppercase tracking-[0.22em] text-white/60">
               Connect With Us
             </p>
 
@@ -1246,7 +1246,7 @@ export default function Navbar() {
 
             </div>
 
-            <p className="mt-6 text-[10px] text-white/30">
+            <p className="mt-6 text-[10px] text-white/60">
               © {new Date().getFullYear()} NORDVIA EXPORTS. All rights reserved.
             </p>
 

@@ -192,7 +192,7 @@ export default function ProductDetailPage({ product }: Props) {
             </div>
           </div>
 
-          <div className="product-hero-content mt-16 flex flex-wrap justify-between gap-4 border-t border-white/20 pt-6 text-[9px] font-medium uppercase tracking-[0.17em] text-white/40 sm:text-[10px]">
+          <div className="product-hero-content mt-16 flex flex-wrap justify-between gap-4 border-t border-white/20 pt-6 text-[9px] font-medium uppercase tracking-[0.17em] text-white/60 sm:text-[10px]">
             <span>NORDVIA EXPORTS</span>
             <span>Custom Apparel Development</span>
             <span>Category {product.number} / 05</span>
@@ -204,14 +204,14 @@ export default function ProductDetailPage({ product }: Props) {
       <section className="bg-white px-5 py-20 text-[#111111] sm:px-8 sm:py-28 lg:px-16 lg:py-32">
         <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
           <div className="product-reveal">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/45">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/70">
               01 / Product Overview
             </p>
 
             <h2 className="text-[clamp(2.4rem,5vw,4.2rem)] font-semibold uppercase leading-[1.02] tracking-[-0.055em]">
               Made around
               <br />
-              <span className="text-black/30">your vision.</span>
+              <span className="text-black/70">your vision.</span>
             </h2>
           </div>
 
@@ -229,7 +229,7 @@ export default function ProductDetailPage({ product }: Props) {
                 <p className="text-[11px] font-semibold uppercase tracking-[0.12em]">
                   Customization Discussions
                 </p>
-                <p className="mt-1 text-[12px] leading-5 text-black/45">
+                <p className="mt-1 text-[12px] leading-5 text-black/70">
                   Options depend on product and order requirements.
                 </p>
               </div>
@@ -246,18 +246,18 @@ export default function ProductDetailPage({ product }: Props) {
         <div className="mx-auto max-w-[1440px]">
           <div className="product-reveal mb-12 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <div>
-              <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/40">
+              <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/60">
                 02 / Available Styles
               </p>
 
               <h2 className="text-[clamp(2.4rem,5vw,4.2rem)] font-semibold uppercase leading-[1.02] tracking-[-0.055em]">
                 Explore the
                 <br />
-                <span className="text-white/35">individual styles.</span>
+                <span className="text-white/60">individual styles.</span>
               </h2>
             </div>
 
-            <p className="max-w-md text-[13px] leading-7 text-white/50 sm:text-[14px]">
+            <p className="max-w-md text-[13px] leading-7 text-white/60 sm:text-[14px]">
               Choose the garment styles you are interested in. Add
               individual products to your quote list and share your
               requirements with our team.
@@ -291,7 +291,7 @@ export default function ProductDetailPage({ product }: Props) {
 
                 {/* PRODUCT DETAILS */}
                 <div className="p-5 sm:p-6">
-                  <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/35">
+                  <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/60">
                     {product.shortName} / Style {String(index + 1).padStart(2, "0")}
                   </p>
 
@@ -299,7 +299,7 @@ export default function ProductDetailPage({ product }: Props) {
                     {style.name}
                   </h3>
 
-                  <p className="mt-3 min-h-[60px] text-[12px] leading-6 text-white/50 sm:text-[13px]">
+                  <p className="mt-3 min-h-[60px] text-[12px] leading-6 text-white/60 sm:text-[13px]">
                     {style.description}
                   </p>
 
@@ -336,7 +336,7 @@ export default function ProductDetailPage({ product }: Props) {
             ))}
           </div>
 
-          <p className="mt-8 text-[16px] leading-6 text-white/35">
+          <p className="mt-8 text-[16px] leading-6 text-white/60">
             Product imagery is illustrative and represents design concepts.
             Final garment design, measurements, materials and specifications
             are subject to confirmation.
@@ -348,7 +348,7 @@ export default function ProductDetailPage({ product }: Props) {
       <section className="bg-white px-5 py-20 text-[#111111] sm:px-8 sm:py-28 lg:px-16 lg:py-32">
         <div className="mx-auto max-w-[1440px]">
           <div className="product-reveal mb-12 max-w-2xl">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/45">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/70">
               03 / Product Possibilities
             </p>
 
@@ -356,7 +356,7 @@ export default function ProductDetailPage({ product }: Props) {
               Explore the details.
             </h2>
 
-            <p className="mt-6 text-[14px] leading-7 text-black/55 sm:text-[15px] sm:leading-8">
+            <p className="mt-6 text-[14px] leading-7 text-black/70 sm:text-[15px] sm:leading-8">
               Product details can be discussed and adapted to your
               intended design, market and specifications.
             </p>
@@ -368,7 +368,7 @@ export default function ProductDetailPage({ product }: Props) {
                 key={feature}
                 className="flex min-h-[125px] items-start gap-5 bg-white p-6 sm:min-h-[145px] sm:p-8"
               >
-                <span className="pt-1 text-[10px] tracking-[0.18em] text-black/35">
+                <span className="pt-1 text-[10px] tracking-[0.18em] text-black/70">
                   0{index + 1}
                 </span>
 
@@ -385,14 +385,14 @@ export default function ProductDetailPage({ product }: Props) {
       <section className="bg-[#101010] px-5 py-20 text-white sm:px-8 sm:py-28 lg:px-16 lg:py-32">
         <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-2 lg:gap-24">
           <div className="product-reveal">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/40">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/60">
               04 / Make It Yours
             </p>
 
             <h2 className="text-[clamp(2.4rem,5vw,4.2rem)] font-semibold uppercase leading-[1.02] tracking-[-0.055em]">
               Customization
               <br />
-              <span className="text-white/35">possibilities.</span>
+              <span className="text-white/60">possibilities.</span>
             </h2>
 
             <p className="mt-7 max-w-lg text-[14px] leading-8 text-white/55 sm:text-[15px]">
@@ -410,7 +410,7 @@ export default function ProductDetailPage({ product }: Props) {
           </div>
 
           <div className="product-reveal border border-white/10 bg-[#171717] p-6 sm:p-9 lg:p-10">
-            <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/40">
+            <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/60">
               Possible Custom Details
             </p>
 
@@ -420,7 +420,7 @@ export default function ProductDetailPage({ product }: Props) {
                   key={item}
                   className="flex items-center gap-4 border-b border-white/10 py-5 text-[13px] text-white/70 last:border-0 sm:text-[14px]"
                 >
-                  <FaCheck className="shrink-0 text-[11px] text-white/50" />
+                  <FaCheck className="shrink-0 text-[11px] text-white/60" />
                   {item}
                 </li>
               ))}
@@ -433,7 +433,7 @@ export default function ProductDetailPage({ product }: Props) {
       <section className="bg-white px-5 py-20 text-[#111111] sm:px-8 sm:py-28 lg:px-16">
         <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
           <div className="product-reveal">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/45">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/70">
               05 / Before Production
             </p>
 
@@ -441,7 +441,7 @@ export default function ProductDetailPage({ product }: Props) {
               Details worth discussing.
             </h2>
 
-            <p className="mt-6 max-w-lg text-[14px] leading-8 text-black/55 sm:text-[15px]">
+            <p className="mt-6 max-w-lg text-[14px] leading-8 text-black/70 sm:text-[15px]">
               A clear product brief helps us understand your
               expectations and discuss suitable possibilities.
             </p>
@@ -454,7 +454,7 @@ export default function ProductDetailPage({ product }: Props) {
                   key={item}
                   className="flex items-center gap-6 border-b border-black/10 py-6"
                 >
-                  <span className="text-[10px] tracking-[0.18em] text-black/35">
+                  <span className="text-[10px] tracking-[0.18em] text-black/70">
                     0{index + 1}
                   </span>
 
@@ -465,7 +465,7 @@ export default function ProductDetailPage({ product }: Props) {
               ))}
             </ul>
 
-            <p className="mt-6 text-[11px] leading-6 text-black/45 sm:text-[12px]">
+            <p className="mt-6 text-[11px] leading-6 text-black/70 sm:text-[12px]">
               Minimum quantities, material availability, sampling,
               production timelines and delivery arrangements are
               confirmed individually for each project.
@@ -477,14 +477,14 @@ export default function ProductDetailPage({ product }: Props) {
       {/* CTA — BLACK */}
       <section className="bg-[#090909] px-5 py-24 text-white sm:px-8 sm:py-32 lg:px-16">
         <div className="product-reveal mx-auto max-w-4xl text-center">
-          <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/40">
+          <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/60">
             Let's Discuss Your Product
           </p>
 
           <h2 className="text-[clamp(2.5rem,5.5vw,5rem)] font-semibold uppercase leading-[1.02] tracking-[-0.06em]">
             Have a design
             <br />
-            <span className="text-white/35">in mind?</span>
+            <span className="text-white/60">in mind?</span>
           </h2>
 
           <p className="mx-auto mt-7 max-w-xl text-[14px] leading-8 text-white/55 sm:text-[15px]">
@@ -509,7 +509,7 @@ export default function ProductDetailPage({ product }: Props) {
             href={`/products/${previousProduct.slug}`}
             className="group border-b border-white/10 p-7 transition-colors hover:bg-white/[0.04] sm:border-b-0 sm:border-r sm:p-10 lg:p-14"
           >
-            <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white/40">
+            <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white/60">
               <FaArrowLeft className="mr-2 inline" />
               Previous Category
             </span>
@@ -523,7 +523,7 @@ export default function ProductDetailPage({ product }: Props) {
             href={`/products/${nextProduct.slug}`}
             className="group p-7 text-left transition-colors hover:bg-white/[0.04] sm:p-10 sm:text-right lg:p-14"
           >
-            <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white/40">
+            <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white/60">
               Next Category
               <FaArrowRight className="ml-2 inline" />
             </span>
@@ -557,7 +557,7 @@ export default function ProductDetailPage({ product }: Props) {
               <FaTimes />
             </button>
 
-            <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white/40">
+            <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white/60">
               {selectedStyle.code} / Size Information
             </p>
 
@@ -581,7 +581,7 @@ export default function ProductDetailPage({ product }: Props) {
                 measurement chart or approved technical pack.
               </p>
 
-              <p className="mt-4 text-[11px] leading-6 text-white/40">
+              <p className="mt-4 text-[11px] leading-6 text-white/60">
                 No standard measurements are assumed. Share your
                 required size specifications when requesting a quote.
               </p>

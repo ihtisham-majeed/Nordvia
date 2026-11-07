@@ -157,7 +157,7 @@ export default function ManufacturingCapabilities() {
             <div className="mb-5 flex items-center gap-3">
               <span className="h-px w-9 bg-[#171717]/70" />
 
-              <span className="text-[10px] font-semibold uppercase tracking-[0.26em] text-[#171717]/50 sm:text-xs">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.26em] text-[#171717]/70 sm:text-xs">
                 Made Around Your Brand
               </span>
             </div>
@@ -179,7 +179,7 @@ export default function ManufacturingCapabilities() {
 
             <Link
               href="/request-a-quote"
-              className="group mt-6 inline-flex cursor-pointer items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#171717] transition-colors hover:text-[#171717]/50"
+              className="group mt-6 inline-flex cursor-pointer items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#171717] transition-colors hover:text-[#171717]/70"
             >
               Discuss Your Requirements
 

@@ -112,7 +112,7 @@ export default function Products() {
           <div className="max-w-2xl">
             <div className="mb-5 flex items-center gap-3">
               <span className="h-px w-9 bg-[#171717]/70" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#171717]/55 sm:text-xs">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#171717]/70 sm:text-xs">
                 Our Product Range
               </span>
             </div>
@@ -134,7 +134,7 @@ export default function Products() {
 
             <Link
               href="/request-a-quote"
-              className="group mt-5 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#171717] transition-colors hover:text-[#171717]/50"
+              className="group mt-5 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#171717] transition-colors hover:text-[#171717]/70"
             >
               Discuss Your Requirements
               <FaArrowRight className="text-white transition-transform duration-300 group-hover:translate-x-1" />

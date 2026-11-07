@@ -81,7 +81,7 @@ export default function PrintingEmbroideryPage() {
 
         <div className="relative mx-auto grid min-h-[580px] max-w-[1600px] items-end gap-14 px-6 pb-20 pt-32 sm:pt-36 md:px-12 md:pb-24 lg:grid-cols-[1.15fr_0.85fr] lg:px-20">
           <div className="max-w-3xl">
-            <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/50">
+            <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/60">
               Manufacturing / Printing & Embroidery
             </p>
 
@@ -89,7 +89,7 @@ export default function PrintingEmbroideryPage() {
               Make your
               <br />
               brand&apos;s identity
-              <span className="text-white/40"> visible.</span>
+              <span className="text-white/60"> visible.</span>
             </h1>
 
             <p className="mt-8 max-w-xl text-[14px] leading-7 text-white/65 sm:text-[15px] sm:leading-8 md:text-base">
@@ -121,7 +121,7 @@ export default function PrintingEmbroideryPage() {
               <p className="mt-8 text-sm font-semibold sm:text-base">
                 Print applications
               </p>
-              <p className="mt-2 text-xs leading-6 text-white/45">
+              <p className="mt-2 text-xs leading-6 text-white/60">
                 Graphic and artwork decoration
               </p>
             </div>
@@ -131,13 +131,13 @@ export default function PrintingEmbroideryPage() {
               <p className="mt-8 text-sm font-semibold sm:text-base">
                 Thread applications
               </p>
-              <p className="mt-2 text-xs leading-6 text-white/45">
+              <p className="mt-2 text-xs leading-6 text-white/60">
                 Embroidered branding details
               </p>
             </div>
 
             <div className="col-span-2 bg-[#111] p-6 sm:p-7">
-              <p className="text-[10px] uppercase tracking-[0.22em] text-white/40">
+              <p className="text-[10px] uppercase tracking-[0.22em] text-white/60">
                 The details matter
               </p>
               <p className="mt-3 text-base font-medium text-white/85 sm:text-lg">
@@ -152,7 +152,7 @@ export default function PrintingEmbroideryPage() {
       <section className="bg-white px-6 py-20 sm:py-24 md:px-12 md:py-28 lg:px-20 lg:py-32">
         <div className="mx-auto grid max-w-[1600px] gap-10 lg:grid-cols-2 lg:gap-24">
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-black/45">
+            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-black/70">
               Branding & decoration
             </p>
 
@@ -183,7 +183,7 @@ export default function PrintingEmbroideryPage() {
         className="scroll-mt-24 bg-[#101010] px-6 py-20 text-white sm:py-24 md:px-12 md:py-28 lg:px-20"
       >
         <div className="mx-auto max-w-[1400px]">
-          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/40">
+          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/60">
             Decoration options
           </p>
 
@@ -198,11 +198,11 @@ export default function PrintingEmbroideryPage() {
                 className="bg-[#101010] p-7 transition-colors duration-300 hover:bg-[#191919] sm:p-9 md:p-11"
               >
                 <div className="flex items-center justify-between gap-4">
-                  <span className="text-[10px] tracking-[0.2em] text-white/40">
+                  <span className="text-[10px] tracking-[0.2em] text-white/60">
                     {method.number}
                   </span>
 
-                  <span className="text-right text-[9px] font-bold uppercase tracking-[0.18em] text-white/40">
+                  <span className="text-right text-[9px] font-bold uppercase tracking-[0.18em] text-white/60">
                     {method.category}
                   </span>
                 </div>
@@ -235,9 +235,9 @@ export default function PrintingEmbroideryPage() {
       <section className="bg-white px-6 py-20 sm:py-24 md:px-12 md:py-28 lg:px-20 lg:py-32">
         <div className="mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <div>
-            <FaTshirt className="text-2xl text-black/40" />
+            <FaTshirt className="text-2xl text-black/70" />
 
-            <p className="mt-7 text-[10px] font-bold uppercase tracking-[0.25em] text-black/45">
+            <p className="mt-7 text-[10px] font-bold uppercase tracking-[0.25em] text-black/70">
               Garment applications
             </p>
 
@@ -252,7 +252,7 @@ export default function PrintingEmbroideryPage() {
                 key={title}
                 className="border-t border-black/15 py-7 sm:px-4"
               >
-                <span className="text-[10px] tracking-[0.18em] text-black/35">
+                <span className="text-[10px] tracking-[0.18em] text-black/70">
                   0{index + 1}
                 </span>
 
@@ -260,7 +260,7 @@ export default function PrintingEmbroideryPage() {
                   {title}
                 </h3>
 
-                <p className="mt-3 text-[13px] leading-7 text-black/55 sm:text-sm">
+                <p className="mt-3 text-[13px] leading-7 text-black/70 sm:text-sm">
                   {description}
                 </p>
               </div>
@@ -272,7 +272,7 @@ export default function PrintingEmbroideryPage() {
       {/* WORKFLOW — BLACK */}
       <section className="bg-[#090909] px-6 py-20 text-white sm:py-24 md:px-12 md:py-28 lg:px-20">
         <div className="mx-auto max-w-[1400px]">
-          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/40">
+          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/60">
             From artwork to application
           </p>
 
@@ -283,7 +283,7 @@ export default function PrintingEmbroideryPage() {
           <div className="mt-12 grid gap-8 sm:grid-cols-2 sm:gap-10 lg:mt-16 lg:grid-cols-4">
             {workflow.map(([number, title, description]) => (
               <article key={number} className="border-t border-white/20 pt-6">
-                <span className="text-[11px] tracking-[0.15em] text-white/40">
+                <span className="text-[11px] tracking-[0.15em] text-white/60">
                   {number}
                 </span>
 
@@ -304,7 +304,7 @@ export default function PrintingEmbroideryPage() {
       <section className="bg-white px-6 py-20 sm:py-24 md:px-12 md:py-28 lg:px-20">
         <div className="mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-2 lg:gap-24">
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-black/45">
+            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-black/70">
               Artwork preparation
             </p>
 
@@ -312,7 +312,7 @@ export default function PrintingEmbroideryPage() {
               What to share with us.
             </h2>
 
-            <p className="mt-6 max-w-lg text-[14px] leading-7 text-black/55 sm:text-[15px] sm:leading-8">
+            <p className="mt-6 max-w-lg text-[14px] leading-7 text-black/70 sm:text-[15px] sm:leading-8">
               Providing clear artwork and garment information helps us assess
               suitable decoration options for your project.
             </p>
@@ -324,14 +324,14 @@ export default function PrintingEmbroideryPage() {
                 key={item}
                 className="flex gap-4 border-b border-black/10 py-5 first:border-t"
               >
-                <FaCheckCircle className="mt-1 shrink-0 text-sm text-black/40" />
+                <FaCheckCircle className="mt-1 shrink-0 text-sm text-black/70" />
 
                 <div className="flex flex-1 items-start justify-between gap-4">
                   <span className="text-[13px] leading-6 text-black/65 sm:text-sm">
                     {item}
                   </span>
 
-                  <span className="shrink-0 text-[9px] tracking-[0.15em] text-black/30">
+                  <span className="shrink-0 text-[9px] tracking-[0.15em] text-black/70">
                     0{index + 1}
                   </span>
                 </div>
@@ -344,9 +344,9 @@ export default function PrintingEmbroideryPage() {
       {/* CTA — BLACK */}
       <section className="bg-[#090909] px-6 py-20 text-center text-white sm:py-24 md:px-12 md:py-32 lg:px-20">
         <div className="mx-auto max-w-[1000px]">
-          <FaImage className="mx-auto text-2xl text-white/45" />
+          <FaImage className="mx-auto text-2xl text-white/60" />
 
-          <p className="mt-6 text-[10px] font-bold uppercase tracking-[0.25em] text-white/40">
+          <p className="mt-6 text-[10px] font-bold uppercase tracking-[0.25em] text-white/60">
             Printing & embroidery enquiry
           </p>
 

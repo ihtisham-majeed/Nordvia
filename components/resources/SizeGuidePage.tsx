@@ -595,7 +595,7 @@ export default function SizeGuidePage() {
       <section className="bg-neutral-950 text-white">
         <div className="mx-auto flex max-w-[1500px] flex-col justify-between gap-10 px-6 py-20 md:px-12 md:py-28 lg:flex-row lg:items-end lg:px-20">
           <div className="max-w-2xl">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/40">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/60">
               Nordvia Exports / Custom Apparel
             </p>
             <h2 className="mt-6 text-4xl font-semibold leading-[1.05] tracking-[-0.05em] sm:text-6xl">
@@ -603,7 +603,7 @@ export default function SizeGuidePage() {
               <br />
               Your specifications.
             </h2>
-            <p className="mt-6 max-w-lg text-sm leading-7 text-white/50">
+            <p className="mt-6 max-w-lg text-sm leading-7 text-white/60">
               Have a specific fit or size requirement? Let's discuss the
               specifications for your next apparel collection.
             </p>

@@ -103,13 +103,13 @@ export default function PrivateLabelPage() {
       {/* HERO — BLACK */}
       <section className="grid min-h-[590px] bg-[#090909] text-white lg:grid-cols-[1.05fr_0.95fr]">
         <div className="flex flex-col justify-center px-6 py-24 md:px-12 lg:px-20 lg:py-32">
-          <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/45">
+          <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/60">
             Manufacturing / 02
           </p>
 
           <h1 className="max-w-2xl text-[clamp(2.8rem,6.2vw,5.8rem)] font-semibold uppercase leading-[0.96] tracking-[-0.06em]">
             Your brand.
-            <span className="block text-white/40">Your identity.</span>
+            <span className="block text-white/60">Your identity.</span>
             Your apparel.
           </h1>
 
@@ -141,7 +141,7 @@ export default function PrivateLabelPage() {
 
           <div className="relative w-full max-w-md">
             <div className="border border-white/20 bg-white/[0.04] p-7 md:p-10">
-              <p className="text-[9px] uppercase tracking-[0.25em] text-white/40">
+              <p className="text-[9px] uppercase tracking-[0.25em] text-white/60">
                 Brand development / N-02
               </p>
 
@@ -149,19 +149,19 @@ export default function PrivateLabelPage() {
                 <p className="text-[clamp(1.8rem,3.5vw,2.5rem)] font-semibold uppercase tracking-[0.16em]">
                   Your Label
                 </p>
-                <p className="mt-3 text-[9px] uppercase tracking-[0.3em] text-white/40">
+                <p className="mt-3 text-[9px] uppercase tracking-[0.3em] text-white/60">
                   Your identity goes here
                 </p>
               </div>
 
-              <div className="flex justify-between gap-4 text-[9px] uppercase tracking-[0.16em] text-white/45">
+              <div className="flex justify-between gap-4 text-[9px] uppercase tracking-[0.16em] text-white/60">
                 <span>Labels</span>
                 <span>Branding</span>
                 <span>Packaging</span>
               </div>
             </div>
 
-            <p className="mt-4 text-center text-[9px] uppercase tracking-[0.2em] text-white/35">
+            <p className="mt-4 text-center text-[9px] uppercase tracking-[0.2em] text-white/60">
               Illustrative branding concept
             </p>
           </div>
@@ -170,7 +170,7 @@ export default function PrivateLabelPage() {
 
       {/* BREADCRUMB — WHITE */}
       <div className="border-b border-black/10 bg-white px-6 py-4 md:px-12 lg:px-20">
-        <div className="mx-auto flex max-w-[1440px] flex-wrap items-center gap-3 text-[9px] uppercase tracking-[0.18em] text-black/45">
+        <div className="mx-auto flex max-w-[1440px] flex-wrap items-center gap-3 text-[9px] uppercase tracking-[0.18em] text-black/70">
           <Link href="/" className="transition hover:text-black">Home</Link>
           <span>/</span>
           <Link href="/manufacturing" className="transition hover:text-black">Manufacturing</Link>
@@ -182,7 +182,7 @@ export default function PrivateLabelPage() {
       {/* INTRODUCTION — WHITE */}
       <section className="mx-auto grid max-w-[1440px] gap-12 px-6 py-20 md:px-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24 lg:px-20 lg:py-28">
         <div>
-          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/45">
+          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/70">
             Private label development
           </p>
 
@@ -212,7 +212,7 @@ export default function PrivateLabelPage() {
         <div className="mx-auto max-w-[1440px]">
           <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
             <div>
-              <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
+              <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60">
                 Branding possibilities
               </p>
 
@@ -221,7 +221,7 @@ export default function PrivateLabelPage() {
               </h2>
             </div>
 
-            <p className="max-w-sm text-xs leading-6 text-white/50 md:text-sm">
+            <p className="max-w-sm text-xs leading-6 text-white/60 md:text-sm">
               Available options depend on garment construction, artwork,
               supplier capabilities and project quantities.
             </p>
@@ -234,10 +234,10 @@ export default function PrivateLabelPage() {
                 className="border-b border-r border-white/15 p-7 transition-colors duration-300 hover:bg-white/[0.04] md:p-9"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] tracking-[0.2em] text-white/35">
+                  <span className="text-[10px] tracking-[0.2em] text-white/60">
                     {item.number}
                   </span>
-                  <span className="text-[9px] uppercase tracking-[0.15em] text-white/30">
+                  <span className="text-[9px] uppercase tracking-[0.15em] text-white/60">
                     Branding option
                   </span>
                 </div>
@@ -256,7 +256,7 @@ export default function PrivateLabelPage() {
                       key={detail}
                       className="flex gap-3 text-[10px] uppercase tracking-[0.06em] text-white/65"
                     >
-                      <span className="text-white/35">↗</span>
+                      <span className="text-white/60">↗</span>
                       {detail}
                     </li>
                   ))}
@@ -270,7 +270,7 @@ export default function PrivateLabelPage() {
       {/* GARMENT APPLICATION — WHITE */}
       <section className="mx-auto grid max-w-[1440px] gap-12 px-6 py-20 md:px-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24 lg:px-20 lg:py-28">
         <div>
-          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/45">
+          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/70">
             Across apparel categories
           </p>
 
@@ -278,7 +278,7 @@ export default function PrivateLabelPage() {
             One brand identity. Different products.
           </h2>
 
-          <p className="mt-6 text-sm leading-7 text-black/55 md:text-base">
+          <p className="mt-6 text-sm leading-7 text-black/70 md:text-base">
             Branding requirements can be considered across different garment
             categories, with suitable placement and finishing determined
             for each product.
@@ -304,7 +304,7 @@ export default function PrivateLabelPage() {
       {/* WORKFLOW — BLACK */}
       <section className="bg-[#090909] px-6 py-20 text-white md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto max-w-[1440px]">
-          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
+          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60">
             Private label workflow
           </p>
 
@@ -318,7 +318,7 @@ export default function PrivateLabelPage() {
                 key={item.number}
                 className="bg-[#101010] p-6 transition-colors duration-300 hover:bg-[#191919] md:p-7"
               >
-                <span className="text-3xl font-light tracking-[-0.05em] text-white/35">
+                <span className="text-3xl font-light tracking-[-0.05em] text-white/60">
                   {item.number}
                 </span>
 
@@ -338,7 +338,7 @@ export default function PrivateLabelPage() {
       {/* WHAT TO PREPARE — WHITE */}
       <section className="mx-auto grid max-w-[1440px] gap-12 px-6 py-20 md:px-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24 lg:px-20 lg:py-28">
         <div>
-          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/45">
+          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/70">
             Prepare your enquiry
           </p>
 
@@ -346,7 +346,7 @@ export default function PrivateLabelPage() {
             What should you provide?
           </h2>
 
-          <p className="mt-6 text-sm leading-7 text-black/55 md:text-base">
+          <p className="mt-6 text-sm leading-7 text-black/70 md:text-base">
             A clear brand brief helps identify the right labeling,
             customization and packaging requirements for your project.
           </p>
@@ -390,7 +390,7 @@ export default function PrivateLabelPage() {
       <section className="bg-[#f3f3f1] px-6 py-20 text-black md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-10 md:flex-row md:items-end">
           <div>
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/45">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/70">
               Develop your private-label collection
             </p>
 
@@ -398,7 +398,7 @@ export default function PrivateLabelPage() {
               Your brand deserves its own identity.
             </h2>
 
-            <p className="mt-5 max-w-xl text-sm leading-7 text-black/55 md:text-base">
+            <p className="mt-5 max-w-xl text-sm leading-7 text-black/70 md:text-base">
               Tell us about your apparel, brand labels and customization
               requirements to begin a project discussion.
             </p>

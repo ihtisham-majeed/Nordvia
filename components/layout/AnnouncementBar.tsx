@@ -8,11 +8,11 @@ export default function AnnouncementBar() {
 
         <span>Custom Apparel Manufacturing</span>
 
-        <span className="text-white/30">/</span>
+        <span className="text-white/60">/</span>
 
         <span>Private Label Development</span>
 
-        <span className="text-white/30">/</span>
+        <span className="text-white/60">/</span>
 
         <span>Flexible MOQ</span>
 
@@ -25,7 +25,7 @@ export default function AnnouncementBar() {
           Flexible MOQ
         </span>
 
-        <span className="text-white/30">/</span>
+        <span className="text-white/60">/</span>
 
         <span className="whitespace-nowrap">
           Efficient Production

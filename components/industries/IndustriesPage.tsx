@@ -39,7 +39,7 @@ export default function IndustriesPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#090909] via-[#090909]/30 to-transparent" />
 
         <div className="relative mx-auto w-full max-w-[1440px] px-5 pb-20 pt-36 sm:px-8 sm:pb-28 md:px-12 lg:px-20 lg:pb-36">
-          <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/45 sm:text-xs sm:tracking-[0.35em]">
+          <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/60 sm:text-xs sm:tracking-[0.35em]">
             NORDVIA EXPORTS / INDUSTRIES
           </p>
 
@@ -76,7 +76,7 @@ export default function IndustriesPage() {
       <section className="bg-white px-5 py-20 sm:px-8 sm:py-24 md:px-12 lg:px-20 lg:py-32">
         <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-2 lg:gap-24">
           <div>
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/45 sm:text-xs sm:tracking-[0.3em]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/70 sm:text-xs sm:tracking-[0.3em]">
               Who We Work With
             </p>
 
@@ -85,7 +85,7 @@ export default function IndustriesPage() {
               <br />
               Different Needs.
               <br />
-              <span className="text-black/35">One Approach.</span>
+              <span className="text-black/70">One Approach.</span>
             </h2>
           </div>
 
@@ -97,7 +97,7 @@ export default function IndustriesPage() {
               functional construction.
             </p>
 
-            <p className="mt-5 text-sm leading-7 text-black/50 sm:mt-6 sm:text-base sm:leading-8">
+            <p className="mt-5 text-sm leading-7 text-black/70 sm:mt-6 sm:text-base sm:leading-8">
               NORDVIA EXPORTS works with manufacturing partners to coordinate
               product specifications and customization according to each
               project&apos;s requirements.
@@ -110,12 +110,12 @@ export default function IndustriesPage() {
       <section className="border-y border-white/10 bg-[#101010] px-5 py-20 text-white sm:px-8 sm:py-24 md:px-12 lg:px-20 lg:py-32">
         <div className="mx-auto max-w-[1440px]">
           <div className="mb-12 sm:mb-16">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/40 sm:text-xs sm:tracking-[0.3em]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/60 sm:text-xs sm:tracking-[0.3em]">
               Explore Industries
             </p>
 
             <h2 className="text-[clamp(2.2rem,5vw,4.25rem)] font-medium uppercase leading-[1.02] tracking-[-0.055em]">
-              Who We Support<span className="text-white/35">.</span>
+              Who We Support<span className="text-white/60">.</span>
             </h2>
           </div>
 
@@ -127,11 +127,11 @@ export default function IndustriesPage() {
                 className="group flex min-h-[290px] flex-col justify-between bg-[#101010] p-6 transition duration-300 hover:bg-[#1b1b1b] sm:min-h-[320px] sm:p-8 lg:p-10"
               >
                 <div className="flex items-start justify-between">
-                  <span className="text-[10px] font-medium tracking-[0.2em] text-white/35 sm:text-xs">
+                  <span className="text-[10px] font-medium tracking-[0.2em] text-white/60 sm:text-xs">
                     {industry.number} / 04
                   </span>
 
-                  <span className="text-xl text-white/40 transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-white">
+                  <span className="text-xl text-white/60 transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-white">
                     ↗
                   </span>
                 </div>
@@ -141,7 +141,7 @@ export default function IndustriesPage() {
                     {industry.title}
                   </h3>
 
-                  <p className="mt-4 max-w-lg text-[13px] leading-7 text-white/50 sm:text-sm">
+                  <p className="mt-4 max-w-lg text-[13px] leading-7 text-white/60 sm:text-sm">
                     {industry.description}
                   </p>
 
@@ -159,7 +159,7 @@ export default function IndustriesPage() {
       <section className="bg-white px-5 py-20 sm:px-8 sm:py-24 md:px-12 lg:px-20 lg:py-32">
         <div className="mx-auto max-w-[1440px]">
           <div className="mb-12 sm:mb-16">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/45 sm:text-xs sm:tracking-[0.3em]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/70 sm:text-xs sm:tracking-[0.3em]">
               Our Approach
             </p>
 
@@ -176,7 +176,7 @@ export default function IndustriesPage() {
                 key={item.number}
                 className="border-t border-black/20 pt-5 sm:pt-6"
               >
-                <span className="text-[10px] font-medium tracking-[0.2em] text-black/40 sm:text-xs">
+                <span className="text-[10px] font-medium tracking-[0.2em] text-black/70 sm:text-xs">
                   {item.number}
                 </span>
 
@@ -184,7 +184,7 @@ export default function IndustriesPage() {
                   {item.title}
                 </h3>
 
-                <p className="mt-4 text-[13px] leading-7 text-black/55 sm:text-sm">
+                <p className="mt-4 text-[13px] leading-7 text-black/70 sm:text-sm">
                   {item.description}
                 </p>
               </article>
@@ -196,7 +196,7 @@ export default function IndustriesPage() {
       {/* CTA — BLACK */}
       <section className="border-t border-white/10 bg-[#090909] px-5 py-24 text-center text-white sm:px-8 sm:py-28 md:px-12 lg:px-20 lg:py-36">
         <div className="mx-auto max-w-[1440px]">
-          <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/40 sm:text-xs sm:tracking-[0.3em]">
+          <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/60 sm:text-xs sm:tracking-[0.3em]">
             Your Next Collection
           </p>
 
@@ -206,7 +206,7 @@ export default function IndustriesPage() {
             Something Together.
           </h2>
 
-          <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-white/50 sm:mt-7 sm:text-base sm:leading-8">
+          <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-white/60 sm:mt-7 sm:text-base sm:leading-8">
             Tell us about your business, apparel category and project
             requirements. We&apos;ll discuss the available options.
           </p>

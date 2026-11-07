@@ -133,14 +133,14 @@ export default function HowItWorks() {
           <div className="hiw-reveal">
             <div className="mb-6 flex items-center gap-3">
               <span className="h-px w-9 bg-white/70" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/45 sm:text-xs">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/60 sm:text-xs">
                 How We Work
               </span>
             </div>
 
             <h2 className="max-w-3xl text-[clamp(2.8rem,6vw,6rem)] font-semibold leading-[0.94] tracking-[-0.065em]">
               From First
-              <span className="block text-white/35">
+              <span className="block text-white/60">
                 Conversation.
               </span>
               <span className="block">To Final Delivery.</span>
@@ -157,7 +157,7 @@ export default function HowItWorks() {
 
             <Link
               href="/request-a-quote"
-              className="group mt-7 inline-flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:text-white/50"
+              className="group mt-7 inline-flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:text-white/60"
             >
               Start a Conversation
               <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -167,11 +167,11 @@ export default function HowItWorks() {
 
         {/* Process label */}
         <div className="hiw-reveal mb-6 flex items-center justify-between border-b border-white/15 pb-5">
-          <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/60">
             The Process
           </span>
 
-          <span className="text-[10px] uppercase tracking-[0.18em] text-white/30">
+          <span className="text-[10px] uppercase tracking-[0.18em] text-white/60">
             05 Steps / One Journey
           </span>
         </div>
@@ -196,11 +196,11 @@ export default function HowItWorks() {
               >
                 {/* Card top */}
                 <div className="flex items-start justify-between">
-                  <span className="text-xs font-medium tracking-[0.16em] text-white/35">
+                  <span className="text-xs font-medium tracking-[0.16em] text-white/60">
                     / {step.number}
                   </span>
 
-                  <Icon className="text-xl text-white/40 transition-all duration-500 group-hover:scale-110 group-hover:text-white" />
+                  <Icon className="text-xl text-white/60 transition-all duration-500 group-hover:scale-110 group-hover:text-white" />
                 </div>
 
                 {/* Large number */}
@@ -218,7 +218,7 @@ export default function HowItWorks() {
 
                 {/* Card content */}
                 <div className="mt-auto pt-8">
-                  <p className="mb-3 text-[9px] font-semibold uppercase tracking-[0.2em] text-white/35">
+                  <p className="mb-3 text-[9px] font-semibold uppercase tracking-[0.2em] text-white/60">
                     {step.label}
                   </p>
 
@@ -226,14 +226,14 @@ export default function HowItWorks() {
                     {step.title}
                   </h3>
 
-                  <p className="mt-4 text-xs leading-6 text-white/45 sm:text-sm">
+                  <p className="mt-4 text-xs leading-6 text-white/60 sm:text-sm">
                     {step.description}
                   </p>
                 </div>
 
                 {/* Bottom detail */}
                 <div className="mt-7 flex items-center justify-between border-t border-white/10 pt-5">
-                  <span className="text-[9px] uppercase tracking-[0.12em] text-white/35">
+                  <span className="text-[9px] uppercase tracking-[0.12em] text-white/60">
                     {step.details}
                   </span>
 
@@ -251,7 +251,7 @@ export default function HowItWorks() {
         <div className="hiw-reveal mt-16 flex flex-col gap-7 border-t border-white/10 pt-9 sm:flex-row sm:items-center sm:justify-between lg:mt-20">
 
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/40">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/60">
               Your Next Collection Starts Here
             </p>
 
@@ -277,11 +277,11 @@ export default function HowItWorks() {
 
         {/* Footer label */}
         <div className="mt-12 flex justify-between border-t border-white/[0.06] pt-6">
-          <span className="text-[9px] uppercase tracking-[0.2em] text-white/25">
+          <span className="text-[9px] uppercase tracking-[0.2em] text-white/60">
             NORDVIA EXPORTS
           </span>
 
-          <span className="text-[9px] uppercase tracking-[0.2em] text-white/25">
+          <span className="text-[9px] uppercase tracking-[0.2em] text-white/60">
             BUILT AROUND YOUR VISION
           </span>
         </div>

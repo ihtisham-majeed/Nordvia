@@ -407,12 +407,12 @@ export default function TermsPage() {
       <main className="min-h-screen bg-[#090909] text-white">
       <section className="border-b border-white/10 px-5 pb-16 pt-36 sm:px-8 lg:px-12 lg:pb-24 lg:pt-44">
         <div className="mx-auto max-w-7xl">
-          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-white/45">
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
             Legal / Website Terms
           </p>
 
           <h1 className="max-w-4xl text-4xl font-semibold tracking-[-0.055em] sm:text-6xl lg:text-7xl">
-            Terms & <span className="text-white/40">Conditions.</span>
+            Terms & <span className="text-white/60">Conditions.</span>
           </h1>
 
           <p className="mt-7 max-w-2xl text-sm leading-7 text-white/55 sm:text-base">
@@ -421,7 +421,7 @@ export default function TermsPage() {
             arrangements.
           </p>
 
-          <p className="mt-8 text-xs uppercase tracking-[0.18em] text-white/35">
+          <p className="mt-8 text-xs uppercase tracking-[0.18em] text-white/60">
             Last updated: November 4, 2026
           </p>
         </div>
@@ -430,7 +430,7 @@ export default function TermsPage() {
       <section className="px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[240px_1fr] lg:gap-24">
           <aside className="h-fit lg:sticky lg:top-32">
-            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.22em] text-white/40">
+            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.22em] text-white/60">
               On this page
             </p>
             <nav className="flex flex-wrap gap-x-5 gap-y-3 lg:flex-col">
@@ -438,7 +438,7 @@ export default function TermsPage() {
                 <a
                   key={section.title}
                   href={`#terms-${index + 1}`}
-                  className="text-xs text-white/45 transition-colors hover:text-white"
+                  className="text-xs text-white/60 transition-colors hover:text-white"
                 >
                   {section.title}
                 </a>
@@ -465,7 +465,7 @@ export default function TermsPage() {
             </div>
 
             <div className="mt-14 border border-white/10 bg-white/[0.03] p-6 sm:p-8">
-              <p className="text-xs uppercase tracking-[0.22em] text-white/40">
+              <p className="text-xs uppercase tracking-[0.22em] text-white/60">
                 Business enquiries
               </p>
               <p className="mt-4 text-lg font-medium">

@@ -68,13 +68,13 @@ export default function OEMODMPage() {
       {/* HERO — BLACK */}
       <section className="grid min-h-[570px] bg-[#090909] text-white lg:min-h-[660px] lg:grid-cols-[1.05fr_0.95fr]">
         <div className="flex flex-col justify-center px-6 py-24 sm:px-10 md:px-12 lg:px-20 lg:py-32">
-          <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/45 sm:text-[11px]">
+          <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60 sm:text-[11px]">
             Manufacturing / 03
           </p>
 
           <h1 className="max-w-2xl text-[clamp(2.8rem,6.5vw,5.8rem)] font-semibold uppercase leading-[0.96] tracking-[-0.06em]">
             OEM & ODM.
-            <span className="block text-white/40">Two routes.</span>
+            <span className="block text-white/60">Two routes.</span>
             One clear brief.
           </h1>
 
@@ -97,7 +97,7 @@ export default function OEMODMPage() {
 
           <div className="relative grid w-full max-w-md grid-cols-2 gap-3">
             <div className="border border-white/20 bg-black/20 p-5 sm:p-6 md:p-8">
-              <span className="text-[9px] font-medium tracking-[0.2em] text-white/40 sm:text-[10px]">
+              <span className="text-[9px] font-medium tracking-[0.2em] text-white/60 sm:text-[10px]">
                 01 / OEM
               </span>
 
@@ -109,7 +109,7 @@ export default function OEMODMPage() {
             </div>
 
             <div className="mt-12 border border-white/20 bg-white p-5 text-black sm:p-6 md:p-8">
-              <span className="text-[9px] font-medium tracking-[0.2em] text-black/45 sm:text-[10px]">
+              <span className="text-[9px] font-medium tracking-[0.2em] text-black/70 sm:text-[10px]">
                 02 / ODM
               </span>
 
@@ -125,7 +125,7 @@ export default function OEMODMPage() {
 
       {/* BREADCRUMB — WHITE */}
       <div className="border-b border-black/10 bg-white px-6 py-4 text-black sm:px-10 md:px-12 lg:px-20">
-        <div className="mx-auto flex max-w-[1440px] flex-wrap items-center gap-3 text-[9px] font-medium uppercase tracking-[0.16em] text-black/45 sm:text-[10px]">
+        <div className="mx-auto flex max-w-[1440px] flex-wrap items-center gap-3 text-[9px] font-medium uppercase tracking-[0.16em] text-black/70 sm:text-[10px]">
           <Link href="/" className="transition hover:text-black">
             Home
           </Link>
@@ -142,7 +142,7 @@ export default function OEMODMPage() {
       <section className="bg-[#101010] px-6 py-20 text-white sm:px-10 md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-2 lg:gap-24">
           <div>
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/40 sm:text-[11px]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/60 sm:text-[11px]">
               Two development approaches
             </p>
 
@@ -165,7 +165,7 @@ export default function OEMODMPage() {
       <section className="bg-white px-6 py-20 text-[#111111] sm:px-10 md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto max-w-[1440px]">
           <div className="mb-10">
-            <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/45 sm:text-[11px]">
+            <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/70 sm:text-[11px]">
               Compare the approaches
             </p>
 
@@ -215,7 +215,7 @@ export default function OEMODMPage() {
             </table>
           </div>
 
-          <p className="mt-5 text-[11px] leading-6 text-black/45 sm:text-xs">
+          <p className="mt-5 text-[11px] leading-6 text-black/70 sm:text-xs">
             The exact scope of OEM or ODM support is agreed individually.
             Design ownership, tooling, development responsibilities and
             commercial terms should be confirmed in writing for each project.
@@ -227,7 +227,7 @@ export default function OEMODMPage() {
       <section className="bg-[#090909] px-6 py-20 text-white sm:px-10 md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
           <div>
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/40 sm:text-[11px]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/60 sm:text-[11px]">
               Prepare your brief
             </p>
 
@@ -264,7 +264,7 @@ export default function OEMODMPage() {
       {/* PROJECT WORKFLOW — WHITE */}
       <section className="bg-[#f3f3f1] px-6 py-20 text-[#111111] sm:px-10 md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto max-w-[1440px]">
-          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/45 sm:text-[11px]">
+          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/70 sm:text-[11px]">
             Project process
           </p>
 
@@ -278,7 +278,7 @@ export default function OEMODMPage() {
                 key={number}
                 className="min-h-[230px] bg-white p-6 transition duration-300 hover:bg-[#e9e9e6] sm:p-7"
               >
-                <span className="text-[clamp(1.8rem,3vw,2.5rem)] font-light tracking-[-0.05em] text-black/30">
+                <span className="text-[clamp(1.8rem,3vw,2.5rem)] font-light tracking-[-0.05em] text-black/70">
                   {number}
                 </span>
 
@@ -286,7 +286,7 @@ export default function OEMODMPage() {
                   {title}
                 </h3>
 
-                <p className="mt-3 text-[13px] leading-7 text-black/55">
+                <p className="mt-3 text-[13px] leading-7 text-black/70">
                   {detail}
                 </p>
               </article>
@@ -299,7 +299,7 @@ export default function OEMODMPage() {
       <section className="bg-[#101010] px-6 py-20 text-white sm:px-10 md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-10 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/40 sm:text-[11px]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/60 sm:text-[11px]">
               OEM & ODM enquiries
             </p>
 
@@ -307,7 +307,7 @@ export default function OEMODMPage() {
               Bring your next product into focus.
             </h2>
 
-            <p className="mt-5 max-w-xl text-[14px] leading-7 text-white/50 sm:text-[15px] sm:leading-8">
+            <p className="mt-5 max-w-xl text-[14px] leading-7 text-white/60 sm:text-[15px] sm:leading-8">
               Share your design, technical pack or early-stage concept to
               begin a project discussion.
             </p>

@@ -201,7 +201,7 @@ export default function ProductsPage() {
               <br />
               For Your
               <br />
-              <span className="text-white/40">Next Collection.</span>
+              <span className="text-white/60">Next Collection.</span>
             </h1>
 
             <p className="products-hero-content mt-8 max-w-xl text-[14px] leading-7 text-white/65 sm:text-[16px] sm:leading-8">
@@ -228,7 +228,7 @@ export default function ProductsPage() {
             </div>
           </div>
 
-          <div className="products-hero-content mt-20 flex flex-wrap items-center justify-between gap-5 border-t border-white/20 pt-6 text-[9px] font-medium uppercase tracking-[0.18em] text-white/45 sm:text-[10px] sm:tracking-[0.2em]">
+          <div className="products-hero-content mt-20 flex flex-wrap items-center justify-between gap-5 border-t border-white/20 pt-6 text-[9px] font-medium uppercase tracking-[0.18em] text-white/60 sm:text-[10px] sm:tracking-[0.2em]">
             {products.map((product) => (
               <span key={product.slug}>{product.shortName}</span>
             ))}
@@ -240,14 +240,14 @@ export default function ProductsPage() {
       <section className="bg-white px-5 py-20 text-[#111111] sm:px-8 sm:py-28 lg:px-16">
         <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div className="products-reveal">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/45">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/70">
               01 / Explore Our Range
             </p>
 
             <h2 className="text-[clamp(2.6rem,5.5vw,4.8rem)] font-semibold uppercase leading-[0.98] tracking-[-0.055em]">
               Find the right
               <br />
-              <span className="text-black/30">starting point.</span>
+              <span className="text-black/70">starting point.</span>
             </h2>
           </div>
 
@@ -270,18 +270,18 @@ export default function ProductsPage() {
         <div className="mx-auto max-w-[1440px]">
           <div className="products-reveal mb-10 flex flex-col justify-between gap-5 sm:mb-12 sm:flex-row sm:items-end">
             <div>
-              <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
+              <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60">
                 02 / Product Range
               </p>
 
               <h2 className="text-[clamp(2.4rem,4.5vw,4rem)] font-semibold uppercase leading-[1] tracking-[-0.055em]">
                 Explore the
                 <br />
-                <span className="text-white/35">categories.</span>
+                <span className="text-white/60">categories.</span>
               </h2>
             </div>
 
-            <p className="max-w-md text-[13px] leading-7 text-white/50 sm:text-[14px]">
+            <p className="max-w-md text-[13px] leading-7 text-white/60 sm:text-[14px]">
               Explore apparel categories and discover styles that could
               become part of your next collection.
             </p>
@@ -324,7 +324,7 @@ export default function ProductsPage() {
 
                 {/* PRODUCT INFORMATION */}
                 <div className="p-5 sm:p-5 lg:p-6">
-                  <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/40">
+                  <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/60">
                     {product.eyebrow}
                   </p>
 
@@ -332,7 +332,7 @@ export default function ProductsPage() {
                     {product.name}
                   </h3>
 
-                  <p className="mt-2 text-[12px] leading-6 text-white/50 sm:text-[13px]">
+                  <p className="mt-2 text-[12px] leading-6 text-white/60 sm:text-[13px]">
                     {product.description}
                   </p>
 
@@ -362,7 +362,7 @@ export default function ProductsPage() {
             ))}
           </div>
 
-          <p className="mt-7 text-[14px] leading-6 text-white/35">
+          <p className="mt-7 text-[14px] leading-6 text-white/60">
             Product imagery is illustrative and represents design concepts.
             Final products, materials, and specifications are subject to
             development and manufacturing confirmation.
@@ -379,14 +379,14 @@ export default function ProductsPage() {
         <div className="mx-auto max-w-[1440px]">
           <div className="products-reveal mb-14 grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-end">
             <div>
-              <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/45">
+              <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/70">
                 03 / Make It Your Own
               </p>
 
               <h2 className="text-[clamp(2.6rem,5.5vw,4.8rem)] font-semibold uppercase leading-[0.98] tracking-[-0.055em]">
                 Your product.
                 <br />
-                <span className="text-black/30">Your identity.</span>
+                <span className="text-black/70">Your identity.</span>
               </h2>
             </div>
 
@@ -406,7 +406,7 @@ export default function ProductsPage() {
                   key={item.title}
                   className="customization-card border border-black/10 bg-white p-7 transition-colors duration-300 hover:border-black/30 sm:p-8"
                 >
-                  <span className="text-[10px] tracking-[0.2em] text-black/35">
+                  <span className="text-[10px] tracking-[0.2em] text-black/70">
                     0{index + 1}
                   </span>
 
@@ -416,7 +416,7 @@ export default function ProductsPage() {
                     {item.title}
                   </h3>
 
-                  <p className="mt-4 text-[13px] leading-7 text-black/55 sm:text-[14px]">
+                  <p className="mt-4 text-[13px] leading-7 text-black/70 sm:text-[14px]">
                     {item.description}
                   </p>
                 </article>
@@ -426,7 +426,7 @@ export default function ProductsPage() {
 
           <div className="products-reveal mt-8 flex flex-col justify-between gap-5 border border-black/10 bg-white p-6 sm:flex-row sm:items-center sm:p-8">
             <div>
-              <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-black/40">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-black/70">
                 Your Brand Identity
               </p>
 
@@ -434,7 +434,7 @@ export default function ProductsPage() {
                 Private Label & Custom Branding
               </h3>
 
-              <p className="mt-2 max-w-xl text-[14px] leading-6 text-black/55">
+              <p className="mt-2 max-w-xl text-[14px] leading-6 text-black/70">
                 Discuss woven labels, neck labels, embroidery, printed
                 branding, custom trims, and packaging possibilities.
               </p>
@@ -449,7 +449,7 @@ export default function ProductsPage() {
             </Link>
           </div>
 
-          <p className="mt-6 text-[10px] leading-6 text-black/40">
+          <p className="mt-6 text-[10px] leading-6 text-black/70">
             Customization options depend on the selected product, materials,
             specifications, order quantity, and manufacturing feasibility.
           </p>
@@ -460,17 +460,17 @@ export default function ProductsPage() {
       <section className="bg-[#090909] px-5 py-20 text-white sm:px-8 sm:py-28 lg:px-16">
         <div className="mx-auto max-w-[1440px]">
           <div className="products-reveal mb-14 max-w-2xl">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60">
               04 / Start Your Project
             </p>
 
             <h2 className="text-[clamp(2.6rem,5.5vw,4.8rem)] font-semibold uppercase leading-[0.98] tracking-[-0.055em]">
               From product idea
               <br />
-              <span className="text-white/35">to inquiry.</span>
+              <span className="text-white/60">to inquiry.</span>
             </h2>
 
-            <p className="mt-6 text-[14px] leading-7 text-white/50 sm:text-[16px]">
+            <p className="mt-6 text-[14px] leading-7 text-white/60 sm:text-[16px]">
               A clear starting brief helps us understand your requirements
               and discuss the next steps.
             </p>
@@ -482,7 +482,7 @@ export default function ProductsPage() {
                 key={step.number}
                 className="product-step border border-white/10 p-7 transition-colors duration-300 hover:border-white/35 sm:p-8"
               >
-                <span className="text-[11px] tracking-[0.2em] text-white/35">
+                <span className="text-[11px] tracking-[0.2em] text-white/60">
                   {step.number}
                 </span>
 
@@ -492,14 +492,14 @@ export default function ProductsPage() {
                   {step.title}
                 </h3>
 
-                <p className="mt-4 text-[13px] leading-7 text-white/45 sm:text-[14px]">
+                <p className="mt-4 text-[13px] leading-7 text-white/60 sm:text-[14px]">
                   {step.description}
                 </p>
               </article>
             ))}
           </div>
 
-          <div className="products-reveal mt-10 flex flex-wrap items-center gap-3 text-[10px] uppercase tracking-[0.12em] text-white/40 sm:text-[11px]">
+          <div className="products-reveal mt-10 flex flex-wrap items-center gap-3 text-[10px] uppercase tracking-[0.12em] text-white/60 sm:text-[11px]">
             <FaCheck className="shrink-0 text-white/60" />
             <span>
               Tech packs, reference images, and initial product descriptions
@@ -514,17 +514,17 @@ export default function ProductsPage() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#F0F0F0] via-white to-white" />
 
         <div className="products-reveal relative z-10 mx-auto max-w-4xl text-center">
-          <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/40">
+          <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/70">
             Let&apos;s Discuss Your Requirements
           </p>
 
           <h2 className="text-[clamp(2.7rem,6vw,5.5rem)] font-semibold uppercase leading-[0.98] tracking-[-0.06em]">
             Ready to develop
             <br />
-            <span className="text-black/30">your collection?</span>
+            <span className="text-black/70">your collection?</span>
           </h2>
 
-          <p className="mx-auto mt-7 max-w-xl text-[14px] leading-7 text-black/55 sm:text-[16px] sm:leading-8">
+          <p className="mx-auto mt-7 max-w-xl text-[14px] leading-7 text-black/70 sm:text-[16px] sm:leading-8">
             Tell us what you want to make. Share your product category,
             specifications, and project requirements to begin the
             conversation.

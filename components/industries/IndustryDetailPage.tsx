@@ -26,7 +26,7 @@ export default function IndustryDetailPage({ industry }: Props) {
         <div className="relative mx-auto max-w-[1440px] px-5 pb-20 pt-28 sm:px-8 sm:pb-24 sm:pt-32 md:px-12 lg:px-20 lg:pb-32 lg:pt-36">
 
           {/* BREADCRUMB */}
-          <div className="mb-12 flex flex-wrap items-center gap-2 text-[9px] uppercase tracking-[0.18em] text-white/40 sm:mb-14 sm:gap-3 sm:text-[10px] sm:tracking-[0.2em]">
+          <div className="mb-12 flex flex-wrap items-center gap-2 text-[9px] uppercase tracking-[0.18em] text-white/60 sm:mb-14 sm:gap-3 sm:text-[10px] sm:tracking-[0.2em]">
             <Link href="/" className="transition hover:text-white">
               Home
             </Link>
@@ -38,13 +38,13 @@ export default function IndustryDetailPage({ industry }: Props) {
             <span className="text-white/70">{industry.shortTitle}</span>
           </div>
 
-          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/40 sm:mb-6 sm:text-xs sm:tracking-[0.3em]">
+          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/60 sm:mb-6 sm:text-xs sm:tracking-[0.3em]">
             Industry / {industry.number}
           </p>
 
           <h1 className="max-w-5xl text-[clamp(2.8rem,7vw,6rem)] font-semibold uppercase leading-[0.95] tracking-[-0.06em]">
             {industry.title}
-            <span className="text-white/35">.</span>
+            <span className="text-white/60">.</span>
           </h1>
 
           <p className="mt-7 max-w-2xl text-sm leading-7 text-white/55 sm:mt-9 sm:text-base sm:leading-8 md:text-lg">
@@ -71,7 +71,7 @@ export default function IndustryDetailPage({ industry }: Props) {
         <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-2 lg:gap-24">
 
           <div>
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/45 sm:text-xs sm:tracking-[0.3em]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/70 sm:text-xs sm:tracking-[0.3em]">
               Understanding Your Business
             </p>
 
@@ -80,7 +80,7 @@ export default function IndustryDetailPage({ industry }: Props) {
               <br />
               Fits Your
               <br />
-              <span className="text-black/35">Direction.</span>
+              <span className="text-black/70">Direction.</span>
             </h2>
           </div>
 
@@ -95,7 +95,7 @@ export default function IndustryDetailPage({ industry }: Props) {
         <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-2 lg:gap-24">
 
           <div>
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/40 sm:text-xs sm:tracking-[0.3em]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/60 sm:text-xs sm:tracking-[0.3em]">
               Project Requirements
             </p>
 
@@ -104,14 +104,14 @@ export default function IndustryDetailPage({ industry }: Props) {
               <br />
               To Your
               <br className="hidden sm:block" />
-              Business<span className="text-white/35">.</span>
+              Business<span className="text-white/60">.</span>
             </h2>
           </div>
 
           <div className="divide-y divide-white/10">
             {industry.requirements.map((item, index) => (
               <div key={item} className="flex gap-5 py-5 sm:gap-6 sm:py-6">
-                <span className="shrink-0 pt-0.5 text-[10px] tracking-[0.15em] text-white/35 sm:text-xs">
+                <span className="shrink-0 pt-0.5 text-[10px] tracking-[0.15em] text-white/60 sm:text-xs">
                   {String(index + 1).padStart(2, "0")}
                 </span>
 
@@ -129,12 +129,12 @@ export default function IndustryDetailPage({ industry }: Props) {
         <div className="mx-auto max-w-[1440px]">
 
           <div className="mb-10 sm:mb-14">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/45 sm:text-xs sm:tracking-[0.3em]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/70 sm:text-xs sm:tracking-[0.3em]">
               Relevant Product Categories
             </p>
 
             <h2 className="text-[clamp(2.2rem,5vw,4.1rem)] font-medium uppercase leading-[1.03] tracking-[-0.055em]">
-              Products To Explore<span className="text-black/35">.</span>
+              Products To Explore<span className="text-black/70">.</span>
             </h2>
           </div>
 
@@ -144,7 +144,7 @@ export default function IndustryDetailPage({ industry }: Props) {
                 key={product}
                 className="min-h-[145px] bg-white p-6 transition duration-300 hover:bg-[#f5f5f5] sm:p-8 lg:p-9"
               >
-                <span className="text-[10px] font-medium tracking-[0.2em] text-black/40 sm:text-xs">
+                <span className="text-[10px] font-medium tracking-[0.2em] text-black/70 sm:text-xs">
                   {String(index + 1).padStart(2, "0")}
                 </span>
 
@@ -157,7 +157,7 @@ export default function IndustryDetailPage({ industry }: Props) {
 
           <Link
             href="/products"
-            className="group mt-8 inline-flex items-center gap-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/55 transition hover:text-black sm:mt-9 sm:text-xs sm:tracking-[0.2em]"
+            className="group mt-8 inline-flex items-center gap-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/70 transition hover:text-black sm:mt-9 sm:text-xs sm:tracking-[0.2em]"
           >
             Explore All Products
             <span className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
@@ -172,12 +172,12 @@ export default function IndustryDetailPage({ industry }: Props) {
         <div className="mx-auto max-w-[1440px]">
 
           <div className="mb-10 sm:mb-14">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/40 sm:text-xs sm:tracking-[0.3em]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/60 sm:text-xs sm:tracking-[0.3em]">
               Working Together
             </p>
 
             <h2 className="text-[clamp(2.2rem,5vw,4.1rem)] font-medium uppercase leading-[1.03] tracking-[-0.055em]">
-              Our Approach<span className="text-white/35">.</span>
+              Our Approach<span className="text-white/60">.</span>
             </h2>
           </div>
 
@@ -187,7 +187,7 @@ export default function IndustryDetailPage({ industry }: Props) {
                 key={step}
                 className="bg-[#101010] p-6 transition duration-300 hover:bg-[#1a1a1a] sm:p-8 lg:p-9"
               >
-                <span className="text-[10px] font-medium tracking-[0.2em] text-white/35 sm:text-xs">
+                <span className="text-[10px] font-medium tracking-[0.2em] text-white/60 sm:text-xs">
                   STEP {String(index + 1).padStart(2, "0")}
                 </span>
 
@@ -204,17 +204,17 @@ export default function IndustryDetailPage({ industry }: Props) {
       <section className="bg-white px-5 py-24 text-center sm:px-8 sm:py-28 md:px-12 lg:px-20 lg:py-36">
         <div className="mx-auto max-w-[1440px]">
 
-          <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/40 sm:text-xs sm:tracking-[0.3em]">
+          <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/70 sm:text-xs sm:tracking-[0.3em]">
             Start Your Project
           </p>
 
           <h2 className="mx-auto max-w-4xl text-[clamp(2.4rem,5.5vw,4.75rem)] font-medium uppercase leading-[1.02] tracking-[-0.055em]">
             Let&apos;s Discuss
             <br />
-            Your Collection<span className="text-black/35">.</span>
+            Your Collection<span className="text-black/70">.</span>
           </h2>
 
-          <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-black/55 sm:mt-7 sm:text-base sm:leading-8">
+          <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-black/70 sm:mt-7 sm:text-base sm:leading-8">
             Share your business requirements and the apparel products you
             want to develop. We&apos;ll discuss the next steps.
           </p>
@@ -236,7 +236,7 @@ export default function IndustryDetailPage({ industry }: Props) {
           <div className="mt-16 border-t border-black/15 pt-8 sm:mt-20">
             <Link
               href={`/industries/${nextIndustry.slug}`}
-              className="group inline-flex flex-wrap items-center justify-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/50 transition hover:text-black sm:text-xs sm:tracking-[0.2em]"
+              className="group inline-flex flex-wrap items-center justify-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/70 transition hover:text-black sm:text-xs sm:tracking-[0.2em]"
             >
               Next Industry:
               <span className="text-black">{nextIndustry.shortTitle}</span>

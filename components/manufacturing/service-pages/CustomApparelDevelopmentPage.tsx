@@ -124,7 +124,7 @@ export default function CustomApparelDevelopmentPage() {
 
         <div className="relative mx-auto grid min-h-[620px] max-w-[1600px] items-end gap-12 px-5 pb-20 pt-36 sm:px-8 sm:pb-24 lg:grid-cols-[1.2fr_0.8fr] lg:px-16 lg:pb-28">
           <div className="max-w-3xl">
-            <p className="mb-7 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/50">
+            <p className="mb-7 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60">
               <span className="h-px w-8 bg-white/50" />
               Manufacturing / Custom Apparel Development
             </p>
@@ -134,7 +134,7 @@ export default function CustomApparelDevelopmentPage() {
               <br />
               Around Your
               <br />
-              <span className="text-white/40">Vision.</span>
+              <span className="text-white/60">Vision.</span>
             </h1>
 
             <p className="mt-8 max-w-xl text-[14px] leading-7 text-white/65 sm:text-[16px] sm:leading-8">
@@ -162,7 +162,7 @@ export default function CustomApparelDevelopmentPage() {
           </div>
 
           <div className="border border-white/15 bg-white/[0.02] p-7 sm:p-9">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/40">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/60">
               Development Considerations
             </p>
 
@@ -174,7 +174,7 @@ export default function CustomApparelDevelopmentPage() {
                 ["04", "Branding & Finishing"],
               ].map(([number, label]) => (
                 <div key={number} className="flex items-center gap-5">
-                  <span className="text-[10px] text-white/35">{number}</span>
+                  <span className="text-[10px] text-white/60">{number}</span>
                   <span className="text-[13px] font-medium text-white/85 sm:text-[14px]">
                     {label}
                   </span>
@@ -189,7 +189,7 @@ export default function CustomApparelDevelopmentPage() {
       <section className="bg-white px-5 py-20 text-[#171717] sm:px-8 sm:py-28 lg:px-16">
         <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-black/40">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-black/70">
               Custom Product Direction
             </p>
 
@@ -198,7 +198,7 @@ export default function CustomApparelDevelopmentPage() {
               <br />
               Choosing A Garment.
               <br />
-              <span className="text-black/30">Defining Its Details.</span>
+              <span className="text-black/70">Defining Its Details.</span>
             </h2>
           </div>
 
@@ -210,7 +210,7 @@ export default function CustomApparelDevelopmentPage() {
               branding elements.
             </p>
 
-            <p className="mt-6 text-[14px] leading-8 text-black/50 sm:text-[15px]">
+            <p className="mt-6 text-[14px] leading-8 text-black/70 sm:text-[15px]">
               Whether you are developing a new clothing line or refining an
               existing product, NORDVIA EXPORTS coordinates with manufacturing
               partners to assess the requirements and identify a suitable
@@ -227,7 +227,7 @@ export default function CustomApparelDevelopmentPage() {
       >
         <div className="mx-auto max-w-[1440px]">
           <div className="max-w-2xl">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60">
               Product Categories
             </p>
 
@@ -237,7 +237,7 @@ export default function CustomApparelDevelopmentPage() {
               Apparel Categories.
             </h2>
 
-            <p className="mt-6 text-[13px] leading-7 text-white/50 sm:text-[14px]">
+            <p className="mt-6 text-[13px] leading-7 text-white/60 sm:text-[14px]">
               Share your preferred category or discuss a product concept
               that requires a more specific development brief.
             </p>
@@ -251,7 +251,7 @@ export default function CustomApparelDevelopmentPage() {
               >
                 <div className="flex items-center justify-between">
                   <FaTshirt className="text-xl text-white/55" />
-                  <span className="text-[10px] tracking-[0.2em] text-white/35">
+                  <span className="text-[10px] tracking-[0.2em] text-white/60">
                     {item.number}
                   </span>
                 </div>
@@ -260,7 +260,7 @@ export default function CustomApparelDevelopmentPage() {
                   {item.title}
                 </h3>
 
-                <p className="mt-4 text-[13px] leading-7 text-white/45 sm:text-[14px]">
+                <p className="mt-4 text-[13px] leading-7 text-white/60 sm:text-[14px]">
                   {item.description}
                 </p>
               </article>
@@ -273,7 +273,7 @@ export default function CustomApparelDevelopmentPage() {
       <section className="bg-[#F4F3EF] px-5 py-20 text-[#171717] sm:px-8 sm:py-28 lg:px-16">
         <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-black/40">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-black/70">
               The Design Framework
             </p>
 
@@ -282,7 +282,7 @@ export default function CustomApparelDevelopmentPage() {
               <br />
               Contributes To
               <br />
-              <span className="text-black/30">The Final Product.</span>
+              <span className="text-black/70">The Final Product.</span>
             </h2>
           </div>
 
@@ -296,8 +296,8 @@ export default function CustomApparelDevelopmentPage() {
                   className="border-t border-black/15 pt-6"
                 >
                   <div className="flex items-center justify-between">
-                    <Icon className="text-xl text-black/55" />
-                    <span className="text-[10px] tracking-[0.2em] text-black/35">
+                    <Icon className="text-xl text-black/70" />
+                    <span className="text-[10px] tracking-[0.2em] text-black/70">
                       0{index + 1}
                     </span>
                   </div>
@@ -306,7 +306,7 @@ export default function CustomApparelDevelopmentPage() {
                     {item.title}
                   </h3>
 
-                  <p className="mt-3 text-[13px] leading-7 text-black/55 sm:text-[14px]">
+                  <p className="mt-3 text-[13px] leading-7 text-black/70 sm:text-[14px]">
                     {item.description}
                   </p>
                 </article>
@@ -319,7 +319,7 @@ export default function CustomApparelDevelopmentPage() {
       {/* PROCESS — BLACK */}
       <section className="bg-[#090909] px-5 py-20 text-white sm:px-8 sm:py-28 lg:px-16">
         <div className="mx-auto max-w-[1440px]">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60">
             Development Workflow
           </p>
 
@@ -335,7 +335,7 @@ export default function CustomApparelDevelopmentPage() {
                 key={number}
                 className="border-t border-white/20 pt-6"
               >
-                <span className="text-[10px] tracking-[0.2em] text-white/40">
+                <span className="text-[10px] tracking-[0.2em] text-white/60">
                   {number}
                 </span>
 
@@ -343,7 +343,7 @@ export default function CustomApparelDevelopmentPage() {
                   {title}
                 </h3>
 
-                <p className="mt-4 text-[13px] leading-7 text-white/50 sm:text-[14px]">
+                <p className="mt-4 text-[13px] leading-7 text-white/60 sm:text-[14px]">
                   {description}
                 </p>
               </article>
@@ -356,7 +356,7 @@ export default function CustomApparelDevelopmentPage() {
       <section className="bg-white px-5 py-20 text-[#171717] sm:px-8 sm:py-28 lg:px-16">
         <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-2 lg:gap-20">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-black/40">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-black/70">
               Project Preparation
             </p>
 
@@ -365,10 +365,10 @@ export default function CustomApparelDevelopmentPage() {
               <br />
               Your Brief
               <br />
-              <span className="text-black/30">Include?</span>
+              <span className="text-black/70">Include?</span>
             </h2>
 
-            <p className="mt-6 max-w-lg text-[14px] leading-7 text-black/55 sm:text-[15px]">
+            <p className="mt-6 max-w-lg text-[14px] leading-7 text-black/70 sm:text-[15px]">
               A clear starting brief helps us understand the product you
               want to develop. Initial ideas and references are welcome.
             </p>
@@ -380,7 +380,7 @@ export default function CustomApparelDevelopmentPage() {
                 key={item}
                 className="flex gap-4 border-b border-black/10 py-5 first:border-t"
               >
-                <FaCheckCircle className="mt-1 shrink-0 text-[13px] text-black/45" />
+                <FaCheckCircle className="mt-1 shrink-0 text-[13px] text-black/70" />
                 <span className="text-[13px] leading-6 text-black/65 sm:text-[14px]">
                   {item}
                 </span>
@@ -393,19 +393,19 @@ export default function CustomApparelDevelopmentPage() {
       {/* CTA — BLACK */}
       <section className="border-t border-white/10 bg-[#090909] px-5 py-24 text-center text-white sm:px-8 sm:py-32 lg:px-16">
         <div className="mx-auto max-w-4xl">
-          <FaTshirt className="mx-auto text-2xl text-white/45" />
+          <FaTshirt className="mx-auto text-2xl text-white/60" />
 
-          <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
+          <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60">
             Custom Apparel Enquiry
           </p>
 
           <h2 className="mt-5 text-[clamp(2.7rem,6vw,5.2rem)] font-semibold leading-[0.98] tracking-[-0.06em]">
             Have A Garment
             <br />
-            <span className="text-white/35">Concept In Mind?</span>
+            <span className="text-white/60">Concept In Mind?</span>
           </h2>
 
-          <p className="mx-auto mt-6 max-w-xl text-[14px] leading-7 text-white/50 sm:text-[16px] sm:leading-8">
+          <p className="mx-auto mt-6 max-w-xl text-[14px] leading-7 text-white/60 sm:text-[16px] sm:leading-8">
             Tell us what you want to develop and let&apos;s assess the
             requirements together.
           </p>

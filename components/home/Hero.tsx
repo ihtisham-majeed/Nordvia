@@ -364,7 +364,7 @@ export default function Hero() {
                       "
                     >
                       <span className="block">{product.title}</span>
-                      <span className="block text-white/45">
+                      <span className="block text-white/60">
                         {product.secondLine}
                       </span>
                     </h1>
@@ -378,7 +378,7 @@ export default function Hero() {
                       "
                     >
                       <span className="block">{product.title}</span>
-                      <span className="block text-white/45">
+                      <span className="block text-white/60">
                         {product.secondLine}
                       </span>
                     </h2>
@@ -480,7 +480,7 @@ export default function Hero() {
         "
       >
         {/* THUMBNAILS */}
-        <div className="flex min-w-0 items-center gap-1.5 sm:gap-2 sm:-mt-50">
+        <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
           {products.map((product, index) => (
             <button
               key={product.number}
@@ -525,7 +525,7 @@ export default function Hero() {
             {activeProduct.number}
           </span>
 
-          <span className="tabular-nums text-white/40">
+          <span className="tabular-nums text-white/60">
             / {String(products.length).padStart(2, "0")}
           </span>
 

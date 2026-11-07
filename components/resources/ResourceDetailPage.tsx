@@ -24,7 +24,7 @@ export default function ResourceDetailPage({ resource }: Props) {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_75%_20%,rgba(255,255,255,0.12),transparent_45%)]" />
 
         <div className="relative mx-auto max-w-[1440px] px-6 pb-24 pt-36 md:px-12 lg:px-20 lg:pb-32">
-          <div className="mb-14 flex flex-wrap items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-white/40">
+          <div className="mb-14 flex flex-wrap items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-white/60">
             <Link href="/" className="hover:text-white">
               Home
             </Link>
@@ -36,13 +36,13 @@ export default function ResourceDetailPage({ resource }: Props) {
             <span className="text-white/70">{resource.shortTitle}</span>
           </div>
 
-          <p className="mb-6 text-xs uppercase tracking-[0.3em] text-white/40">
+          <p className="mb-6 text-xs uppercase tracking-[0.3em] text-white/60">
             Resource / {resource.number}
           </p>
 
           <h1 className="max-w-5xl text-5xl font-semibold uppercase leading-[1.02] tracking-[-0.05em] sm:text-6xl md:text-7xl lg:text-[88px]">
             {resource.title}
-            <span className="text-white/35">.</span>
+            <span className="text-white/60">.</span>
           </h1>
 
           <p className="mt-9 max-w-2xl text-base leading-8 text-white/55 md:text-lg">
@@ -63,7 +63,7 @@ export default function ResourceDetailPage({ resource }: Props) {
         <section className="border-y border-white/10 bg-[#101010] px-6 py-20 md:px-12 lg:px-20 lg:py-28">
           <div className="mx-auto max-w-[1100px]">
             <div className="mb-12">
-              <p className="mb-5 text-xs uppercase tracking-[0.3em] text-white/40">
+              <p className="mb-5 text-xs uppercase tracking-[0.3em] text-white/60">
                 Common Questions
               </p>
               <h2 className="text-3xl font-medium uppercase tracking-[-0.04em] md:text-5xl">
@@ -76,18 +76,18 @@ export default function ResourceDetailPage({ resource }: Props) {
                 <details key={faq.question} className="group py-7">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-6">
                     <span className="flex gap-5 text-base font-medium leading-7 text-white/85 md:text-lg">
-                      <span className="shrink-0 text-xs text-white/35">
+                      <span className="shrink-0 text-xs text-white/60">
                         {String(index + 1).padStart(2, "0")}
                       </span>
                       {faq.question}
                     </span>
 
-                    <span className="shrink-0 text-xl text-white/50 transition group-open:rotate-45">
+                    <span className="shrink-0 text-xl text-white/60 transition group-open:rotate-45">
                       +
                     </span>
                   </summary>
 
-                  <p className="ml-10 mt-6 max-w-3xl text-sm leading-8 text-white/50 md:ml-12">
+                  <p className="ml-10 mt-6 max-w-3xl text-sm leading-8 text-white/60 md:ml-12">
                     {faq.answer}
                   </p>
                 </details>
@@ -102,7 +102,7 @@ export default function ResourceDetailPage({ resource }: Props) {
         <section className="border-y border-white/10 bg-[#101010] px-6 py-20 md:px-12 lg:px-20 lg:py-28">
           <div className="mx-auto max-w-[1100px]">
             <div className="mb-14">
-              <p className="mb-5 text-xs uppercase tracking-[0.3em] text-white/40">
+              <p className="mb-5 text-xs uppercase tracking-[0.3em] text-white/60">
                 {isFAQ ? "Questions" : "Learn More"}
               </p>
               <h2 className="text-3xl font-medium uppercase tracking-[-0.04em] md:text-5xl">
@@ -117,7 +117,7 @@ export default function ResourceDetailPage({ resource }: Props) {
                   className="grid gap-7 border-t border-white/15 pt-8 md:grid-cols-[220px_1fr] md:gap-12"
                 >
                   <div>
-                    <span className="text-xs tracking-[0.2em] text-white/35">
+                    <span className="text-xs tracking-[0.2em] text-white/60">
                       SECTION {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -145,7 +145,7 @@ export default function ResourceDetailPage({ resource }: Props) {
                             key={bullet}
                             className="flex gap-4 text-sm leading-7 text-white/65"
                           >
-                            <span className="text-white/35">—</span>
+                            <span className="text-white/60">—</span>
                             {bullet}
                           </li>
                         ))}
@@ -163,7 +163,7 @@ export default function ResourceDetailPage({ resource }: Props) {
       {isBlog && (
         <section className="border-y border-white/10 bg-[#101010] px-6 py-24 md:px-12 lg:px-20 lg:py-32">
           <div className="mx-auto max-w-[900px] border border-white/10 px-7 py-16 text-center md:px-16 md:py-24">
-            <span className="text-xs uppercase tracking-[0.3em] text-white/35">
+            <span className="text-xs uppercase tracking-[0.3em] text-white/60">
               Editorial Journal
             </span>
 
@@ -173,7 +173,7 @@ export default function ResourceDetailPage({ resource }: Props) {
               Coming Soon.
             </h2>
 
-            <p className="mx-auto mt-7 max-w-xl text-sm leading-8 text-white/50">
+            <p className="mx-auto mt-7 max-w-xl text-sm leading-8 text-white/60">
               We&apos;re preparing practical articles about apparel
               materials, product development, customization and the
               clothing industry. Check back for future updates.
@@ -191,7 +191,7 @@ export default function ResourceDetailPage({ resource }: Props) {
 
       {/* NEXT RESOURCE */}
       <section className="px-6 py-20 text-center md:px-12 lg:px-20">
-        <p className="mb-5 text-xs uppercase tracking-[0.3em] text-white/40">
+        <p className="mb-5 text-xs uppercase tracking-[0.3em] text-white/60">
           Continue Exploring
         </p>
 
@@ -202,7 +202,7 @@ export default function ResourceDetailPage({ resource }: Props) {
           <span className="text-2xl font-medium uppercase tracking-[-0.03em] transition hover:text-white/60 md:text-4xl">
             {nextResource.shortTitle}
           </span>
-          <span className="text-xs uppercase tracking-[0.2em] text-white/40">
+          <span className="text-xs uppercase tracking-[0.2em] text-white/60">
             Next Resource ↗
           </span>
         </Link>
@@ -210,7 +210,7 @@ export default function ResourceDetailPage({ resource }: Props) {
 
       {/* CTA */}
       <section className="border-t border-white/10 bg-[#101010] px-6 py-24 text-center md:px-12 lg:px-20 lg:py-32">
-        <p className="mb-5 text-xs uppercase tracking-[0.3em] text-white/40">
+        <p className="mb-5 text-xs uppercase tracking-[0.3em] text-white/60">
           NORDVIA EXPORTS
         </p>
 

@@ -14,7 +14,7 @@ export default function NotFound() {
   return (
     <main className="flex min-h-[65vh] items-center justify-center bg-[#090909] px-5 py-24 text-white">
       <div className="max-w-2xl text-center">
-        <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-white/50">
+        <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-white/60">
           Page not found
         </p>
         <h1 className="text-5xl font-semibold tracking-[-0.06em] sm:text-7xl">

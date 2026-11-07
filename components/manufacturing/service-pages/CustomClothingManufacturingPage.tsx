@@ -92,13 +92,13 @@ export default function CustomClothingManufacturingPage() {
       {/* HERO — BLACK */}
       <section className="grid min-h-[580px] bg-[#090909] text-white lg:min-h-[680px] lg:grid-cols-2">
         <div className="flex flex-col justify-center px-6 py-24 sm:px-10 md:px-12 lg:px-20 lg:py-32">
-          <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/45 sm:text-[11px]">
+          <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60 sm:text-[11px]">
             Manufacturing / 01
           </p>
 
           <h1 className="max-w-[720px] text-[clamp(2.8rem,6.5vw,6rem)] font-semibold uppercase leading-[0.96] tracking-[-0.06em]">
             Custom clothing.
-            <span className="block text-white/40">Built around</span>
+            <span className="block text-white/60">Built around</span>
             your brand.
           </h1>
 
@@ -130,7 +130,7 @@ export default function CustomClothingManufacturingPage() {
           <div className="absolute inset-6 border border-white/10 sm:inset-8 md:inset-12" />
 
           <div className="relative">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40 sm:text-[11px]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60 sm:text-[11px]">
               From concept to garment
             </p>
 
@@ -143,7 +143,7 @@ export default function CustomClothingManufacturingPage() {
             </p>
           </div>
 
-          <span className="absolute right-8 top-8 text-[10px] tracking-[0.25em] text-white/30 sm:right-10 sm:top-10">
+          <span className="absolute right-8 top-8 text-[10px] tracking-[0.25em] text-white/60 sm:right-10 sm:top-10">
             N / 01
           </span>
         </div>
@@ -151,7 +151,7 @@ export default function CustomClothingManufacturingPage() {
 
       {/* BREADCRUMB — WHITE */}
       <div className="border-b border-black/10 bg-white px-6 py-4 text-black sm:px-10 md:px-12 lg:px-20">
-        <div className="mx-auto flex max-w-[1440px] flex-wrap items-center gap-3 text-[9px] font-medium uppercase tracking-[0.16em] text-black/45 sm:text-[10px]">
+        <div className="mx-auto flex max-w-[1440px] flex-wrap items-center gap-3 text-[9px] font-medium uppercase tracking-[0.16em] text-black/70 sm:text-[10px]">
           <Link href="/" className="transition hover:text-black">
             Home
           </Link>
@@ -170,7 +170,7 @@ export default function CustomClothingManufacturingPage() {
       <section className="bg-[#101010] px-6 py-20 text-white sm:px-10 md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
           <div>
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/40 sm:text-[11px]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/60 sm:text-[11px]">
               The manufacturing approach
             </p>
 
@@ -201,7 +201,7 @@ export default function CustomClothingManufacturingPage() {
         <div className="mx-auto max-w-[1440px]">
           <div className="mb-12 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <div>
-              <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/45 sm:text-[11px]">
+              <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/70 sm:text-[11px]">
                 Product capabilities
               </p>
 
@@ -210,7 +210,7 @@ export default function CustomClothingManufacturingPage() {
               </h2>
             </div>
 
-            <p className="max-w-sm text-[13px] leading-7 text-black/55 sm:text-sm">
+            <p className="max-w-sm text-[13px] leading-7 text-black/70 sm:text-sm">
               Product feasibility and available construction options are
               reviewed according to each project.
             </p>
@@ -222,7 +222,7 @@ export default function CustomClothingManufacturingPage() {
                 key={item.number}
                 className="group min-h-[200px] border-b border-r border-black/10 p-6 transition duration-300 hover:bg-[#f3f3f1] sm:p-7 md:p-9"
               >
-                <span className="text-[10px] font-medium tracking-[0.2em] text-black/35">
+                <span className="text-[10px] font-medium tracking-[0.2em] text-black/70">
                   {item.number}
                 </span>
 
@@ -230,7 +230,7 @@ export default function CustomClothingManufacturingPage() {
                   {item.title}
                 </h3>
 
-                <p className="mt-3 max-w-xs text-[13px] leading-6 text-black/55 sm:text-sm">
+                <p className="mt-3 max-w-xs text-[13px] leading-6 text-black/70 sm:text-sm">
                   {item.detail}
                 </p>
               </article>
@@ -243,7 +243,7 @@ export default function CustomClothingManufacturingPage() {
       <section className="bg-[#090909] px-6 py-20 text-white sm:px-10 md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
           <div>
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/40 sm:text-[11px]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/60 sm:text-[11px]">
               Specification checklist
             </p>
 
@@ -279,7 +279,7 @@ export default function CustomClothingManufacturingPage() {
       {/* PROJECT WORKFLOW — WHITE */}
       <section className="bg-[#f3f3f1] px-6 py-20 text-[#111111] sm:px-10 md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto max-w-[1440px]">
-          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/45 sm:text-[11px]">
+          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/70 sm:text-[11px]">
             Project workflow
           </p>
 
@@ -293,7 +293,7 @@ export default function CustomClothingManufacturingPage() {
                 key={number}
                 className="min-h-[220px] bg-white p-6 transition duration-300 hover:bg-[#eaeae7] sm:p-7 md:p-9"
               >
-                <span className="text-[clamp(1.8rem,3vw,2.5rem)] font-light tracking-[-0.05em] text-black/30">
+                <span className="text-[clamp(1.8rem,3vw,2.5rem)] font-light tracking-[-0.05em] text-black/70">
                   {number}
                 </span>
 
@@ -301,7 +301,7 @@ export default function CustomClothingManufacturingPage() {
                   {title}
                 </h3>
 
-                <p className="mt-3 text-[13px] leading-7 text-black/55 sm:text-sm">
+                <p className="mt-3 text-[13px] leading-7 text-black/70 sm:text-sm">
                   {detail}
                 </p>
               </article>
@@ -314,13 +314,13 @@ export default function CustomClothingManufacturingPage() {
       <section className="bg-[#101010] px-6 py-20 text-white sm:px-10 md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-10 md:flex-row md:items-end">
           <div>
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/40 sm:text-[11px]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/60 sm:text-[11px]">
               Start a manufacturing enquiry
             </p>
 
             <h2 className="max-w-3xl text-[clamp(2.2rem,5vw,4.5rem)] font-semibold uppercase leading-[1.02] tracking-[-0.055em]">
               Have a garment in mind?
-              <span className="block text-white/40">
+              <span className="block text-white/60">
                 Let’s define it.
               </span>
             </h2>
@@ -334,7 +334,7 @@ export default function CustomClothingManufacturingPage() {
           </Link>
         </div>
 
-        <p className="mx-auto mt-12 max-w-[1440px] border-t border-white/15 pt-6 text-[11px] leading-6 text-white/40 sm:text-xs">
+        <p className="mx-auto mt-12 max-w-[1440px] border-t border-white/15 pt-6 text-[11px] leading-6 text-white/60 sm:text-xs">
           Minimum quantities, production feasibility, development availability,
           pricing and timelines are confirmed individually according to the
           product and project requirements.

@@ -99,7 +99,7 @@ export default function ShippingPartners() {
         <div className="shipping-reveal mb-16 max-w-3xl">
           <div className="mb-6 flex items-center gap-3">
             <span className="h-px w-10 bg-white/50" />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.32em] text-white/45">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.32em] text-white/60">
               Global Logistics
             </span>
           </div>
@@ -108,10 +108,10 @@ export default function ShippingPartners() {
             From our production
             <br />
             network to{" "}
-            <span className="text-white/35">your destination.</span>
+            <span className="text-white/60">your destination.</span>
           </h2>
 
-          <p className="mt-7 max-w-xl text-sm leading-7 text-white/50 sm:text-base">
+          <p className="mt-7 max-w-xl text-sm leading-7 text-white/60 sm:text-base">
             We coordinate shipping arrangements for international
             apparel orders, helping businesses explore suitable
             delivery options based on their destination and
@@ -125,7 +125,7 @@ export default function ShippingPartners() {
           <div className="shipping-reveal border border-white/10 bg-white/[0.025] p-6 sm:p-9 lg:p-10">
             <div className="mb-9 flex items-center justify-between">
               <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-white/40">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/60">
                   Shipping Coordination
                 </p>
                 <h3 className="mt-2 text-2xl font-medium tracking-tight">
@@ -133,7 +133,7 @@ export default function ShippingPartners() {
                 </h3>
               </div>
 
-              <FaGlobe className="text-2xl text-white/35" />
+              <FaGlobe className="text-2xl text-white/60" />
             </div>
 
             <div className="grid gap-8 sm:grid-cols-2">
@@ -150,7 +150,7 @@ export default function ShippingPartners() {
                       {feature.title}
                     </p>
 
-                    <p className="max-w-xs text-sm leading-6 text-white/45">
+                    <p className="max-w-xs text-sm leading-6 text-white/60">
                       {feature.description}
                     </p>
                   </div>
@@ -162,7 +162,7 @@ export default function ShippingPartners() {
           {/* Logistics options */}
           <div className="shipping-reveal flex flex-col border border-white/10 bg-[#101010] p-6 sm:p-9 lg:p-10">
             <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-white/40">
+              <p className="text-xs uppercase tracking-[0.2em] text-white/60">
                 Recognized Logistics Providers
               </p>
 
@@ -170,7 +170,7 @@ export default function ShippingPartners() {
                 Delivery options
               </h3>
 
-              <p className="mt-3 text-sm leading-6 text-white/45">
+              <p className="mt-3 text-sm leading-6 text-white/60">
                 Depending on destination, shipment size and
                 availability, suitable courier or freight
                 arrangements can be discussed.
@@ -194,7 +194,7 @@ export default function ShippingPartners() {
               ))}
             </div>
 
-            <p className="mt-auto border-t border-white/10 pt-5 text-xs leading-6 text-white/35">
+            <p className="mt-auto border-t border-white/10 pt-5 text-xs leading-6 text-white/60">
               Logos identify their respective logistics brands.
               Their appearance does not imply a formal partnership,
               affiliation or guaranteed availability.
@@ -208,7 +208,7 @@ export default function ShippingPartners() {
             <p className="text-lg font-medium tracking-tight">
               Planning an international apparel order?
             </p>
-            <p className="mt-2 text-sm text-white/45">
+            <p className="mt-2 text-sm text-white/60">
               Discuss your destination and shipping requirements with us.
             </p>
           </div>

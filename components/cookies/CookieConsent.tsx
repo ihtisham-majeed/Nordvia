@@ -1,18 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Script from "next/script";
+import ConsentScripts, {
+  type ConsentScriptPreferences,
+} from "@/components/consent/ConsentScripts";
 import {
   FaCheck,
   FaChevronRight,
   FaTimes,
   FaSlidersH,
 } from "react-icons/fa";
-
-const GA_ID = "G-YZ8QKKHJX1";
-const PINTEREST_ID = "2612924698071";
 
 const STORAGE_KEY = "nordvia-cookie-consent";
 const HIDE_SETTINGS_KEY = "nordvia-hide-privacy-settings";
@@ -23,32 +22,10 @@ type Consent = {
   marketing: boolean;
 };
 
-type PinterestTracker = ((...args: unknown[]) => void) & {
-  queue?: unknown[][];
-  version?: string;
-};
-
-declare global {
-  interface Window {
-    dataLayer?: unknown[];
-    gtag?: (...args: unknown[]) => void;
-    pintrk?: PinterestTracker;
-    __nordviaGaInitialized?: boolean;
-    __nordviaPinterestInitialized?: boolean;
-  }
-}
-
 const defaultConsent: Consent = {
   essential: true,
   analytics: false,
   marketing: false,
-};
-
-const deniedGoogleConsent = {
-  analytics_storage: "denied",
-  ad_storage: "denied",
-  ad_user_data: "denied",
-  ad_personalization: "denied",
 };
 
 export default function CookieConsent() {
@@ -63,9 +40,6 @@ export default function CookieConsent() {
 
   // The floating settings control can be dismissed independently.
   const [showPrivacyButton, setShowPrivacyButton] = useState(false);
-
-  const lastGaPath = useRef("");
-  const lastPinterestPath = useRef("");
 
   // Restore saved consent and floating-button visibility.
   useEffect(() => {
@@ -215,97 +189,6 @@ export default function CookieConsent() {
     setShowSettings(true);
   }
 
-  // Google Analytics: load only after analytics consent.
-  useEffect(() => {
-    if (!consent) return;
-
-    if (!consent.analytics) {
-      if (window.__nordviaGaInitialized && window.gtag) {
-        window.gtag("consent", "update", deniedGoogleConsent);
-      }
-
-      lastGaPath.current = "";
-      return;
-    }
-
-    if (!window.__nordviaGaInitialized) {
-      window.dataLayer = window.dataLayer || [];
-
-      window.gtag = function (...args: unknown[]) {
-        window.dataLayer?.push(args);
-      };
-
-      window.gtag("consent", "default", deniedGoogleConsent);
-
-      window.gtag("consent", "update", {
-        analytics_storage: "granted",
-      });
-
-      window.gtag("js", new Date());
-
-      window.gtag("config", GA_ID, {
-        send_page_view: false,
-      });
-
-      window.__nordviaGaInitialized = true;
-    } else {
-      window.gtag?.("consent", "update", {
-        analytics_storage: "granted",
-      });
-    }
-
-    if (lastGaPath.current !== pathname) {
-      window.gtag?.("event", "page_view", {
-        page_path: pathname,
-        page_location: window.location.href,
-        page_title: document.title,
-      });
-
-      lastGaPath.current = pathname;
-    }
-  }, [consent, pathname]);
-
-  // Pinterest: load only after marketing consent.
-  useEffect(() => {
-    if (!consent) return;
-
-    if (!consent.marketing) {
-      if (
-        window.__nordviaPinterestInitialized &&
-        window.pintrk
-      ) {
-        window.pintrk("setconsent", false);
-      }
-
-      lastPinterestPath.current = "";
-      return;
-    }
-
-    if (!window.__nordviaPinterestInitialized) {
-      const pintrk: PinterestTracker = (...args: unknown[]) => {
-        pintrk.queue = pintrk.queue || [];
-        pintrk.queue.push(args);
-      };
-
-      pintrk.queue = [];
-      pintrk.version = "3.0";
-
-      window.pintrk = pintrk;
-
-      window.pintrk("load", PINTEREST_ID);
-      window.pintrk("setconsent", true);
-
-      window.__nordviaPinterestInitialized = true;
-    } else {
-      window.pintrk?.("setconsent", true);
-    }
-
-    if (lastPinterestPath.current !== pathname) {
-      window.pintrk?.("page");
-      lastPinterestPath.current = pathname;
-    }
-  }, [consent, pathname]);
-
   const switchClass = (enabled: boolean) =>
     `relative h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors ${
       enabled ? "bg-black" : "bg-neutral-300"
@@ -318,18 +201,10 @@ export default function CookieConsent() {
 
   return (
     <>
-      {consent?.analytics && (
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-          strategy="afterInteractive"
-        />
-      )}
-      {consent?.marketing && (
-        <Script
-          src="https://s.pinimg.com/ct/core.js"
-          strategy="afterInteractive"
-        />
-      )}
+      <ConsentScripts
+        consent={consent as ConsentScriptPreferences | null}
+        pathname={pathname}
+      />
 
       {/* Compact first-visit cookie notice */}
       {showBanner && (
@@ -381,7 +256,7 @@ export default function CookieConsent() {
             type="button"
             onClick={openPreferences}
             className="flex cursor-pointer items-center gap-2 px-3 py-3 text-[10px] font-semibold uppercase tracking-wider transition-colors hover:bg-neutral-200"
-            aria-label="Open cookie preferences"
+            aria-label="Privacy settings, open cookie preferences"
           >
             <FaSlidersH size={12} />
             Privacy settings

@@ -166,14 +166,14 @@ export default function QualityStandards() {
           <div className="quality-intro">
             <div className="mb-6 flex items-center gap-3">
               <span className="h-px w-9 bg-black/60" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-black/50 sm:text-xs">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-black/70 sm:text-xs">
                 Quality & Production Standards
               </span>
             </div>
 
             <h2 className="max-w-3xl text-[clamp(2.6rem,5.2vw,4rem)] font-semibold leading-[1.02] tracking-[-0.055em] text-[#111111]">
               Every Detail.
-              <span className="block text-black/35">
+              <span className="block text-black/70">
                 Carefully
               </span>
               <span className="block">Considered.</span>
@@ -190,7 +190,7 @@ export default function QualityStandards() {
 
             <div className="mt-7 flex items-center gap-3">
               <span className="h-px w-7 bg-black/50" />
-              <span className="text-[10px] uppercase tracking-[0.2em] text-black/45">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-black/70">
                 Your Requirements. Our Focus.
               </span>
             </div>
@@ -199,11 +199,11 @@ export default function QualityStandards() {
 
         {/* TOP LABEL */}
         <div className="quality-intro mb-6 flex items-center justify-between border-b border-black/10 pb-5">
-          <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-black/50 sm:text-[10px]">
+          <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-black/70 sm:text-[10px]">
             Areas of Attention
           </span>
 
-          <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-black/50 sm:text-[10px]">  
+          <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-black/70 sm:text-[10px]">
             04 / Key Areas
           </span>
         </div>
@@ -293,7 +293,7 @@ export default function QualityStandards() {
         <div className="quality-bottom mt-14 flex flex-col gap-7 border-t border-black/10 pt-9 sm:mt-20 sm:flex-row sm:items-center sm:justify-between">
 
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/45">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/70">
               Have Specific Quality Requirements?
             </p>
 
@@ -313,11 +313,11 @@ export default function QualityStandards() {
 
         {/* FOOTER LABEL */}
         <div className="mt-12 flex justify-between border-t border-black/[0.08] pt-6">
-          <span className="text-[9px] uppercase tracking-[0.2em] text-black/35">
+          <span className="text-[9px] uppercase tracking-[0.2em] text-black/70">
             NORDVIA EXPORTS
           </span>
 
-          <span className="text-[9px] uppercase tracking-[0.2em] text-black/35">
+          <span className="text-[9px] uppercase tracking-[0.2em] text-black/70">
             ATTENTION TO EVERY DETAIL
           </span>
         </div>

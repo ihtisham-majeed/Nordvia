@@ -46,7 +46,7 @@ export default function ManufacturingPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#090909] via-[#090909]/30 to-transparent" />
 
         <div className="relative mx-auto w-full max-w-[1440px] px-5 pb-20 pt-36 sm:px-8 sm:pb-24 lg:px-16 lg:pb-28">
-          <p className="mb-6 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/50 sm:text-xs">
+          <p className="mb-6 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/60 sm:text-xs">
             <span className="h-px w-9 bg-white/50" />
             NORDVIA EXPORTS / MANUFACTURING
           </p>
@@ -54,7 +54,7 @@ export default function ManufacturingPage() {
           <h1 className="max-w-5xl text-[clamp(3.2rem,7.5vw,6.8rem)] font-semibold uppercase leading-[0.95] tracking-[-0.065em]">
             Built Around
             <br />
-            Your Vision<span className="text-white/35">.</span>
+            Your Vision<span className="text-white/60">.</span>
           </h1>
 
           <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
@@ -74,7 +74,7 @@ export default function ManufacturingPage() {
             </Link>
           </div>
 
-          <div className="mt-20 flex flex-wrap justify-between gap-5 border-t border-white/15 pt-6 text-[9px] font-medium uppercase tracking-[0.18em] text-white/40 sm:text-[10px]">
+          <div className="mt-20 flex flex-wrap justify-between gap-5 border-t border-white/15 pt-6 text-[9px] font-medium uppercase tracking-[0.18em] text-white/60 sm:text-[10px]">
             <span>Product Development</span>
             <span>Material Coordination</span>
             <span>Private Label</span>
@@ -87,7 +87,7 @@ export default function ManufacturingPage() {
       <section className="bg-white px-5 py-20 text-[#111111] sm:px-8 sm:py-28 lg:px-16">
         <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/40">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/70">
               Our Approach
             </p>
 
@@ -96,7 +96,7 @@ export default function ManufacturingPage() {
               <br />
               A Garment.
               <br />
-              <span className="text-black/30">A Brand Identity.</span>
+              <span className="text-black/70">A Brand Identity.</span>
             </h2>
           </div>
 
@@ -109,7 +109,7 @@ export default function ManufacturingPage() {
               production requirements.
             </p>
 
-            <p className="mt-6 text-[14px] leading-8 text-black/45 sm:text-[15px]">
+            <p className="mt-6 text-[14px] leading-8 text-black/70 sm:text-[15px]">
               Based in Sialkot, Pakistan, we aim to make apparel project
               coordination clear, practical and straightforward for
               international customers.
@@ -123,7 +123,7 @@ export default function ManufacturingPage() {
         <div className="mx-auto max-w-[1440px]">
           <div className="mb-14 flex flex-col justify-between gap-6 md:mb-16 md:flex-row md:items-end">
             <div>
-              <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
+              <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60">
                 What We Coordinate
               </p>
 
@@ -132,7 +132,7 @@ export default function ManufacturingPage() {
               </h2>
             </div>
 
-            <p className="max-w-md text-[13px] leading-7 text-white/50 sm:text-[14px]">
+            <p className="max-w-md text-[13px] leading-7 text-white/60 sm:text-[14px]">
               Flexible project discussions covering the details that matter
               when developing and customizing apparel.
             </p>
@@ -144,7 +144,7 @@ export default function ManufacturingPage() {
                 key={item.number}
                 className="min-h-[250px] border border-white/10 bg-[#111111] p-7 transition duration-300 hover:border-white/30 hover:bg-[#171717] sm:p-8"
               >
-                <span className="text-[10px] tracking-[0.2em] text-white/35">
+                <span className="text-[10px] tracking-[0.2em] text-white/60">
                   {item.number}
                 </span>
 
@@ -154,7 +154,7 @@ export default function ManufacturingPage() {
                   {item.title}
                 </h3>
 
-                <p className="mt-4 text-[13px] leading-7 text-white/45 sm:text-[14px]">
+                <p className="mt-4 text-[13px] leading-7 text-white/60 sm:text-[14px]">
                   {item.description}
                 </p>
               </article>
@@ -168,18 +168,18 @@ export default function ManufacturingPage() {
         <div className="mx-auto max-w-[1440px]">
           <div className="mb-12 flex flex-col justify-between gap-6 sm:mb-14 sm:flex-row sm:items-end">
             <div>
-              <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/40">
+              <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/70">
                 Explore Our Services
               </p>
 
               <h2 className="text-[clamp(2.6rem,5.5vw,4.8rem)] font-semibold uppercase leading-[0.98] tracking-[-0.055em]">
                 Manufacturing
                 <br />
-                Services<span className="text-black/30">.</span>
+                Services<span className="text-black/70">.</span>
               </h2>
             </div>
 
-            <p className="max-w-md text-[13px] leading-7 text-black/55 sm:text-[14px]">
+            <p className="max-w-md text-[13px] leading-7 text-black/70 sm:text-[14px]">
               Explore the different services available for discussing,
               developing and coordinating your apparel project.
             </p>
@@ -193,11 +193,11 @@ export default function ManufacturingPage() {
                 className="group flex min-h-[250px] cursor-pointer flex-col justify-between border border-black/10 bg-white p-7 transition duration-300 hover:border-black/30 hover:bg-[#FAFAF8] sm:p-9"
               >
                 <div className="flex items-start justify-between">
-                  <span className="text-[10px] tracking-[0.2em] text-black/35">
+                  <span className="text-[10px] tracking-[0.2em] text-black/70">
                     {service.number} / 07
                   </span>
 
-                  <FaArrowRight className="text-lg text-black/35 transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-black" />
+                  <FaArrowRight className="text-lg text-black/70 transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-black" />
                 </div>
 
                 <div className="mt-12">
@@ -205,7 +205,7 @@ export default function ManufacturingPage() {
                     {service.title}
                   </h3>
 
-                  <p className="mt-4 max-w-lg text-[13px] leading-7 text-black/55 sm:text-[14px]">
+                  <p className="mt-4 max-w-lg text-[13px] leading-7 text-black/70 sm:text-[14px]">
                     {service.description}
                   </p>
 
@@ -224,7 +224,7 @@ export default function ManufacturingPage() {
       <section className="border-y border-white/10 bg-[#090909] px-5 py-20 text-white sm:px-8 sm:py-28 lg:px-16">
         <div className="mx-auto max-w-[1440px]">
           <div className="mb-14">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/40">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60">
               How We Work
             </p>
 
@@ -238,7 +238,7 @@ export default function ManufacturingPage() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map(([number, title, description]) => (
               <article key={number} className="border-t border-white/20 pt-6">
-                <span className="text-[10px] tracking-[0.2em] text-white/35">
+                <span className="text-[10px] tracking-[0.2em] text-white/60">
                   {number}
                 </span>
 
@@ -246,7 +246,7 @@ export default function ManufacturingPage() {
                   {title}
                 </h3>
 
-                <p className="mt-4 text-[13px] leading-7 text-white/45 sm:text-[14px]">
+                <p className="mt-4 text-[13px] leading-7 text-white/60 sm:text-[14px]">
                   {description}
                 </p>
               </article>
@@ -258,7 +258,7 @@ export default function ManufacturingPage() {
       {/* CTA — WHITE */}
       <section className="bg-white px-5 py-24 text-center text-[#111111] sm:px-8 sm:py-32 lg:px-16">
         <div className="mx-auto max-w-4xl">
-          <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/40">
+          <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.25em] text-black/70">
             Start A Conversation
           </p>
 
@@ -268,7 +268,7 @@ export default function ManufacturingPage() {
             In Mind?
           </h2>
 
-          <p className="mx-auto mt-7 max-w-xl text-[14px] leading-7 text-black/55 sm:text-[16px] sm:leading-8">
+          <p className="mx-auto mt-7 max-w-xl text-[14px] leading-7 text-black/70 sm:text-[16px] sm:leading-8">
             Tell us about your apparel project. We&apos;ll discuss your
             requirements and the available next steps.
           </p>

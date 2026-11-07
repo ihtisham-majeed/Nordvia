@@ -98,13 +98,13 @@ export default function FabricSourcingPage() {
       {/* HERO — BLACK */}
       <section className="grid min-h-[570px] bg-[#090909] text-white lg:min-h-[660px] lg:grid-cols-2">
         <div className="flex flex-col justify-center px-6 py-24 sm:px-10 md:px-12 lg:px-20 lg:py-32">
-          <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/45 sm:text-[11px]">
+          <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60 sm:text-[11px]">
             Manufacturing / 06
           </p>
 
           <h1 className="max-w-2xl text-[clamp(2.8rem,6.5vw,5.8rem)] font-semibold uppercase leading-[0.96] tracking-[-0.06em]">
             The right fabric.
-            <span className="block text-white/40">For the right</span>
+            <span className="block text-white/60">For the right</span>
             garment.
           </h1>
 
@@ -127,7 +127,7 @@ export default function FabricSourcingPage() {
           <div className="relative w-full max-w-md">
             <div className="grid grid-cols-2 gap-3">
               <div className="aspect-[1.2] border border-white/20 bg-white/[0.04] p-4 sm:p-5">
-                <span className="text-[9px] uppercase tracking-[0.2em] text-white/40">
+                <span className="text-[9px] uppercase tracking-[0.2em] text-white/60">
                   Material / 01
                 </span>
                 <p className="mt-8 text-[clamp(1rem,2vw,1.3rem)] font-semibold uppercase tracking-[-0.03em]">
@@ -136,7 +136,7 @@ export default function FabricSourcingPage() {
               </div>
 
               <div className="mt-8 aspect-[1.2] border border-white/20 bg-white/[0.08] p-4 sm:p-5">
-                <span className="text-[9px] uppercase tracking-[0.2em] text-white/40">
+                <span className="text-[9px] uppercase tracking-[0.2em] text-white/60">
                   Material / 02
                 </span>
                 <p className="mt-8 text-[clamp(1rem,2vw,1.3rem)] font-semibold uppercase tracking-[-0.03em]">
@@ -145,7 +145,7 @@ export default function FabricSourcingPage() {
               </div>
 
               <div className="aspect-[1.2] border border-white/20 bg-white/[0.08] p-4 sm:p-5">
-                <span className="text-[9px] uppercase tracking-[0.2em] text-white/40">
+                <span className="text-[9px] uppercase tracking-[0.2em] text-white/60">
                   Material / 03
                 </span>
                 <p className="mt-8 text-[clamp(1rem,2vw,1.3rem)] font-semibold uppercase tracking-[-0.03em]">
@@ -154,7 +154,7 @@ export default function FabricSourcingPage() {
               </div>
 
               <div className="mt-8 aspect-[1.2] border border-white/20 bg-white/[0.04] p-4 sm:p-5">
-                <span className="text-[9px] uppercase tracking-[0.2em] text-white/40">
+                <span className="text-[9px] uppercase tracking-[0.2em] text-white/60">
                   Material / 04
                 </span>
                 <p className="mt-8 text-[clamp(1rem,2vw,1.3rem)] font-semibold uppercase tracking-[-0.03em]">
@@ -168,7 +168,7 @@ export default function FabricSourcingPage() {
 
       {/* BREADCRUMB — WHITE */}
       <div className="border-b border-black/10 bg-white px-6 py-4 text-black sm:px-10 md:px-12 lg:px-20">
-        <div className="mx-auto flex max-w-[1440px] flex-wrap items-center gap-3 text-[9px] font-medium uppercase tracking-[0.16em] text-black/45 sm:text-[10px]">
+        <div className="mx-auto flex max-w-[1440px] flex-wrap items-center gap-3 text-[9px] font-medium uppercase tracking-[0.16em] text-black/70 sm:text-[10px]">
           <Link href="/" className="transition hover:text-black">
             Home
           </Link>
@@ -185,7 +185,7 @@ export default function FabricSourcingPage() {
       <section className="bg-[#101010] px-6 py-20 text-white sm:px-10 md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
           <div>
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/40 sm:text-[11px]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/60 sm:text-[11px]">
               Material selection
             </p>
 
@@ -215,7 +215,7 @@ export default function FabricSourcingPage() {
       <section className="bg-white px-6 py-20 text-[#111111] sm:px-10 md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto max-w-[1440px]">
           <div className="mb-12">
-            <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/45 sm:text-[11px]">
+            <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/70 sm:text-[11px]">
               Material categories
             </p>
 
@@ -231,11 +231,11 @@ export default function FabricSourcingPage() {
                 className="group bg-[#f3f3f1] p-6 transition duration-300 hover:bg-[#e9e9e6] sm:p-8 md:p-10"
               >
                 <div className="flex items-start justify-between gap-5">
-                  <span className="text-[10px] font-medium tracking-[0.2em] text-black/35">
+                  <span className="text-[10px] font-medium tracking-[0.2em] text-black/70">
                     {item.number}
                   </span>
 
-                  <span className="text-[9px] font-semibold uppercase tracking-[0.12em] text-black/40">
+                  <span className="text-[9px] font-semibold uppercase tracking-[0.12em] text-black/70">
                     Material group
                   </span>
                 </div>
@@ -249,7 +249,7 @@ export default function FabricSourcingPage() {
                 </p>
 
                 <div className="mt-8 border-t border-black/10 pt-5">
-                  <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-black/40">
+                  <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-black/70">
                     Examples
                   </p>
 
@@ -257,7 +257,7 @@ export default function FabricSourcingPage() {
                     {item.examples}
                   </p>
 
-                  <p className="mt-5 text-[9px] font-bold uppercase tracking-[0.16em] text-black/40">
+                  <p className="mt-5 text-[9px] font-bold uppercase tracking-[0.16em] text-black/70">
                     Typical application
                   </p>
 
@@ -269,7 +269,7 @@ export default function FabricSourcingPage() {
             ))}
           </div>
 
-          <p className="mt-5 text-[11px] leading-6 text-black/45 sm:text-xs">
+          <p className="mt-5 text-[11px] leading-6 text-black/70 sm:text-xs">
             These are material categories for discussion, not a guaranteed
             stock list. Specific compositions, constructions and availability
             require supplier confirmation.
@@ -281,7 +281,7 @@ export default function FabricSourcingPage() {
       <section className="bg-[#090909] px-6 py-20 text-white sm:px-10 md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
           <div>
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/40 sm:text-[11px]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/60 sm:text-[11px]">
               Fabric specification
             </p>
 
@@ -317,7 +317,7 @@ export default function FabricSourcingPage() {
       {/* SOURCING PROCESS — WHITE */}
       <section className="bg-[#f3f3f1] px-6 py-20 text-[#111111] sm:px-10 md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto max-w-[1440px]">
-          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/45 sm:text-[11px]">
+          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/70 sm:text-[11px]">
             Sourcing process
           </p>
 
@@ -331,7 +331,7 @@ export default function FabricSourcingPage() {
                 key={number}
                 className="min-h-[225px] bg-white p-6 transition duration-300 hover:bg-[#eaeae7] sm:p-7"
               >
-                <span className="text-[clamp(1.8rem,3vw,2.5rem)] font-light tracking-[-0.05em] text-black/30">
+                <span className="text-[clamp(1.8rem,3vw,2.5rem)] font-light tracking-[-0.05em] text-black/70">
                   {number}
                 </span>
 
@@ -339,7 +339,7 @@ export default function FabricSourcingPage() {
                   {title}
                 </h3>
 
-                <p className="mt-3 text-[13px] leading-7 text-black/55">
+                <p className="mt-3 text-[13px] leading-7 text-black/70">
                   {detail}
                 </p>
               </article>
@@ -352,7 +352,7 @@ export default function FabricSourcingPage() {
       <section className="bg-[#101010] px-6 py-20 text-white sm:px-10 md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-2 lg:gap-24">
           <div>
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/40 sm:text-[11px]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/60 sm:text-[11px]">
               Before material approval
             </p>
 
@@ -386,7 +386,7 @@ export default function FabricSourcingPage() {
       <section className="bg-white px-6 py-20 text-[#111111] sm:px-10 md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-10 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/45 sm:text-[11px]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/70 sm:text-[11px]">
               Discuss your material requirements
             </p>
 
@@ -394,7 +394,7 @@ export default function FabricSourcingPage() {
               Start with the fabric your product needs.
             </h2>
 
-            <p className="mt-5 max-w-xl text-[14px] leading-7 text-black/55 sm:text-[15px] sm:leading-8">
+            <p className="mt-5 max-w-xl text-[14px] leading-7 text-black/70 sm:text-[15px] sm:leading-8">
               Tell us about your garment, preferred composition, GSM,
               color and intended application.
             </p>

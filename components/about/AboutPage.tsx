@@ -214,7 +214,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="about-hero-content mt-20 flex flex-wrap items-center justify-between gap-5 border-t border-white/20 pt-6 text-[9px] font-medium uppercase tracking-[0.2em] text-white/50 sm:text-[10px]">
+          <div className="about-hero-content mt-20 flex flex-wrap items-center justify-between gap-5 border-t border-white/20 pt-6 text-[9px] font-medium uppercase tracking-[0.2em] text-white/60 sm:text-[10px]">
             <span>Sialkot, Pakistan</span>
             <span>Apparel Manufacturing & Export</span>
             <span>Working With Brands Worldwide</span>
@@ -226,7 +226,7 @@ export default function AboutPage() {
       <section className="bg-white px-5 py-20 sm:px-8 sm:py-24 md:px-12 lg:px-20 lg:py-32">
         <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-24">
           <div className="about-reveal">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/45 sm:text-xs sm:tracking-[0.3em]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/70 sm:text-xs sm:tracking-[0.3em]">
               01 / Who We Are
             </p>
 
@@ -243,7 +243,7 @@ export default function AboutPage() {
               custom clothing production.
             </p>
 
-            <p className="mt-6 text-sm leading-8 text-black/55 sm:text-base">
+            <p className="mt-6 text-sm leading-8 text-black/70 sm:text-base">
               Our focus is on understanding what each project requires:
               the product, fabric, fit, construction, branding, and
               finishing details. We use that information to discuss
@@ -251,7 +251,7 @@ export default function AboutPage() {
               project with our production partners.
             </p>
 
-            <p className="mt-6 text-sm leading-8 text-black/55 sm:text-base">
+            <p className="mt-6 text-sm leading-8 text-black/70 sm:text-base">
               Whether you are developing a new clothing line or
               sourcing products for an established business, we aim
               to make the initial conversation straightforward,
@@ -267,7 +267,7 @@ export default function AboutPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.15em] text-black">
                   Based in Pakistan
                 </p>
-                <p className="mt-1 text-xs text-black/45">
+                <p className="mt-1 text-xs text-black/70">
                   Open to international business inquiries
                 </p>
               </div>
@@ -296,7 +296,7 @@ export default function AboutPage() {
           </div>
 
           <div className="about-reveal flex flex-col justify-center px-6 py-16 sm:px-10 sm:py-20 lg:px-20">
-            <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/45 sm:text-xs sm:tracking-[0.3em]">
+            <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/60 sm:text-xs sm:tracking-[0.3em]">
               Our Perspective
             </p>
 
@@ -332,7 +332,7 @@ export default function AboutPage() {
       <section className="bg-white px-5 py-20 sm:px-8 sm:py-24 md:px-12 lg:px-20 lg:py-32">
         <div className="mx-auto max-w-[1440px]">
           <div className="about-reveal mb-12 max-w-3xl sm:mb-16">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/45 sm:text-xs sm:tracking-[0.3em]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/70 sm:text-xs sm:tracking-[0.3em]">
               02 / Product Focus
             </p>
 
@@ -340,7 +340,7 @@ export default function AboutPage() {
               Apparel Possibilities.
             </h2>
 
-            <p className="mt-6 max-w-2xl text-sm leading-7 text-black/55 sm:text-base sm:leading-8">
+            <p className="mt-6 max-w-2xl text-sm leading-7 text-black/70 sm:text-base sm:leading-8">
               We focus on product categories that can be discussed
               and developed with our manufacturing partners, subject
               to design, material, order, and production requirements.
@@ -374,7 +374,7 @@ export default function AboutPage() {
                 key={item.number}
                 className="about-reveal group bg-white p-7 transition-colors duration-300 hover:bg-[#f5f5f5] sm:p-9"
               >
-                <span className="text-[10px] font-medium tracking-[0.2em] text-black/40 sm:text-xs">
+                <span className="text-[10px] font-medium tracking-[0.2em] text-black/70 sm:text-xs">
                   {item.number}
                 </span>
 
@@ -384,7 +384,7 @@ export default function AboutPage() {
                   {item.title}
                 </h3>
 
-                <p className="mt-3 text-[13px] leading-7 text-black/55 sm:text-sm">
+                <p className="mt-3 text-[13px] leading-7 text-black/70 sm:text-sm">
                   {item.detail}
                 </p>
               </div>
@@ -392,7 +392,7 @@ export default function AboutPage() {
           </div>
 
           <div className="mt-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
-            <p className="max-w-xl text-[11px] leading-6 text-black/45 sm:text-xs">
+            <p className="max-w-xl text-[11px] leading-6 text-black/70 sm:text-xs">
               Specific product availability, customization, minimum
               quantities, and production timelines are confirmed
               during project discussions.
@@ -414,14 +414,14 @@ export default function AboutPage() {
         <div className="mx-auto max-w-[1440px]">
           <div className="about-reveal mb-12 flex flex-col justify-between gap-6 sm:mb-16 lg:flex-row lg:items-end">
             <div>
-              <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/40 sm:text-xs sm:tracking-[0.3em]">
+              <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/60 sm:text-xs sm:tracking-[0.3em]">
                 03 / What Guides Us
               </p>
 
               <h2 className="text-[clamp(2.3rem,5vw,4.5rem)] font-semibold uppercase leading-[1.02] tracking-[-0.055em] text-white">
                 How We Approach
                 <br />
-                <span className="text-white/40">Every Project.</span>
+                <span className="text-white/60">Every Project.</span>
               </h2>
             </div>
 
@@ -443,7 +443,7 @@ export default function AboutPage() {
                   className="about-value-card bg-[#101010] p-7 transition-colors duration-300 hover:bg-[#191919] sm:p-8 lg:min-h-[310px]"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] tracking-[0.2em] text-white/40 sm:text-xs">
+                    <span className="text-[10px] tracking-[0.2em] text-white/60 sm:text-xs">
                       {value.number}
                     </span>
 
@@ -454,7 +454,7 @@ export default function AboutPage() {
                     {value.title}
                   </h3>
 
-                  <p className="mt-4 text-[13px] leading-7 text-white/50 sm:text-sm">
+                  <p className="mt-4 text-[13px] leading-7 text-white/60 sm:text-sm">
                     {value.description}
                   </p>
                 </article>
@@ -468,17 +468,17 @@ export default function AboutPage() {
       <section className="bg-white px-5 py-20 sm:px-8 sm:py-24 md:px-12 lg:px-20 lg:py-32">
         <div className="mx-auto max-w-[1440px]">
           <div className="about-reveal mb-12 max-w-3xl sm:mb-16">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/45 sm:text-xs sm:tracking-[0.3em]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/70 sm:text-xs sm:tracking-[0.3em]">
               04 / Working Together
             </p>
 
             <h2 className="text-[clamp(2.3rem,5vw,4.5rem)] font-semibold uppercase leading-[1.02] tracking-[-0.055em] text-[#171717]">
               From Inquiry
               <br />
-              <span className="text-black/35">To Production.</span>
+              <span className="text-black/70">To Production.</span>
             </h2>
 
-            <p className="mt-6 max-w-2xl text-sm leading-7 text-black/55 sm:text-base sm:leading-8">
+            <p className="mt-6 max-w-2xl text-sm leading-7 text-black/70 sm:text-base sm:leading-8">
               Every order is different, but our starting point is
               simple: understand the requirement, discuss the
               possibilities, and agree on the next steps.
@@ -491,7 +491,7 @@ export default function AboutPage() {
                 key={step.number}
                 className="about-approach-card border border-black/15 bg-white p-7 transition-colors duration-300 hover:border-black/40 hover:bg-[#f8f8f8] sm:p-8"
               >
-                <span className="text-xs tracking-[0.2em] text-black/40">
+                <span className="text-xs tracking-[0.2em] text-black/70">
                   {step.number}
                 </span>
 
@@ -501,7 +501,7 @@ export default function AboutPage() {
                   {step.title}
                 </h3>
 
-                <p className="mt-4 text-[13px] leading-7 text-black/55 sm:text-sm">
+                <p className="mt-4 text-[13px] leading-7 text-black/70 sm:text-sm">
                   {step.description}
                 </p>
               </article>
@@ -514,14 +514,14 @@ export default function AboutPage() {
       <section className="border-y border-white/10 bg-[#101010] px-5 py-20 text-white sm:px-8 sm:py-24 md:px-12 lg:px-20 lg:py-28">
         <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[1fr_0.8fr] lg:items-center lg:gap-20">
           <div className="about-reveal">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/40 sm:text-xs sm:tracking-[0.3em]">
+            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/60 sm:text-xs sm:tracking-[0.3em]">
               05 / Our Manufacturing Approach
             </p>
 
             <h2 className="text-[clamp(2.2rem,4.5vw,4rem)] font-semibold uppercase leading-[1.02] tracking-[-0.055em] text-white">
               The Right Conversation.
               <br />
-              <span className="text-white/40">The Right Direction.</span>
+              <span className="text-white/60">The Right Direction.</span>
             </h2>
 
             <p className="mt-7 max-w-2xl text-sm leading-8 text-white/60 sm:text-base">
@@ -570,17 +570,17 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.045),transparent_65%)]" />
 
         <div className="about-reveal relative z-10 mx-auto max-w-4xl text-center">
-          <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/45 sm:text-xs sm:tracking-[0.3em]">
+          <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/70 sm:text-xs sm:tracking-[0.3em]">
             Let&apos;s Start A Conversation
           </p>
 
           <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-semibold uppercase leading-[0.98] tracking-[-0.06em] text-[#171717]">
             Have A Product
             <br />
-            <span className="text-black/35">In Mind?</span>
+            <span className="text-black/70">In Mind?</span>
           </h2>
 
-          <p className="mx-auto mt-7 max-w-xl text-sm leading-7 text-black/55 sm:text-base sm:leading-8">
+          <p className="mx-auto mt-7 max-w-xl text-sm leading-7 text-black/70 sm:text-base sm:leading-8">
             Tell us about your brand, product idea, or sourcing
             requirements. Let&apos;s explore the possibilities together.
           </p>

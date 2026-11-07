@@ -32,7 +32,7 @@ export default function ResourcesPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#090909] via-[#090909]/30 to-transparent" />
 
         <div className="relative mx-auto w-full max-w-[1440px] px-6 pb-24 pt-40 md:px-12 lg:px-20">
-          <p className="mb-6 text-xs font-semibold uppercase tracking-[0.35em] text-white/45">
+          <p className="mb-6 text-xs font-semibold uppercase tracking-[0.35em] text-white/60">
             NORDVIA EXPORTS / RESOURCES
           </p>
 
@@ -41,7 +41,7 @@ export default function ResourcesPage() {
             <br />
             For Better
             <br />
-            Decisions<span className="text-white/35">.</span>
+            Decisions<span className="text-white/60">.</span>
           </h1>
 
           <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
@@ -70,7 +70,7 @@ export default function ResourcesPage() {
       {/* INTRO */}
       <section className="mx-auto grid max-w-[1440px] gap-12 px-6 py-24 md:px-12 lg:grid-cols-2 lg:gap-24 lg:px-20 lg:py-32">
         <div>
-          <p className="mb-5 text-xs uppercase tracking-[0.3em] text-white/40">
+          <p className="mb-5 text-xs uppercase tracking-[0.3em] text-white/60">
             Resource Center
           </p>
 
@@ -79,7 +79,7 @@ export default function ResourcesPage() {
             <br />
             The Details
             <br />
-            <span className="text-white/35">Behind Apparel.</span>
+            <span className="text-white/60">Behind Apparel.</span>
           </h2>
         </div>
 
@@ -90,7 +90,7 @@ export default function ResourcesPage() {
             and delivery requirements all contribute to the final project.
           </p>
 
-          <p className="mt-6 text-base leading-8 text-white/45">
+          <p className="mt-6 text-base leading-8 text-white/60">
             Explore these resources to prepare your requirements and
             have more informed conversations about your next collection.
           </p>
@@ -101,12 +101,12 @@ export default function ResourcesPage() {
       <section className="border-y border-white/10 bg-[#101010] px-6 py-24 md:px-12 lg:px-20 lg:py-32">
         <div className="mx-auto max-w-[1440px]">
           <div className="mb-16">
-            <p className="mb-5 text-xs uppercase tracking-[0.3em] text-white/40">
+            <p className="mb-5 text-xs uppercase tracking-[0.3em] text-white/60">
               Explore Resources
             </p>
 
             <h2 className="text-4xl font-medium uppercase tracking-[-0.04em] md:text-6xl">
-              Learn & Explore<span className="text-white/35">.</span>
+              Learn & Explore<span className="text-white/60">.</span>
             </h2>
           </div>
 
@@ -118,11 +118,11 @@ export default function ResourcesPage() {
                 className="group flex min-h-[280px] flex-col justify-between bg-[#101010] p-7 transition duration-300 hover:bg-[#1a1a1a] md:p-10"
               >
                 <div className="flex items-start justify-between">
-                  <span className="text-xs tracking-[0.2em] text-white/35">
+                  <span className="text-xs tracking-[0.2em] text-white/60">
                     {resource.number} / 04
                   </span>
 
-                  <span className="text-xl text-white/40 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-white">
+                  <span className="text-xl text-white/60 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-white">
                     ↗
                   </span>
                 </div>
@@ -132,7 +132,7 @@ export default function ResourcesPage() {
                     {resource.title}
                   </h3>
 
-                  <p className="mt-5 max-w-lg text-sm leading-7 text-white/45">
+                  <p className="mt-5 max-w-lg text-sm leading-7 text-white/60">
                     {resource.description}
                   </p>
 
@@ -149,7 +149,7 @@ export default function ResourcesPage() {
       {/* BENEFITS */}
       <section className="mx-auto max-w-[1440px] px-6 py-24 md:px-12 lg:px-20 lg:py-32">
         <div className="mb-16">
-          <p className="mb-5 text-xs uppercase tracking-[0.3em] text-white/40">
+          <p className="mb-5 text-xs uppercase tracking-[0.3em] text-white/60">
             Useful Knowledge
           </p>
 
@@ -164,7 +164,7 @@ export default function ResourcesPage() {
               key={item.number}
               className="border-t border-white/20 pt-6"
             >
-              <span className="text-xs tracking-[0.2em] text-white/35">
+              <span className="text-xs tracking-[0.2em] text-white/60">
                 {item.number}
               </span>
 
@@ -172,7 +172,7 @@ export default function ResourcesPage() {
                 {item.title}
               </h3>
 
-              <p className="mt-4 text-sm leading-7 text-white/45">
+              <p className="mt-4 text-sm leading-7 text-white/60">
                 {item.description}
               </p>
             </article>
@@ -182,7 +182,7 @@ export default function ResourcesPage() {
 
       {/* CTA */}
       <section className="border-t border-white/10 bg-[#101010] px-6 py-28 text-center md:px-12 lg:px-20 lg:py-36">
-        <p className="mb-6 text-xs uppercase tracking-[0.3em] text-white/40">
+        <p className="mb-6 text-xs uppercase tracking-[0.3em] text-white/60">
           Need More Information?
         </p>
 
@@ -192,7 +192,7 @@ export default function ResourcesPage() {
           About Your Project.
         </h2>
 
-        <p className="mx-auto mt-7 max-w-xl text-sm leading-7 text-white/50">
+        <p className="mx-auto mt-7 max-w-xl text-sm leading-7 text-white/60">
           Share your product idea and requirements with NORDVIA EXPORTS.
           We&apos;ll discuss the available options and next steps.
         </p>
