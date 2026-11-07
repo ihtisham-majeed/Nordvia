@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import RequestQuote from "@/components/contact/RequestQuote";
+import { buildMetadata } from "@/lib/seo";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
 const validProducts = [
   "hoodies",
@@ -17,49 +19,14 @@ type PageProps = {
   }>;
 };
 
-export const metadata: Metadata = {
-  title: "Request an Apparel Manufacturing Quote",
+/* SEO metadata is kept in one shared builder for canonical consistency. */
+export const metadata: Metadata = buildMetadata({
+  title: "Custom Apparel Manufacturing Quote Request",
   description:
-    "Request a custom apparel manufacturing and private-label quote from NORDVIA EXPORTS in Sialkot, Pakistan. Tell us about your products, quantity, customization, and requirements.",
-  keywords: [
-    "apparel manufacturing quote",
-    "clothing manufacturing inquiry",
-    "custom clothing quotation",
-    "private label apparel quote",
-    "wholesale clothing manufacturer Pakistan",
-    "NORDVIA EXPORTS",
-  ],
-  alternates: {
-    canonical: "/request-a-quote",
-  },
-  openGraph: {
-    title: "Request an Apparel Manufacturing Quote | NORDVIA EXPORTS",
-    description:
-      "Share your apparel requirements with NORDVIA EXPORTS and discuss custom clothing development, private labeling, and manufacturing possibilities.",
-    type: "website",
-    siteName: "NORDVIA EXPORTS",
-    images: [
-      {
-      url: "/og/quote-og.webp",
-      width: 1200,
-      height: 630,
-      alt: "Request a custom apparel manufacturing quote from NORDVIA EXPORTS",
-    },
-  ],
-},
-  twitter: {
-    card: "summary_large_image",
-    title: "Request an Apparel Manufacturing Quote",
-    description:
-      "Discuss your custom apparel and private-label manufacturing requirements with NORDVIA EXPORTS.",
-    images: ["/og/quote-og.webp"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
-
+    "Request a custom apparel manufacturing quote for hoodies, tracksuits, jackets or private-label clothing. Share your requirements with Nordvia Exports.",
+  path: "/request-a-quote",
+  image: "/og/quote-og.webp",
+});
 export default async function RequestAQuotePage({
   searchParams,
 }: PageProps) {
@@ -73,5 +40,15 @@ export default async function RequestAQuotePage({
     ? requestedProduct!
     : "";
 
-  return <RequestQuote initialProduct={initialProduct} />;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Request a Quote", path: "/request-a-quote" },
+        ]}
+      />
+      <RequestQuote initialProduct={initialProduct} headingLevel="h1" />
+    </>
+  );
 }

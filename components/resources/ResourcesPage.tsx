@@ -52,10 +52,16 @@ export default function ResourcesPage() {
             </p>
 
             <Link
-              href="/request-a-quote/"
+              href="/request-a-quote"
               className="inline-flex w-fit items-center gap-5 border border-white/30 px-7 py-5 text-xs font-semibold uppercase tracking-[0.2em] transition hover:bg-white hover:text-black"
             >
               Discuss Your Project <span aria-hidden="true">↗</span>
+            </Link>
+            <Link
+              href="/resources/size-guide"
+              className="inline-flex w-fit items-center gap-5 border border-white/20 px-7 py-5 text-xs font-semibold uppercase tracking-[0.2em] transition hover:bg-white hover:text-black"
+            >
+              View Apparel Size Guide
             </Link>
           </div>
         </div>
@@ -108,7 +114,7 @@ export default function ResourcesPage() {
             {resourcePages.map((resource) => (
               <Link
                 key={resource.slug}
-                href={`/resources/${resource.slug}/`}
+                href={`/resources/${resource.slug}`}
                 className="group flex min-h-[280px] flex-col justify-between bg-[#101010] p-7 transition duration-300 hover:bg-[#1a1a1a] md:p-10"
               >
                 <div className="flex items-start justify-between">
@@ -192,7 +198,7 @@ export default function ResourcesPage() {
         </p>
 
         <Link
-          href="/request-a-quote/"
+          href="/request-a-quote"
           className="mt-10 inline-flex items-center gap-5 bg-white px-8 py-5 text-xs font-semibold uppercase tracking-[0.2em] text-black transition hover:bg-white/80"
         >
           Request A Quote <span aria-hidden="true">↗</span>

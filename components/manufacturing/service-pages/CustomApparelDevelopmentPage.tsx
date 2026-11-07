@@ -145,7 +145,7 @@ export default function CustomApparelDevelopmentPage() {
 
             <div className="mt-10 flex flex-wrap gap-3 sm:gap-4">
               <Link
-                href="/request-a-quote/?product=other"
+                href="/request-a-quote?product=other"
                 className="group inline-flex cursor-pointer items-center gap-4 bg-white px-6 py-4 text-[10px] font-bold uppercase tracking-[0.18em] text-black transition hover:bg-white/80 sm:px-7"
               >
                 Start Your Project
@@ -411,7 +411,7 @@ export default function CustomApparelDevelopmentPage() {
           </p>
 
           <Link
-            href="/request-a-quote/?product=other"
+            href="/request-a-quote?product=other"
             className="group mt-9 inline-flex cursor-pointer items-center gap-4 bg-white px-7 py-5 text-[10px] font-bold uppercase tracking-[0.18em] text-black transition hover:bg-white/80"
           >
             Discuss Your Project

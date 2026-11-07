@@ -31,7 +31,7 @@ export default function IndustryDetailPage({ industry }: Props) {
               Home
             </Link>
             <span>/</span>
-            <Link href="/industries/" className="transition hover:text-white">
+            <Link href="/industries" className="transition hover:text-white">
               Industries
             </Link>
             <span>/</span>
@@ -52,7 +52,7 @@ export default function IndustryDetailPage({ industry }: Props) {
           </p>
 
           <Link
-            href="/request-a-quote/"
+            href="/request-a-quote"
             className="group mt-8 inline-flex items-center gap-5 border border-white/30 px-6 py-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition duration-300 hover:bg-white hover:text-black sm:mt-10 sm:px-7 sm:py-5 sm:text-xs"
           >
             Discuss Your Project
@@ -156,7 +156,7 @@ export default function IndustryDetailPage({ industry }: Props) {
           </div>
 
           <Link
-            href="/products/"
+            href="/products"
             className="group mt-8 inline-flex items-center gap-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/55 transition hover:text-black sm:mt-9 sm:text-xs sm:tracking-[0.2em]"
           >
             Explore All Products
@@ -220,7 +220,7 @@ export default function IndustryDetailPage({ industry }: Props) {
           </p>
 
           <Link
-            href="/request-a-quote/"
+            href="/request-a-quote"
             className="group mt-9 inline-flex items-center gap-5 bg-black px-7 py-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition duration-300 hover:bg-black/80 sm:mt-10 sm:px-8 sm:py-5 sm:text-xs"
           >
             Request A Quote
@@ -235,7 +235,7 @@ export default function IndustryDetailPage({ industry }: Props) {
           {/* NEXT INDUSTRY */}
           <div className="mt-16 border-t border-black/15 pt-8 sm:mt-20">
             <Link
-              href={`/industries/${nextIndustry.slug}/`}
+              href={`/industries/${nextIndustry.slug}`}
               className="group inline-flex flex-wrap items-center justify-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/50 transition hover:text-black sm:text-xs sm:tracking-[0.2em]"
             >
               Next Industry:

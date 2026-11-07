@@ -277,7 +277,7 @@ export default function SizeGuidePage() {
               Home
             </Link>
             <span>/</span>
-            <Link href="/resources/" className="transition hover:text-black">
+            <Link href="/resources" className="transition hover:text-black">
               Resources
             </Link>
             <span>/</span>
@@ -610,7 +610,7 @@ export default function SizeGuidePage() {
           </div>
 
           <Link
-            href="/request-a-quote/"
+            href="/request-a-quote"
             className="inline-flex w-fit cursor-pointer items-center gap-8 border border-white/30 px-7 py-5 text-[10px] font-semibold uppercase tracking-[0.16em] transition hover:bg-white hover:text-black"
           >
             Request a Quote

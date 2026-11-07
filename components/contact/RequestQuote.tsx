@@ -142,6 +142,7 @@ type FormData = typeof initialFormData;
 
 type RequestQuoteProps = {
   initialProduct?: string;
+  headingLevel?: "h1" | "h2";
 };
 
 type UploadPhase = "idle" | "uploading" | "processing";
@@ -223,6 +224,7 @@ function getResponseMessage(xhr: XMLHttpRequest) {
 
 export default function RequestQuote({
   initialProduct = "",
+  headingLevel = "h2",
 }: RequestQuoteProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -680,13 +682,23 @@ export default function RequestQuote({
               </span>
             </div>
 
-            <h2 className="text-3xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-4xl lg:text-5xl">
-              Let&apos;s create
-              <span className="text-neutral-500">
-                {" "}
-                something together.
-              </span>
-            </h2>
+            {headingLevel === "h1" ? (
+              <h1 className="text-3xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-4xl lg:text-5xl">
+                Let&apos;s create
+                <span className="text-neutral-500">
+                  {" "}
+                  something together.
+                </span>
+              </h1>
+            ) : (
+              <h2 className="text-3xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-4xl lg:text-5xl">
+                Let&apos;s create
+                <span className="text-neutral-500">
+                  {" "}
+                  something together.
+                </span>
+              </h2>
+            )}
           </div>
 
           <p className="max-w-sm text-xs leading-6 text-neutral-400 sm:text-sm">

@@ -116,7 +116,7 @@ export default function ProductDevelopmentSamplingPage() {
 
             <div className="mt-10 flex flex-wrap gap-3">
               <Link
-                href="/request-a-quote/?product=other"
+                href="/request-a-quote?product=other"
                 className="inline-flex min-h-12 cursor-pointer items-center gap-4 bg-white px-7 text-[10px] font-bold uppercase tracking-[0.16em] text-black transition hover:bg-white/80"
               >
                 Discuss Your Project <FaArrowRight />
@@ -337,7 +337,7 @@ export default function ProductDevelopmentSamplingPage() {
         </p>
 
         <Link
-          href="/request-a-quote/?product=other"
+          href="/request-a-quote?product=other"
           className="mt-9 inline-flex min-h-12 cursor-pointer items-center gap-4 bg-[#090909] px-8 py-5 text-[10px] font-bold uppercase tracking-[0.18em] text-white transition hover:bg-[#333]"
         >
           Request A Project Quote <FaArrowRight />

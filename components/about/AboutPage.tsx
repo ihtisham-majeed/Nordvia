@@ -163,7 +163,7 @@ export default function AboutPage() {
         <div className="absolute inset-0">
           <Image
             src="/image/hoodie_1.webp"
-            alt="Apparel design concept"
+            alt="Custom apparel manufacturing for brands"
             fill
             priority
             sizes="100vw"
@@ -282,7 +282,7 @@ export default function AboutPage() {
           <div className="relative min-h-[360px] sm:min-h-[520px]">
             <Image
               src="/image/hoodie_1.webp"
-              alt="Apparel customization concept"
+              alt="Custom apparel customization and development"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"

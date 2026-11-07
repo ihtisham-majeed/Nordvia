@@ -178,7 +178,7 @@ export default function ProductsPage() {
         <div className="absolute inset-0">
           <Image
             src="/image/hoodie_1.webp"
-            alt="Apparel design concept"
+            alt="Custom apparel manufacturer product collection"
             fill
             priority
             sizes="100vw"
@@ -530,13 +530,21 @@ export default function ProductsPage() {
             conversation.
           </p>
 
-          <Link
-            href="/request-a-quote"
-            className="group mt-10 inline-flex items-center gap-5 bg-[#090909] px-8 py-5 text-[10px] font-bold uppercase tracking-[0.18em] text-white transition hover:bg-black/80"
-          >
-            Request A Quote
-            <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <Link
+              href="/request-a-quote"
+              className="group inline-flex items-center gap-5 bg-[#090909] px-8 py-5 text-[10px] font-bold uppercase tracking-[0.18em] text-white transition hover:bg-black/80"
+            >
+              Request A Quote
+              <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="/resources/size-guide"
+              className="inline-flex items-center border border-black/20 px-8 py-5 text-[10px] font-bold uppercase tracking-[0.18em] text-black transition hover:border-black/50"
+            >
+              View Apparel Size Guide
+            </Link>
+          </div>
         </div>
       </section>
     </main>

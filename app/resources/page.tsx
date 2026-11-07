@@ -1,23 +1,25 @@
 
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import ResourcesPage from "@/components/resources/ResourcesPage";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
-export const metadata: Metadata = {
-  title: "Apparel Resources & Guides",
-  description:
-    "Explore NORDVIA EXPORTS apparel resources, frequently asked questions, manufacturing process information and fabric selection guides.",
-  alternates: {
-    canonical: "https://nordviaexports.store/resources/",
-  },
-  openGraph: {
-    title: "Apparel Resources & Guides | NORDVIA EXPORTS",
-    description:
-      "Helpful information about apparel manufacturing, materials, customization and product development.",
-    url: "https://nordviaexports.store/resources/",
-    type: "website",
-  },
-};
+export const metadata: Metadata = buildMetadata({
+  title: "Apparel Manufacturing Resources and Guides",
+  description: "Explore practical apparel manufacturing resources, fabric guidance, process information and FAQs to prepare your next clothing project.",
+  path: "/resources",
+});
 
 export default function ResourcesRoute() {
-  return <ResourcesPage />;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Resources", path: "/resources" },
+        ]}
+      />
+      <ResourcesPage />
+    </>
+  );
 }

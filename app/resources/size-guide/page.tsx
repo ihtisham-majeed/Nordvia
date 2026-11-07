@@ -1,16 +1,26 @@
 
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import SizeGuidePage from "@/components/resources/SizeGuidePage";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
-export const metadata: Metadata = {
-  title: "Size Guide | Nordvia Exports",
-  description:
-    "Explore garment measurement points and fit considerations for hoodies, T-shirts, tracksuits, joggers, jackets and coats.",
-  alternates: {
-    canonical: "/resources/size-guide",
-  },
-};
+export const metadata: Metadata = buildMetadata({
+  title: "Apparel Size Guide for Custom Clothing",
+  description: "Review garment measurement points and fit considerations for hoodies, tracksuits, joggers, jackets and coats before requesting a project discussion.",
+  path: "/resources/size-guide",
+});
 
 export default function Page() {
-  return <SizeGuidePage />;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Resources", path: "/resources" },
+          { name: "Size Guide", path: "/resources/size-guide" },
+        ]}
+      />
+      <SizeGuidePage />
+    </>
+  );
 }

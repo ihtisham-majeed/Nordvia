@@ -1,23 +1,25 @@
 
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import IndustriesPage from "@/components/industries/IndustriesPage";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
-export const metadata: Metadata = {
-  title: "Industries We Serve | Apparel Manufacturing",
-  description:
-    "NORDVIA EXPORTS coordinates custom apparel development for fashion brands, streetwear labels, sportswear businesses, wholesalers and distributors.",
-  alternates: {
-    canonical: "https://nordviaexports.store/industries/",
-  },
-  openGraph: {
-    title: "Industries We Serve | NORDVIA EXPORTS",
-    description:
-      "Apparel development and manufacturing coordination for different types of clothing businesses.",
-    url: "https://nordviaexports.store/industries/",
-    type: "website",
-  },
-};
+export const metadata: Metadata = buildMetadata({
+  title: "Apparel Manufacturer for Fashion and Sportswear",
+  description: "Explore apparel manufacturing for fashion brands, streetwear labels, sportswear businesses and wholesalers. Find a suitable B2B partner today.",
+  path: "/industries",
+});
 
 export default function IndustriesRoute() {
-  return <IndustriesPage />;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Industries", path: "/industries" },
+        ]}
+      />
+      <IndustriesPage />
+    </>
+  );
 }

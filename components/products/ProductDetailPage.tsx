@@ -175,6 +175,7 @@ export default function ProductDetailPage({ product }: Props) {
             <div className="product-hero-content mt-9 flex flex-wrap gap-3">
               <Link
                 href="#individual-products"
+                aria-label={`Explore ${product.name} styles`}
                 className="inline-flex items-center gap-4 bg-white px-6 py-4 text-[10px] font-bold uppercase tracking-[0.15em] text-black transition hover:bg-white/85"
               >
                 Explore Styles

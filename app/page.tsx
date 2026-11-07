@@ -14,66 +14,17 @@ import WhyUs from "@/components/home/WhyUs";
 import { Analytics } from "@vercel/analytics/next";
 import QualityStandards from "@/components/home/QualityStandards";
 import FAQ from "@/components/home/FAQ";
+import { buildMetadata } from "@/lib/seo";
 
-const siteUrl = "https://nordviaexports.store";
 const homeOgImage = "/og/home-og.webp";
 
-export const metadata: Metadata = {
-  title: {
-    absolute: "NORDVIA EXPORTS | Custom Apparel Manufacturer in Pakistan",
-  },
-
+export const metadata: Metadata = buildMetadata({
+  title: "Custom Apparel Manufacturer for B2B Brands",
   description:
-    "Explore custom apparel manufacturing and private-label clothing development with NORDVIA EXPORTS, based in Sialkot, Pakistan. Discover hoodies, sweatshirts, tracksuits, sportswear, jackets and custom clothing solutions for international brands.",
-
-  keywords: [
-    "custom apparel manufacturer Pakistan",
-    "clothing manufacturer Sialkot",
-    "hoodie manufacturer Pakistan",
-    "sportswear manufacturer Pakistan",
-    "tracksuit manufacturer Pakistan",
-    "private label clothing manufacturer",
-    "custom streetwear manufacturer",
-    "apparel sourcing Pakistan",
-    "wholesale clothing supplier",
-    "NORDVIA EXPORTS",
-  ],
-
-  alternates: {
-    canonical: siteUrl,
-  },
-
-  openGraph: {
-    title: "NORDVIA EXPORTS | Custom Apparel Manufacturing",
-    description:
-      "Develop your next apparel collection with NORDVIA EXPORTS. Explore custom clothing, private-label development and apparel sourcing from Sialkot, Pakistan.",
-
-    url: siteUrl,
-    siteName: "NORDVIA EXPORTS",
-    locale: "en_US",
-    type: "website",
-
-    images: [
-      {
-        url: homeOgImage,
-        width: 1200,
-        height: 630,
-        alt: "NORDVIA EXPORTS - Custom Apparel Manufacturing and Private Label Clothing",
-      },
-    ],
-  },
-
-  twitter: {
-    card: "summary_large_image",
-
-    title: "NORDVIA EXPORTS | Custom Apparel Manufacturer",
-
-    description:
-      "Custom apparel development, private-label clothing and sourcing solutions from Sialkot, Pakistan.",
-
-    images: [homeOgImage],
-  },
-};
+    "Work with a custom apparel manufacturer for hoodies, tracksuits, jackets and private-label clothing. Share your project with Nordvia Exports today.",
+  path: "/",
+  image: homeOgImage,
+});
 
 export default function Home() {
   return (

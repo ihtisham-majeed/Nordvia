@@ -109,14 +109,14 @@ export default function CustomClothingManufacturingPage() {
 
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
-              href="/request-a-quote/?product=other"
+              href="/request-a-quote?product=other"
               className="inline-flex min-h-12 items-center justify-center bg-white px-6 text-[10px] font-bold uppercase tracking-[0.15em] text-black transition duration-300 hover:bg-white/80 sm:px-7"
             >
               Discuss Your Project ↗
             </Link>
 
             <Link
-              href="/products/"
+              href="/products"
               className="inline-flex min-h-12 items-center justify-center border border-white/25 px-6 text-[10px] font-bold uppercase tracking-[0.15em] text-white transition duration-300 hover:bg-white hover:text-black sm:px-7"
             >
               Explore Products
@@ -156,7 +156,7 @@ export default function CustomClothingManufacturingPage() {
             Home
           </Link>
           <span>/</span>
-          <Link href="/manufacturing/" className="transition hover:text-black">
+          <Link href="/manufacturing" className="transition hover:text-black">
             Manufacturing
           </Link>
           <span>/</span>
@@ -327,7 +327,7 @@ export default function CustomClothingManufacturingPage() {
           </div>
 
           <Link
-            href="/request-a-quote/?product=other"
+            href="/request-a-quote?product=other"
             className="inline-flex min-h-12 shrink-0 items-center justify-center bg-white px-7 text-[10px] font-bold uppercase tracking-[0.15em] text-black transition duration-300 hover:bg-white/80"
           >
             Request a project quote ↗

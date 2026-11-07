@@ -114,7 +114,7 @@ export default function FabricSourcingPage() {
           </p>
 
           <Link
-            href="/request-a-quote/?product=other"
+            href="/request-a-quote?product=other"
             className="mt-9 inline-flex min-h-12 w-fit items-center justify-center bg-white px-7 text-[10px] font-bold uppercase tracking-[0.15em] text-black transition duration-300 hover:bg-white/80"
           >
             Discuss Fabric Requirements ↗
@@ -173,7 +173,7 @@ export default function FabricSourcingPage() {
             Home
           </Link>
           <span>/</span>
-          <Link href="/manufacturing/" className="transition hover:text-black">
+          <Link href="/manufacturing" className="transition hover:text-black">
             Manufacturing
           </Link>
           <span>/</span>
@@ -401,7 +401,7 @@ export default function FabricSourcingPage() {
           </div>
 
           <Link
-            href="/request-a-quote/?product=other"
+            href="/request-a-quote?product=other"
             className="inline-flex min-h-12 shrink-0 items-center justify-center bg-[#090909] px-7 text-[10px] font-bold uppercase tracking-[0.15em] text-white transition duration-300 hover:bg-black/75"
           >
             Send an enquiry ↗

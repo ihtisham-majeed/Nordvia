@@ -121,14 +121,14 @@ export default function PrivateLabelPage() {
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
-              href="/request-a-quote/?product=other"
+              href="/request-a-quote?product=other"
               className="inline-flex min-h-12 cursor-pointer items-center bg-white px-7 text-[10px] font-bold uppercase tracking-[0.16em] text-black transition hover:bg-white/80"
             >
               Discuss Your Brand ↗
             </Link>
 
             <Link
-              href="/products/"
+              href="/products"
               className="inline-flex min-h-12 cursor-pointer items-center border border-white/30 px-7 text-[10px] font-bold uppercase tracking-[0.16em] text-white transition hover:bg-white hover:text-black"
             >
               Explore Products
@@ -173,7 +173,7 @@ export default function PrivateLabelPage() {
         <div className="mx-auto flex max-w-[1440px] flex-wrap items-center gap-3 text-[9px] uppercase tracking-[0.18em] text-black/45">
           <Link href="/" className="transition hover:text-black">Home</Link>
           <span>/</span>
-          <Link href="/manufacturing/" className="transition hover:text-black">Manufacturing</Link>
+          <Link href="/manufacturing" className="transition hover:text-black">Manufacturing</Link>
           <span>/</span>
           <span className="text-black">Private Label</span>
         </div>
@@ -405,7 +405,7 @@ export default function PrivateLabelPage() {
           </div>
 
           <Link
-            href="/request-a-quote/?product=other"
+            href="/request-a-quote?product=other"
             className="inline-flex min-h-12 shrink-0 cursor-pointer items-center justify-center bg-[#090909] px-7 text-[10px] font-bold uppercase tracking-[0.16em] text-white transition hover:bg-[#333]"
           >
             Request a quote ↗

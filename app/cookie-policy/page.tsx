@@ -1,6 +1,8 @@
 
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import Link from "next/link";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import {
   FaArrowLeft,
   FaArrowRight,
@@ -10,29 +12,11 @@ import {
 
 import ManageCookieButton from "@/components/cookies/ManageCookieButton";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://nordviaexports.store";
-
-export const metadata: Metadata = {
-  title: "Cookie Policy | Website Tracking & Privacy",
-  description:
-    "Learn how NORDVIA EXPORTS uses essential storage, Google Analytics and Pinterest marketing technologies, and how you can manage your cookie preferences.",
-  alternates: {
-    canonical: `${siteUrl}/cookie-policy`,
-  },
-  openGraph: {
-    title: "Cookie Policy | NORDVIA EXPORTS",
-    description:
-      "Understand how NORDVIA EXPORTS uses website storage and optional tracking technologies.",
-    url: `${siteUrl}/cookie-policy`,
-    siteName: "NORDVIA EXPORTS",
-    type: "website",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+export const metadata: Metadata = buildMetadata({
+  title: "Nordvia Exports Cookie Policy and Preferences",
+  description: "Learn how Nordvia Exports uses essential storage and optional analytics technologies, and manage your cookie preferences on this website.",
+  path: "/cookie-policy",
+});
 
 const sections = [
   {
@@ -146,7 +130,14 @@ const consentCategories = [
 
 export default function CookiePolicyPage() {
   return (
-    <main className="min-h-screen bg-[#090909] text-white">
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Cookie Policy", path: "/cookie-policy" },
+        ]}
+      />
+      <main className="min-h-screen bg-[#090909] text-white">
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-white/10 px-5 pb-20 pt-36 sm:px-8 sm:pb-28 sm:pt-44">
         <div className="absolute -right-32 top-20 h-96 w-96 rounded-full bg-white/[0.035] blur-[120px]" />
@@ -338,6 +329,7 @@ export default function CookiePolicyPage() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 }

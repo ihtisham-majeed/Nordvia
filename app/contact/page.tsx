@@ -1,51 +1,29 @@
 
 import type { Metadata } from "next";
 import ContactPage from "@/components/contact/ContactPage";
+import { buildMetadata } from "@/lib/seo";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
 const contactImage = "/og/contact-og.webp";
 
-export const metadata: Metadata = {
-  title: "Contact | Custom Apparel Manufacturing & Sourcing",
+export const metadata: Metadata = buildMetadata({
+  title: "Contact Apparel Manufacturer for Your Project",
   description:
-    "Contact NORDVIA EXPORTS in Sialkot, Pakistan, for custom hoodies, sportswear, tracksuits, jackets, private-label apparel, and international business inquiries.",
-
-  keywords: [
-    "contact apparel manufacturer Pakistan",
-    "clothing manufacturer Sialkot",
-    "custom apparel sourcing",
-    "private label clothing manufacturer",
-    "NORDVIA EXPORTS contact",
-  ],
-
-  alternates: {
-    canonical: "/contact",
-  },
-
-  openGraph: {
-    title: "Contact NORDVIA EXPORTS | Apparel Manufacturing",
-    description:
-      "Discuss your apparel manufacturing and private-label development requirements with NORDVIA EXPORTS, based in Sialkot, Pakistan.",
-    type: "website",
-    siteName: "NORDVIA EXPORTS",
-    images: [
-      {
-        url: contactImage,
-        width: 1200,
-        height: 630,
-        alt: "Contact NORDVIA EXPORTS for custom apparel manufacturing",
-      },
-    ],
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact NORDVIA EXPORTS",
-    description:
-      "Get in touch about custom apparel manufacturing and private-label development.",
-    images: [contactImage],
-  },
-};
+    "Contact Nordvia Exports about custom hoodies, tracksuits, jackets and private-label apparel. Send your B2B requirements for a project discussion.",
+  path: "/contact",
+  image: contactImage,
+});
 
 export default function Contact() {
-  return <ContactPage />;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ]}
+      />
+      <ContactPage />
+    </>
+  );
 }

@@ -29,7 +29,7 @@ export default function ResourceDetailPage({ resource }: Props) {
               Home
             </Link>
             <span>/</span>
-            <Link href="/resources/" className="hover:text-white">
+            <Link href="/resources" className="hover:text-white">
               Resources
             </Link>
             <span>/</span>
@@ -180,7 +180,7 @@ export default function ResourceDetailPage({ resource }: Props) {
             </p>
 
             <Link
-              href="/resources/fabric-guide/"
+              href="/resources/fabric-guide"
               className="mt-9 inline-flex items-center gap-4 border border-white/25 px-7 py-4 text-xs font-semibold uppercase tracking-[0.2em] transition hover:bg-white hover:text-black"
             >
               Explore Fabric Guide <span aria-hidden="true">↗</span>
@@ -196,7 +196,7 @@ export default function ResourceDetailPage({ resource }: Props) {
         </p>
 
         <Link
-          href={`/resources/${nextResource.slug}/`}
+          href={`/resources/${nextResource.slug}`}
           className="inline-flex flex-col items-center gap-4"
         >
           <span className="text-2xl font-medium uppercase tracking-[-0.03em] transition hover:text-white/60 md:text-4xl">
@@ -221,7 +221,7 @@ export default function ResourceDetailPage({ resource }: Props) {
         </h2>
 
         <Link
-          href="/request-a-quote/"
+          href="/request-a-quote"
           className="mt-10 inline-flex items-center gap-5 bg-white px-8 py-5 text-xs font-semibold uppercase tracking-[0.2em] text-black transition hover:bg-white/80"
         >
           Request A Quote <span aria-hidden="true">↗</span>

@@ -66,7 +66,7 @@ export default function ManufacturingPage() {
             </p>
 
             <Link
-              href="/request-a-quote/"
+              href="/request-a-quote"
               className="group inline-flex w-fit items-center gap-5 border border-white/30 px-6 py-4 text-[10px] font-bold uppercase tracking-[0.18em] transition hover:bg-white hover:text-black sm:px-7 sm:py-5"
             >
               Discuss Your Project
@@ -189,7 +189,7 @@ export default function ManufacturingPage() {
             {manufacturingServices.map((service) => (
               <Link
                 key={service.slug}
-                href={`/services/${service.slug}/`}
+                href={`/services/${service.slug}`}
                 className="group flex min-h-[250px] cursor-pointer flex-col justify-between border border-black/10 bg-white p-7 transition duration-300 hover:border-black/30 hover:bg-[#FAFAF8] sm:p-9"
               >
                 <div className="flex items-start justify-between">
@@ -274,7 +274,7 @@ export default function ManufacturingPage() {
           </p>
 
           <Link
-            href="/request-a-quote/"
+            href="/request-a-quote"
             className="group mt-10 inline-flex items-center gap-5 bg-[#090909] px-7 py-5 text-[10px] font-bold uppercase tracking-[0.18em] text-white transition hover:bg-[#292929] sm:px-8"
           >
             Request A Quote

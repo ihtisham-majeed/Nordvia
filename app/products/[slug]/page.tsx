@@ -3,12 +3,15 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProductDetailPage from "@/components/products/ProductDetailPage";
 import { getProduct, products } from "@/components/products/productData";
+import { buildMetadata } from "@/lib/seo";
+import { seoKeywords } from "@/config/seo-keywords";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import JsonLd from "@/components/seo/JsonLd";
+import { absoluteUrl } from "@/lib/site";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
-
-const SITE_NAME = "NORDVIA EXPORTS";
 
 export function generateStaticParams() {
   return products.map((product) => ({
@@ -24,62 +27,24 @@ export async function generateMetadata({
 
   if (!product) {
     return {
-      title: {
-        absolute: "Product Not Found | NORDVIA EXPORTS",
-      },
-      robots: {
-        index: false,
-        follow: false,
-      },
+      ...buildMetadata({
+        title: "Product Not Found",
+        description: "The requested Nordvia Exports product page was not found.",
+        path: `/products/${slug}`,
+        noindex: true,
+      }),
     };
   }
 
-  const title = `${product.name} | Custom Apparel Manufacturing`;
-  const description = `${product.description} Explore custom development and private-label apparel possibilities with NORDVIA EXPORTS, based in Sialkot, Pakistan.`;
+  const path = `/products/${product.slug}`;
+  const primary = seoKeywords[path as keyof typeof seoKeywords]?.primary;
 
-  // Uses the product's existing image as its social preview.
-  // Confirm that product.image is the correct field in productData.
-  const image = product.image;
-
-  return {
-    title,
-    description,
-
-    keywords: [
-      `${product.name} manufacturer`,
-      `custom ${product.name}`,
-      `${product.name} manufacturer Pakistan`,
-      "private label apparel",
-      "custom clothing manufacturing",
-      "NORDVIA EXPORTS",
-    ],
-
-    alternates: {
-      canonical: `/products/${product.slug}`,
-    },
-
-    openGraph: {
-      title: `${product.name} | ${SITE_NAME}`,
-      description,
-      type: "website",
-      siteName: SITE_NAME,
-      images: [
-        {
-          url: image,
-          width: 1200,
-          height: 630,
-          alt: `Custom ${product.name} by NORDVIA EXPORTS`,
-        },
-      ],
-    },
-
-    twitter: {
-      card: "summary_large_image",
-      title: `${product.name} | ${SITE_NAME}`,
-      description,
-      images: [image],
-    },
-  };
+  return buildMetadata({
+    title: `${primary ?? `Custom ${product.name}`} Manufacturer`,
+    description: `${product.description} Discuss custom development and private-label options with Nordvia Exports for your next B2B apparel project.`,
+    path,
+    image: product.image,
+  });
 }
 
 export default async function ProductPage({ params }: Props) {
@@ -90,5 +55,30 @@ export default async function ProductPage({ params }: Props) {
     notFound();
   }
 
-  return <ProductDetailPage product={product} />;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Products", path: "/products" },
+          { name: product.shortName, path: `/products/${product.slug}` },
+        ]}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: product.name,
+          description: product.description,
+          image: absoluteUrl(product.image),
+          category: product.eyebrow,
+          brand: {
+            "@type": "Brand",
+            name: "Nordvia Exports",
+          },
+        }}
+      />
+      <ProductDetailPage product={product} />
+    </>
+  );
 }

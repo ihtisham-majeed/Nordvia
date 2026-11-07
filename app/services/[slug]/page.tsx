@@ -14,14 +14,15 @@ import {
   manufacturingServices,
   getManufacturingService,
 } from "@/components/manufacturing/serviceData";
+import { buildMetadata } from "@/lib/seo";
+import { seoKeywords } from "@/config/seo-keywords";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
 type PageProps = {
   params: Promise<{
     slug: string;
   }>;
 };
-
-const SITE_URL = "https://nordviaexports.store";
 
 export const dynamicParams = false;
 
@@ -38,40 +39,22 @@ export async function generateMetadata({
   const service = getManufacturingService(slug);
 
   if (!service) {
-    return {
-      title: "Service Not Found | NORDVIA EXPORTS",
-      robots: {
-        index: false,
-        follow: false,
-      },
-    };
+    return buildMetadata({
+      title: "Service Not Found",
+      description: "The requested Nordvia Exports service page was not found.",
+      path: `/services/${slug}`,
+      noindex: true,
+    });
   }
 
-  const url = `${SITE_URL}/services/${service.slug}/`;
+  const path = `/services/${service.slug}`;
+  const primary = seoKeywords[path as keyof typeof seoKeywords]?.primary;
 
-  return {
-    title: `${service.title} | NORDVIA EXPORTS`,
-    description: service.description,
-
-    alternates: {
-      canonical: url,
-    },
-
-    openGraph: {
-      title: `${service.title} | NORDVIA EXPORTS`,
-      description: service.description,
-      url,
-      siteName: "NORDVIA EXPORTS",
-      type: "website",
-      locale: "en_US",
-    },
-
-    twitter: {
-      card: "summary_large_image",
-      title: `${service.title} | NORDVIA EXPORTS`,
-      description: service.description,
-    },
-  };
+  return buildMetadata({
+    title: primary ?? service.title,
+    description: `${service.description} Discuss your B2B apparel requirements with Nordvia Exports and explore suitable next steps.`,
+    path,
+  });
 }
 
 export default async function ServiceRoute({ params }: PageProps) {
@@ -83,29 +66,50 @@ export default async function ServiceRoute({ params }: PageProps) {
     notFound();
   }
 
+  let page;
   switch (slug) {
     case "custom-clothing-manufacturing":
-      return <CustomClothingManufacturingPage />;
+      page = <CustomClothingManufacturingPage />;
+      break;
 
     case "private-label":
-      return <PrivateLabelPage />;
+      page = <PrivateLabelPage />;
+      break;
 
     case "oem-odm":
-      return <OEMODMPage />;
+      page = <OEMODMPage />;
+      break;
 
     case "fabric-sourcing":
-      return <FabricSourcingPage />;
+      page = <FabricSourcingPage />;
+      break;
 
     case "product-development-sampling":
-      return <ProductDevelopmentSamplingPage />;
+      page = <ProductDevelopmentSamplingPage />;
+      break;
 
     case "printing-embroidery":
-      return <PrintingEmbroideryPage />;
+      page = <PrintingEmbroideryPage />;
+      break;
 
     case "custom-apparel-development":
-      return <CustomApparelDevelopmentPage />;
+      page = <CustomApparelDevelopmentPage />;
+      break;
 
     default:
       notFound();
   }
+
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Manufacturing", path: "/manufacturing" },
+          { name: service.title, path: `/services/${service.slug}` },
+        ]}
+      />
+      {page}
+    </>
+  );
 }

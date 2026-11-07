@@ -28,6 +28,7 @@ const navigation = [
   { label: "Industries", href: "/industries" },
   { label: "Resources", href: "/resources" },
   { label: "Contact Us", href: "/contact" },
+  { label: "Terms & Conditions", href: "/terms" },
 ];
 
 const products = [
@@ -35,7 +36,8 @@ const products = [
   { label: "Hoodies & Sweatshirts", href: "/products/hoodies" },
   { label: "Sportswear & Tracksuits", href: "/products/tracksuits" },
   { label: "Joggers & Sweatpants", href: "/products/joggers" },
-  { label: "Custom Apparel", href: "/products/#custom-apparel" },
+  { label: "Custom Apparel", href: "/products#custom-apparel" },
+  { label: "Size Guide", href: "/resources/size-guide" },
 ];
 
 const socialLinks = [

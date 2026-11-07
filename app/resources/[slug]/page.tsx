@@ -6,6 +6,10 @@ import {
   resourcePages,
   getResourcePage,
 } from "@/components/resources/resourceData";
+import { buildMetadata } from "@/lib/seo";
+import { seoKeywords } from "@/config/seo-keywords";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import JsonLd from "@/components/seo/JsonLd";
 
 type PageProps = {
   params: Promise<{
@@ -28,26 +32,22 @@ export async function generateMetadata({
   const resource = getResourcePage(slug);
 
   if (!resource) {
-    return {
+    return buildMetadata({
       title: "Resource Not Found",
-    };
+      description: "The requested Nordvia Exports resource page was not found.",
+      path: `/resources/${slug}`,
+      noindex: true,
+    });
   }
 
-  const url = `https://nordviaexports.store/resources/${resource.slug}/`;
+  const path = `/resources/${resource.slug}`;
+  const primary = seoKeywords[path as keyof typeof seoKeywords]?.primary;
 
-  return {
-    title: resource.title,
-    description: resource.description,
-    alternates: {
-      canonical: url,
-    },
-    openGraph: {
-      title: `${resource.title} | NORDVIA EXPORTS`,
-      description: resource.description,
-      url,
-      type: "website",
-    },
-  };
+  return buildMetadata({
+    title: primary ?? resource.title,
+    description: `${resource.description} Read the guide and use the information to prepare your next apparel project.`,
+    path,
+  });
 }
 
 export default async function ResourceRoute({ params }: PageProps) {
@@ -58,5 +58,32 @@ export default async function ResourceRoute({ params }: PageProps) {
     notFound();
   }
 
-  return <ResourceDetailPage resource={resource} />;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Resources", path: "/resources" },
+          { name: resource.shortTitle, path: `/resources/${resource.slug}` },
+        ]}
+      />
+      {resource.type === "faq" && resource.faqs && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: resource.faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.answer,
+              },
+            })),
+          }}
+        />
+      )}
+      <ResourceDetailPage resource={resource} />
+    </>
+  );
 }

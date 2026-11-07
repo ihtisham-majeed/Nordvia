@@ -100,7 +100,7 @@ export default function PrintingEmbroideryPage() {
 
             <div className="mt-10 flex flex-wrap gap-3">
               <Link
-                href="/request-a-quote/?product=other"
+                href="/request-a-quote?product=other"
                 className="inline-flex min-h-12 cursor-pointer items-center gap-4 bg-white px-6 py-4 text-[10px] font-bold uppercase tracking-[0.16em] text-black transition hover:bg-white/80 sm:px-7"
               >
                 Discuss Your Artwork <FaArrowRight />
@@ -360,7 +360,7 @@ export default function PrintingEmbroideryPage() {
           </p>
 
           <Link
-            href="/request-a-quote/?product=other"
+            href="/request-a-quote?product=other"
             className="mt-9 inline-flex min-h-12 cursor-pointer items-center gap-4 bg-white px-7 py-4 text-[10px] font-bold uppercase tracking-[0.16em] text-black transition hover:bg-white/80 sm:px-8"
           >
             Request A Project Quote <FaArrowRight />

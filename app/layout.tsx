@@ -10,20 +10,18 @@ import SmoothScrolling from "@/components/Common/SmoothScrolling";
 import WhatsAppButton from "@/components/Common/WhatsAppButton";
 import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import CookieConsent from "@/components/cookies/CookieConsent";
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://nordviaexports.store";
+import JsonLd from "@/components/seo/JsonLd";
+import { absoluteUrl, SITE_URL } from "@/lib/site";
 
 const homeOgImage = "/og/home-og.webp";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
 
   title: {
     default:
       "NORDVIA EXPORTS | Custom Apparel Manufacturer in Pakistan",
-    template: "%s | NORDVIA EXPORTS",
+    template: "%s | Nordvia Exports",
   },
 
   description:
@@ -52,8 +50,8 @@ export const metadata: Metadata = {
     title: "NORDVIA EXPORTS | Custom Apparel Manufacturing",
     description:
       "Explore custom apparel development, private-label clothing and manufacturing solutions for international fashion brands and buyers.",
-    url: siteUrl,
-    siteName: "NORDVIA EXPORTS",
+    url: SITE_URL,
+    siteName: "Nordvia Exports",
     locale: "en_US",
     type: "website",
     images: [
@@ -87,6 +85,10 @@ export const metadata: Metadata = {
   },
 
   category: "business",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export const viewport: Viewport = {
@@ -112,12 +114,47 @@ export default function RootLayout({
       </head>
 
       <body className="flex min-h-screen flex-col bg-black text-white antialiased">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[10000] focus:bg-white focus:px-4 focus:py-3 focus:text-black"
+        >
+          Skip to content
+        </a>
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Nordvia Exports",
+            url: SITE_URL,
+            logo: absoluteUrl("/logo_.png"),
+            contactPoint: {
+              "@type": "ContactPoint",
+              telephone: "+923248548680",
+              email: "nordvia.exports@gmail.com",
+              contactType: "sales",
+            },
+            sameAs: [
+              "https://instagram.com/nordvia.exports",
+              "https://facebook.com/nordviaexports",
+              "https://www.linkedin.com/company/nordviaexports",
+              "https://wa.me/923248548680",
+            ],
+          }}
+        />
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Nordvia Exports",
+            url: SITE_URL,
+          }}
+        />
         <SmoothScrolling>
           <AnnouncementBar />
 
           <Navbar />
 
-          <main className="flex-1">
+          <main id="main-content" className="flex-1">
             {children}
           </main>
 

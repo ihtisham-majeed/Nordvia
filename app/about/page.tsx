@@ -1,48 +1,29 @@
 
 import type { Metadata } from "next";
 import AboutPage from "@/components/about/AboutPage";
+import { buildMetadata } from "@/lib/seo";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
 const aboutImage = "/og/about-og.webp";
 
-export const metadata: Metadata = {
-  title: "About | Apparel Manufacturing & Sourcing",
-
+export const metadata: Metadata = buildMetadata({
+  title: "Apparel Manufacturer for Brands and Startups",
   description:
-    "Discover NORDVIA EXPORTS, a Sialkot, Pakistan-based apparel business working with manufacturing partners to develop custom clothing and private-label apparel for international brands.",
-
-  keywords: [
-    "about NORDVIA EXPORTS",
-    "apparel sourcing Pakistan",
-    "clothing manufacturing Sialkot",
-    "private label apparel",
-    "custom clothing manufacturing",
-  ],
-
-  openGraph: {
-    title: "About NORDVIA EXPORTS | Apparel Manufacturing & Sourcing",
-    description:
-      "Learn about NORDVIA EXPORTS and our approach to custom apparel development, manufacturing coordination and private-label clothing for international businesses.",
-    type: "website",
-    siteName: "NORDVIA EXPORTS",
-    images: [
-      {
-        url: aboutImage,
-        width: 1200,
-        height: 630,
-        alt: "NORDVIA EXPORTS apparel manufacturing and sourcing",
-      },
-    ],
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "About NORDVIA EXPORTS",
-    description:
-      "Custom apparel development and manufacturing solutions from Sialkot, Pakistan.",
-    images: [aboutImage],
-  },
-};
+    "Learn how Nordvia Exports supports brands and startups with custom apparel development, sourcing and private-label manufacturing. Explore our approach.",
+  path: "/about",
+  image: aboutImage,
+});
 
 export default function Page() {
-  return <AboutPage />;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ]}
+      />
+      <AboutPage />
+    </>
+  );
 }

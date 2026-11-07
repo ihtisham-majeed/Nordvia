@@ -1,5 +1,7 @@
 
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import Link from "next/link";
 import {
   FaArrowLeft,
@@ -8,29 +10,11 @@ import {
   FaShieldAlt,
 } from "react-icons/fa";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://nordviaexports.store";
-
-export const metadata: Metadata = {
-  title: "Privacy Policy | Data Protection & Privacy",
-  description:
-    "Read the NORDVIA EXPORTS Privacy Policy to understand how we collect, use, protect and process information submitted through our website.",
-  alternates: {
-    canonical: `${siteUrl}/privacy-policy`,
-  },
-  openGraph: {
-    title: "Privacy Policy | NORDVIA EXPORTS",
-    description:
-      "Learn how NORDVIA EXPORTS handles business inquiries, quotation requests, website analytics and personal information.",
-    url: `${siteUrl}/privacy-policy`,
-    siteName: "NORDVIA EXPORTS",
-    type: "website",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+export const metadata: Metadata = buildMetadata({
+  title: "Nordvia Exports Privacy Policy and Data Use",
+  description: "Read how Nordvia Exports handles information from business inquiries, quote requests, analytics and website interactions. Review the policy.",
+  path: "/privacy-policy",
+});
 
 const sections = [
   {
@@ -189,7 +173,14 @@ const sections = [
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className="min-h-screen bg-[#090909] text-white">
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Privacy Policy", path: "/privacy-policy" },
+        ]}
+      />
+      <main className="min-h-screen bg-[#090909] text-white">
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-white/10 px-5 pb-20 pt-36 sm:px-8 sm:pb-28 sm:pt-44">
         <div className="absolute -right-32 top-20 h-96 w-96 rounded-full bg-white/[0.035] blur-[120px]" />
@@ -380,6 +371,7 @@ export default function PrivacyPolicyPage() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 }

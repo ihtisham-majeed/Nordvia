@@ -505,6 +505,7 @@ export default function Hero() {
               <Image
                 src={product.image}
                 alt=""
+                aria-hidden="true"
                 fill
                 sizes="90px"
                 className="object-contain p-0.5"

@@ -64,7 +64,7 @@ const products = [
   },
   {
     name: "Custom Apparel",
-    href: "/products/#custom-apparel",
+    href: "/products#custom-apparel",
     description: "Develop apparel around your requirements",
   },
 ];

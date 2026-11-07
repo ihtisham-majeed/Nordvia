@@ -1,32 +1,12 @@
 
 import type { MetadataRoute } from "next";
 import { products } from "@/components/products/productData";
+import { manufacturingServices } from "@/components/manufacturing/serviceData";
+import { industries } from "@/components/industries/industryData";
+import { resourcePages } from "@/components/resources/resourceData";
+import { absoluteUrl } from "@/lib/site";
 
-const SITE_URL = "https://nordviaexports.store";
-
-const serviceSlugs = [
-  "custom-clothing-manufacturing",
-  "private-label",
-  "oem-odm",
-  "product-development-sampling",
-  "printing-embroidery",
-  "fabric-sourcing",
-  "custom-apparel-development",
-];
-
-const industrySlugs = [
-  "fashion-brands",
-  "streetwear-brands",
-  "sportswear-brands",
-  "wholesalers-distributors",
-];
-
-const resourceSlugs = [
-  "faq",
-  "manufacturing-process",
-  "fabric-guide",
-  "blog",
-];
+const LAST_MODIFIED = new Date("2026-11-07");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
@@ -38,24 +18,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/resources",
     "/contact",
     "/request-a-quote",
+    "/resources/size-guide",
     "/privacy-policy",
     "/cookie-policy",
+    "/terms",
   ];
 
-  const productPages = products.map(
-    (product) => `/products/${product.slug}`
+  const productPages = products.map((product) => `/products/${product.slug}`);
+  const servicePages = manufacturingServices.map(
+    (service) => `/services/${service.slug}`
   );
-
-  const servicePages = serviceSlugs.map(
-    (slug) => `/services/${slug}`
+  const industryPages = industries.map(
+    (industry) => `/industries/${industry.slug}`
   );
-
-  const industryPages = industrySlugs.map(
-    (slug) => `/industries/${slug}`
-  );
-
-  const resourcePages = resourceSlugs.map(
-    (slug) => `/resources/${slug}`
+  const resourceRoutePages = resourcePages.map(
+    (resource) => `/resources/${resource.slug}`
   );
 
   const allPages = [
@@ -63,18 +40,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...productPages,
     ...servicePages,
     ...industryPages,
-    ...resourcePages,
+    ...resourceRoutePages,
   ];
 
   return allPages.map((path) => ({
-    url: `${SITE_URL}${path}`,
-    lastModified: new Date(),
+    url: absoluteUrl(path),
+    lastModified: LAST_MODIFIED,
     changeFrequency: "monthly",
     priority:
       path === ""
         ? 1
-        : staticPages.includes(path)
-          ? 0.8
-          : 0.7,
+        : staticPages.includes(path) ? 0.8 : 0.7,
   }));
 }

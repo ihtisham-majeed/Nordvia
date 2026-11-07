@@ -6,6 +6,9 @@ import {
   industries,
   getIndustry,
 } from "@/components/industries/industryData";
+import { buildMetadata } from "@/lib/seo";
+import { seoKeywords } from "@/config/seo-keywords";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
 type PageProps = {
   params: Promise<{
@@ -28,26 +31,22 @@ export async function generateMetadata({
   const industry = getIndustry(slug);
 
   if (!industry) {
-    return {
+    return buildMetadata({
       title: "Industry Not Found",
-    };
+      description: "The requested Nordvia Exports industry page was not found.",
+      path: `/industries/${slug}`,
+      noindex: true,
+    });
   }
 
-  const url = `https://nordviaexports.store/industries/${industry.slug}/`;
+  const path = `/industries/${industry.slug}`;
+  const primary = seoKeywords[path as keyof typeof seoKeywords]?.primary;
 
-  return {
-    title: industry.title,
-    description: industry.description,
-    alternates: {
-      canonical: url,
-    },
-    openGraph: {
-      title: `${industry.title} | NORDVIA EXPORTS`,
-      description: industry.description,
-      url,
-      type: "website",
-    },
-  };
+  return buildMetadata({
+    title: primary ?? industry.title,
+    description: `${industry.description} Discuss your requirements with Nordvia Exports for a practical B2B apparel manufacturing conversation.`,
+    path,
+  });
 }
 
 export default async function IndustryRoute({ params }: PageProps) {
@@ -58,5 +57,16 @@ export default async function IndustryRoute({ params }: PageProps) {
     notFound();
   }
 
-  return <IndustryDetailPage industry={industry} />;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Industries", path: "/industries" },
+          { name: industry.shortTitle, path: `/industries/${industry.slug}` },
+        ]}
+      />
+      <IndustryDetailPage industry={industry} />
+    </>
+  );
 }

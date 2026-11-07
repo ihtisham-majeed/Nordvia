@@ -57,7 +57,7 @@ export default function IndustriesPage() {
             </p>
 
             <Link
-              href="/request-a-quote/"
+              href="/request-a-quote"
               className="group inline-flex w-fit items-center gap-5 border border-white/30 px-6 py-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition duration-300 hover:bg-white hover:text-black sm:px-7 sm:py-5 sm:text-xs"
             >
               Discuss Your Requirements
@@ -123,7 +123,7 @@ export default function IndustriesPage() {
             {industries.map((industry) => (
               <Link
                 key={industry.slug}
-                href={`/industries/${industry.slug}/`}
+                href={`/industries/${industry.slug}`}
                 className="group flex min-h-[290px] flex-col justify-between bg-[#101010] p-6 transition duration-300 hover:bg-[#1b1b1b] sm:min-h-[320px] sm:p-8 lg:p-10"
               >
                 <div className="flex items-start justify-between">
@@ -212,7 +212,7 @@ export default function IndustriesPage() {
           </p>
 
           <Link
-            href="/request-a-quote/"
+            href="/request-a-quote"
             className="group mt-9 inline-flex items-center gap-5 bg-white px-7 py-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-black transition duration-300 hover:bg-white/85 sm:mt-10 sm:px-8 sm:py-5 sm:text-xs"
           >
             Request A Quote

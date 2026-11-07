@@ -1,31 +1,14 @@
 
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import Link from "next/link";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
-const siteUrl = "https://nordviaexports.store";
-
-export const metadata: Metadata = {
-  title: {
-    absolute: "Terms & Conditions | NORDVIA EXPORTS",
-  },
-  description:
-    "Read the Terms and Conditions governing the use of the NORDVIA EXPORTS website, apparel inquiries, quotations and business communications.",
-  alternates: {
-    canonical: `${siteUrl}/terms`,
-  },
-  openGraph: {
-    title: "Terms & Conditions | NORDVIA EXPORTS",
-    description:
-      "Website usage and business inquiry terms for NORDVIA EXPORTS.",
-    url: `${siteUrl}/terms`,
-    siteName: "NORDVIA EXPORTS",
-    type: "website",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+export const metadata: Metadata = buildMetadata({
+  title: "Nordvia Exports Terms and Conditions",
+  description: "Review the terms governing website use, apparel inquiries, quotations and business communications with Nordvia Exports before contacting us.",
+  path: "/terms",
+});
 
 const sections = [
   {
@@ -414,7 +397,14 @@ const sections = [
 
 export default function TermsPage() {
   return (
-    <main className="min-h-screen bg-[#090909] text-white">
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Terms and Conditions", path: "/terms" },
+        ]}
+      />
+      <main className="min-h-screen bg-[#090909] text-white">
       <section className="border-b border-white/10 px-5 pb-16 pt-36 sm:px-8 lg:px-12 lg:pb-24 lg:pt-44">
         <div className="mx-auto max-w-7xl">
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-white/45">
@@ -492,6 +482,7 @@ export default function TermsPage() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 }
