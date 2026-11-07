@@ -428,7 +428,7 @@ export default function Hero() {
                     </Link>
 
                     <Link
-                      href="#catalog"
+                      href="/products"
                       tabIndex={isActive ? 0 : -1}
                       className="
                         inline-flex min-h-[46px]
