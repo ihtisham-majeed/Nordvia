@@ -10,6 +10,7 @@ import {
 } from "react";
 import Link from "next/link";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   getQuoteItems,
@@ -31,7 +32,9 @@ import {
   FaImage,
 } from "react-icons/fa";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 /* -------------------------------------------------------------------------- */
 /* STYLES                                                                     */
@@ -318,7 +321,7 @@ export default function RequestQuote({
   /* ANIMATIONS                                                               */
   /* ------------------------------------------------------------------------ */
 
-  useEffect(() => {
+  useGSAP(() => {
   const section = sectionRef.current;
 
   if (!section) return;
@@ -372,7 +375,7 @@ export default function RequestQuote({
     cancelAnimationFrame(refreshFrame);
     ctx.revert();
   };
-}, []);
+  }, { scope: sectionRef });
 
   /* ------------------------------------------------------------------------ */
   /* FORM INPUTS                                                              */
@@ -1333,14 +1336,14 @@ export default function RequestQuote({
 
                 <p className="text-[10px] leading-5 text-neutral-500">
                   We use your details only to reply to this request.{" "}
-                  <a
+                  <Link
                     href="/privacy-policy"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="cursor-pointer text-neutral-300 underline underline-offset-4 transition hover:text-white"
                   >
                     Privacy policy
-                  </a>
+                  </Link>
                 </p>
               </div>
 

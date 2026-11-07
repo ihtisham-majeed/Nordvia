@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: "Request an Apparel Manufacturing Quote",
     description:
       "Discuss your custom apparel and private-label manufacturing requirements with NORDVIA EXPORTS.",
-    images: ["/images/og/quote-og.jpg"],
+    images: ["/og/quote-og.webp"],
   },
   robots: {
     index: true,

@@ -1,10 +1,11 @@
 
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   FaArrowRight,
@@ -13,8 +14,10 @@ import {
   FaHandshake,
 } from "react-icons/fa";
 
-gsap.registerPlugin(ScrollTrigger);
-ScrollTrigger.config({ ignoreMobileResize: true });
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+}
 
 type ProductSlide = {
   number: string;
@@ -90,6 +93,7 @@ const clamp = (value: number, min = 0, max = 1) =>
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
+  const pinRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<ScrollTrigger | null>(null);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
   const stageRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -97,9 +101,10 @@ export default function Hero() {
 
   const [activeIndex, setActiveIndex] = useState(0);
 
-  useEffect(() => {
+  useGSAP(() => {
     const section = sectionRef.current;
-    if (!section) return;
+    const pin = pinRef.current;
+    if (!section || !pin) return;
 
     const render = (p: number) => {
       slideRefs.current.forEach((slide, i) => {
@@ -149,10 +154,10 @@ export default function Hero() {
         ease: "none",
         onUpdate: () => render(proxy.p),
         scrollTrigger: {
-          trigger: section,
+          trigger: pin,
           start: () => `top top+=${getNavHeight()}`,
           end: () => `+=${window.innerHeight * 0.9 * LAST}`,
-          pin: true,
+          pin: pin,
           pinSpacing: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
@@ -182,7 +187,7 @@ export default function Hero() {
       ctx.revert();
       triggerRef.current = null;
     };
-  }, []);
+  }, { scope: sectionRef });
 
   const goToSlide = useCallback((index: number) => {
     const trigger = triggerRef.current;
@@ -201,17 +206,17 @@ export default function Hero() {
   const activeProduct = products[activeIndex];
 
   return (
-    <section
-      ref={sectionRef}
-      id="home"
-      className="
+    <section ref={sectionRef} id="home">
+      <div
+        ref={pinRef}
+        className="
         relative isolate flex w-full flex-col overflow-hidden
         bg-[#070707] text-white
         h-[calc(100svh-58px)] min-h-[650px]
         sm:min-h-[680px]
         md:h-[calc(100svh-76px)] md:min-h-[650px]
       "
-    >
+      >
       {/* BACKGROUND LIGHT */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute right-[10%] top-[10%] h-[450px] w-[450px] rounded-full bg-white/[0.035] blur-[130px]" />
@@ -256,7 +261,7 @@ export default function Hero() {
                     src={product.image}
                     alt={product.imageAlt}
                     fill
-                    quality={80}
+                    quality={75}
                     priority={index === 0}
                     sizes="
                       (max-width: 767px) 100vw,
@@ -537,6 +542,7 @@ export default function Hero() {
             />
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

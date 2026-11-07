@@ -1,9 +1,10 @@
 
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   FaArrowRight,
@@ -14,7 +15,9 @@ import {
   FaShippingFast,
 } from "react-icons/fa";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 const steps = [
   {
@@ -67,7 +70,7 @@ const steps = [
 export default function HowItWorks() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const section = sectionRef.current;
     if (!section) return;
 
@@ -111,7 +114,7 @@ export default function HowItWorks() {
     ScrollTrigger.refresh();
 
     return () => ctx.revert();
-  }, []);
+  }, { scope: sectionRef });
 
   return (
     <section

@@ -1,11 +1,12 @@
 
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   FaArrowLeft,
@@ -21,7 +22,9 @@ import { addQuoteItem } from "@/lib/quote";
 import { products, type ProductInfo } from "./productData";
 import { getProductStyles, type ProductStyle } from "./productCatalogue";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 type Props = {
   product: ProductInfo;
@@ -61,7 +64,7 @@ export default function ProductDetailPage({ product }: Props) {
     );
   };
 
-  useEffect(() => {
+  useGSAP(() => {
     const page = pageRef.current;
     if (!page) return;
 
@@ -119,7 +122,7 @@ export default function ProductDetailPage({ product }: Props) {
     ScrollTrigger.refresh();
 
     return () => ctx.revert();
-  }, [product.slug]);
+  }, { scope: pageRef, dependencies: [product.slug] });
 
   return (
     <main

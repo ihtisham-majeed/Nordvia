@@ -28,9 +28,7 @@ function RouteScrollManager() {
 
         try {
           targetId = decodeURIComponent(targetId);
-        } catch {
-          // Keep the original hash if decoding fails.
-        }
+        } catch {}
 
         const target = document.getElementById(targetId);
 
@@ -45,16 +43,16 @@ function RouteScrollManager() {
         return;
       }
 
-      // Start every newly visited page at the top.
       lenis.scrollTo(0, {
         immediate: true,
         force: true,
       });
     };
 
-    // Wait for Next.js to render the new route before scrolling.
     firstFrame = requestAnimationFrame(() => {
-      secondFrame = requestAnimationFrame(scrollToCurrentLocation);
+      secondFrame = requestAnimationFrame(
+        scrollToCurrentLocation
+      );
     });
 
     return () => {
@@ -63,23 +61,25 @@ function RouteScrollManager() {
     };
   }, [pathname, lenis]);
 
-  // Also handle anchor links clicked on the current page.
   useEffect(() => {
+    if (!lenis) return;
+
+    let frame = 0;
+
     const handleHashChange = () => {
-      if (!lenis) return;
+      cancelAnimationFrame(frame);
 
       const hash = window.location.hash;
+
       if (!hash) return;
 
       let targetId = hash.slice(1);
 
       try {
         targetId = decodeURIComponent(targetId);
-      } catch {
-        // Keep the original hash.
-      }
+      } catch {}
 
-      requestAnimationFrame(() => {
+      frame = requestAnimationFrame(() => {
         const target = document.getElementById(targetId);
 
         if (target) {
@@ -95,7 +95,11 @@ function RouteScrollManager() {
     window.addEventListener("hashchange", handleHashChange);
 
     return () => {
-      window.removeEventListener("hashchange", handleHashChange);
+      cancelAnimationFrame(frame);
+      window.removeEventListener(
+        "hashchange",
+        handleHashChange
+      );
     };
   }, [lenis]);
 

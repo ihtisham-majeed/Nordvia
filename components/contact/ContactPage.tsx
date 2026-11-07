@@ -2,13 +2,13 @@
 "use client";
 
 import {
-  useEffect,
   useRef,
   useState,
   type FormEvent,
 } from "react";
 import Link from "next/link";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   FaArrowRight,
@@ -25,7 +25,9 @@ import {
   FaChevronDown,
 } from "react-icons/fa";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 const CONTACT_EMAIL = "nordvia.exports@gmail.com";
 const LOCATION = "Sialkot, Pakistan";
@@ -111,7 +113,7 @@ export default function ContactPage() {
     message: string;
   } | null>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const section = sectionRef.current;
     if (!section) return;
 
@@ -140,7 +142,7 @@ export default function ContactPage() {
     ScrollTrigger.refresh();
 
     return () => ctx.revert();
-  }, []);
+  }, { scope: sectionRef });
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

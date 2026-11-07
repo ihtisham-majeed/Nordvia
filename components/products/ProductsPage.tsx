@@ -1,10 +1,11 @@
 
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   FaArrowRight,
@@ -17,7 +18,9 @@ import {
 
 import { products } from "@/components/products/productData";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 const customization = [
   {
@@ -76,7 +79,7 @@ const steps = [
 export default function ProductsPage() {
   const pageRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const page = pageRef.current;
     if (!page) return;
 
@@ -166,7 +169,7 @@ export default function ProductsPage() {
     ScrollTrigger.refresh();
 
     return () => ctx.revert();
-  }, []);
+  }, { scope: pageRef });
 
   return (
     <main ref={pageRef} className="overflow-hidden bg-[#090909] text-white">
@@ -174,7 +177,7 @@ export default function ProductsPage() {
       <section className="relative flex min-h-[650px] items-end overflow-hidden border-b border-white/10 pt-32 sm:min-h-[730px] lg:min-h-[790px]">
         <div className="absolute inset-0">
           <Image
-            src="/image/hoodie_1.png"
+            src="/image/hoodie_1.webp"
             alt="Apparel design concept"
             fill
             priority

@@ -1,15 +1,18 @@
 
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaArrowRight } from "react-icons/fa";
 import { products } from "@/components/products/productData";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 const categoryDetails: Record<
   string,
@@ -60,7 +63,7 @@ const categoryDetails: Record<
 export default function Products() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const section = sectionRef.current;
     if (!section) return;
 
@@ -92,7 +95,7 @@ export default function Products() {
     }, section);
 
     return () => ctx.revert();
-  }, []);
+  }, { scope: sectionRef });
 
   return (
     <section
@@ -134,7 +137,7 @@ export default function Products() {
               className="group mt-5 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#171717] transition-colors hover:text-[#171717]/50"
             >
               Discuss Your Requirements
-              <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+              <FaArrowRight className="text-white transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
         </div>
@@ -234,16 +237,24 @@ export default function Products() {
                     <span>Explore Collection</span>
 
                     <span
-                      className="
-                        flex h-8 w-8 items-center justify-center
-                        rounded-full border border-white/40
-                        transition-all duration-300
-                        group-hover:border-white
-                        group-hover:bg-white group-hover:text-black
-                      "
-                    >
-                      <FaArrowRight className="text-[10px]" />
-                    </span>
+  className="
+    flex h-8 w-8 items-center justify-center
+    rounded-full border border-white/40
+    text-white
+    transition-all duration-300
+    group-hover:border-white
+    group-hover:bg-white
+    group-hover:text-black
+  "
+>
+  <FaArrowRight
+    className="
+      text-[10px]
+      transition-colors duration-300
+      group-hover:text-black
+    "
+  />
+</span>
                   </Link>
                 </div>
               </article>
@@ -274,7 +285,7 @@ export default function Products() {
             "
           >
             Explore All Products
-            <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+            <FaArrowRight className="text-white transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
       </div>

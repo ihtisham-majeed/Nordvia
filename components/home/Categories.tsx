@@ -1,30 +1,33 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 // Example category-wise products
 const categories = [
   {
     category: "Winter Jackets",
     items: [
-      { title: "Nordvia Puffer Jacket", image: "/products/jacket1.webp" },
-      { title: "Nordvia Windbreaker Jacket", image: "/products/jacket2.webp" },
+      { title: "Nordvia Puffer Jacket", image: "/products/Winter_Protection.webp" },
+      { title: "Nordvia Windbreaker Jacket", image: "/products/Performance_Wear.webp" },
       {
         title: "Nordvia Arctic Edge Softshell Jacket",
-        image: "/products/Jackets/black_jacket/soft_jacket.webp",
+        image: "/products/Everyday_Layers.png",
       },
     ],
   },
   {
     category: "Hoodies & Sweatshirts",
     items: [
-      { title: "Premium Fleece Hoodie", image: "/products/hoodie1.webp" },
-      { title: "Zip-Up Hoodie", image: "/products/hoodie2.webp" },
-      { title: "Pullover Hoodie", image: "/products/hoodie3.webp" },
+      { title: "Premium Fleece Hoodie", image: "/products/Premium_Fleece.png" },
+      { title: "Zip-Up Hoodie", image: "/products/Individual/hoodies/Zip-Up_Hoodies.webp" },
+      { title: "Pullover Hoodie", image: "/products/Individual/hoodies/Heavyweight_Hoodie.webp" },
     ],
   },
   {
@@ -33,16 +36,16 @@ const categories = [
       {
         title: "Nordvia PolarCraft Wool-Blend Coat",
 
-        image: "/products/Coats/Black_Coat/plain_coat.webp",
+        image: "/products/Winter_Protection.webp",
       },
       {
         title: "Nordvia Classic Winter Coat",
 
-        image: "/products/Coats/check_coat/check_coat.webp",
+        image: "/products/Everyday_Layers.png",
       },
       {
         title: "Nordvia PolarCraft Wool-Blend Coat - Long",
-        image: "/products/Coats/long_coat/long_coat.webp",
+        image: "/products/Performance_Wear.webp",
       },
     ],
   },
@@ -52,7 +55,7 @@ const categories = [
     items: [
       {
         title: "Nordvia Winter Gloves",
-        image: "/products/glove/glove.png",
+        image: "/products/Individual/jackets/Sporty_Color_Block_Hooded_Windbreaker.webp",
       },
     ],
   },
@@ -61,7 +64,7 @@ const categories = [
 export default function ProductShowcase() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
@@ -79,7 +82,7 @@ export default function ProductShowcase() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, { scope: sectionRef });
 
   return (
     <section ref={sectionRef} id="catalog" className="bg-black py-20 sm:py-24">

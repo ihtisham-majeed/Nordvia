@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   FaArrowRight,
@@ -15,7 +16,9 @@ import {
   FaCheck,
 } from "react-icons/fa";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 const values = [
   {
@@ -78,7 +81,7 @@ const approach = [
 export default function AboutPage() {
   const pageRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const page = pageRef.current;
     if (!page) return;
 
@@ -151,7 +154,7 @@ export default function AboutPage() {
     ScrollTrigger.refresh();
 
     return () => ctx.revert();
-  }, []);
+  }, { scope: pageRef });
 
   return (
     <main ref={pageRef} className="overflow-hidden bg-white text-[#171717]">
@@ -159,7 +162,7 @@ export default function AboutPage() {
       <section className="relative flex min-h-[680px] items-end overflow-hidden border-b border-white/10 bg-[#090909] pt-32 sm:min-h-[740px] lg:min-h-[800px]">
         <div className="absolute inset-0">
           <Image
-            src="/image/hoodie_1.png"
+            src="/image/hoodie_1.webp"
             alt="Apparel design concept"
             fill
             priority
@@ -278,7 +281,7 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-[1440px] lg:grid-cols-2">
           <div className="relative min-h-[360px] sm:min-h-[520px]">
             <Image
-              src="/capabilities/custom-development.webp"
+              src="/image/hoodie_1.webp"
               alt="Apparel customization concept"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"

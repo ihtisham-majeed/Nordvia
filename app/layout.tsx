@@ -101,8 +101,9 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" translate="no">
       <head>
+        <meta name="google" content="notranslate" />
         {/* Pinterest domain verification */}
         <meta
           name="p:domain_verify"

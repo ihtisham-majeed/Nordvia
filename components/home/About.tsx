@@ -1,17 +1,20 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { Highlighter } from "@/components/ui/highlighter";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 export default function About() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
@@ -29,7 +32,7 @@ export default function About() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, { scope: sectionRef });
 
   return (
     <section id="about" ref={sectionRef} className="bg-black py-24">

@@ -1,8 +1,9 @@
 
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   FaArrowRight,
@@ -12,7 +13,9 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 const faqs = [
   {
@@ -61,7 +64,7 @@ export default function FAQ() {
   const sectionRef = useRef<HTMLElement>(null);
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
-  useEffect(() => {
+  useGSAP(() => {
     const section = sectionRef.current;
     if (!section) return;
 
@@ -104,7 +107,7 @@ export default function FAQ() {
     ScrollTrigger.refresh();
 
     return () => ctx.revert();
-  }, []);
+  }, { scope: sectionRef });
 
   const toggleFAQ = (index: number) => {
     setActiveIndex((current) => (current === index ? null : index));

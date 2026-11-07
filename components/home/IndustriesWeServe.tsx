@@ -1,14 +1,17 @@
 
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaArrowRight } from "react-icons/fa";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 const industries = [
   {
@@ -52,7 +55,7 @@ const industries = [
 export default function IndustriesWeServe() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const section = sectionRef.current;
     if (!section) return;
 
@@ -109,7 +112,7 @@ export default function IndustriesWeServe() {
     }, section);
 
     return () => ctx.revert();
-  }, []);
+  }, { scope: sectionRef });
 
   return (
     <section
@@ -254,16 +257,24 @@ export default function IndustriesWeServe() {
                   </span>
 
                   <span
-                    className="
-                      flex h-9 w-9 items-center justify-center
-                      rounded-full border border-white/40
-                      transition-all duration-300
-                      group-hover:border-white
-                      group-hover:bg-white group-hover:text-black
-                    "
-                  >
-                    <FaArrowRight className="text-xs" />
-                  </span>
+  className="
+    flex h-9 w-9 items-center justify-center
+    rounded-full border border-white/40
+    text-white
+    transition-all duration-300
+    group-hover:border-white
+    group-hover:bg-white
+    group-hover:text-black
+  "
+>
+  <FaArrowRight
+    className="
+      text-xs
+      transition-colors duration-300
+      group-hover:text-black
+    "
+  />
+</span>
                 </div>
               </div>
             </article>

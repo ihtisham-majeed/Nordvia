@@ -16,7 +16,7 @@ import QualityStandards from "@/components/home/QualityStandards";
 import FAQ from "@/components/home/FAQ";
 
 const siteUrl = "https://nordviaexports.store";
-const homeOgImage = "/images/og/home-og.jpg";
+const homeOgImage = "/og/home-og.webp";
 
 export const metadata: Metadata = {
   title: {

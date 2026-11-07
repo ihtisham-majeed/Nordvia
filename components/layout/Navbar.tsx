@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import {
   FaArrowRight,
   FaBars,
@@ -16,6 +17,10 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa6";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(useGSAP);
+}
 
 /* -------------------------------------------------------------------------- */
 /* DATA                                                                       */
@@ -348,7 +353,7 @@ export default function Navbar() {
   /* MOBILE MENU ANIMATION                                                    */
   /* ------------------------------------------------------------------------ */
 
-  useEffect(() => {
+  useGSAP(() => {
     const menu = mobileMenuRef.current;
 
     if (!menu) return;
@@ -374,7 +379,11 @@ export default function Navbar() {
     return () => {
       gsap.killTweensOf(menu);
     };
-  }, [mobileOpen]);
+  }, {
+    scope: mobileMenuRef,
+    dependencies: [mobileOpen],
+    revertOnUpdate: true,
+  });
 
   /* ------------------------------------------------------------------------ */
   /* DRAWER ACCESSIBILITY AND SCROLL LOCK                                     */
@@ -594,7 +603,7 @@ export default function Navbar() {
                       <div className="relative aspect-[16/9] overflow-hidden bg-neutral-200">
 
                         <Image
-                          src="/products/tracksuits.webp"
+                          src="/image/Tracksuit.webp"
                           alt="NORDVIA EXPORTS custom tracksuit manufacturing"
                           fill
                           sizes="(max-width: 1280px) 40vw, 500px"

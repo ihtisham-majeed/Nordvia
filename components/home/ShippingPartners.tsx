@@ -1,10 +1,11 @@
 
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   FaGlobe,
@@ -14,7 +15,9 @@ import {
   FaShieldAlt,
 } from "react-icons/fa";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 const logisticsOptions = [
   { name: "DHL", logo: "/logos/dhl.webp" },
@@ -53,7 +56,7 @@ const shippingFeatures = [
 export default function ShippingPartners() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const section = sectionRef.current;
     if (!section) return;
 
@@ -80,7 +83,7 @@ export default function ShippingPartners() {
     }, section);
 
     return () => ctx.revert();
-  }, []);
+  }, { scope: sectionRef });
 
   return (
     <section

@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import Script from "next/script";
 import {
   FaCheck,
   FaChevronRight,
@@ -245,13 +247,6 @@ export default function CookieConsent() {
         send_page_view: false,
       });
 
-      const script = document.createElement("script");
-      script.async = true;
-      script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-      script.dataset.nordviaAnalytics = "true";
-
-      document.head.appendChild(script);
-
       window.__nordviaGaInitialized = true;
     } else {
       window.gtag?.("consent", "update", {
@@ -297,13 +292,6 @@ export default function CookieConsent() {
 
       window.pintrk = pintrk;
 
-      const script = document.createElement("script");
-      script.async = true;
-      script.src = "https://s.pinimg.com/ct/core.js";
-      script.dataset.nordviaPinterest = "true";
-
-      document.head.appendChild(script);
-
       window.pintrk("load", PINTEREST_ID);
       window.pintrk("setconsent", true);
 
@@ -330,18 +318,31 @@ export default function CookieConsent() {
 
   return (
     <>
+      {consent?.analytics && (
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+      )}
+      {consent?.marketing && (
+        <Script
+          src="https://s.pinimg.com/ct/core.js"
+          strategy="afterInteractive"
+        />
+      )}
+
       {/* Compact first-visit cookie notice */}
       {showBanner && (
         <div className="fixed bottom-5 left-5 z-[9998] w-[calc(100%-40px)] max-w-[525px] border border-neutral-200 bg-[#f8f8f8] p-5 text-[#333] shadow-[0_10px_45px_rgba(0,0,0,0.3)] sm:p-6">
           <p className="mb-5 text-sm leading-7 sm:text-base">
             Can we measure how the site is used? Google Analytics and
             Pinterest only load if you say yes.{" "}
-            <a
+            <Link
               href="/privacy-policy"
               className="cursor-pointer underline underline-offset-2 transition-colors hover:text-black"
             >
               Privacy policy
-            </a>
+            </Link>
           </p>
 
           <div className="grid grid-cols-2 gap-3">
@@ -537,19 +538,19 @@ export default function CookieConsent() {
 
             <p className="mt-5 text-[10px] leading-5 text-neutral-500">
               Read our{" "}
-              <a
+              <Link
                 href="/privacy-policy"
                 className="cursor-pointer underline underline-offset-2 hover:text-black"
               >
                 Privacy Policy
-              </a>{" "}
+              </Link>{" "}
               and{" "}
-              <a
+              <Link
                 href="/cookie-policy"
                 className="cursor-pointer underline underline-offset-2 hover:text-black"
               >
                 Cookie Policy
-              </a>
+              </Link>
               .
             </p>
           </div>
