@@ -34,8 +34,8 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/:path*",
-        has: [{ type: "host", value: "nordviaexports.store" }],
-        destination: "https://www.nordviaexports.store/:path*",
+        has: [{ type: "host", value: "www.nordviaexports.store" }],
+        destination: "https://nordviaexports.store/:path*",
         permanent: true,
       },
     ];

@@ -120,7 +120,7 @@ async function main() {
       );
     }
 
-    if (pageInfo.canonical && !pageInfo.canonical.startsWith("https://www.nordviaexports.store")) {
+    if (pageInfo.canonical && !pageInfo.canonical.startsWith("https://nordviaexports.store")) {
       console.log(`CANONICAL\t${url}\t${pageInfo.canonical}`);
     }
 

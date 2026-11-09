@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
 import SizeGuidePage from "@/components/resources/SizeGuidePage";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import PageJsonLd from "@/components/seo/PageJsonLd";
 
 export const metadata: Metadata = buildMetadata({
   title: "Apparel Size Guide for Custom Clothing",
@@ -19,6 +20,12 @@ export default function Page() {
           { name: "Resources", path: "/resources" },
           { name: "Size Guide", path: "/resources/size-guide" },
         ]}
+      />
+      <PageJsonLd
+        type="WebPage"
+        name="Apparel Size Guide for Custom Clothing"
+        description="Review garment measurement points and fit considerations before requesting a custom apparel project discussion."
+        path="/resources/size-guide"
       />
       <SizeGuidePage />
     </>

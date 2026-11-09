@@ -17,6 +17,7 @@ import {
 import { buildMetadata } from "@/lib/seo";
 import { seoKeywords } from "@/config/seo-keywords";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import PageJsonLd from "@/components/seo/PageJsonLd";
 
 type PageProps = {
   params: Promise<{
@@ -108,6 +109,12 @@ export default async function ServiceRoute({ params }: PageProps) {
           { name: "Manufacturing", path: "/manufacturing" },
           { name: service.title, path: `/services/${service.slug}` },
         ]}
+      />
+      <PageJsonLd
+        type="Service"
+        name={service.title}
+        description={service.description}
+        path={`/services/${service.slug}`}
       />
       {page}
     </>

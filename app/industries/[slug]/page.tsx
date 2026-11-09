@@ -9,6 +9,7 @@ import {
 import { buildMetadata } from "@/lib/seo";
 import { seoKeywords } from "@/config/seo-keywords";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import PageJsonLd from "@/components/seo/PageJsonLd";
 
 type PageProps = {
   params: Promise<{
@@ -65,6 +66,12 @@ export default async function IndustryRoute({ params }: PageProps) {
           { name: "Industries", path: "/industries" },
           { name: industry.shortTitle, path: `/industries/${industry.slug}` },
         ]}
+      />
+      <PageJsonLd
+        type="WebPage"
+        name={industry.title}
+        description={industry.description}
+        path={`/industries/${industry.slug}`}
       />
       <IndustryDetailPage industry={industry} />
     </>

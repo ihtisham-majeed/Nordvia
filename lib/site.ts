@@ -1,6 +1,9 @@
-export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://www.nordviaexports.store";
+const configuredSiteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://nordviaexports.store";
+
+export const SITE_URL = configuredSiteUrl
+  .replace(/^http:\/\//, "https://")
+  .replace(/^https:\/\/www\./, "https://");
 
 export function absoluteUrl(path = "/") {
   const normalizedPath = path === "/" ? "" : `/${path.replace(/^\/+|\/+$/g, "")}`;

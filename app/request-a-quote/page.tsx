@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import RequestQuote from "@/components/contact/RequestQuote";
 import { buildMetadata } from "@/lib/seo";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import PageJsonLd from "@/components/seo/PageJsonLd";
 
 const validProducts = [
   "hoodies",
@@ -47,6 +48,12 @@ export default async function RequestAQuotePage({
           { name: "Home", path: "/" },
           { name: "Request a Quote", path: "/request-a-quote" },
         ]}
+      />
+      <PageJsonLd
+        type="WebPage"
+        name="Custom Apparel Manufacturing Quote Request"
+        description="Request a custom apparel manufacturing quote and share your B2B clothing project requirements with Nordvia Exports."
+        path="/request-a-quote"
       />
       <RequestQuote initialProduct={initialProduct} headingLevel="h1" />
     </>

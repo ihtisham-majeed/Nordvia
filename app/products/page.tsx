@@ -4,6 +4,7 @@ import ProductsPage from "@/components/products/ProductsPage";
 import { buildMetadata } from "@/lib/seo";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import JsonLd from "@/components/seo/JsonLd";
+import PageJsonLd from "@/components/seo/PageJsonLd";
 import { absoluteUrl } from "@/lib/site";
 import { products } from "@/components/products/productData";
 
@@ -25,6 +26,13 @@ export default function Page() {
           { name: "Home", path: "/" },
           { name: "Products", path: "/products" },
         ]}
+      />
+      <PageJsonLd
+        type="CollectionPage"
+        name="Custom Apparel Manufacturer Product Categories"
+        description="Explore custom apparel categories for B2B apparel projects, including hoodies, tracksuits, jackets, coats, joggers and leather jackets."
+        path="/products"
+        image={productsImage}
       />
       <JsonLd
         data={{

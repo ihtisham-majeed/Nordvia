@@ -4,7 +4,7 @@
       "identifier": "urn:air:nordviaexports.store:website:llms",
       "displayName": "NORDVIA EXPORTS website information",
       "type": "text/markdown",
-      "url": "https://www.nordviaexports.store/llms.txt",
+      "url": "https://nordviaexports.store/llms.txt",
       "description": "Public Markdown summary of NORDVIA EXPORTS apparel categories, manufacturing services, website sections, and contact details.",
       "tags": [
         "apparel manufacturing",

@@ -10,6 +10,7 @@ import { buildMetadata } from "@/lib/seo";
 import { seoKeywords } from "@/config/seo-keywords";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import JsonLd from "@/components/seo/JsonLd";
+import PageJsonLd from "@/components/seo/PageJsonLd";
 
 type PageProps = {
   params: Promise<{
@@ -66,6 +67,12 @@ export default async function ResourceRoute({ params }: PageProps) {
           { name: "Resources", path: "/resources" },
           { name: resource.shortTitle, path: `/resources/${resource.slug}` },
         ]}
+      />
+      <PageJsonLd
+        type="WebPage"
+        name={resource.title}
+        description={resource.description}
+        path={`/resources/${resource.slug}`}
       />
       {resource.type === "faq" && resource.faqs && (
         <JsonLd

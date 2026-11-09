@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 
 import ManageCookieButton from "@/components/cookies/ManageCookieButton";
+import PageJsonLd from "@/components/seo/PageJsonLd";
 
 export const metadata: Metadata = buildMetadata({
   title: "Nordvia Exports Cookie Policy and Preferences",
@@ -136,6 +137,12 @@ export default function CookiePolicyPage() {
           { name: "Home", path: "/" },
           { name: "Cookie Policy", path: "/cookie-policy" },
         ]}
+      />
+      <PageJsonLd
+        type="WebPage"
+        name="Nordvia Exports Cookie Policy"
+        description="Learn how Nordvia Exports uses essential storage and optional analytics technologies."
+        path="/cookie-policy"
       />
       <main className="min-h-screen bg-[#090909] text-white">
       {/* Hero */}

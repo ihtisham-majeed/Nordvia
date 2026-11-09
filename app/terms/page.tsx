@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
 import Link from "next/link";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import PageJsonLd from "@/components/seo/PageJsonLd";
 
 export const metadata: Metadata = buildMetadata({
   title: "Nordvia Exports Terms and Conditions",
@@ -403,6 +404,12 @@ export default function TermsPage() {
           { name: "Home", path: "/" },
           { name: "Terms and Conditions", path: "/terms" },
         ]}
+      />
+      <PageJsonLd
+        type="WebPage"
+        name="Nordvia Exports Terms and Conditions"
+        description="Review the terms governing website use, apparel inquiries, quotations and business communications with Nordvia Exports."
+        path="/terms"
       />
       <main className="min-h-screen bg-[#090909] text-white">
       <section className="border-b border-white/10 px-5 pb-16 pt-36 sm:px-8 lg:px-12 lg:pb-24 lg:pt-44">

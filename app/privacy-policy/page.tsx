@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import PageJsonLd from "@/components/seo/PageJsonLd";
 import Link from "next/link";
 import {
   FaArrowLeft,
@@ -179,6 +180,12 @@ export default function PrivacyPolicyPage() {
           { name: "Home", path: "/" },
           { name: "Privacy Policy", path: "/privacy-policy" },
         ]}
+      />
+      <PageJsonLd
+        type="WebPage"
+        name="Nordvia Exports Privacy Policy"
+        description="Read how Nordvia Exports handles information from business inquiries, quote requests, analytics and website interactions."
+        path="/privacy-policy"
       />
       <main className="min-h-screen bg-[#090909] text-white">
       {/* Hero */}

@@ -125,6 +125,7 @@ export default function RootLayout({
           data={{
             "@context": "https://schema.org",
             "@type": "Organization",
+            "@id": `${SITE_URL}#organization`,
             name: "Nordvia Exports",
             url: SITE_URL,
             logo: absoluteUrl("/logo_.png"),
@@ -146,8 +147,12 @@ export default function RootLayout({
           data={{
             "@context": "https://schema.org",
             "@type": "WebSite",
+            "@id": `${SITE_URL}#website`,
             name: "Nordvia Exports",
             url: SITE_URL,
+            publisher: {
+              "@id": `${SITE_URL}#organization`,
+            },
           }}
         />
         <SmoothScrolling>

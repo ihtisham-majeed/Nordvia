@@ -6,8 +6,7 @@ import { getProduct, products } from "@/components/products/productData";
 import { buildMetadata } from "@/lib/seo";
 import { seoKeywords } from "@/config/seo-keywords";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
-import JsonLd from "@/components/seo/JsonLd";
-import { absoluteUrl } from "@/lib/site";
+import PageJsonLd from "@/components/seo/PageJsonLd";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -64,19 +63,12 @@ export default async function ProductPage({ params }: Props) {
           { name: product.shortName, path: `/products/${product.slug}` },
         ]}
       />
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Product",
-          name: product.name,
-          description: product.description,
-          image: absoluteUrl(product.image),
-          category: product.eyebrow,
-          brand: {
-            "@type": "Brand",
-            name: "Nordvia Exports",
-          },
-        }}
+      <PageJsonLd
+        type="CollectionPage"
+        name={`${product.name} Manufacturer`}
+        description={product.description}
+        path={`/products/${product.slug}`}
+        image={product.image}
       />
       <ProductDetailPage product={product} />
     </>
