@@ -8,9 +8,11 @@ const withBundleAnalyzer = bundleAnalyzer({
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   trailingSlash: false,
+
   images: {
     formats: ["image/avif", "image/webp"],
   },
+
   async headers() {
     return [
       {
@@ -27,16 +29,6 @@ const nextConfig: NextConfig = {
             value: "same-origin-allow-popups",
           },
         ],
-      },
-    ];
-  },
-  async redirects() {
-    return [
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.nordviaexports.store" }],
-        destination: "https://nordviaexports.store/:path*",
-        permanent: true,
       },
     ];
   },
