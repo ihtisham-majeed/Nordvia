@@ -182,18 +182,17 @@ export default function AboutPage() {
             </p>
 
             <h1 className="about-hero-content text-[clamp(3.2rem,8vw,7.5rem)] font-semibold uppercase leading-[0.93] tracking-[-0.065em] text-white">
-              Connecting
+              Clothing Manufacturing
               <br />
-              Ideas With
+              in Sialkot,
               <br />
-              <span className="text-white">Craftsmanship.</span>
+              <span className="text-white">Pakistan.</span>
             </h1>
 
             <p className="about-hero-content mt-8 max-w-xl text-sm leading-7 text-white/65 sm:text-base sm:leading-8 md:text-lg">
-              We help clothing brands and businesses explore apparel
-              manufacturing opportunities through clear communication,
-              product-focused planning, and manufacturing partnerships
-              in Pakistan.
+              NORDVIA EXPORTS is a clothing manufacturer in Sialkot, Pakistan,
+              coordinating apparel manufacturing and sourcing through
+              manufacturing partners for international B2B buyers.
             </p>
 
             <div className="about-hero-content mt-10 flex flex-wrap gap-4">
@@ -512,7 +511,7 @@ export default function AboutPage() {
 
       {/* PARTNERSHIP — BLACK */}
       <section className="border-y border-white/10 bg-[#101010] px-5 py-20 text-white sm:px-8 sm:py-24 md:px-12 lg:px-20 lg:py-28">
-        <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[1fr_0.8fr] lg:items-center lg:gap-20">
+        <div className="mx-auto grid max-w-360 gap-12 lg:grid-cols-[1fr_0.8fr] lg:items-center lg:gap-20">
           <div className="about-reveal">
             <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-white/60 sm:text-xs sm:tracking-[0.3em]">
               05 / Our Manufacturing Approach
@@ -535,7 +534,7 @@ export default function AboutPage() {
             <p className="mt-5 max-w-2xl text-sm leading-8 text-white/60 sm:text-base">
               Manufacturing arrangements, sampling, minimum
               quantities, quality checks, and delivery terms are
-              discussed and confirmed according to each project's
+              discussed and confirmed according to each project&apos;s
               requirements before proceeding.
             </p>
           </div>

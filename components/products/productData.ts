@@ -24,9 +24,9 @@ export const products: ProductInfo[] = [
     eyebrow: "Everyday Essentials",
     tagline: "Built around your brand's identity.",
     description:
-      "Explore custom hoodie and sweatshirt development for streetwear labels, fashion brands, and private-label businesses.",
+      "Hoodie manufacturer in Pakistan coordinating custom hoodies and sweatshirts for streetwear labels, fashion brands and private-label businesses.",
     image: "/products/Premium_Fleece.png",
-    imageAlt: "Hoodie product design concept",
+    imageAlt: "Black heavyweight fleece hoodie apparel design concept",
     overview:
       "From clean everyday silhouettes to heavyweight streetwear-inspired designs, hoodies and sweatshirts offer a versatile foundation for a clothing collection. We work with manufacturing partners to discuss suitable fabric, fit, construction, and branding options based on your requirements.",
     features: [
@@ -58,9 +58,9 @@ export const products: ProductInfo[] = [
     eyebrow: "Movement & Performance",
     tagline: "Designed for your activewear direction.",
     description:
-      "Explore custom tracksuits and sportswear concepts for sportswear labels, training collections, and private-label brands.",
+      "Tracksuit manufacturer coordinating custom tracksuits and sportswear concepts for training collections and private-label brands.",
     image: "/products/Performance_Wear.webp",
-    imageAlt: "Tracksuit product design concept",
+    imageAlt: "Custom tracksuit apparel product design concept",
     overview:
       "Sportswear collections require thoughtful choices in fabric, fit, comfort, and construction. We discuss tracksuit and sportswear requirements with manufacturing partners to explore options that suit your intended use, design direction, and target market.",
     features: [
@@ -92,9 +92,9 @@ export const products: ProductInfo[] = [
     eyebrow: "Outerwear Collection",
     tagline: "Distinctive layers for your collection.",
     description:
-      "Explore custom casual jackets, bomber-inspired styles, and outerwear concepts for fashion and streetwear brands.",
+      "Custom jacket manufacturer coordinating casual jackets, bomber-inspired styles and outerwear concepts for fashion and streetwear brands.",
     image: "/products/Everyday_Layers.png",
-    imageAlt: "Jacket product design concept",
+    imageAlt: "Custom jacket outerwear product design concept",
     overview:
       "Jackets can define the look and identity of an entire collection. From minimal everyday layers to more distinctive outerwear designs, we discuss materials, construction, closures, lining, and finishing requirements according to your product brief.",
     features: [
@@ -126,9 +126,9 @@ export const products: ProductInfo[] = [
     eyebrow: "Cold Weather Collection",
     tagline: "A considered approach to winter layers.",
     description:
-      "Explore winter coat and outerwear development for brands planning seasonal collections and cold-weather apparel.",
+      "Winter clothing manufacturer coordinating coat and outerwear development for brands planning seasonal cold-weather apparel.",
     image: "/products/Winter_Protection.webp",
-    imageAlt: "Winter coat product design concept",
+    imageAlt: "Winter coat outerwear product design concept",
     overview:
       "Winter outerwear involves careful consideration of materials, insulation, lining, construction, and intended climate. We can discuss your design brief and explore manufacturing possibilities with our partners based on the specifications required.",
     features: [
@@ -160,9 +160,9 @@ export const products: ProductInfo[] = [
     eyebrow: "Comfort & Everyday Wear",
     tagline: "Essential pieces with room for individuality.",
     description:
-      "Explore custom jogger and sweatpant concepts for coordinated sets, streetwear collections, and everyday apparel brands.",
+      "Custom joggers manufacturer coordinating jogger and sweatpant concepts for coordinated sets, streetwear and everyday apparel brands.",
     image: "/products/Jogger_Sweatpants.webp",
-    imageAlt: "Joggers product design concept",
+    imageAlt: "Custom joggers and sweatpants product design concept",
     overview:
       "Joggers and sweatpants are versatile pieces for casualwear, streetwear, and coordinated apparel collections. Fabric, fit, waistband construction, cuffs, and pocket details all contribute to the final product direction.",
     features: [
@@ -197,7 +197,7 @@ export const products: ProductInfo[] = [
     description:
       "Explore custom leather jacket concepts for premium outerwear collections, streetwear brands, and fashion-forward apparel lines.",
     image: "/products/Black_Leather_Jacket_Product.webp",
-    imageAlt: "Leather Jackets product design concept",
+    imageAlt: "Leather jacket outerwear product design concept",
     overview:
       "Leather jackets are iconic pieces that require careful consideration of material quality, construction techniques, and design details. We work with manufacturing partners to discuss leather types, lining options, hardware choices, and finishing touches to create a distinctive outerwear collection.",
     features: [

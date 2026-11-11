@@ -13,7 +13,7 @@ const productsImage = "/og/products-og.webp";
 export const metadata: Metadata = buildMetadata({
   title: "Custom Apparel Manufacturer Product Categories",
   description:
-    "Explore hoodies, tracksuits, jackets, coats, joggers and leather jackets for B2B apparel projects. Review product categories and request details.",
+    "Explore custom clothing manufacturing solutions for hoodies, tracksuits, jackets, coats, joggers and leather jackets for B2B buyers.",
   path: "/products",
   image: productsImage,
 });

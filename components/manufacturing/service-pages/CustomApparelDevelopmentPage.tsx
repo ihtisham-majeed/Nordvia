@@ -130,11 +130,9 @@ export default function CustomApparelDevelopmentPage() {
             </p>
 
             <h1 className="text-[clamp(3rem,7vw,6.5rem)] font-semibold leading-[0.96] tracking-[-0.06em]">
-              Apparel Shaped
+              Custom apparel development
               <br />
-              Around Your
-              <br />
-              <span className="text-white/60">Vision.</span>
+              for your <span className="text-white/60">brand.</span>
             </h1>
 
             <p className="mt-8 max-w-xl text-[14px] leading-7 text-white/65 sm:text-[16px] sm:leading-8">

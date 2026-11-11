@@ -33,10 +33,10 @@ const products: ProductSlide[] = [
   {
     number: "01",
     category: "STREETWEAR COLLECTION",
-    title: "Built for Brands.",
-    secondLine: "Made for Everyday.",
+    title: "Apparel Manufacturer",
+    secondLine: "in Pakistan.",
     description:
-      "Premium heavyweight hoodies and sweatshirts, developed around your brand identity.",
+      "NORDVIA EXPORTS coordinates custom apparel manufacturing in Sialkot for international brands, including hoodies, sweatshirts and private-label collections.",
     image: "/image/hoodie_1.webp",
     imageAlt: "Black heavyweight hoodie design concept",
   },
@@ -410,13 +410,13 @@ export default function Hero() {
                       href="/request-a-quote"
                       tabIndex={isActive ? 0 : -1}
                       className="
-                        group inline-flex min-h-[46px]
+                        group inline-flex min-h-11.5
                         items-center justify-center gap-2
                          bg-white px-3
                         text-[11px] font-semibold text-black
                         transition-colors hover:bg-white/85
                         min-[400px]:flex-1
-                        sm:min-h-[52px] sm:flex-none
+                        sm:min-h-13 sm:flex-none
                         sm:gap-3 sm:px-4 sm:text-sm
                       "
                     >

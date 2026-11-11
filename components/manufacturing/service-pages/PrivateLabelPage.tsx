@@ -108,7 +108,7 @@ export default function PrivateLabelPage() {
           </p>
 
           <h1 className="max-w-2xl text-[clamp(2.8rem,6.2vw,5.8rem)] font-semibold uppercase leading-[0.96] tracking-[-0.06em]">
-            Your brand.
+            Private label clothing.
             <span className="block text-white/60">Your identity.</span>
             Your apparel.
           </h1>

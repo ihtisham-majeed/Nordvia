@@ -18,7 +18,7 @@ export const manufacturingServices: ManufacturingService[] = [
     title: "Custom Clothing Manufacturing",
     shortTitle: "Custom Manufacturing",
     description:
-      "Custom clothing manufacturing coordination for fashion brands seeking apparel developed around their own specifications, materials and branding requirements.",
+      "Custom clothing manufacturer coordinating apparel developed around your specifications, materials, construction and branding requirements.",
     introduction:
       "Every clothing brand has its own identity and product requirements. NORDVIA EXPORTS coordinates apparel development with manufacturing partners, considering garment specifications, preferred materials, construction details and branding requirements.",
     features: [
@@ -45,7 +45,7 @@ export const manufacturingServices: ManufacturingService[] = [
     title: "Private Label Manufacturing",
     shortTitle: "Private Label",
     description:
-      "Private-label apparel development with custom brand labels, garment identification, selected branding details and packaging coordination.",
+      "Private label clothing manufacturer coordinating custom labels, garment identification, branding details and packaging through manufacturing partners.",
     introduction:
       "Build an apparel collection around your own brand identity. NORDVIA EXPORTS coordinates private-label requirements with manufacturing partners, including garment specifications, available labeling options, branding placement and packaging preferences.",
     features: [
@@ -72,7 +72,7 @@ export const manufacturingServices: ManufacturingService[] = [
     title: "OEM & ODM Apparel Solutions",
     shortTitle: "OEM & ODM",
     description:
-      "OEM and ODM apparel project coordination for brands with established technical specifications or developing product concepts.",
+      "OEM clothing manufacturer coordinating OEM and ODM apparel projects for established technical specifications or developing product concepts.",
     introduction:
       "Whether you have an established technical specification or an early-stage product idea, NORDVIA EXPORTS can discuss the development approach and coordinate suitable manufacturing requirements with its manufacturing partners.",
     features: [
@@ -99,7 +99,7 @@ export const manufacturingServices: ManufacturingService[] = [
     title: "Product Development & Sampling",
     shortTitle: "Development & Sampling",
     description:
-      "Coordinate apparel product development, garment specifications, material selection and sample requirements before production.",
+      "Coordinate clothing product development, garment specifications, material selection and apparel sampling before production.",
     introduction:
       "A well-defined product starts with clear specifications. NORDVIA EXPORTS coordinates discussions around garment design, measurements, materials, construction and available sample development options through manufacturing partners.",
     features: [
@@ -126,7 +126,7 @@ export const manufacturingServices: ManufacturingService[] = [
     title: "Printing & Embroidery",
     shortTitle: "Printing & Embroidery",
     description:
-      "Apparel decoration coordination for brand logos, graphics, lettering and custom garment details.",
+      "Custom apparel printing and embroidery coordination for brand logos, graphics, lettering and garment details.",
     introduction:
       "Branding plays an important role in making a garment recognizable. NORDVIA EXPORTS coordinates suitable printing and embroidery requirements with manufacturing partners according to artwork, fabric, garment construction and product specifications.",
     features: [
@@ -153,7 +153,7 @@ export const manufacturingServices: ManufacturingService[] = [
     title: "Fabric Sourcing & Selection",
     shortTitle: "Fabric Sourcing",
     description:
-      "Fabric sourcing coordination based on garment category, composition, weight, construction and intended performance.",
+      "Apparel fabric sourcing coordination based on garment category, composition, weight, construction and intended performance.",
     introduction:
       "Fabric influences the appearance, comfort, weight and performance of apparel. NORDVIA EXPORTS discusses material requirements and coordinates suitable sourcing options through its manufacturing network.",
     features: [

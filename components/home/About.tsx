@@ -60,15 +60,17 @@ export default function About() {
             </h2>
 
             <p className="about-item">
-              Nordvia is a Sialkot based winter apparel manufacturer
-              specializing in premium hoodies, tracksuits, and jackets for
+              NORDVIA EXPORTS is an apparel manufacturer and sourcing business
+              based in Sialkot, Pakistan. We work with manufacturing partners
+              to coordinate hoodies, tracksuits, jackets and other apparel for
               international brands.
             </p>
 
             <p className="about-item">
-              With a focus on fabric quality, precise stitching, and dependable
-              production, we support startups and growing labels through low
-              minimum order quantities and full customization.
+              We discuss fabric selection, garment construction, branding and
+              customization according to each buyer&apos;s specifications,
+              supporting startups, growing labels, wholesalers and private-label
+              businesses.
             </p>
 
             <p className="about-item">

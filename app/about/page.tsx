@@ -8,9 +8,9 @@ import PageJsonLd from "@/components/seo/PageJsonLd";
 const aboutImage = "/og/about-og.webp";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Apparel Manufacturer for Brands and Startups",
+  title: "Clothing Manufacturer in Sialkot, Pakistan",
   description:
-    "Learn how Nordvia Exports supports brands and startups with custom apparel development, sourcing and private-label manufacturing. Explore our approach.",
+    "Learn how NORDVIA EXPORTS coordinates custom garment manufacturing and apparel sourcing through partners in Sialkot, Pakistan.",
   path: "/about",
   image: aboutImage,
 });

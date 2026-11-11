@@ -73,7 +73,7 @@ export default function OEMODMPage() {
           </p>
 
           <h1 className="max-w-2xl text-[clamp(2.8rem,6.5vw,5.8rem)] font-semibold uppercase leading-[0.96] tracking-[-0.06em]">
-            OEM & ODM.
+            OEM clothing manufacturer.
             <span className="block text-white/60">Two routes.</span>
             One clear brief.
           </h1>

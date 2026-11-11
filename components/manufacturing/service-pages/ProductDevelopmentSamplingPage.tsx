@@ -102,10 +102,9 @@ export default function ProductDevelopmentSamplingPage() {
             </p>
 
             <h1 className="text-[clamp(2.8rem,6.2vw,5.8rem)] font-semibold uppercase leading-[0.98] tracking-[-0.055em]">
-              From product idea
+              Clothing product development
               <br />
-              to a defined
-              <span className="text-white/60"> garment.</span>
+              and apparel sampling.
             </h1>
 
             <p className="mt-8 max-w-xl text-sm leading-7 text-white/60 md:text-base md:leading-8">

@@ -20,18 +20,19 @@ export const metadata: Metadata = {
 
   title: {
     default:
-      "NORDVIA EXPORTS | Custom Apparel Manufacturer in Pakistan",
+      "NORDVIA EXPORTS | Apparel Manufacturer in Pakistan",
     template: "%s | Nordvia Exports",
   },
 
   description:
-    "NORDVIA EXPORTS is a Sialkot, Pakistan-based apparel sourcing and manufacturing business working with manufacturing partners to develop custom hoodies, sportswear, tracksuits, jackets and private-label clothing for international brands.",
+    "NORDVIA EXPORTS is an apparel manufacturer in Pakistan coordinating custom clothing, sportswear and private-label apparel through partners in Sialkot.",
 
   applicationName: "NORDVIA EXPORTS",
 
   keywords: [
-    "custom apparel manufacturer Pakistan",
-    "clothing manufacturer Sialkot",
+    "apparel manufacturer in Pakistan",
+    "clothing manufacturer in Pakistan",
+    "garment manufacturer in Sialkot",
     "hoodie manufacturer Pakistan",
     "sportswear manufacturer Pakistan",
     "tracksuit manufacturer",
@@ -47,9 +48,9 @@ export const metadata: Metadata = {
   publisher: "NORDVIA EXPORTS",
 
   openGraph: {
-    title: "NORDVIA EXPORTS | Custom Apparel Manufacturing",
+    title: "NORDVIA EXPORTS | Apparel Manufacturer in Pakistan",
     description:
-      "Explore custom apparel development, private-label clothing and manufacturing solutions for international fashion brands and buyers.",
+      "Custom apparel development, private-label clothing and sourcing coordination through manufacturing partners in Sialkot, Pakistan.",
     url: SITE_URL,
     siteName: "Nordvia Exports",
     locale: "en_US",
@@ -66,9 +67,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "NORDVIA EXPORTS | Custom Apparel Manufacturing",
+    title: "NORDVIA EXPORTS | Apparel Manufacturer in Pakistan",
     description:
-      "Custom apparel development and private-label clothing solutions from Sialkot, Pakistan.",
+      "Custom apparel development and private-label clothing solutions coordinated from Sialkot, Pakistan.",
     images: [homeOgImage],
   },
 

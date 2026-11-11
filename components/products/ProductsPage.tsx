@@ -205,9 +205,10 @@ export default function ProductsPage() {
             </h1>
 
             <p className="products-hero-content mt-8 max-w-xl text-[14px] leading-7 text-white/65 sm:text-[16px] sm:leading-8">
-              Explore apparel categories and customization possibilities
-              for your brand. From everyday essentials to statement
-              outerwear, let&apos;s discuss the products you want to develop.
+              Explore custom apparel manufacturing solutions for your brand.
+              From hoodies and sportswear to statement outerwear, let&apos;s
+              discuss the products, materials and private-label details you
+              want to develop.
             </p>
 
             <div className="products-hero-content mt-10 flex flex-wrap gap-3 sm:gap-4">
@@ -254,9 +255,9 @@ export default function ProductsPage() {
           <p className="products-reveal max-w-2xl text-[14px] leading-8 text-black/60 sm:text-[16px]">
             Every collection starts with a product idea. Explore the
             categories below, then tell us about your preferred style,
-            materials, branding, and order requirements. We will discuss
-            the possibilities based on your project and manufacturing
-            partner availability.
+            materials, branding and order requirements. As a custom apparel
+            manufacturer, we discuss the possibilities based on your project
+            and manufacturing partner availability.
           </p>
         </div>
       </section>

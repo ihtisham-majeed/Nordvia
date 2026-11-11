@@ -8,9 +8,9 @@ import PageJsonLd from "@/components/seo/PageJsonLd";
 const contactImage = "/og/contact-og.webp";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Contact Apparel Manufacturer for Your Project",
+  title: "Contact an Apparel Supplier in Pakistan",
   description:
-    "Contact Nordvia Exports about custom hoodies, tracksuits, jackets and private-label apparel. Send your B2B requirements for a project discussion.",
+    "Contact NORDVIA EXPORTS, an apparel supplier in Pakistan, about custom clothing, sourcing and private-label manufacturing inquiries.",
   path: "/contact",
   image: contactImage,
 });

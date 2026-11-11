@@ -97,7 +97,7 @@ export default function CustomClothingManufacturingPage() {
           </p>
 
           <h1 className="max-w-[720px] text-[clamp(2.8rem,6.5vw,6rem)] font-semibold uppercase leading-[0.96] tracking-[-0.06em]">
-            Custom clothing.
+            Custom clothing manufacturer.
             <span className="block text-white/60">Built around</span>
             your brand.
           </h1>

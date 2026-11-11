@@ -22,9 +22,9 @@ type PageProps = {
 
 /* SEO metadata is kept in one shared builder for canonical consistency. */
 export const metadata: Metadata = buildMetadata({
-  title: "Custom Apparel Manufacturing Quote Request",
+  title: "Custom Clothing Manufacturing Quote",
   description:
-    "Request a custom apparel manufacturing quote for hoodies, tracksuits, jackets or private-label clothing. Share your requirements with Nordvia Exports.",
+    "Request a custom clothing manufacturing quote for hoodies, sportswear, jackets or private-label apparel. Share your B2B requirements with NORDVIA EXPORTS.",
   path: "/request-a-quote",
   image: "/og/quote-og.webp",
 });

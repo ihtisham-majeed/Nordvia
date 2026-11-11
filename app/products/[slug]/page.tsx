@@ -39,7 +39,7 @@ export async function generateMetadata({
   const primary = seoKeywords[path as keyof typeof seoKeywords]?.primary;
 
   return buildMetadata({
-    title: `${primary ?? `Custom ${product.name}`} Manufacturer`,
+    title: primary ?? `Custom ${product.name} Manufacturer`,
     description: `${product.description} Discuss custom development and private-label options with Nordvia Exports for your next B2B apparel project.`,
     path,
     image: product.image,

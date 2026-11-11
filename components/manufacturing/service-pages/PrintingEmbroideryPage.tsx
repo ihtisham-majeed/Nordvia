@@ -86,10 +86,9 @@ export default function PrintingEmbroideryPage() {
             </p>
 
             <h1 className="text-[clamp(2.8rem,6.5vw,6.2rem)] font-semibold leading-[0.98] tracking-[-0.055em]">
-              Make your
+              Custom apparel printing
               <br />
-              brand&apos;s identity
-              <span className="text-white/60"> visible.</span>
+              and embroidery.
             </h1>
 
             <p className="mt-8 max-w-xl text-[14px] leading-7 text-white/65 sm:text-[15px] sm:leading-8 md:text-base">

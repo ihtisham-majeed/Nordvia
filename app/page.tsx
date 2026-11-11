@@ -31,9 +31,9 @@ const RequestQuote = dynamic(
 const homeOgImage = "/og/home-og.webp";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Custom Apparel Manufacturer for B2B Brands",
+  title: "Apparel Manufacturer in Pakistan for B2B Brands",
   description:
-    "Work with a custom apparel manufacturer for hoodies, tracksuits, jackets and private-label clothing. Share your project with Nordvia Exports today.",
+    "Work with an apparel manufacturer in Pakistan for custom hoodies, sportswear, tracksuits, jackets and private-label clothing through Sialkot partners.",
   path: "/",
   image: homeOgImage,
 });

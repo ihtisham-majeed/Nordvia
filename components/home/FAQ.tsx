@@ -19,24 +19,34 @@ if (typeof window !== "undefined") {
 
 const faqs = [
   {
-    question: "What products can NORDVIA EXPORTS manufacture?",
+    question: "What apparel can you manufacture through your partners?",
     answer:
       "We work with manufacturing partners to develop a range of apparel, including hoodies, sweatshirts, T-shirts, polos, sportswear, tracksuits, joggers, and selected outerwear. Share your product requirements with us to discuss the available options.",
   },
   {
-    question: "Can I customize designs, fabrics, colors, and labels?",
+    question: "Can you support private-label clothing development?",
     answer:
       "Yes. Customization can be discussed according to your project requirements and manufacturing feasibility. Options may include fabric selection, colors, artwork, embroidery, printing, labels, trims, and packaging.",
   },
   {
-    question: "What is your minimum order quantity (MOQ)?",
+    question: "Can buyers provide their own garment designs?",
     answer:
-      "Minimum order quantities depend on the garment, fabric, customization, and production requirements. Contact us with your product details and estimated quantity so we can check the applicable MOQ with our manufacturing partners.",
+      "Yes. You can share sketches, reference images, tech packs or specifications. We discuss the requirements with our manufacturing partners and assess suitable development options.",
+  },
+  {
+    question: "Can buyers discuss fabric and material requirements?",
+    answer:
+      "Yes. Fabric composition, weight, color, finish and performance requirements can be discussed for the garment and intended use.",
   },
   {
     question: "Can I request samples before placing a bulk order?",
     answer:
-      "Sample development can be discussed before bulk production. Availability, development time, and sample costs depend on the product and manufacturing requirements. We will clarify these details during your inquiry.",
+      "Sample development can be discussed before bulk production. Availability, development time and sample costs depend on the product and manufacturing requirements.",
+  },
+  {
+    question: "What is your minimum order quantity (MOQ)?",
+    answer:
+      "Minimum order quantities depend on the garment, fabric, customization and production requirements. We confirm the applicable MOQ with our manufacturing partners for each inquiry.",
   },
   {
     question: "Which countries can you ship to?",
@@ -136,7 +146,7 @@ export default function FAQ() {
             <h2 className="max-w-xl text-4xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-5xl lg:text-6xl">
               Questions?
               <br />
-              <span className="text-neutral-400">We've got answers.</span>
+              <span className="text-neutral-400">We&apos;ve got answers.</span>
             </h2>
           </div>
 
@@ -160,13 +170,13 @@ export default function FAQ() {
         <div className="grid gap-12 lg:grid-cols-[0.65fr_1.35fr] lg:gap-20">
           {/* Left information panel */}
           <div className="faq-intro flex flex-col justify-between">
-            <div className="border border-white/10 bg-white/[0.025] p-7 sm:p-9">
+            <div className="border border-white/10 bg-white/2.5 p-7 sm:p-9">
               <div className="mb-8 flex h-12 w-12 items-center justify-center border border-white/15 text-white">
                 <FaComments size={19} />
               </div>
 
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
-                Let's talk business
+                Let&apos;s talk business
               </p>
 
               <h3 className="mb-4 text-2xl font-medium leading-tight tracking-tight sm:text-3xl">
@@ -174,7 +184,7 @@ export default function FAQ() {
               </h3>
 
               <p className="mb-8 text-sm leading-7 text-neutral-400">
-                Tell us what you want to create. We'll help you explore the
+                Tell us what you want to create. We&apos;ll help you explore the
                 next steps for your apparel project.
               </p>
 
