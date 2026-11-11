@@ -99,9 +99,10 @@ export const seoKeywords = {
     intent: "commercial",
   },
   "/manufacturing": {
-    primary: "private label clothing manufacturer",
+    primary: "apparel manufacturing services",
     secondary: [
       "custom apparel manufacturing",
+      "private label clothing manufacturer",
       "OEM and ODM apparel manufacturer",
       "clothing production services",
     ],
@@ -163,7 +164,7 @@ export const seoKeywords = {
     intent: "commercial",
   },
   "/services/custom-apparel-development": {
-    primary: "custom apparel development manufacturer",
+    primary: "custom apparel development",
     secondary: [
       "apparel sourcing for brands",
       "private label clothing development",

@@ -20,18 +20,19 @@ export function buildMetadata({
   type = "website",
   noindex = false,
 }: SeoInput): Metadata {
+  const normalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
   const url = absoluteUrl(path);
   const imageUrl = absoluteUrl(image);
 
   return {
-    title,
+    title: normalizedTitle,
     description,
     alternates: { canonical: url },
     robots: noindex
       ? { index: false, follow: false }
       : { index: true, follow: true },
     openGraph: {
-      title,
+      title: normalizedTitle,
       description,
       url,
       siteName: "Nordvia Exports",
@@ -48,7 +49,7 @@ export function buildMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: normalizedTitle,
       description,
       images: [imageUrl],
     },

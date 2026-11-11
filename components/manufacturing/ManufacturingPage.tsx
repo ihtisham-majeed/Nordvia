@@ -52,17 +52,17 @@ export default function ManufacturingPage() {
           </p>
 
           <h1 className="max-w-5xl text-[clamp(3.2rem,7.5vw,6.8rem)] font-semibold uppercase leading-[0.95] tracking-[-0.065em]">
-            Built Around
+            Apparel Manufacturing
             <br />
-            Your Vision<span className="text-white/60">.</span>
+            Services<span className="text-white/60">.</span>
           </h1>
 
           <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <p className="max-w-xl text-[14px] leading-7 text-white/60 sm:text-[16px] sm:leading-8">
-              Apparel development and manufacturing coordination for
-              fashion brands, independent labels and growing businesses.
-              From product specifications to custom branding, we help
-              organize the details behind your next collection.
+              Apparel manufacturing and sourcing services for fashion brands,
+              independent labels and growing businesses. From product
+              specifications to custom branding, we help organize the details
+              behind your next collection.
             </p>
 
             <Link

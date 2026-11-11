@@ -6,8 +6,8 @@ import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import PageJsonLd from "@/components/seo/PageJsonLd";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Private Label Clothing Manufacturer Services",
-  description: "Explore private label apparel, custom manufacturing, OEM, ODM, fabric sourcing and development services for B2B clothing brands.",
+  title: "Apparel Manufacturing and Sourcing Services",
+  description: "Explore custom apparel manufacturing, private label, OEM, ODM, fabric sourcing and development services for B2B clothing brands.",
   path: "/manufacturing",
 });
 
