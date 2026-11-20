@@ -23,7 +23,7 @@ const sections = [
     title: "Introduction",
     paragraphs: [
       "NORDVIA EXPORTS respects the privacy of visitors, prospective customers, business partners and other individuals who interact with our website.",
-      "This Privacy Policy explains what information we may collect, why we collect it, how it is used and the choices available to you when visiting nordviaexports.store.",
+      "This Privacy Policy explains what information we may collect, why we collect it, how it is used and the choices available to you when visiting www.nordviaexports.store.",
       "By using our website, you acknowledge that you have read this policy. Where consent is required for optional tracking or other processing, we will request it separately.",
     ],
   },

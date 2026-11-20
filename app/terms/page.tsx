@@ -20,7 +20,7 @@ const sections = [
           Welcome to NORDVIA EXPORTS. These Terms & Conditions
           apply to your access to and use of{" "}
           <Link href="/" className="text-white underline underline-offset-4">
-            nordviaexports.store
+            www.nordviaexports.store
           </Link>
           , including its content, product information and
           business inquiry facilities.
