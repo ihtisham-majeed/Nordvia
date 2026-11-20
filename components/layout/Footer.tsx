@@ -36,6 +36,7 @@ const products = [
   { label: "Hoodies & Sweatshirts", href: "/products/hoodies" },
   { label: "Sportswear & Tracksuits", href: "/products/tracksuits" },
   { label: "Joggers & Sweatpants", href: "/products/joggers" },
+  { label: "Leather Jackets", href: "/products/leather-jackets" },
   { label: "Custom Apparel", href: "/products#custom-apparel" },
   { label: "Size Guide", href: "/resources/size-guide" },
 ];

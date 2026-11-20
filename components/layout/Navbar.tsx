@@ -63,6 +63,11 @@ const products = [
     description: "Custom bottoms and fleece essentials",
   },
   {
+    name: "Leather Jackets",
+    href: "/products/leather-jackets",
+    description: "Custom leather jackets and outerwear",
+  },
+  {
     name: "Custom Apparel",
     href: "/products#custom-apparel",
     description: "Develop apparel around your requirements",
@@ -74,6 +79,7 @@ const mobileLinks = [
   { name: "Products", href: "/products" },
   { name: "Manufacturing", href: "/manufacturing" },
   { name: "Industries", href: "/industries" },
+  { name: "Resources", href: "/resources" },
   { name: "About Us", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
@@ -907,6 +913,15 @@ export default function Navbar() {
 
               </div>
             </div>
+
+            {/* RESOURCES */}
+
+            <Link
+              href="/resources"
+              className="text-[11px] font-semibold uppercase tracking-[0.17em] text-white/80 transition-colors hover:text-white"
+            >
+              Resources
+            </Link>
 
             {/* ABOUT */}
 
