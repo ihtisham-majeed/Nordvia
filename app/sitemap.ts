@@ -6,8 +6,6 @@ import { industries } from "@/components/industries/industryData";
 import { resourcePages } from "@/components/resources/resourceData";
 import { absoluteUrl } from "@/lib/site";
 
-const LAST_MODIFIED = new Date("2026-11-07");
-
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     "",
@@ -33,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   );
   const resourceRoutePages = resourcePages.map(
     (resource) => `/resources/${resource.slug}`
-  );
+  ).filter((path) => path !== "/resources/blog");
 
   const allPages = [
     ...staticPages,
@@ -45,7 +43,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return allPages.map((path) => ({
     url: absoluteUrl(path),
-    lastModified: LAST_MODIFIED,
     changeFrequency: "monthly",
     priority:
       path === ""
