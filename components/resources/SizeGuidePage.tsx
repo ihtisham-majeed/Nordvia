@@ -604,7 +604,7 @@ export default function SizeGuidePage() {
               Your specifications.
             </h2>
             <p className="mt-6 max-w-lg text-sm leading-7 text-white/60">
-              Have a specific fit or size requirement? Let's discuss the
+              Have a specific fit or size requirement? Let&apos;s discuss the
               specifications for your next apparel collection.
             </p>
           </div>

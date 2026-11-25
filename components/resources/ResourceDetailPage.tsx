@@ -1,7 +1,7 @@
-
 import Link from "next/link";
 import type { ResourcePageData } from "./resourceData";
 import { resourcePages } from "./resourceData";
+import { getAllPosts } from "@/lib/blog";
 
 type Props = {
   resource: ResourcePageData;
@@ -10,6 +10,7 @@ type Props = {
 export default function ResourceDetailPage({ resource }: Props) {
   const isFAQ = resource.type === "faq";
   const isBlog = resource.type === "blog";
+  const posts = isBlog ? getAllPosts() : [];
 
   const nextResource =
     resourcePages[
@@ -159,8 +160,50 @@ export default function ResourceDetailPage({ resource }: Props) {
         </section>
       )}
 
-      {/* BLOG EMPTY STATE */}
-      {isBlog && (
+      {/* BLOG: real articles when they exist, "coming soon" only when empty */}
+      {isBlog && posts.length > 0 && (
+        <section className="border-y border-white/10 bg-[#101010] px-6 py-20 md:px-12 lg:px-20 lg:py-28">
+          <div className="mx-auto max-w-[1100px]">
+            <div className="mb-12">
+              <p className="mb-5 text-xs uppercase tracking-[0.3em] text-white/60">
+                Latest Articles
+              </p>
+              <h2 className="text-3xl font-medium uppercase tracking-[-0.04em] md:text-5xl">
+                From The Journal.
+              </h2>
+            </div>
+
+            <div className="divide-y divide-white/10 border-y border-white/10">
+              {posts.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/resources/blog/${post.slug}`}
+                  className="group block py-8"
+                >
+                  <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-white/50">
+                    {post.date}
+                  </p>
+                  <h3 className="text-xl font-medium uppercase tracking-wide transition group-hover:text-white/60 md:text-2xl">
+                    {post.title}
+                  </h3>
+                  <p className="mt-3 max-w-2xl text-sm leading-7 text-white/55">
+                    {post.description}
+                  </p>
+                </Link>
+              ))}
+            </div>
+
+            <Link
+              href="/resources/blog"
+              className="mt-10 inline-flex items-center gap-4 border border-white/25 px-7 py-4 text-xs font-semibold uppercase tracking-[0.2em] transition hover:bg-white hover:text-black"
+            >
+              View All Articles <span aria-hidden="true">↗</span>
+            </Link>
+          </div>
+        </section>
+      )}
+
+      {isBlog && posts.length === 0 && (
         <section className="border-y border-white/10 bg-[#101010] px-6 py-24 md:px-12 lg:px-20 lg:py-32">
           <div className="mx-auto max-w-[900px] border border-white/10 px-7 py-16 text-center md:px-16 md:py-24">
             <span className="text-xs uppercase tracking-[0.3em] text-white/60">

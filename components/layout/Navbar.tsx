@@ -79,7 +79,6 @@ const mobileLinks = [
   { name: "Products", href: "/products" },
   { name: "Manufacturing", href: "/manufacturing" },
   { name: "Industries", href: "/industries" },
-  { name: "Resources", href: "/resources" },
   { name: "About Us", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
@@ -168,6 +167,50 @@ const industryGroups = [
         name: "Wholesalers & Distributors",
         href: "/industries/wholesalers-distributors",
         description: "Apparel supply solutions for wholesale businesses.",
+      },
+    ],
+  },
+];
+
+
+const resourceGroups = [
+  {
+    title: "Guides & Resources",
+    links: [
+      {
+        name: "All Resources",
+        href: "/resources",
+        description: "Explore all apparel resources and practical guides.",
+      },
+      {
+        name: "Size Guide",
+        href: "/resources/size-guide",
+        description: "Explore garment sizing and measurement guidance.",
+      },
+      {
+        name: "Fabric Guide",
+        href: "/resources/fabric-guide",
+        description: "Learn about fabrics, materials and their applications.",
+      },
+      {
+        name: "Manufacturing Process",
+        href: "/resources/manufacturing-process",
+        description: "Understand the key stages of apparel production.",
+      },
+      {
+        name: "Frequently Asked Questions",
+        href: "/resources/faq",
+        description: "Find answers to common apparel manufacturing questions.",
+      },
+    ],
+  },
+  {
+    title: "Journal & Insights",
+    links: [
+      {
+        name: "Blog & Insights",
+        href: "/resources/blog",
+        description: "Read articles on fabrics, apparel and manufacturing.",
       },
     ],
   },
@@ -265,6 +308,7 @@ function MegaMenuLink({
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [resourcesOpen, setResourcesOpen] = useState(false);
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [quoteItems, setQuoteItems] = useState<QuoteItem[]>([]);
   const [quoteHydrated, setQuoteHydrated] = useState(false);
@@ -421,6 +465,7 @@ export default function Navbar() {
 
   const closeMobileMenu = () => {
     setMobileOpen(false);
+    setResourcesOpen(false);
   };
 
   const openQuoteDrawer = () => {
@@ -499,7 +544,7 @@ export default function Navbar() {
 
         <nav
           aria-label="Main navigation"
-          className="mx-auto flex h-[76px] max-w-[1600px] items-center justify-between px-5 sm:px-8 lg:h-[88px] lg:px-12"
+          className="mx-auto flex h-19 max-w-400 items-center justify-between px-5 sm:px-8 lg:h-22 lg:px-12"
         >
 
           {/* LOGO */}
@@ -558,7 +603,7 @@ export default function Navbar() {
                 "
               >
 
-                <div className="mx-auto grid max-w-[1500px] grid-cols-12 gap-10 px-12 py-12 2xl:px-16">
+                <div className="mx-auto grid max-w-375 grid-cols-12 gap-10 px-12 py-12 2xl:px-16">
 
                   {/* PRODUCT CATEGORIES */}
 
@@ -914,14 +959,100 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* RESOURCES */}
+            {/* -------------------------------------------------------- */}
+            {/* RESOURCES MEGA MENU                                     */}
+            {/* -------------------------------------------------------- */}
 
-            <Link
-              href="/resources"
-              className="text-[11px] font-semibold uppercase tracking-[0.17em] text-white/80 transition-colors hover:text-white"
-            >
-              Resources
-            </Link>
+            <div className="group/resources flex h-full items-center">
+              <Link
+                href="/resources"
+                className="flex h-full items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.17em] text-white/80 transition-colors hover:text-white"
+              >
+                Resources
+                <FaChevronDown
+                  size={9}
+                  className="transition-transform duration-300 group-hover/resources:rotate-180"
+                />
+              </Link>
+
+              <div
+                className="
+                  invisible absolute left-0 top-full z-50 w-full
+                  translate-y-3 border-t border-black/10
+                  bg-[#f5f5f3] text-neutral-900
+                  opacity-0 shadow-[0_25px_60px_rgba(0,0,0,0.18)]
+                  transition-all duration-300 ease-out
+                  group-hover/resources:visible
+                  group-hover/resources:translate-y-0
+                  group-hover/resources:opacity-100
+                  group-focus-within/resources:visible
+                  group-focus-within/resources:translate-y-0
+                  group-focus-within/resources:opacity-100
+                "
+              >
+                <div className="mx-auto grid max-w-[1500px] grid-cols-12 gap-12 px-12 py-12 2xl:px-16">
+                  {/* RESOURCE LINKS */}
+                  <div className="col-span-8 grid grid-cols-2 gap-12">
+                    {resourceGroups.map((group) => (
+                      <div key={group.title}>
+                        <p className="mb-5 border-b border-neutral-300 pb-4 text-[10px] font-bold uppercase tracking-[0.22em] text-neutral-500">
+                          {group.title}
+                        </p>
+
+                        <div className="space-y-6">
+                          {group.links.map((item) => (
+                            <MegaMenuLink key={item.href} {...item} />
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* FEATURED PANEL */}
+                  <div className="col-span-4 flex flex-col justify-between border-l border-neutral-200 pl-10">
+                    <div>
+                      <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.22em] text-neutral-500">
+                        NORDVIA / KNOWLEDGE
+                      </p>
+
+                      <h3 className="max-w-xs text-3xl font-medium leading-tight tracking-tight">
+                        Better knowledge. Better apparel.
+                      </h3>
+
+                      <p className="mt-4 max-w-sm text-sm leading-7 text-neutral-500">
+                        Explore fabric information, garment sizing, manufacturing
+                        resources, and insights for your next apparel collection.
+                      </p>
+                    </div>
+
+                    <Link
+                      href="/resources/blog"
+                      className="mt-8 inline-flex w-fit items-center gap-3 border border-neutral-900 px-6 py-4 text-[10px] font-bold uppercase tracking-[0.15em] transition-colors hover:bg-black hover:text-white"
+                    >
+                      Explore Our Journal
+                      <FaArrowRight size={10} />
+                    </Link>
+                  </div>
+                </div>
+
+                {/* RESOURCES MENU FOOTER */}
+                <div className="border-t border-neutral-200 bg-[#ededeb]">
+                  <div className="mx-auto flex max-w-[1500px] items-center justify-between px-12 py-5 2xl:px-16">
+                    <p className="text-[10px] font-medium uppercase tracking-[0.17em] text-neutral-500">
+                      Resources / Fabric / Sizing / Manufacturing / Insights
+                    </p>
+
+                    <Link
+                      href="/resources"
+                      className="inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.15em] transition-colors hover:text-neutral-500"
+                    >
+                      View All Resources
+                      <FaArrowRight size={11} />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* ABOUT */}
 
@@ -1074,6 +1205,63 @@ export default function Navbar() {
               </Link>
             ))}
 
+          </div>
+
+          {/* MOBILE RESOURCES DROPDOWN */}
+
+          <div className="border-b border-white/10">
+            <div className="flex items-center justify-between">
+              <Link
+                href="/resources"
+                onClick={closeMobileMenu}
+                tabIndex={mobileOpen ? 0 : -1}
+                className="py-4 text-sm font-medium text-white/80 transition-colors hover:text-white"
+              >
+                Resources
+              </Link>
+
+              <button
+                type="button"
+                onClick={() => setResourcesOpen((previous) => !previous)}
+                aria-label="Toggle resources submenu"
+                aria-expanded={resourcesOpen}
+                className="flex h-11 w-11 cursor-pointer items-center justify-center text-white/70"
+                tabIndex={mobileOpen ? 0 : -1}
+              >
+                <FaChevronDown
+                  size={12}
+                  className={`transition-transform duration-300 ${
+                    resourcesOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+            </div>
+
+            <div
+              className={`grid transition-all duration-300 ease-in-out ${
+                resourcesOpen
+                  ? "grid-rows-[1fr] opacity-100"
+                  : "grid-rows-[0fr] opacity-0"
+              }`}
+            >
+              <div className="overflow-hidden">
+                <div className="flex flex-col gap-4 pb-5 pl-4">
+                  {resourceGroups.flatMap((group) =>
+                    group.links.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={closeMobileMenu}
+                        tabIndex={mobileOpen && resourcesOpen ? 0 : -1}
+                        className="text-xs text-white/55 transition-colors hover:text-white"
+                      >
+                        {item.name}
+                      </Link>
+                    ))
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* MOBILE PRODUCT LINKS */}
